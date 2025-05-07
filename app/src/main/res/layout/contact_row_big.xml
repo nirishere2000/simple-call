@@ -1,0 +1,282 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#090909"
+    android:orientation="vertical">
+
+    <!-- Line Above -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CBCBCE" />
+
+    <LinearLayout
+        android:id="@+id/simpleLineBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="start|center_vertical"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+
+            android:gravity="center_vertical|start"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/contactsContactName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="17dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/inter_bold"
+                android:gravity="center"
+                android:maxLines="3"
+                android:text="@string/unknown_caller"
+                android:textColor="@color/white"
+                android:textDirection="locale"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:id="@+id/contactExistingPhotoBackContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:orientation="horizontal"
+
+                >
+
+                <FrameLayout
+                    android:id="@+id/contactExistingPhotoBack"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+
+
+                    android:background="@drawable/circle_background"
+                    android:clipToOutline="true"
+
+
+                    android:outlineProvider="background"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toTopOf="@id/topRightBar"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/photoImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                         />
+
+                    <ImageView
+                        android:id="@+id/contactExistingPhotoBorder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/circle_background"
+
+                        android:scaleType="centerCrop"
+
+                        />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contactsCallButtonContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:orientation="horizontal"
+
+                >
+
+                <FrameLayout
+                    android:id="@+id/contactsCallButton"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_background"
+                    android:clipToOutline="true"
+
+
+                    android:outlineProvider="background"
+
+                    app:layout_constraintTop_toTopOf="@id/topRightBar"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/dialButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rounded_corners"
+
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/dialButtonBorder"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="3dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/blackphonedialer"
+                        tools:ignore="RtlHardcoded"
+
+                        />
+                </FrameLayout>
+
+                <ImageView
+                    android:id="@+id/goldNumberDialButton"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+
+                    android:contentDescription="Contact Call button"
+
+
+                    app:srcCompat="@drawable/goldappiconphoneblack" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/phoneNumberBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="start|center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <!--Should always be left to right:-->
+            <!--android:textDirection="ltr" -->
+            <TextView
+                android:id="@+id/phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/inter_bold"
+                android:singleLine="true"
+                android:text="@string/unknown_caller"
+                android:textAlignment="gravity"
+                android:textColor="@color/white"
+                android:textDirection="ltr"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+
+            <!--    <ImageView
+            android:id="@+id/callTypeIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/call_type_icon"
+            tools:srcCompat="@android:drawable/sym_call_missed" />-->
+
+            <!--        <TextView
+                        android:id="@+id/lastContactedDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textColor="#CBCBCE"
+                        android:textSize="14sp" />-->
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@id/buttonsBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="30dp">
+
+        <!-- android:text="@string/auto_answer_capital_auto"-->
+        <CheckBox
+            android:id="@+id/autoAnswerCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="start"
+            android:maxWidth="150dp"
+            android:text="@string/auto_answer_capital_auto"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/contactsInfoButton"
+            android:layout_width="10dp"
+            android:layout_height="80dp"
+            android:layout_weight="1.4"
+            android:contentDescription="Contact Info button"
+            app:srcCompat="@android:drawable/ic_dialog_info" />
+
+        <!--        <ImageView
+                    android:id="@+id/msgContactButton"
+                    android:layout_width="55dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:contentDescription="Contact SMS button"
+                    app:srcCompat="@android:drawable/ic_dialog_email" />-->
+
+        <ImageView
+            android:id="@+id/openWhatsUpButton"
+            android:layout_width="20dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="0.8"
+            android:contentDescription="open Whatsup button"
+            app:srcCompat="@drawable/whatsupapptransparent" />
+    </LinearLayout>
+    <!-- Line Below -->
+    <!-- <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="#CBCBCE" />-->
+
+    <!--    <View
+            android:id="@+id/missedIndicator"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/holo_red_dark"
+            android:visibility="gone" />-->
+
+</LinearLayout>

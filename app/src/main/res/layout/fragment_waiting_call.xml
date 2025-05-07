@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EA000000"
+    tools:context="com.nirotem.simplecall.ui.waitingCall.WaitingCallFragment">
+
+    <!-- TextView for phone number -->
+
+    <TextView
+        android:id="@+id/text_incoming_call_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/unknown_caller"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="38sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/text_incoming_call_label"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="45dp"
+        android:text="@string/call_waiting"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="38sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_incoming_call_contact"
+
+       />
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="260dp"
+        android:layout_height="224dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/elderandyoung"
+        android:src="@drawable/goldappiconphoneblack"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_incoming_call_label"
+        app:layout_constraintVertical_bias="0.475" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/appIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <LinearLayout
+            android:id="@+id/declineButton"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <ImageButton
+                android:id="@+id/declineButtonImage"
+                android:layout_width="135dp"
+                android:layout_height="135dp"
+                android:adjustViewBounds="false"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/decline_button"
+                android:scaleType="fitCenter"
+                android:src="@drawable/declinebutton" />
+
+            <TextView
+                android:id="@+id/declineButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/decline_button"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/acceptButton"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            >
+
+            <ImageButton
+                android:id="@+id/acceptButtonImage"
+                android:layout_width="133dp"
+                android:layout_height="133dp"
+                android:adjustViewBounds="false"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/accept_button"
+                android:scaleType="fitCenter"
+                android:src="@drawable/callbutton" />
+
+            <TextView
+                android:id="@+id/acceptButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/accept_button"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

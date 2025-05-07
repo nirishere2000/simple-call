@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/transparent"/> <!-- שקוף -->
+    <corners android:radius="10dp"/> <!-- פינות מעוגלות מעט -->
+    <stroke android:color="#FFFFFF" android:width="1dp"/> <!-- קו דק בצבע לבן -->
+    <gradient
+        android:startColor="#B0C4DE"
+    android:centerColor="#F1F1F1"
+    android:endColor="#D1D1D1"
+    android:angle="45"/>
+</shape>

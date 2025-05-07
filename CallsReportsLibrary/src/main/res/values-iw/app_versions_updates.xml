@@ -1,0 +1,35 @@
+<!-- app_versions_updates.xml ב־res/values -->
+<resources>
+    <!-- עדכונים לגרסה 0.0.20 -->
+    <string name="app_version_0020">0.0.20</string>
+    <string-array name="app_updates_0020">
+        <!-- ניתן להוסיף עוד פריטים עד 100 -->
+    </string-array>
+    <bool name="should_show_tour_0020">false</bool>
+
+    <!-- עדכונים לגרסה 0.0.21 -->
+    <string name="app_version_0021">0.0.21</string>
+    <string-array name="app_updates_0021">
+        <item>1. נוסף כפתור מצוקה.</item>
+        <item>2. בחירת מספר זהב בסיור.</item>
+        <item>3. סגירת הודעה כשפותחים את תנאי השימוש.</item>
+        <item>4. תיקון מקלדת מכווצת בעת שיחה.</item>
+    </string-array>
+    <bool name="should_show_tour_0021">false</bool>
+
+    <!-- עדכונים לגרסה 0.0.22 -->
+    <string name="app_version_0022">0.0.22</string>
+    <string-array name="app_updates_0022">
+    </string-array>
+    <bool name="should_show_tour_0022">true</bool>
+
+    <string name="app_version_0023">0.0.23</string>
+    <string-array name="app_updates_0023">
+    </string-array>
+    <bool name="should_show_tour_0023">true</bool>
+
+    <string name="app_version_0024">0.0.24</string>
+    <string-array name="app_updates_0024">
+    </string-array>
+    <bool name="should_show_tour_0024">true</bool>
+</resources>

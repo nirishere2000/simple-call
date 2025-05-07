@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nirotem.simplecall.ui.singleCallHistory.SingleCallHistoryFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="192dp"
+            android:layout_height="514dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/noPermissionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#1E1E2C"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/noPermissionsCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:contentDescription="@string/no_permissions_caption"
+                app:srcCompat="@drawable/nopermissiontoviewcalls" />
+
+            <TextView
+                android:id="@+id/calls_history_permissions_explain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/the_app_needs_view_calls_permission_in_order_to_show_the_call"
+                android:textAlignment="center"
+                android:textColor="#CBCBCE"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.108" />
+
+            <Button
+                android:id="@+id/callsHistoryApproveViewCallsPermission"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="28dp"
+                android:text="@string/approve_view_calls_permission"
+                tools:layout_editor_absoluteX="33dp"
+                tools:layout_editor_absoluteY="285dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/topBar"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="1dp"
+            android:visibility="visible">
+
+<!--            <ImageView
+                android:id="@+id/userProfileImage"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="-1dp"
+                android:layout_marginTop="-2dp"
+                android:paddingLeft="4dp"
+                android:src="@drawable/avatar_1"
+                app:layout_constraintTop_toTopOf="@id/topRightBar" />-->
+
+            <FrameLayout
+                android:id="@+id/contactExistingPhotoBack"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:clipToOutline="true"
+                android:outlineProvider="background"
+
+                android:layout_marginRight="3dp"
+                android:visibility="visible"
+                android:background="@drawable/circle_background"
+                app:layout_constraintTop_toTopOf="@id/topRightBar"
+
+                >
+
+                <ImageView
+                    android:id="@+id/contactExistingPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+                <ImageView
+                    android:id="@+id/contactExistingPhotoBorder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circle_background"
+
+                    />
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/topRightBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+
+                android:layout_weight="2"
+                android:paddingBottom="2dp"
+                android:layout_marginHorizontal="1dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/singleCallContactNameOrPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/white"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/singleCallPhone"
+                    android:textColor="#CBCBCE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center"
+
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:textAlignment="gravity"
+                    android:textDirection="ltr"
+                    android:maxLines="1"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!--            <ImageView
+                                android:id="@+id/closeButton"
+                                android:layout_width="30dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="0.2"
+                                android:contentDescription="@string/close_window"
+                                android:padding="0dp"
+                                android:src="@android:drawable/ic_delete" />-->
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/addToFavImage"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginTop="-2dp"
+                android:paddingLeft="2dp"
+                android:src="@drawable/favstartransparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/recyclerViewBack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="1dp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/noCallsFoundLabel"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/no_calls_found"
+                android:textAlignment="center"
+                android:textColor="#CBCBCE"
+                android:textSize="28sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.07"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.191" />
+
+            <!-- Call History -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/singleCallHistoryRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:padding="2dp" />
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:padding="6dp">
+
+                <LinearLayout
+                    android:id="@+id/bottomBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:id="@+id/callButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="18dp"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:text="@string/call_capital"
+                        android:textColor="#CBCBCE"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/videoCallButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="18dp"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:text="Video"
+                        android:textColor="#CBCBCE"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/addEditContact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="18dp"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:text="Add"
+                        android:textColor="#CBCBCE"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+
+                    <!--                <ImageButton
+                                        android:id="@+id/callButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="69dp"
+
+                                        android:layout_marginTop="18dp"
+
+                                        android:layout_weight="0.3"
+                                        android:background="#000000"
+                                        android:contentDescription="@string/decline_button"
+                                        android:scaleType="fitCenter"
+                                        android:src="@android:drawable/sym_action_call"
+                                        android:text="@string/call_capital"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintVertical_bias="0.938" />-->
+
+                    <!--                    <ImageButton
+                                            android:id="@+id/videoCallButton"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="69dp"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginTop="18dp"
+
+                                            android:layout_weight="0.3"
+                                            android:background="#000000"
+                                            android:contentDescription="@string/decline_button"
+                                            android:scaleType="fitCenter"
+                                            android:src="@android:drawable/presence_video_online"
+                                            android:text="@string/call_capital"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintHorizontal_bias="0.483"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintVertical_bias="0.938" />-->
+
+                    <!--  <ImageButton
+                          android:id="@+id/addContactButton"
+                          android:layout_width="wrap_content"
+                          android:layout_height="69dp"
+                          android:layout_marginTop="18dp"
+                          android:layout_weight="0.3"
+                          android:background="#000000"
+                          android:contentDescription="@string/decline_button"
+                          android:scaleType="fitCenter"
+                          android:src="@android:drawable/ic_input_add"
+                          android:text="@string/call_capital"
+                          android:visibility="visible"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          app:layout_constraintStart_toStartOf="parent"
+                          app:layout_constraintTop_toTopOf="parent" />-->
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

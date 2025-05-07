@@ -1,0 +1,15 @@
+<!-- app_versions_updates.xml ב־res/values -->
+<resources>
+    <!-- עדכונים לגרסה 0.0.20 -->
+    <string name="app_version_0020">0.0.20</string>
+    <string-array name="app_updates_0020">
+        <item>dsa</item>
+        <!-- ניתן להוסיף עוד פריטים עד 100 -->
+    </string-array>
+
+    <!-- עדכונים לגרסה 0.0.21 -->
+    <string name="app_version_0021">0.0.21</string>
+    <string-array name="app_updates_0021">
+        <item>fa</item>
+    </string-array>
+</resources>

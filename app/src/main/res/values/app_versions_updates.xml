@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_version_0020">0.0.20</string>
+    <string-array name="app_updates_0020">
+    </string-array>
+    <bool name="should_show_tour_0020">false</bool>
+
+    <string name="app_version_0021">0.0.21</string>
+    <string-array name="app_updates_0021">
+        <item>Distress Button added</item>
+        <item>Golden number in Tour</item>
+        <item>Close messagebox when Terms of use opens</item>
+        <item>Keypad in Active call</item>
+    </string-array>
+    <bool name="should_show_tour_0021">true</bool>
+
+    <string name="app_version_0022">0.0.22</string>
+    <string-array name="app_updates_0022">
+    </string-array>
+    <bool name="should_show_tour_0022">true</bool>
+
+    <string name="app_version_0023">0.0.23</string>
+    <string-array name="app_updates_0023">
+    </string-array>
+    <bool name="should_show_tour_0023">true</bool>
+
+    <string name="app_version_0024">0.0.24</string>
+    <string-array name="app_updates_0024">
+    </string-array>
+    <bool name="should_show_tour_0024">true</bool>
+
+    <string name="app_version_0025">0.0.25</string>
+    <string-array name="app_updates_0025">
+    </string-array>
+    <bool name="should_show_tour_0025">true</bool>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/menu_settings" />
+        <item
+            android:id="@+id/nav_permissions"
+            android:icon="@android:drawable/ic_lock_idle_lock"
+            android:title="@string/permissions_capital" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@android:drawable/ic_menu_help"
+            android:title="@string/tour_capital" />
+        <item
+            android:id="@+id/nav_premium_tour_item"
+            android:icon="@android:drawable/ic_dialog_email"
+            android:visible="false"
+            android:title="@string/premium_capital" />
+        <item
+            android:id="@+id/nav_call_report"
+            android:icon="@android:drawable/ic_dialog_email"
+            android:visible="false"
+            android:title="@string/call_report" />
+    </group>
+</menu>

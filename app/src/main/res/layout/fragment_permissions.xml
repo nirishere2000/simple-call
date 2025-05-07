@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#090909"
+        tools:context="com.nirotem.simplecall.ui.permissionsScreen.PermissionsFragment">
+
+        <!--<ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="99dp"
+            android:layout_height="65dp"
+            android:contentDescription="@string/elderandyoung"
+            android:src="@drawable/elderandyoung"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.057"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.013" />
+
+        <ImageView
+            android:id="@+id/closePermissionsWindow"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/close_window"
+            android:padding="6dp"
+            android:src="@android:drawable/ic_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/permissionsScreenCaption"
+            android:layout_width="185dp"
+            android:layout_height="39dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_horizontal"
+            android:text="@string/permissions_capital"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.553"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.016" />
+-->
+        <TextView
+            android:id="@+id/textPermissionsExplain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+
+            android:gravity="start"
+            android:paddingHorizontal="25dp"
+            android:text="@string/permissions_screen_title_text"
+
+            android:textColor="#FFFFF0"
+            android:textSize="22sp"
+
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Default Dialer Permission box />-->
+        <LinearLayout
+            android:id="@+id/approveDefaultDialerPermissionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textPermissionsExplain">
+
+            <TextView
+                android:id="@+id/approveDefaultDialerPermissionCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:text="@string/permissions_screen_default_phone_app_caption"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/approveDefaultDialerPermissionExplain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/permissions_screen_default_phone_app_text"
+                android:textColor="#D3D3D3"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/approveDefaultDialerPermissionCaption" />
+
+            <Button
+                android:id="@+id/approveDefaultDialerPermission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#CCCCCC"
+                android:fontFamily="@font/inter_bold"
+                android:padding="16dp"
+                android:text="@string/permissions_screen_default_phone_app_button"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/approveDefaultDialerPermissionExplain" />
+
+            <LinearLayout
+                android:id="@+id/approveDefaultDialerPermissionGrantedContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-3dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/approveDefaultDialerPermissionExplain">
+
+                <ImageView
+                    android:id="@+id/defaultDialerPermissionGrantedImage"
+                    android:layout_width="30dp"
+                    android:layout_height="36dp"
+                    android:src="@android:drawable/checkbox_on_background" />
+
+                <TextView
+                    android:id="@+id/defaultDialerPermissionGrantedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:background="@android:color/transparent"
+                    android:text="@string/permission_granted_capital_p"
+                    android:textStyle="bold"
+                    android:textColor="#B8DC8C"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Overlay Draw Permission box />-->
+        <LinearLayout
+            android:id="@+id/approveOverlayDrawPermissionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/approveDefaultDialerPermissionContainer">
+
+            <TextView
+                android:id="@+id/textOverlayDrawPermissionCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:text="@string/permissions_screen_overlay_draw_permission_caption"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textOverlayDrawPermissionsExplain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/permissions_screen_overlay_draw_permission_text"
+                android:textColor="#D3D3D3"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textOverlayDrawPermissionCaption" />
+
+            <Button
+                android:id="@+id/approveOverlayDrawPermission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+
+                android:backgroundTint="#CCCCCC"
+                android:fontFamily="@font/inter_bold"
+                android:padding="16dp"
+                android:text="@string/permissions_approve_overlay_draw_permission_button"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textOverlayDrawPermissionsExplain" />
+
+            <LinearLayout
+                android:id="@+id/approveOverlayDrawPermissionGrantedContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-3dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textOverlayDrawPermissionsExplain">
+
+                <ImageView
+                    android:id="@+id/overlayDrawPermissionGrantedImage"
+                    android:layout_width="30dp"
+                    android:layout_height="36dp"
+                    android:src="@android:drawable/checkbox_on_background" />
+
+                <TextView
+                    android:id="@+id/overlayDrawPermissionGrantedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:background="@android:color/transparent"
+                    android:text="@string/permission_granted_capital_p"
+                    android:textColor="#B8DC8C"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Make Phone Call Permission box />-->
+        <LinearLayout
+            android:id="@+id/approveMakePhoneCallPermissionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/approveOverlayDrawPermissionContainer">
+
+
+            <TextView
+                android:id="@+id/makePhoneCallPermissionCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:text="@string/permissions_phone_call_permission_caption"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textMakePhoneCallsPermissionsExplain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/permissions_phone_call_permission_caption_text"
+                android:textColor="#D3D3D3"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/makePhoneCallPermissionCaption" />
+
+            <Button
+                android:id="@+id/approveCallPhonePermission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+
+                android:backgroundTint="#CCCCCC"
+                android:fontFamily="@font/inter_bold"
+                android:padding="16dp"
+                android:text="@string/permissions_approve_phone_permission"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textMakePhoneCallsPermissionsExplain" />
+
+            <LinearLayout
+                android:id="@+id/approveMakePhoneCallPermissionGrantedContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-3dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textMakePhoneCallsPermissionsExplain">
+
+                <ImageView
+                    android:id="@+id/callPhonePermissionGrantedImage"
+                    android:layout_width="30dp"
+                    android:layout_height="36dp"
+                    android:src="@android:drawable/checkbox_on_background" />
+
+                <TextView
+                    android:id="@+id/callPhonePermissionGrantedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:background="@android:color/transparent"
+                    android:text="@string/permission_granted_capital_p"
+                    android:textColor="#B8DC8C"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Contacts Permission box />-->
+        <LinearLayout
+            android:id="@+id/approveContactsPermissionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/approveMakePhoneCallPermissionContainer">
+
+
+            <TextView
+                android:id="@+id/contactsPermissionCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:text="@string/permissions_contacts_permission_caption"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textContactsPermissionsExplain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/permissions_contacts_permission_text"
+                android:textColor="#D3D3D3"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/contactsPermissionCaption" />
+
+            <Button
+                android:id="@+id/approveReadContactsPermission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#CCCCCC"
+                android:fontFamily="@font/inter_bold"
+                android:padding="16dp"
+                android:text="@string/permissions_approve_contacts_permission_caption"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textContactsPermissionsExplain" />
+
+            <LinearLayout
+                android:id="@+id/approveContactsPermissionGrantedContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-3dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/approveDefaultDialerPermissionExplain">
+
+                <ImageView
+                    android:id="@+id/contactsPermissionGrantedImage"
+                    android:layout_width="30dp"
+                    android:layout_height="36dp"
+                    android:src="@android:drawable/checkbox_on_background" />
+
+                <TextView
+                    android:id="@+id/contactsPermissionGrantedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:background="@android:color/transparent"
+                    android:text="@string/permission_granted_capital_p"
+                    android:textColor="#B8DC8C"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Phone Log Permission box />-->
+        <LinearLayout
+            android:id="@+id/approvePhoneLogPermissionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/approveContactsPermissionContainer">
+
+            <TextView
+                android:id="@+id/callsLogPermissionCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:text="@string/permissions_calls_log_permission_caption"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textCallsLogPermissionsExplain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/permissions_calls_log_permission_text"
+                android:textColor="#D3D3D3"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/callsLogPermissionCaption" />
+
+            <Button
+                android:id="@+id/approvePhoneLogPermission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+
+                android:backgroundTint="#CCCCCC"
+                android:fontFamily="@font/inter_bold"
+                android:padding="16dp"
+                android:text="@string/permissions_calls_log_permission_button"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textCallsLogPermissionsExplain" />
+
+            <LinearLayout
+                android:id="@+id/approveLogPermissionPermissionGrantedContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-3dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/approveDefaultDialerPermissionExplain">
+
+                <ImageView
+                    android:id="@+id/callsLogPermissionGrantedImage"
+                    android:layout_width="30dp"
+                    android:layout_height="36dp"
+                    android:src="@android:drawable/checkbox_on_background" />
+
+                <TextView
+                    android:id="@+id/callsLogPermissionGrantedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:background="@android:color/transparent"
+                    android:text="@string/permission_granted_capital_p"
+                    android:textColor="#B8DC8C"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--  This View is a placeholder so when scrolling all the way down it will have some space left  />-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/approvePhoneLogPermissionContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

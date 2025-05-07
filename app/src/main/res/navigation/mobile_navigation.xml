@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_contacts">
+
+    <fragment
+        android:id="@+id/nav_dialer"
+        android:name="com.nirotem.simplecall.ui.dialer.DialerFragment"
+        android:label="@string/menu_dialer"
+        tools:layout="@layout/fragment_dialer">
+        <action
+            android:id="@+id/action_firstFragment_to_secondFragment"
+            app:destination="@id/goldNumberFragment" />
+        <action
+            android:id="@+id/action_dialer_to_editContact"
+            app:destination="@id/editContactFragment" />
+
+        <!--        <action
+                    android:id="@+id/action_dialer_to_standlone_dialer"
+                    app:destination="@id/standaloneDialerOverlayFragment" />-->
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_simple_dialer"
+        android:name="com.nirotem.simplecall.ui.dialer.SimpleDialerFragment"
+        android:label="@string/menu_dialer"
+        tools:layout="@layout/fragment_simple_dialer" />
+
+    <fragment
+        android:id="@+id/nav_contacts"
+        android:name="com.nirotem.simplecall.ui.contacts.ContactsFragment"
+        android:label="@string/menu_contacts"
+        tools:layout="@layout/fragment_contacts">
+        <action
+            android:id="@+id/contacts_to_single_call_info"
+            app:destination="@id/nav_single_call_info" />
+
+        <action
+            android:id="@+id/action_contacts_to_editContact"
+            app:destination="@id/editContactFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/editContactFragment"
+        android:name="com.nirotem.simplecall.ui.editContact.EditContactFragment"
+        android:label="Edit Contact"
+        tools:layout="@layout/fragment_edit_contact" />
+
+    <fragment
+        android:id="@+id/nav_recent_calls"
+        android:name="com.nirotem.simplecall.ui.callsHistory.CallsHistoryFragment"
+        android:label="@string/menu_recent_calls"
+        tools:layout="@layout/fragment_calls_history">
+        <action
+            android:id="@+id/action_load_permissions_form"
+            app:destination="@id/nav_permissions" />
+
+        <action
+            android:id="@+id/recent_calls_to_single_call_info"
+            app:destination="@id/nav_single_call_info" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_permissions"
+        android:name="com.nirotem.simplecall.ui.permissionsScreen.PermissionsFragment"
+        android:label="@string/permissions_capital"
+        tools:layout="@layout/fragment_permissions" />
+
+    <fragment
+        android:id="@+id/nav_call_report"
+        android:name="com.nirotem.simplecall.ui.callReportScreen.CallReportFragment"
+        android:label="@string/call_report"
+        tools:layout="@layout/fragment_call_report" />
+
+    <fragment
+        android:id="@+id/nav_premium_tour"
+        android:name="com.nirotem.simplecall.ui.tourPremium.PremiumTourFragment"
+        android:label="@string/premium_capital"
+        tools:layout="@layout/fragment_premium_tour" />
+
+    <!--<fragment
+        android:id="@+id/nav_help"
+        android:label="Help"
+        android:name="com.nirotem.simplecall.ui.help.HelpFragment"
+        tools:layout="@layout/message_box" />-->
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.nirotem.simplecall.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/goldNumberFragment"
+        android:name="com.nirotem.simplecall.ui.goldNumber.GoldNumberFragment"
+        tools:layout="@layout/fragment_gold_number" />
+
+    <fragment
+        android:id="@+id/nav_single_call_info"
+        android:name="com.nirotem.simplecall.ui.singleCallHistory.SingleCallHistoryFragment"
+        android:label="@string/navigation_fragment_info_label"
+        tools:layout="@layout/fragment_single_call_history">
+
+    <action
+        android:id="@+id/action_recent_calls_to_editContact"
+        app:destination="@id/editContactFragment" />
+    </fragment>
+
+    <!--    <fragment
+            android:id="@+id/standaloneDialerOverlayFragment"
+            android:name="com.nirotem.simplecall.ui.dialer.StandaloneDialerFragment"
+            android:label="Overlay"
+            tools:layout="@layout/fragment_standalone_dialer"
+           />-->
+
+
+    <!--        <action
+            android:id="@+id/action_callListFragment_to_contactDetailsFragment"
+            app:destination="@id/singleCallHistoryFragment" />-->
+
+</navigation>

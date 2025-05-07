@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- גרדיאנט אדמדם (Radial) -->
+    <gradient
+        android:startColor="#FFDD0000"
+        android:centerColor="#FFFF0000"
+        android:endColor="#FFDD0000"
+        android:gradientRadius="90"
+        android:type="radial" />
+
+    <!-- מסגרת (Stroke) -->
+    <stroke
+        android:width="4dp"
+        android:color="#FFC0C0C0" />
+
+    <!-- אפשר להוסיף קצת רווח פנימי אם רוצים -->
+    <padding
+        android:left="10dp"
+        android:top="10dp"
+        android:right="10dp"
+        android:bottom="10dp"/>
+
+</shape>

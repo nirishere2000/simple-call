@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/distress_button_small"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false"
+    android:focusable="false"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/emergency_button_small"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/distress_button_background" />
+
+    <TextView
+        android:id="@+id/emergency_button_text_disabled"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false"
+
+        android:alpha="0.7"
+        android:text="@string/distress_button_permission_missing"
+        android:textColor="@android:color/white"
+        />
+
+   <!-- <ImageView
+        android:id="@+id/emergency_button_icon_disabled"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.2"
+        android:visibility="gone"
+        android:layout_marginHorizontal="20dp"
+        android:src="@android:drawable/ic_lock_idle_lock"
+        app:tint="@android:color/white" />-->
+
+   <!-- <TextView
+        android:id="@+id/emergency_button_text"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:focusable="false"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="6sp"
+        android:autoSizeMaxTextSize="10sp"
+        android:autoSizeStepGranularity="1sp"
+        android:text="Permission!"
+        android:textSize="22sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>-->
+    <ImageView
+        android:id="@+id/emergency_button_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:src="@drawable/ic_bell_white"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+    android:layout_gravity="center" />
+</FrameLayout>

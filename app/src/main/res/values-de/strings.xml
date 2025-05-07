@@ -1,0 +1,389 @@
+<resources>
+    <string name="app_name">Easy Call &amp; Answer</string>
+    <string name="navigation_drawer_open">Navigationsleiste öffnen</string>
+    <string name="navigation_drawer_close">Navigationsleiste schließen</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigationskopf</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="menu_dialer">Wähl-App</string>
+    <string name="menu_contacts">Kontakte</string>
+    <string name="menu_recent_calls">Anrufe</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="lorem_ipsum_title">Lorem Ipsum</string>
+    <string name="lorem_ipsum">Lorem Ipsum ist einfach ein Blindtext der Druck- und Satzindustrie. Lorem Ipsum ist seit den 1500er Jahren der standardisierte Blindtext, als ein unbekannter Drucker einen Schriftsatz nahm und ihn durcheinanderbrachte, um ein Musterbuch zu erstellen</string>
+    <string name="fab_content_description">Stellt eine Ansicht dar, um eine Aktion auszulösen</string>
+    <string name="image_view_item_transform_content_description">Stellt eine Bildansicht im Element dar</string>
+    <string name="elderandyoung">Ältere und Jüngere</string>
+    <string name="decline_button">Ablehnen</string>
+    <string name="accept_button">Akzeptieren</string>
+    <string name="call_capital">Anrufen</string>
+    <string name="back_capital">Zurück</string>
+    <string name="call_type_icon">call_type_icon</string>
+    <string name="contacts_capital">Kontakte</string>
+    <string name="unknown_caller">Unbekannter Anrufer</string>
+    <string name="incoming_call">Eingehender Anruf</string>
+    <string name="conference">Konferenz</string>
+    <string name="call_waiting">Anruf in Warteschleife</string>
+    <string name="Details_capital">Details</string>
+    <string name="calling_capital">Wähle…</string>
+    <string name="save_gold_number">Goldnummer speichern</string>
+    <string name="enter_gold_phone_number">Geben Sie die Goldnummer ein</string>
+    <string name="start_typing_contact_name">Beginnen Sie, den Kontaktnamen einzugeben</string>
+    <string name="existing_contact">Vorhandener Kontakt:</string>
+    <string name="save_existing_contact">Vorhandenen Kontakt speichern</string>
+    <string name="save_phone_number">Telefonnummer speichern</string>
+    <string name="phone_number">Telefonnummer:</string>
+    <string name="add_new_contact">Neuen Kontakt hinzufügen</string>
+    <string name="call_gold_number">Goldnummer anrufen</string>
+    <string name="call_entered_number">Eingegebene Nummer anrufen</string>
+    <string name="contact_name">Kontaktname</string>
+    <string name="enter_phone_number">Geben Sie die Telefonnummer ein</string>
+    <string name="close_window">Fenster schließen</string>
+    <string name="birthday_capital">Geburtstag</string>
+    <string name="name_capital">Name</string>
+    <string name="remind_me_capital">Erinnere mich</string>
+    <string name="remind_me_about_this_birthday">Erinnere mich an diesen Geburtstag</string>
+    <string name="save_contact">Kontakt speichern</string>
+    <string name="enter_contact_name">Geben Sie den Kontaktnamen ein</string>
+    <string name="please_select_birthdate">Bitte wählen Sie ein Geburtsdatum</string>
+    <string name="birthdate_capital">Geburtsdatum</string>
+    <string name="approve_read_phone_calls_log">Zugriff auf Anrufliste erlauben</string>
+    <string name="no_permissions_caption">Keine Berechtigungen</string>
+    <string name="approve_view_calls_permission">Berechtigung zum Anzeigen von Anrufen erteilen</string>
+    <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">Die App benötigt die Berechtigung, Anrufe anzuzeigen, um die Anrufe darzustellen</string>
+    <string name="the_application_needs_contacts_permission_in_order_to_show_the_contacts_screen">Die App benötigt die Kontakte-Berechtigung, um den Kontakte-Bildschirm anzuzeigen</string>
+    <string name="permissions_capital">Berechtigungen</string>
+    <string name="help_capital">Hilfe</string>
+    <string name="tour_capital">Tour</string>
+    <string name="favourites_capital">Favoriten</string>
+    <string name="outgoing_calls_are_currently_restricted_to_favorites">Ausgehende Anrufe sind derzeit auf Favoriten beschränkt. Um diese Funktion zu aktivieren, gehen Sie zu den Einstellungen. Sie können dennoch Ihre Goldnummer anrufen, falls eingerichtet.</string>
+    <string name="outgoing_calls_are_currently_restricted_to_contacts">Ausgehende Anrufe sind derzeit auf Kontakte beschränkt. Um diese Funktion zu aktivieren, gehen Sie zu den Einstellungen. Sie können dennoch Ihre Goldnummer anrufen, falls eingerichtet.</string>
+    <string name="outgoing_calls_are_currently_turned_off">Ausgehende Anrufe sind derzeit deaktiviert. Um diese Funktion zu aktivieren, gehen Sie zu den Einstellungen. Sie können dennoch Ihre Goldnummer anrufen, falls eingerichtet.</string>
+    <string name="no_permission_to_view_contacts_caption">Keine Berechtigung, Kontakte anzuzeigen</string>
+    <string name="no_permission_to_view_calls">Keine Berechtigung, Anrufe anzuzeigen</string>
+    <string name="approve_contacts_permission">Kontakte-Zugriff erlauben</string>
+    <string name="yes_skip_capital">Ja, überspringen</string>
+    <string name="no_set_as_default_capital">Nein, als Standard festlegen</string>
+    <string name="set_default_phone_app">Standard-Telefon-App festlegen</string>
+    <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">Zum Verwalten von Anrufen ist es wichtig, die App als Standard-Telefon-App festzulegen (besonders im Notfall). Sind Sie sicher, dass Sie diesen Schritt überspringen möchten?</string>
+    <string name="cancel_capital">Abbrechen</string>
+    <string name="battery_saver">Im Hintergrund laufen</string>
+    <string name="for_the_app_to_run_smoothly_in_the_background_please_set_the_battery_saver">Damit die App reibungslos im Hintergrund läuft, stellen Sie bitte in den Batteriespareinstellungen (über "App-Info" in den Einstellungen) den Modus auf "Keine Einschränkungen". Die App wurde für einen minimalen Batterieverbrauch entwickelt.</string>
+    <string name="yes_open_app_info">Ja, App-Info öffnen</string>
+    <string name="permission_needed_capital_p">Berechtigung erforderlich</string>
+    <string name="ask_permission_capital_a">Berechtigung erteilen</string>
+    <string name="close_capital">Schließen</string>
+    <string name="no_open_settings">Nein, Einstellungen öffnen</string>
+    <string name="open_settings">Einstellungen öffnen</string>
+    <string name="ok">OK</string>
+    <string name="permission_could_not_be_granted_automatically">Obwohl die Berechtigung nicht automatisch erteilt werden konnte, können Sie sie dennoch aktivieren, indem Sie die Einstellungen Ihres Geräts aufrufen.</string>
+    <string name="app_must_have_permission_to_make_calls">Um Anrufe zu tätigen, muss die App über die entsprechenden Berechtigungen verfügen.</string>
+    <string name="to_add_a_gold_number_please_go_to_settings">Um eine Goldnummer hinzuzufügen, gehen Sie bitte zu den Einstellungen, indem Sie das Drei-Punkte-Menü antippen.</string>
+    <string name="permission_was_granted_reloading">Berechtigung erteilt! Lade neu…</string>
+    <string name="view_contacts_permission_was_granted_reloading">Berechtigung zum Anzeigen von Kontakten erteilt! Lade neu…</string>
+    <string name="gold_number">Goldnummer</string>
+    <string name="select_gold_number">Goldnummer auswählen</string>
+    <string name="in_order_to_read_contacts_details_app_must_have_the_proper_permission">Um Kontaktdetails anzuzeigen, muss die App die entsprechenden Berechtigungen haben.</string>
+    <string name="in_order_to_view_calls_history_the_application_must_have_the_proper_permission">Um den Anrufverlauf anzuzeigen, muss die App die entsprechenden Berechtigungen haben.</string>
+    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">Die App benötigt die Telefonberechtigung, um Anrufe zu tätigen, einschließlich Notrufe über den Notfallknopf.</string>
+    <string name="enable_application_to_show_call_screen_from_background">Ermöglichen, dass die App den Anrufbildschirm im Hintergrund anzeigt</string>
+    <string name="enable_application_to_show_call_screen_from_background_text">Bitte gehen Sie zu "Weitere Berechtigungen" und gewähren Sie dort den Zugriff auf "Pop-up-Fenster anzeigen, während im Hintergrund ausgeführt".</string>
+    <string name="go_to_settings">Zu den Einstellungen gehen</string>
+    <string name="xiaomi_custom_permission_settings_explain">Damit die App während eines Anrufs Pop-up-Fenster anzeigen kann, muss in den Geräteeinstellungen die Berechtigung "Über anderen Apps anzeigen" aktiviert sein. Auf Xiaomi-Handys muss diese Berechtigung manuell aktiviert werden. Tippen Sie, um die Einstellungen zu öffnen und zu aktivieren.</string>
+    <string name="default_dialer_permission_was_not_granted_but_needed">Die Berechtigung für die Standard-Telefon-App wurde nicht erteilt, ist jedoch erforderlich, damit die App Anrufe entgegennehmen kann.</string>
+    <string name="make_calls_permission_was_denied_but_needed">Telefonberechtigung verweigert, aber erforderlich für Anrufe (besonders im Notfall).</string>
+    <string name="make_calls_permission_was_granted">Berechtigung zum Tätigen von Anrufen erteilt!</string>
+    <string name="read_contacts_permission_was_granted">Berechtigung zum Lesen der Kontakte erteilt!</string>
+    <string name="read_contacts_permission_was_denied_but_needed">Die Berechtigung zum Lesen der Kontakte wurde verweigert, ist jedoch erforderlich, um Kontakte anzuzeigen.</string>
+    <string name="calls_log_permission_was_granted">Berechtigung für das Anrufprotokoll erteilt!</string>
+    <string name="calls_log_permission_was_denied_but_needed">Die Berechtigung für das Anrufprotokoll wurde verweigert, ist jedoch erforderlich, um Anrufe anzuzeigen.</string>
+    <string name="overlay_draw_permission_was_granted">Berechtigung für Overlay-Darstellung erteilt!</string>
+    <string name="to_filter_blocked_contacts_please_set_the_app_as_default">Blockierte Kontakte filtern? App als Standard festlegen.</string>
+    <string name="unknown_blocked">Unbekannt (blockiert)</string>
+    <string name="unknown_because_of_error">Unbekannt (Fehler)</string>
+    <string name="unknown_capital">Unbekannt</string>
+    <string name="it_is_important_to_set_the_app_as_default">Es ist wichtig, die App als Standard-Telefon-App festzulegen, damit sie Anrufe für Sie verwalten kann (besonders im Notfall).</string>
+    <string name="settings_screen_is_already_opened">Das Einstellungsfenster ist bereits geöffnet</string>
+    <string name="permissions_screen_is_already_opened">Das Berechtigungsfenster ist bereits geöffnet</string>
+    <string name="tour_welcome">Willkommen!</string>
+    <string name="tour_welcome_text">Die App wurde speziell entwickelt, um das Beantworten eingehender Anrufe zu erleichtern – durch Drücken eines großen Knopfs anstelle von Wischen auf dem Gerät, was für ältere Menschen manchmal schwierig sein kann.\n\nFamilienmitglieder können die Einstellungen bei Bedarf anpassen, wodurch die App sowohl einfach als auch leistungsstark mit vielen Funktionen wird.\n\nVerwalten Sie Ihre Anrufe mühelos und nutzen Sie die App als Ihre primäre Wähl-App zum Empfangen und Verwalten von Anrufen.</string>
+    <string name="tour_powerful_features">Leistungsstarke Funktionen</string>
+    <string name="tour_powerful_features_text">Die App beinhaltet eine Vielzahl nützlicher Funktionen, die speziell auf Senioren zugeschnitten sind, um alle Arten von Anrufen – eingehend und ausgehend – zu verwalten.\n\nDie App ist so konzipiert, dass sie sehr einfach und benutzerfreundlich ist, aber Sie können die Einstellungen jederzeit leicht ändern, indem Sie auf das Menü oben auf dem Bildschirm tippen (Tippen Sie auf die drei Punkte).</string>
+    <string name="tour_customizable_settings">Anpassbare Einstellungen</string>
+    <string name="tour_customizable_settings_text">Wir empfehlen, Hilfe von engen Freunden und Familienmitgliedern in Anspruch zu nehmen, um die App-Einstellungen zu ändern und sie optimal an Ihre Bedürfnisse anzupassen.\n\nIm Einstellungsbildschirm können Sie auswählen, wer Sie anrufen darf, zum Beispiel nur Kontakte, nur Favoriten oder nur ungesperrte Nummern.\n\nEs ist auch möglich, bei Bedarf ausgehende Anrufe einzuschränken. Es ist wichtig zu beachten, dass der Notfallknopf und die Goldnummer auch dann funktionieren, wenn ausgehende Anrufe eingeschränkt oder blockiert sind, da sie ausschließlich von der Telefonberechtigung des Geräts (für ausgehende Anrufe) abhängen.\n\nZusätzlich können Sie festlegen, dass Anrufe mit aktiviertem Freisprechmodus gestartet werden, die App anweisen, Anrufe automatisch anzunehmen, und auf weitere Optionen zugreifen, die dazu beitragen, dass die App optimal und auf Ihre Bedürfnisse zugeschnitten funktioniert.</string>
+    <string name="tour_auto_answer">Automatische Antwort</string>
+    <string name="tour_auto_answer_text">Es ist möglich, die App so einzustellen, dass sie eingehende Anrufe automatisch annimmt, ohne dass der Antwortknopf gedrückt werden muss, wenn ein neuer Anruf eingeht.\n\nDie App ermöglicht es dem Gerät, zwei- oder dreimal zu klingeln, damit Sie über den eingehenden Anruf informiert sind.\n\nDie automatische Annahme kann nur für bestimmte Kontakte aktiviert werden, indem Sie diese im Kontakte-Bildschirm antippen und anschließend das Kontrollkästchen aktivieren.\n\nDie Nutzung dieser Option kann bei Personen, die nicht an die automatische Annahme gewöhnt sind, zu Missverständnissen führen, und die Verwendung erfolgt auf eigene Verantwortung.</string>
+    <string name="tour_gold_number">Goldnummer</string>
+    <string name="tour_gold_number_text">Sie können eine Goldnummer einrichten, um schnell und einfach einen engen Kontakt zu erreichen, über den Einstellungsbildschirm, und ihn über den Kontakte-Reiter oder den Wählbildschirm anzurufen.\n\nDer Anruf an die Goldnummer ist auch möglich, wenn ausgehende Anrufe in der App eingeschränkt sind, da hierfür lediglich die Anrufberechtigung erforderlich ist.\n\nHinweis: Es ist möglich, eine Notrufnummer als Goldnummer festzulegen, jedoch ist zu beachten, dass die App nicht für Notfälle gedacht ist, sondern dazu dient, Anrufe einfach und angenehm zu gestalten.</string>
+    <string name="tour_next_button">Weiter</string>
+    <string name="tour_prev_button">Zurück</string>
+    <string name="tour_done">FERTIG</string>
+    <string name="tour_open_app_info_button">App-Informationen öffnen</string>
+    <string name="tour_set_as_default_app_button">Als Standard festlegen</string>
+    <string name="tour_app_permissions">App-Berechtigungen</string>
+    <string name="tour_app_permissions_text">Damit die App Anrufe verwalten und beantworten kann, auch wenn sie nicht aktiv geöffnet ist, muss sie als Standard-App für die Anrufverwaltung festgelegt werden.\n\nZusätzlich benötigt die App weitere Berechtigungen, um ordnungsgemäß zu funktionieren:\n\1. Telefon (zum Tätigen von Anrufen).\n\2. Öffnen neuer Fenster im Hintergrund (Anzeige über anderen Apps).\n3. Zugriff auf Kontakte.\n4. Einsicht in das Anrufprotokoll.\n5. Berechtigung zur Anzeige auf dem Sperrbildschirm.\n\nDie App wird die erhaltenen Berechtigungen ausschließlich zur ordnungsgemäßen Verwaltung der Anrufe verwenden.</string>
+    <string name="tour_permissions_screen">Berechtigungsbildschirm</string>
+    <string name="tour_permissions_screen_text">Die meisten für die App erforderlichen Geräteberechtigungen werden automatisch bei der Installation der Software oder beim Festlegen der App als Standard-App für Anrufe erteilt.\n\nBerechtigungen können jederzeit über den Berechtigungsbildschirm der App angefordert werden, indem Sie das Menü oben auf dem Bildschirm verwenden (das "drei Punkte"-Menü).\n\nEs wird empfohlen, bei Bedarf Hilfe von Familienmitgliedern und nahestehenden Personen in Anspruch zu nehmen.</string>
+    <string name="tour_overlay_draw_permission">Overlay-Berechtigung</string>
+    <string name="tour_overlay_draw_permission_text">Aufgrund der einzigartigen Berechtigungseinstellungen bei Xiaomi-Geräten ist es nicht möglich, die Berechtigung zur Anzeige über anderen Apps automatisch zu erkennen, welche für den Hintergrundbetrieb bei eingehenden Anrufen erforderlich ist.\n\nDiese Berechtigung können Sie manuell über den Berechtigungsbildschirm der App aktivieren.\n\nHinweis: Die Bilder dienen nur zur Veranschaulichung, und die Konfiguration sowie das Erscheinungsbild der Berechtigungen können je nach Gerät variieren.</string>
+    <string name="tour_default_app">Standard-App</string>
+    <string name="tour_default_app_text">Damit die App ordnungsgemäß funktioniert und Anrufe verwalten kann, muss sie als Standard-App für die Anrufverwaltung festgelegt werden.\n\nOhne diese Berechtigung kann die App Anrufe nicht beantworten, wenn sie nicht geöffnet und im Vordergrund ist.</string>
+    <string name="tour_almost_done">Fast fertig!</string>
+    <string name="tour_almost_done_text">Damit die App im Hintergrund reibungslos läuft und Anrufe beantworten kann, stellen Sie sicher, dass in den Geräteeinstellungen keine Einschränkungen für ihre Nutzung gelten.\n\nBitte setzen Sie den Energiesparmodus für die App auf "Uneingeschränkt". Dies können Sie über die "App-Details" im Einstellungsmenü unter den Hintergrund-Einstellungen vornehmen.\n\nBitte beachten Sie: Die Energiespareinstellungen können je nach Gerät variieren. Wichtig ist, dass das Gerät die App nicht einschränkt.\n\nDie App wurde für einen minimalen Batterieverbrauch entwickelt.</string>
+    <string name="tour_all_done">Fertig!</string>
+    <string name="tour_all_done_text">Alles ist bereit! Bevor Sie abschließen, nehmen Sie sich bitte einen Moment Zeit, um die Allgemeinen Geschäftsbedingungen und die Nutzungsbedingungen der App zu lesen und zu akzeptieren.\n\nTippen Sie anschließend auf die Schaltfläche "Fertig", um die Tour abzuschließen und den Einstellungsbildschirm zu öffnen, in dem Sie die App an Ihre Bedürfnisse anpassen und alle ihre Möglichkeiten genießen können.\n\nSie können die Tour jederzeit über das Drei-Punkte-Menü im oberen Bereich des App-Bildschirms erneut aufrufen.</string>
+    <string name="tour_skip_button">Überspringen</string>
+    <string name="tour_start_button">Fertig</string>
+    <string name="tour_finished_but_without_default_app_and_battery_saver">Alles ist bereit! Bevor Sie abschließen, nehmen Sie sich bitte einen Moment Zeit, um die Allgemeinen Geschäftsbedingungen der App zu lesen und zu akzeptieren.\n\nBitte beachten Sie: Sie können die App verwenden, aber ohne sie als Standard-Telefon-App festzulegen und ohne die Batterieeinschränkungen zu entfernen, kann sie Anrufe nicht richtig verarbeiten.\n\nTippen Sie auf "Fertig", um die Tour abzuschließen und den Einstellungsbildschirm zu öffnen, in dem Sie die App an Ihre Bedürfnisse anpassen und alle ihre Möglichkeiten nutzen können.\nSie können die Tour jederzeit über das Drei-Punkte-Menü oben auf dem Bildschirm erneut ansehen.</string>
+    <string name="tour_finished_but_without_default_app">Alles ist bereit! Bevor Sie abschließen, nehmen Sie sich bitte einen Moment Zeit, um die Allgemeinen Geschäftsbedingungen der App zu lesen und zu akzeptieren.\n\nBitte beachten Sie: Sie können die App verwenden, aber ohne sie als Standard-Telefon-App festzulegen, kann sie Anrufe nicht richtig verarbeiten.\n\nTippen Sie auf "Fertig", um die Tour abzuschließen und den Einstellungsbildschirm zu öffnen, in dem Sie die App an Ihre Bedürfnisse anpassen und alle ihre Möglichkeiten nutzen können.\nSie können die Tour jederzeit über das Drei-Punkte-Menü erneut ansehen.</string>
+    <string name="tour_finished_but_without_battery_saver">Alles ist bereit! Bevor Sie abschließen, nehmen Sie sich bitte einen Moment Zeit, um die Allgemeinen Geschäftsbedingungen der App zu lesen und zu akzeptieren.\n\nBitte beachten Sie: Sie können die App verwenden, aber ohne die Batterieeinschränkungen zu entfernen, kann sie Anrufe nicht richtig verarbeiten.\n\nTippen Sie auf "Fertig", um die Tour abzuschließen und den Einstellungsbildschirm zu öffnen, in dem Sie die App an Ihre Bedürfnisse anpassen und alle ihre Möglichkeiten nutzen können.\nSie können die Tour jederzeit über das Drei-Punkte-Menü erneut ansehen.</string>
+    <string name="tour_finished_but_without_phone_permission">Alles ist bereit! Bevor Sie abschließen, nehmen Sie sich bitte einen Moment Zeit, um die Allgemeinen Geschäftsbedingungen der App zu lesen und zu akzeptieren.\n\nBitte beachten Sie: Der Notrufknopf funktioniert nicht richtig ohne Telefonberechtigung.\n\nTippen Sie auf die Schaltfläche "Fertig", um die Tour abzuschließen und den Einstellungsbildschirm zu öffnen, wo Sie Berechtigungen erteilen, die App an Ihre Bedürfnisse anpassen und alle ihre Möglichkeiten nutzen können.\nSie können die Tour jederzeit über das Drei-Punkte-Menü erneut ansehen.</string>
+    <string name="tour_finished_but_without_phone_permission_and_default_app">Alles ist bereit! Bevor Sie abschließen, nehmen Sie sich bitte einen Moment Zeit, um die Allgemeinen Geschäftsbedingungen der App zu lesen und zu akzeptieren.\n\nBitte beachten Sie: Der Notrufknopf funktioniert nicht richtig ohne Telefonberechtigung.\nAußerdem kann die App ohne Festlegung als Standard-Telefon-App Anrufe nicht korrekt verarbeiten.\n\nTippen Sie auf die Schaltfläche "Fertig", um die Tour abzuschließen und den Einstellungsbildschirm zu öffnen, wo Sie Berechtigungen erteilen, die App an Ihre Bedürfnisse anpassen und alle ihre Möglichkeiten nutzen können.\nSie können die Tour jederzeit über das Drei-Punkte-Menü erneut ansehen.</string>
+    <string name="tour_finished_but_without_phone_permission_and_battery_saver">Alles ist bereit! Bevor Sie abschließen, nehmen Sie sich bitte einen Moment Zeit, um die Allgemeinen Geschäftsbedingungen der App zu lesen und zu akzeptieren.\n\nBitte beachten Sie: Der Notrufknopf funktioniert nicht richtig ohne Telefonberechtigung.\nAußerdem kann die App ohne Aufhebung der Batterieeinschränkungen Anrufe nicht korrekt verarbeiten.\n\nTippen Sie auf die Schaltfläche "Fertig", um die Tour abzuschließen und den Einstellungsbildschirm zu öffnen, wo Sie Berechtigungen erteilen, die App an Ihre Bedürfnisse anpassen und alle ihre Möglichkeiten nutzen können.\nSie können die Tour jederzeit über das Drei-Punkte-Menü erneut ansehen.</string>
+    <string name="tour_finished_but_without_phone_permission_and_default_app_and_battery_saver">Alles ist bereit! Bevor Sie abschließen, nehmen Sie sich bitte einen Moment Zeit, um die Allgemeinen Geschäftsbedingungen der App zu lesen und zu akzeptieren.\n\nBitte beachten Sie: Der Notrufknopf funktioniert nicht richtig ohne Telefonberechtigung.\nAußerdem kann die App ohne Festlegung als Standard-Telefon-App und ohne Aufhebung der Batterieeinschränkungen Anrufe nicht korrekt verarbeiten.\n\nTippen Sie auf die Schaltfläche "Fertig", um die Tour abzuschließen und den Einstellungsbildschirm zu öffnen, wo Sie Berechtigungen erteilen, die App an Ihre Bedürfnisse anpassen und alle ihre Möglichkeiten nutzen können.\nSie können die Tour jederzeit über das Drei-Punkte-Menü erneut ansehen.</string>
+    <string name="tour_battery_saver_skipped_but_needed_alert">Damit die App im Hintergrund reibungslos läuft, ist es wichtig, den Batteriesparmodus auf „Keine Einschränkungen“ zu stellen. Die App wurde für einen minimalen Batterieverbrauch ausgelegt. Sind Sie sicher, dass Sie diesen Schritt überspringen möchten?</string>
+    <string name="no_open_app_info">Kein, App-Info öffnen</string>
+    <string name="tour_overlay_draw_permission_skipped_alert_title">Overlay-Berechtigung</string>
+    <string name="tour_overlay_draw_permission_skipped_alert_text">Damit die App Anrufe im Hintergrund verarbeiten kann (wenn sie nicht geladen ist), ist es wichtig, die Overlay-Berechtigung zu erteilen. Sind Sie sicher, dass Sie diesen Schritt überspringen möchten?</string>
+    <string name="request_overlay_permission_alert_title">Sta der App zu, den Anrufbildschirm im Hintergrund anzuzeigen</string>
+    <string name="request_overlay_permission_alert_text">Bitte gehen Sie zu "Weitere Berechtigungen" und erteilen Sie dort den Zugriff auf "Pop-up-Fenster anzeigen, während im Hintergrund ausgeführt".</string>
+    <string name="permissions_screen_title_text">Die App benötigt einige Berechtigungen, um Ihre Anrufe klar und benutzerfreundlich zu verwalten.</string>
+    <string name="permissions_screen_default_phone_app_caption">Standard-Telefon-App</string>
+    <string name="permissions_screen_default_phone_app_text">Die App muss als Standard-Anrufbehandler (Standard-Telefon-App) festgelegt werden, um Anrufe empfangen und tätigen zu können. Die Vergabe dieser Berechtigung löst in der Regel auch den Zugriff auf Kontakte, Telefon und Anrufe aus.</string>
+    <string name="permissions_screen_default_phone_app_button">Als Standard-Telefon-App festlegen</string>
+    <string name="permission_granted_capital_p">Berechtigung erteilt</string>
+    <string name="permissions_screen_overlay_draw_permission_caption">Overlay-Berechtigung</string>
+    <string name="permissions_screen_overlay_draw_permission_text">Die Overlay-Berechtigung wird benötigt, um den Anrufbildschirm im Hintergrund anzuzeigen, wenn die App nicht geladen ist, für sowohl eingehende als auch aktive Anrufe.</string>
+    <string name="favorites">Favoriten</string>
+    <string name="settings_allow_incoming_calls">Eingehende Anrufe zulassen</string>
+    <string name="settings_allow_outgoing_calls">Ausgehende Anrufe zulassen</string>
+    <string name="start_calls_with_speaker_turned_on">Anrufe mit aktiviertem Lautsprecher starten</string>
+    <string name="settings_automatically_answer_calls">Anrufe automatisch beantworten</string>
+    <string name="settings_show_keypad_in_active_call">Tastatur während eines Anrufs anzeigen</string>
+    <string name="allow_launching_contacts_whatsapp">WhatsApp der Kontakte starten erlauben</string>
+    <string name="settings_allow_call_waiting">Anrufwartefunktion zulassen</string>
+    <string name="permissions_approve_overlay_draw_permission_button">Overlay-Berechtigung erteilen</string>
+    <string name="permissions_phone_call_permission_caption">Telefonanruf-Berechtigung</string>
+    <string name="permissions_phone_call_permission_caption_text">Die App benötigt die Telefonanruf-Berechtigung, um als Standard-Telefon-App Anrufe tätigen zu können.</string>
+    <string name="permissions_approve_phone_permission">Telefonberechtigung erteilen</string>
+    <string name="permissions_contacts_permission_caption">Kontakte-Berechtigung</string>
+    <string name="permissions_contacts_permission_text">Die App benötigt die Kontakte-Berechtigung, um Ihnen zu ermöglichen, vorhandene Kontakte anzurufen und die Kontakte von Telefonnummern anzuzeigen.</string>
+    <string name="permissions_approve_contacts_permission_caption">Kontakte-Berechtigung erteilen</string>
+    <string name="permissions_calls_log_permission_caption">Anrufprotokoll-Berechtigung</string>
+    <string name="permissions_calls_log_permission_text">Die App benötigt die Berechtigung, auf das Anrufprotokoll zuzugreifen, um kürzliche eingehende und ausgehende Anrufe anzuzeigen.</string>
+    <string name="permissions_calls_log_permission_button">Anrufprotokoll-Berechtigung erteilen</string>
+    <string name="permissions_enable_call_phone_permission_manually_title1">zum Telefonieren</string>
+    <string name="permissions_enable_call_phone_permission_manually_title2">Telefon</string>
+    <string name="permissions_enable_contacts_permission_manually_title1">für Kontakte</string>
+    <string name="permissions_enable_contacts_permission_manually_title2">Kontakte</string>
+    <string name="permissions_enable_calls_log_permission_manually_title1">zum Ansehen von Anrufen</string>
+    <string name="permissions_enable_calls_log_permission_manually_title2">Anrufprotokolle</string>
+    <string name="how_to_enable_standard_permission_manually_text">
+        📞 ** So aktivieren Sie manuell die Berechtigung für %1$s in der App **
+
+        Es scheint, dass die Berechtigung für %1$s für diese App verweigert wurde.
+        Um diese Funktion wieder zu aktivieren, befolgen Sie bitte diese einfachen Schritte:
+
+        1️⃣ **Öffnen Sie die Einstellungen**
+           Tippen Sie auf die **Einstellungen**-App auf Ihrem Telefon (⚙️).
+
+        2️⃣ **Suchen Sie nach „Berechtigungen“ oder „Apps“**
+           Scrollen Sie nach unten und suchen Sie nach **Apps** oder **App-Berechtigungen** (der Name kann variieren).
+
+        3️⃣ **Gehen Sie zum „Berechtigungsmanager“**
+           Suchen Sie in den App-Einstellungen nach der Option **Berechtigungen** oder **Berechtigungsmanager**.
+
+        4️⃣ **Wählen Sie die Berechtigung „%2$s“ aus**
+           Tippen Sie auf **Telefon** und suchen Sie dann diese App in der Liste.
+
+        5️⃣ **Aktivieren Sie die Berechtigung**
+           Tippen Sie auf den Namen der App und wählen Sie **Erlauben**, um die Berechtigung zu erteilen.
+
+        🔄 **Starten Sie die App neu**
+           Nach der Aktivierung der Berechtigung sollte die App diese automatisch erkennen. Falls Sie auf Probleme stoßen, schließen Sie die App und öffnen Sie sie erneut, um sicherzustellen, dass alles reibungslos funktioniert.
+
+        Falls Sie Hilfe benötigen, kann Ihnen jemand zur Seite stehen oder Sie kontaktieren den Support.
+     </string>
+    <string name="enable_permission_manually_caption">Berechtigung aktivieren</string>
+    <string name="enable_permission_manually_ok_button">Verstanden!</string>
+    <string name="navigation_fragment_info_label">Info</string>
+    <string name="from_no_one_captial_f">Von niemandem</string>
+    <string name="from_favorites_only_captial_f">Nur von Favoriten</string>
+    <string name="from_contacts_only_captial_f">Nur von Kontakten</string>
+    <string name="from_identified_only_captial_f">Nur von Identifizierten</string>
+    <string name="from_everyone_capital_f">Von allen</string>
+    <string name="to_no_one_captial_t">An niemanden</string>
+    <string name="to_favorites_only_captial_t">Nur an Favoriten</string>
+    <string name="to_contacts_only_captial_t">Nur an Kontakten</string>
+    <string name="to_everyone_capital_t">An alle</string>
+    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">
+        Die App kann keine Kontakte zur Goldnummer-Liste hinzufügen, da die Kontakte-Berechtigung nicht erteilt wurde.
+    </string>
+    <string name="make_call_permission_granted_try_again">
+        Die Berechtigung zum Telefonieren wurde erteilt! Bitte versuchen Sie es erneut.
+    </string>
+    <string name="read_contacts_permission_granted_try_again">
+        Die Berechtigung zum Lesen der Kontakte wurde erteilt! Bitte versuchen Sie es erneut.
+    </string>
+    <string name="grant_capital">Erteilen</string>
+    <string name="app_is_not_default_dialer_when_make_call_alert">
+        Die App ist nicht als Standard-Telefon-App festgelegt. Bitte wählen Sie sie als Standard aus oder tätigen Sie den Anruf über eine andere App.
+    </string>
+    <string name="view_calls_permission_was_granted_reloading">
+        Die Berechtigung zum Anzeigen von Anrufen wurde erteilt! Lade neu…
+    </string>
+    <string name="read_contacts_permission_was_granted_reloading">
+        Die Berechtigung zum Lesen der Kontakte wurde erteilt! Lade neu…
+    </string>
+    <string name="default_dialer_permission_granted_try_again">
+        Die App wurde als Standard-Telefon-App festgelegt! Bitte versuchen Sie es erneut.
+    </string>
+    <string name="auto_answer_capital_auto">Automatische\nAntwort</string>
+    <string name="incoming_capital">Eingehend</string>
+    <string name="outgoing_capital">Ausgehend</string>
+    <string name="missed_capital">Verpasst</string>
+    <string name="rejected_capital">Abgelehnt</string>
+    <string name="blocked_capital">Blockiert</string>
+    <string name="end_captial">Beenden</string>
+    <string name="speaker_capital">Lautsprecher</string>
+    <string name="keypad_capital">Tastatur</string>
+    <string name="to_view_calls_history_application_must_have_permission">
+        Um den Anrufverlauf anzuzeigen, muss die App über die entsprechenden Berechtigungen verfügen.
+    </string>
+    <string name="contacts_permission_was_not_granted_showing_calls_list_with_phone_numbers_only">
+        Die Kontakte-Berechtigung wurde nicht erteilt. Es wird eine Anrufliste nur mit Telefonnummern angezeigt.
+    </string>
+    <string name="to_display_the_calls_contacts_application_must_have_permission">
+        Um die Kontakte der Anrufe anzuzeigen, muss die App über die entsprechenden Berechtigungen verfügen.
+    </string>
+    <string name="permission_was_granted">Berechtigung erteilt!</string>
+    <string name="contacts_permission_was_not_granted_cannot_show_contact_details">Der Kontaktname kann nicht angezeigt werden, da die Kontakte-Berechtigung nicht erteilt wurde. Bitte aktivieren Sie diese Berechtigung in den App- oder Geräteeinstellungen.</string>
+    <string name="cannot_continue_since_permission_was_not_approved">
+        Kann nicht fortfahren, da die Berechtigung nicht genehmigt wurde.
+    </string>
+    <string name="no_contacts_found_to_display">Keine Kontakte gefunden.</string>
+    <string name="no_favorites_contacts_found_to_display">In den Einstellungen ist der Modus "Nur Favoriten" für ausgehende Anrufe eingestellt, aber derzeit sind auf Ihrem Gerät keine Favoritenkontakte definiert. Um die restlichen Kontakte anzuzeigen, können Sie diese entweder zu Favoriten hinzufügen oder die Einstellungen in der App ändern (öffnen Sie das Einstellungsmenü der App über das Drei-Punkte-Menü und ändern Sie die Option für ausgehende Anrufe zu "Kontakte" oder "Alle").</string>
+    <string name="no_calls_found">Keine Anrufe gefunden.</string>
+    <string name="a_serious_error_has_occurred_call_cannot_continue">
+        Ein schwerwiegender Fehler ist aufgetreten, der Anruf kann nicht fortgesetzt werden.
+    </string>
+    <string name="error_is_capital">Fehler: (%1$s).</string>
+    <string name="serious_error_capital">Schwerwiegender Fehler während des Anrufs</string>
+    <string name="active_call_capital">Aktiver Anruf</string>
+    <string name="click_to_go_back_to_call">Tippen Sie, um zum Anruf zurückzukehren</string>
+    <string name="permission_denied_capital">Berechtigung verweigert</string>
+    <string name="the_app_cannot_answer_calls_from_the_background_without_permission">
+        Die App kann Anrufe nicht im Hintergrund beantworten, ohne dass die Berechtigung „Pop-up-Fenster anzeigen, während im Hintergrund ausgeführt“ erteilt wurde. Bitte gewähren Sie diese Berechtigung, damit die App korrekt funktioniert.
+    </string>
+    <string name="the_app_needs_permission_to_make_calls_please_grant">
+        Die App benötigt die Berechtigung, um Anrufe zu tätigen. Bitte gewähren Sie diese Berechtigung oder öffnen Sie den Bereich „Berechtigungen“.
+    </string>
+    <string name="please_grant_default_dialer_permission_so_app_can_handle_calls">
+        Bitte gewähren Sie die Berechtigung für die Standard-Telefon-App, damit diese App Ihre Anrufe verwalten kann und ein nahtloses, integriertes Anruferlebnis gewährleistet wird.
+    </string>
+    <string name="it_looks_like_the_app_could_not_load_call_screen_in_background">
+        Es sieht so aus, als ob die App den Anrufbildschirm im Hintergrund während Ihres letzten Anrufs nicht laden konnte. Um Anrufe zu beantworten, wenn die App geschlossen ist, gewähren Sie bitte die Berechtigung „Pop-up-Fenster anzeigen, während im Hintergrund ausgeführt“.
+    </string>
+    <string name="app_is_missing_overlay_draw_permission">
+        Der App fehlt die Berechtigung für Overlay-Darstellung
+    </string>
+    <string name="gold_capital">Gold</string>
+    <string name="missing_call_phone_permission">Fehlende Telefon-Berechtigung</string>
+    <string name="app_selected_as_default_phone_app">App als Standard-Telefon-App ausgewählt!</string>
+    <string name="error_capital">Fehler</string>
+    <string name="invalid_phone_number_capital">Ungültige Telefonnummer.</string>
+    <string name="whatsapp_is_not_installed_capital">Die WhatsApp-App ist nicht installiert.</string>
+    <string name="it_looks_like_the_app_has_encountered_an_error_in_last_call_error">Es sieht so aus, als ob die App beim letzten Anruf auf einen Fehler gestoßen ist (Fehler: %1$s).</string>
+    <string name="tour_screen_lock_title">Sperrbildschirm</string>
+    <string name="tour_lock_screen_text">Bitte aktivieren Sie die Berechtigung "Auf Sperrbildschirm anzeigen".\n\nUm diese Berechtigung zu aktivieren, gehen Sie bitte wie folgt vor:\n1. Öffnen Sie die Geräteeinstellungen.\n2. Navigieren Sie zur Kategorie "Andere Berechtigungen".\n3. Suchen Sie nach der Option "Auf Sperrbildschirm anzeigen" und aktivieren Sie sie.\n\nBitte beachten Sie: Auf verschiedenen Geräten kann diese Berechtigung unter einem anderen Namen oder an einem anderen Ort erscheinen. Wenn Sie sie nicht finden können, versuchen Sie, in anderen Einstellungsbereichen zu suchen.</string>
+    <string name="oops_a_serious_error_occurred_please_restart_the_app">Hoppla! Ein schwerer Fehler ist aufgetreten. Bitte starte die App neu.</string>
+    <string name="tap_on_call_item_for_more">Tippe auf die Anrufzeile für Details</string>
+    <string name="tap_on_contact_row_for_more">Tippe auf die Kontaktzeile für Details</string>
+    <string name="answer_capital">Annehmen</string>
+    <string name="decline_capital">Ablehnen</string>
+    <string name="speaker_capital_for_voice">Lautsprecher</string>
+    <string name="end_capital_for_voice">Auflegen</string>
+    <string name="keypad_capital_for_voice">Tastatur</string>
+    <string name="tap_to_open_app">Tippe, um App zu öffnen</string>
+    <string name="the_app_requires_permission_to_run_in_the_background">Die App benötigt die Berechtigung, im Hintergrund zu laufen, um Anrufe entgegenzunehmen, wenn sie nicht im Vordergrund ist. Sie können diese Berechtigung über den Berechtigungsbildschirm der App oder durch Anpassen der App-Einstellungen in den Geräteeinstellungen erteilen.</string>
+    <string name="no_contacts_are_displayed_because_outgoing_calls_are_disabled">Kontakte werden nicht angezeigt, da ausgehende Anrufe deaktiviert sind. Diese Einstellung kann in den App-Einstellungen geändert werden (Menü mit drei Punkten).</string>
+    <string name="terms_and_conditions">Willkommen bei der %1$s Anwendung.\n\nDie Anwendung wurde als Hilfsmittel für erwachsene Nutzer entwickelt, um die Verwaltung von Anrufen auf Android-Geräten zu erleichtern und eine schnelle Kontaktaufnahme mit vordefinierten Kontakten in Notfällen zu ermöglichen.\n\nDie Anwendung und die über sie bereitgestellten Dienste werden im Folgenden als \"das System\" bezeichnet.\n\n1. Zustimmung zu den Nutzungsbedingungen:\nDie Nutzung des Systems unterliegt den folgenden Bedingungen (\"den Bedingungen\"). Bitte lesen Sie diese sorgfältig durch. Ihre Nutzung des Systems stellt Ihre vollständige und unwiderrufliche Zustimmung zu diesen Bedingungen dar.\n\nWenn Sie diesen Bedingungen ganz oder teilweise nicht zustimmen, verwenden Sie das System bitte nicht und entfernen Sie es sofort von Ihrem Gerät.\n\n2. Zweck des Systems:\nVereinfachung der Anrufverwaltung durch große Schaltflächen und gut lesbaren Text, insbesondere für ältere Nutzer.\n\n3. Wichtiger Hinweis zum Notrufknopf und zur automatischen Anrufannahme:\n* Es wird empfohlen, die Funktion des Notrufknopfs zunächst mit einem vordefinierten Kontakt zu testen. Das System enthält einen Notfallknopf für schnelles Wählen, automatische Anrufannahme und möglicherweise eine \"Goldene Nummer\".\n\nBitte beachten Sie: Die App ist keine professionelle Notrufanwendung und ersetzt nicht den direkten Kontakt mit offiziellen Notrufstellen (z. B. Polizei, Rettungsdienst, Feuerwehr). Verlassen Sie sich in kritischen Situationen nicht ausschließlich auf die Funktionen. Netzwerkprobleme, Systemeinschränkungen oder fehlende Berechtigungen können Fehlfunktionen verursachen. Halten Sie immer alternative Kommunikationswege bereit.\n\n4. Datenschutz und Datenverarbeitung:\nDas System greift auf lokal gespeicherte Daten (Kontakte, Anruflisten) zu, speichert diese jedoch nicht und gibt sie nicht weiter. Es erfolgt keine Aufzeichnung von Telefonaten.\n\n5. Nutzungsbeschränkungen:\nDie Nutzung zu kommerziellen Zwecken oder zur Verbreitung falscher Alarme ist streng untersagt. Nur persönliche/private Nutzung ist erlaubt.\n\n6. Haftungsausschluss:\nDie Anwendung und die Dienste werden \"wie sie sind\" (\"AS-IS\") bereitgestellt. Die Entwickler übernehmen keine Haftung für direkte oder indirekte Schäden im Zusammenhang mit der Nutzung oder Fehlfunktionen des Systems. Die Nutzung erfolgt auf eigenes Risiko.\n\n7. Änderungen und Beendigung:\nDie Betreiber behalten sich das Recht vor, das System jederzeit zu ändern, zu aktualisieren oder zu beenden – ohne vorherige Ankündigung.\n\n8. Kontakt:\nBei Fragen oder Beschwerden kontaktieren Sie bitte support@easycallandanswer.com\n\n9. Nutzererklärung:\nDieses Fenster dient nur zur Einsichtnahme. Die Zustimmung erfolgt auf dem vorherigen Bildschirm durch Auswahl von \"Ich stimme den Nutzungsbedingungen zu\".\n\n10. Urheberrecht und geistiges Eigentum:\nAlle Inhalte, Designs und Funktionen des Systems sind ausschließliches Eigentum der Entwickler und unterliegen dem Urheberrecht.\n\n© Alle Rechte vorbehalten Easy Call and Answer 2025.</string>
+    <string name="accept_terms_button">Ich stimme den Nutzungsbedingungen zu</string>
+    <string name="open_terms_of_use">Nutzungsbedingungen öffnen</string>
+    <string name="accept_terms_button_got_it">Verstanden!</string>
+    <string name="accept_term_caption">Lesen und akzeptieren Sie die Nutzungsbedingungen</string>
+    <string name="please_open_and_read_terms_of_use_before_proceed">Bitte öffnen und lesen Sie die Nutzungsbedingungen vor Zustimmung.</string>
+    <string name="please_approve_the_terms_of_use_before_finishi">Bitte bestätigen Sie die Nutzungsbedingungen vor dem Abschluss.</string>
+    <string name="tour_distress_button_caption">Notfallknopf</string>
+    <string name="tour_distress_button_description">* Es wird empfohlen, zunächst die Funktion des Notfallknopfs mit einem zuvor festgelegten Kontakt, in Absprache mit dieser Person, zu überprüfen, um seine Funktionsfähigkeit sicherzustellen.\n\nDer Notfallknopf in der App wurde entwickelt, um es Ihnen zu erleichtern, im Notfall schnell Hilfe zu rufen, und bleibt aktiv, selbst wenn ausgehende Anrufe in den App-Einstellungen vollständig deaktiviert sind. Sie müssen jedoch sicherstellen, dass sowohl das Gerät als auch die App tatsächlich in der Lage sind, ausgehende Anrufe zu tätigen.\n\nBitte beachten Sie: Die App ist nicht als professionelle Notfallanwendung vorgesehen, ersetzt nicht die offiziellen Notfalldienste und ist nicht direkt mit Notfallzentralen wie Polizei, Rettungsdienst oder Feuerwehr verbunden.\n\nAllerdings kann der Notfallknopf so konfiguriert werden, dass er eine spezifische Notrufnummer wählt, sofern die entsprechende Berechtigung zum Abrufen von Notrufnummern erteilt wurde.\n\nNotrufnummern werden vom Android-System abgerufen und hängen daher von Ihrer Region und Ihrem Gerät ab. Dies bedeutet, dass die Nummern nicht immer für das Land geeignet sind, in dem Sie sich befinden. Bei der Auswahl einer Notrufnummer liegt es in Ihrer Verantwortung, deren Richtigkeit zu überprüfen.\n\nZusätzlich können Sie einen Kontakt auswählen (sofern die Berechtigung zum Zugriff auf Kontakte erteilt wurde), den die App im Notfall anzurufen versucht.\n\nWichtig: Der Knopf benötigt die Telefonberechtigung (für ausgehende Anrufe) auf dem Gerät selbst, um ordnungsgemäß zu funktionieren! Es wird außerdem empfohlen, die App als Standardanwendung für Telefonanrufe festzulegen; andernfalls könnte die App versuchen, den Anruf außerhalb der App durchzuführen.\n\nErscheint ein Glockensymbol auf dem Notfallknopf, ist er einsatzbereit. Andernfalls stellen Sie bitte sicher, dass das Gerät ausgehende Anrufe unterstützt und dass die Telefonberechtigung erteilt wurde.\n\nSollten Berechtigungen fehlen, können diese über den Berechtigungsbildschirm in der App oder über die Geräteeinstellungen vergeben werden.</string>
+    <string name="emergency_distress_button_caption">NOTFALL</string>
+    <string name="not_now_capital">Jetzt nicht</string>
+    <string name="phone_permission_required_for_distress_button">Warnung: Es wurde eine Nummer für den Notfallknopf ausgewählt, aber die "Telefon"-Berechtigung (Ausgehende Anrufe) fehlt. Daher kann der Notfallknopf nicht funktionieren.</string>
+    <string name="not_now_click_for_selection">Nicht jetzt (Tippen zur Auswahl)</string>
+    <string name="to_add_contacts_to_the_list_app_must_be_default">Kontakte können nicht zur Liste der Notfall-Tasten-Auswahl hinzugefügt werden. Der Zugriff auf Kontakte kann über den Berechtigungsbildschirm der App oder über die Geräteeinstellungen erlaubt werden.</string>
+    <string name="cannot_show_selection_app_must_be_default">Die Auswahl der Notrufnummer für den Notfallknopf kann nicht angezeigt werden (Die App muss als Standard festgelegt werden)</string>
+    <string name="cannot_display_selection_contacts_permission_required">Die Kontakt-Auswahl für den Notfallknopf kann nicht angezeigt werden (Kontakte-Berechtigung erforderlich)</string>
+    <string name="unable_to_display_selection_unexpected_error">Auswahl kann nicht angezeigt werden (unerwarteter Fehler)</string>
+    <string name="calling_emergency_number_tap_cancel_to_stop">Notruf wird gewählt! Tippe auf "Abbrechen" zum Stoppen.</string>
+    <string name="distress_button_cancel">Abbrechen</string>
+    <string name="permission_change_detected_reloading">Berechtigungsänderung erkannt. Lade neu…</string>
+    <string name="emergency_number_unavailable_try_gold_number">Notrufnummer nicht verfügbar! Versuchen Sie die Goldnummer</string>
+    <string name="settings_capital">Einstellungen</string>
+    <string name="phone_permission_granted">Telefonberechtigung (Anrufe) erteilt!</string>
+    <string name="new_version_installed">Neue Version installiert! (%1$s)</string>
+    <string name="distress_button_permission_missing">Erlaubnis fehlt!</string>
+    <string name="settings_choose_distress_button_number">Notfallknopfnummer auswählen</string>
+    <string name="cannot_choose_gold_number_without_contacts_permission">Um die Goldnummer für die Notfalltaste auszuwählen, ist eine Kontaktezugriffsberechtigung erforderlich, die derzeit nicht erteilt wurde. Bitte aktivieren Sie den Zugriff auf Kontakte über den Berechtigungsbildschirm der App oder über die Geräteeinstellungen.</string>
+    <string name="make_call_permission_was_granted_please_try_again">Die Telefonerlaubnis zum Tätigen von Anrufen wurde erteilt! Bitte versuchen Sie es erneut</string>
+    <string name="permission_was_granted_please_try_again">Die Erlaubnis wurde erteilt! Bitte versuchen Sie es erneut</string>
+    <string name="read_contacts_permission_was_granted_please_try_again">Die Erlaubnis zum Lesen der Kontakte wurde erteilt! Bitte versuchen Sie es erneut</string>
+    <string name="missed_call_from">Verpasster Anruf von: %1$s</string>
+    <string name="tour_call_report_title">Anrufbericht senden</string>
+    <string name="tour_call_report_description">Sende einen Anrufbericht an eine nahestehende Kontaktperson.\n\nÜberwache die Anrufaktivität, um sicherzustellen, dass alles in Ordnung ist. Du erhältst eine klare Zusammenfassung eingehender und ausgehender Anrufe.\n\nDer Bericht enthält Muster wie:\n\n• Häufige Anrufe bei derselben Nummer\n• Unbekannte oder nicht gespeicherte Anrufer\n• Ausgehende Anrufe zu ungewöhnlichen Zeiten\n\nEine einfache Möglichkeit, verbunden zu bleiben und aufmerksam zu sein – besonders wenn du dich um ein älteres Elternteil kümmerst.\n\nDu kannst die Einstellungen für den Anrufbericht jederzeit über das Drei-Punkte-Menü oben auf dem Bildschirm ändern.\n\nHinweis: Du bist allein verantwortlich für die Nutzung und Weitergabe dieser Informationen. Bitte achte auf den Datenschutz und halte dich an die örtlichen Gesetze zur Datennutzung.</string>
+    <string name="call_report">Anrufbericht</string>
+    <string name="call_report_screen_is_already_opened">Der Anrufbericht-Bildschirm ist bereits geöffnet</string>
+    <string name="change_capital">Ändern</string>
+    <string name="answering_capital">Antwort</string>
+    <string name="premium_capital">Premium</string>
+    <string name="send_alert_via_sms_to_gold_number">Warnung per SMS an Goldnummer senden</string>
+    <string name="if_call_was_not_answered_play_increasing_siren_sound_after_15_seconds">Wenn der Anruf nicht beantwortet wurde, ertönt nach 15 Sekunden ein zunehmender Sirenenton</string>
+    <string name="sos">Notfall</string>
+    <string name="lock_capital">Sperren</string>
+    <string name="report_capital">Bericht</string>
+    <string name="other">Sonstiges</string>
+    <string name="show_custom_lock_screen">Benutzerdefinierten Sperrbildschirm anzeigen</string>
+    <string name="lock_screen">Sperrbildschirm</string>
+    <string name="show_whatsapp_messages_on_lock_screen">WhatsApp-Nachrichten auf dem Sperrbildschirm anzeigen</string>
+    <string name="show_sms_messages_on_lock_screen">SMS-Nachrichten auf dem Sperrbildschirm anzeigen</string>
+    <string name="send_report_captial_s">Bericht senden</string>
+    <string name="scheduled_send_time">Geplanter Sendezeitpunkt</string>
+    <string name="send_to_gold_number">An Goldnummer senden</string>
+    <string name="select_contact_to_receive_the_report">Kontaktperson für den Empfang des Berichts auswählen</string>
+    <string name="send_only_exceptional_data">Nur außergewöhnliche Daten senden</string>
+    <string name="mark_call_as_exceptional_if_it_is_not_between">Ein Anruf gilt als außergewöhnlich, wenn er nicht zwischen den festgelegten Zeiten liegt</string>
+    <string name="a_number_is_considered_exceptional_if_it_appears_more_than">Eine Nummer gilt als außergewöhnlich, wenn sie mehr als</string>
+    <string name="call">Anruf</string>
+    <string name="time_allowed_to_cancel_seconds">Zeit zum Abbrechen (Sekunden)</string>
+    <string name="call_settings">Anrufeinstellungen</string>
+    <string name="other_capital">Sonstiges</string>
+    <string name="to">bis</string>
+    <string name="number_is_considered_exceptional_if_it_s_not_in_contacts">Nummer gilt als ungewöhnlich, wenn sie nicht in den Kontakten ist</string>
+    <string name="welcome_to_easy_call_and_answer_premium">Willkommen bei der Easy Call And Answer App!</string>
+    <string name="welcome_text_speech">Lassen Sie es mich wissen, wenn Sie einen Anruf tätigen möchten. Sagen Sie einfach den Namen der Person, die Sie anrufen möchten, nachdem ich mit Sprechen fertig bin. Sie können "Notruf anrufen" sagen, um die Notruftaste zu aktivieren, oder "Goldnummer" sagen, um die gespeicherte Goldnummer anzurufen. Um alle Sprachbefehle anzuzeigen, öffnen Sie die Premium-Tour im oberen Menü.</string>
+    <string name="premium_tour_page_welcome_title">Erweiterte Version</string>
+    <string name="premium_tour_page_welcome_text">Entdecken Sie die erweiterten Funktionen der Premium-Version, die Ihre Nutzererfahrung – insbesondere auf Android-Geräten – deutlich verbessern können.\n\nMit der Sprachsteuerung können Sie Anrufe annehmen oder den Notrufknopf aktivieren – ganz ohne das Gerät zu berühren. Achten Sie darauf, dass keine Hintergrundgeräusche die Spracherkennung beeinträchtigen.\n\nDie Premium-Version bietet außerdem einen intelligenten Sperrbildschirm, mit dem Sie per einfachem Tipp zurück zur App gelangen.\n\nNeu ist auch der Anrufbericht: Damit sehen Sie, ob unerwünschte Anrufe eingegangen sind oder versehentlich Anrufe getätigt wurden. Der Bericht wird ausschließlich an eine von Ihnen gewählte Nummer gesendet. Die Daten werden nicht anderweitig verwendet.\n\nDie Verantwortung für die Nutzung dieser Funktionen liegt vollständig bei Ihnen.</string>
+    <string name="premium_tour_swipe_hint">Nach links wischen, um\nzum nächsten Schritt zu gelangen</string>
+    <string name="premium_tour_page_lock_title">Intelligenter und anpassbarer Sperrbildschirm</string>
+    <string name="premium_tour_page_lock_text">Unser intelligenter und anpassbarer Sperrbildschirm bietet ein innovatives und benutzerfreundliches Erlebnis. Anstatt sich mit umständlichen Wischgesten herumzuschlagen oder nach Wegen zum Entsperren des Geräts zu suchen, genügt ein einfacher Tipp, um zur App zurückzukehren. Einfach, schnell und jederzeit verfügbar.\nSie können den Bildschirm auch mit einem Sprachbefehl öffnen. Kein Berühren des Geräts erforderlich – sprechen Sie einfach das Zauberwort, und der Bildschirm reagiert. Perfekt für Situationen, in denen die Hände nicht frei sind oder wenn Barrierefreiheit entscheidend ist.\nDer Bildschirm zeigt intelligente Benachrichtigungen für SMS- und WhatsApp-Nachrichten an. Der Inhalt ist im Nur-Lese-Modus sichtbar – selbst wenn jemand versehentlich darauf tippt, wird kein Chat geöffnet. Dies ist besonders nützlich für ältere Benutzer, die möglicherweise versehentlich etwas drücken und eine unerwünschte Konversation starten.\nDies ist nicht nur ein Sperrbildschirm – es ist ein intelligentes, durchdachtes Gateway, das die tägliche Nutzung verbessert, die Barrierefreiheit erhöht und den Benutzern ein größeres Gefühl der Kontrolle gibt. Mit klarem Design, intuitiver Interaktion und Sprachunterstützung ist es ein echtes Upgrade für die Benutzererfahrung.</string>
+    <string name="premium_tour_page_voice_title">Freihändige Sprachsteuerung</string>
+    <string name="premium_tour_page_voice_text">Stellen Sie sich vor, Sie hätten die volle Kontrolle über Ihre App – ohne einen Finger zu rühren. Sprechen Sie einfach, und das System erledigt den Rest. Anrufe annehmen, Notruf auslösen, Kontaktperson anrufen oder den Bildschirm entsperren – nur mit Ihrer Stimme. Selbst unterwegs oder vom anderen Ende des Raums reagiert das System – solange es ruhig genug ist. Das ist nicht nur bequem – das ist Sicherheit, Barrierefreiheit und Kontrolle.</string>
+    <string name="premium_tour_page_call_report_title">Anrufbericht</string>
+    <string name="premium_tour_page_call_report_text">Behalten Sie den Überblick über die Anrufaktivitäten Ihrer Liebsten. Der Bericht zeigt die eingehenden und ausgehenden Anrufe — damit Sie wissen, dass sie nicht versehentlich anrufen oder verdächtige Nummern erreichen.</string>
+    <string name="premium_tour_page_distress_button_title">Verbesserter Notfallknopf</string>
+    <string name="premium_tour_page_distress_button_text">Wenn jede Sekunde zählt, macht fortschrittlicher Schutz den entscheidenden Unterschied. Der Premium-Notfallknopf tätigt nicht nur einen Anruf — er sendet auch eine Notfall-SMS mit Ihrem Standort und der Uhrzeit, und falls der Anruf nicht beantwortet wird oder nicht durchkommt, ertönt ein lauter Alarm, um Personen in der Nähe zu alarmieren.</string>
+    <string name="premium_tour_page_voice_commands_title">Sprachbefehle</string>
+    <string name="premium_tour_page_voice_commands_text">Sie können Ihre Erfahrung noch reibungsloser gestalten, indem Sie Sprachbefehle einrichten, die am besten zu Ihnen passen.\n\nWählen Sie am besten Befehle, die leicht zu sagen, klar und eindeutig sind – so versteht die App Sie besser.</string>
+    <string name="premium_screen_is_already_opened">Premium screen is already opened</string>
+
+</resources>

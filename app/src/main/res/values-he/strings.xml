@@ -1,0 +1,378 @@
+<resources>
+    <string name="app_name">Easy Call &amp; Answer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">הגדרות</string>
+
+    <string name="menu_dialer">חייגן</string>
+    <string name="menu_contacts">אנשי קשר</string>
+    <string name="menu_recent_calls">שיחות</string>
+    <string name="menu_settings">הגדרות</string>
+
+    <string name="lorem_ipsum_title">Lorem Ipsum"</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply placeholder text of the printing and
+        typesetting industry. Lorem Ipsum has been the industry\'s standard placeholder text ever
+        since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+        type specimen book"
+    </string>
+    <string name="fab_content_description">Represents a view to invoke an action</string>
+    <string name="image_view_item_transform_content_description">Represents an image view in the
+        item
+    </string>
+    <string name="elderandyoung">elderandyoung</string>
+    <string name="decline_button">דחייה</string>
+    <string name="accept_button">אישור</string>
+    <string name="call_capital">חיוג</string>
+    <string name="back_capital">חזרה</string>
+    <string name="call_type_icon">call_type_icon</string>
+    <string name="contacts_capital">אנשי קשר</string>
+    <string name="unknown_caller">מספר לא מזוהה</string>
+    <string name="incoming_call">שיחה נכנסת</string>
+    <string name="conference">שיחת ועידה</string>
+    <string name="call_waiting">שיחה ממתינה</string>
+    <string name="Details_capital">פרטים</string>
+    <string name="calling_capital">התקשרות…</string>
+    <string name="save_gold_number">שמירת מספר זהב</string>
+    <string name="enter_gold_phone_number">הקלידו מספר זהב</string>
+    <string name="start_typing_contact_name">הקלידו שם איש קשר</string>
+    <string name="existing_contact">איש קשר קיים:</string>
+    <string name="save_existing_contact">שמירת איש קשר קיים</string>
+    <string name="save_phone_number">שמירת מספר טלפון</string>
+    <string name="phone_number">מספר טלפון:</string>
+    <string name="add_new_contact">הוספת איש קשר</string>
+    <string name="call_gold_number">חיוג למספר הזהב</string>
+    <string name="call_entered_number">התקשרות למספר</string>
+    <string name="contact_name">שם איש הקשר</string>
+    <string name="enter_phone_number">הכניסו מספר טלפון</string>
+    <string name="close_window">סגירת חלון</string>
+    <string name="birthday_capital">יום הולדת</string>
+    <string name="name_capital">שם</string>
+    <string name="remind_me_capital">הזכירו לי</string>
+    <string name="remind_me_about_this_birthday">תזכורת ליום הולדת</string>
+    <string name="save_contact">שמירת איש קשר</string>
+    <string name="enter_contact_name">הקלידו שם איש קשר</string>
+    <string name="please_select_birthdate">אנא בחרו תאריך יום הולדת</string>
+    <string name="birthdate_capital">Birthdate</string>
+    <string name="approve_read_phone_calls_log">Approve Read Phone Calls Log</string>
+    <string name="no_permissions_caption">חסרות הרשאות</string>
+    <string name="approve_view_calls_permission">אישור הרשאת יומני שיחות</string>
+    <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">האפליקציה זקוקה להרשאת יומני שיחות על מנת להציג את השיחות</string>
+    <string name="the_application_needs_contacts_permission_in_order_to_show_the_contacts_screen">האפליקציה זקוקה להרשאת אנשי קשר על מנת להציג את מסך אנשי הקשר</string>
+    <string name="permissions_capital">הרשאות</string>
+    <string name="help_capital">עזרה</string>
+    <string name="tour_capital">סיור</string>
+    <string name="favourites_capital">מועדפים</string>
+    <string name="outgoing_calls_are_currently_restricted_to_favorites">השיחות היוצאות הוגבלו למועדפים בלבד. ניתן לשנות זאת מתוך ההגדרות (דרך התפריט). עדיין ניתן להתקשר למספר הזהב שלכם, אם הוגדר.</string>
+    <string name="outgoing_calls_are_currently_restricted_to_contacts">השיחות היוצאות הוגבלו לאנשי קשר בלבד. ניתן לשנות זאת מתוך ההגדרות (דרך התפריט). עדיין ניתן להתקשר למספר הזהב שלכם, אם הוגדר.</string>
+    <string name="outgoing_calls_are_currently_turned_off">השיחות היוצאות מושבתות. ניתן לשנות זאת מתוך ההגדרות (דרך התפריט). עדיין ניתן להתקשר למספר הזהב שלכם, אם הוגדר.</string>
+    <string name="no_permission_to_view_contacts_caption">דרושה הרשאה להצגת אנשי הקשר</string>
+    <string name="no_permission_to_view_calls">דרושה הרשאה להצגת השיחות</string>
+    <string name="approve_contacts_permission">אישור הרשאת אנשי קשר</string>
+    <string name="yes_skip_capital">כן, לדלג</string>
+    <string name="no_set_as_default_capital">לא, הגדרת ברירת המחדל</string>
+    <string name="set_default_phone_app">הגדרת האפליקציה כברירת המחדל לשיחות</string>
+    <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">כדי לנהל שיחות, חשוב להגדיר את האפליקציה כאפליקציית הטלפון המוגדרת כברירת מחדל (במיוחד במקרי חירום). האם ברצונך לדלג על שלב זה?</string>
+    <string name="cancel_capital">ביטול</string>
+    <string name="battery_saver">ריצה ברקע</string>
+    <string name="for_the_app_to_run_smoothly_in_the_background_please_set_the_battery_saver">על מנת שהאפליקציה תוכל לרוץ בצורה רציפה ברקע, כך שתוכל לנהל שיחות, יש להסיר את הגבלות ניהול החיסכון בסוללה, עבור האפליקציה. על מנת לעשות זאת, יש לפתוח את \'חיסכון בסוללה\' מתוך \'פרטי היישום\', ושם לבחור ב - \'אין הגבלות\'. האפליקציה תוכננה תוך התחשבות בחיסכון בסוללה.</string>
+    <string name="yes_open_app_info">לפתוח את פרטי היישום</string>
+    <string name="permission_needed_capital_p">דרושה הרשאה</string>
+    <string name="ask_permission_capital_a">הענקת הרשאה</string>
+    <string name="close_capital">סגירה</string>
+    <string name="no_open_settings">לא, פתיחת הגדרות</string>
+    <string name="open_settings">פתיחת הגדרות</string>
+    <string name="ok">סגירה</string>
+    <string name="permission_could_not_be_granted_automatically">ההרשאה לא אושרה לאפליקציה. ניתן תמיד לאשר אותה דרך הגדרות המכשיר</string>
+    <string name="app_must_have_permission_to_make_calls">"לאפליקציה דרושה ההרשאה המתאימה עבור שיחות יוצאות"</string>
+    <string name="to_add_a_gold_number_please_go_to_settings">על מנת להוסיף מספר זהב יש לפתוח את ההגדרות בעזרת תפריט 3 הנקודות.</string>
+    <string name="permission_was_granted_reloading">ההרשאה ניתנה! מתבצעת טעינה מחדש..</string>
+    <string name="view_contacts_permission_was_granted_reloading">הרשאת אנשי קשר ניתנה! מתבצעת טעינה מחדש..</string>
+    <string name="gold_number">מספר זהב</string>
+    <string name="select_gold_number">בחרו מספר זהב</string>
+    <string name="in_order_to_read_contacts_details_app_must_have_the_proper_permission">על מנת שהאפליקציה תוכל להציג אנשי קשר, דרושה לה ההרשאה המתאימה.</string>
+    <string name="in_order_to_view_calls_history_the_application_must_have_the_proper_permission">על מנת לצפות בהיסטוריית השיחות דרושה לאפליקציה ההרשאה המתאימה.</string>
+    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">האפליקציה זקוקה להרשאת טלפון על מנת לבצע שיחות, כולל שיחות חירום דרך כפתור המצוקה.</string>
+    <string name="enable_application_to_show_call_screen_from_background">אפשרו לאפליקציה לפתוח חלון ברקע בעת שיחה נכנסת.</string>
+    <string name="enable_application_to_show_call_screen_from_background_text">בהגדרות המכשיר יש להגיע ל\'הרשאות אחרות\' ושם לאשר את \'לאפשר פתיחת חלונות חדשים בזמן שהיישום רץ ברקע\'.</string>
+    <string name="go_to_settings">פתיחת הגדרות</string>
+    <string name="xiaomi_custom_permission_settings_explain">על מנת שהאפליקציה תוכל להציג חלונות קופצים במהלך שיחות, יש לאשר את ההרשאה \'לאפשר פתיחת חלונות חדשים בזמן שהיישום רץ ברקע\' בהגדרות המכשיר. במכשירי שיאומי, יש צורך להפעיל הרשאה זו באופן ידני. לחצו למטה כדי לפתוח את ההגדרות ולאפשר אותה.</string>
+    <string name="default_dialer_permission_was_not_granted_but_needed">הרשאת אפליקציית ברירת המחדל לניהול שיחות לא אושרה אך חשובה מאוד לאפליקציה, על מנת לענות לשיחות ולנהל שיחות</string>
+    <string name="make_calls_permission_was_denied_but_needed">הרשאת שיחה (טלפון) נדחתה, אך נדרשת לביצוע שיחות (במיוחד במקרי חירום).</string>
+    <string name="make_calls_permission_was_granted">ההרשאה לטלפון אושרה!</string>
+    <string name="read_contacts_permission_was_granted">הרשאת אנשי קשר אושרה!</string>
+    <string name="read_contacts_permission_was_denied_but_needed">הרשאת אנשי קשר לא אושרה אך דרושה כדי לצפות באנשי קשר</string>
+    <string name="calls_log_permission_was_granted">הרשאת יומני שיחות אושרה!</string>
+    <string name="calls_log_permission_was_denied_but_needed">הרשאת יומני שיחות לא אושרה אך דרושה על מנת לצפות בשיחות</string>
+    <string name="overlay_draw_permission_was_granted">הרשאת ריצה ברקע אושרה!</string>
+    <string name="to_filter_blocked_contacts_please_set_the_app_as_default">על מנת שהאפליקציה תוכל לסנן אנשי קשר חסומים, יש לבחור באפליקציה כברירת המחדל.</string>
+    <string name="unknown_blocked">מספר לא מזוהה (חסום)</string>
+    <string name="unknown_because_of_error">מספר לא מזוהה (שגיאה)</string>
+    <string name="unknown_capital">מספר לא מזוהה</string>
+    <string name="it_is_important_to_set_the_app_as_default">חשוב להגדיר את האפליקציה כאפליקציית הטלפון המוגדרת כברירת מחדל כדי לאפשר לה לנהל עבורך את השיחות (במיוחד במקרי חירום).</string>
+    <string name="settings_screen_is_already_opened">מסך ההגדרות כבר פתוח</string>
+    <string name="permissions_screen_is_already_opened">מסך ההרשאות כבר פתוח</string>
+    <string name="tour_welcome">ברוכים הבאים!</string>
+    <string name="tour_welcome_text">האפליקציה נוצרה במיוחד כדי להקל על מענה לשיחות נכנסות – באמצעות לחיצה על כפתור גדול, במקום לבצע החלקה על גבי המכשיר (סווייפ), פעולה שלעיתים קשה לאנשים מבוגרים.\n\nבני המשפחה יכולים לשנות את ההגדרות לפי הצורך, מה שהופך את האפליקציה לפשוטה אך עוצמתית ובעלת אפשרויות רבות.\n\nנהלו את השיחות שלכם בקלות והשתמשו באפליקציה כחייגן ראשי לקבלת וניהול השיחות.</string>
+    <string name="tour_powerful_features">תכונות מתקדמות</string>
+    <string name="tour_powerful_features_text">האפליקציה כוללת מספר רב של תכונות שימושיות, מותאמות במיוחד לגיל השלישי, לניהול כל סוגי השיחות, נכנסות ויוצאות.\n\nהאפליקציה נועדה להיות פשוטה מאוד וקלה לשימוש, אך תמיד ניתן לשנות את ההגדרות בקלות על ידי לחיצה על התפריט שבחלק העליון של המסך (לחיצה על - 3 הנקודות).</string>
+    <string name="tour_customizable_settings">הגדרות מותאמות</string>
+    <string name="tour_customizable_settings_text">מומלץ לבקש עזרה מחברים קרובים או מבני משפחה בכדי להתאים את הגדרות האפליקציה באופן הטוב ביותר עבורך.\n\nבמסך ההגדרות, תוכל לבחור מי יכול להתקשר אליך, כגון רק אנשי קשר, רק מועדפים או רק מספרים שאינם חסומים.\n\nבנוסף, ניתן להגביל שיחות יוצאות במידת הצורך. חשוב לזכור שכפתור החירום והמספר הזהב עדיין יעבדו גם אם שיחות יוצאות מוגבלות או חסומות, כיוון שהם תלויים אך ורק בהרשאת שיחות יוצאות של המכשיר.\n\nניתן גם לבחור להתחיל שיחות עם רמקול פעיל, להגדיר את האפליקציה לענות אוטומטית לשיחות, ולגשת לאפשרויות נוספות המסייעות לאפליקציה לפעול בצורה המותאמת והאופטימלית ביותר עבורך.</string>
+    <string name="tour_auto_answer">מענה אוטומטי</string>
+    <string name="tour_auto_answer_text">ניתן להגדיר לאפליקציה לענות בצורה אוטומטית לשיחות נכנסות, מבלי הצורך ללחוץ על כפתור המענה כאשר מתקבלת שיחה חדשה.\n\nהאפליקציה מחכה שהמכשיר יצלצל פעמיים שלוש, על מנת שתהיו מודעים לשיחה הנכנסת.\n\nניתן לאפשר את המענה אוטומטי רק עבור אנשי קשר מסוימים, על ידי לחיצה עליהם במסך אנשי הקשר ואז סימון אישור בתיבת הסימון.\n\nשימוש באפשרות זו עלול לגרום לאי הבנה למי שאינו מורגל למענה אוטומטי והשימוש הינו באחריות המשתמש בלבד.</string>
+    <string name="tour_gold_number">מספר זהב</string>
+    <string name="tour_gold_number_text">באפשרותכם להגדיר מספר זהב, להתקשרות קלה ומהירה לאיש קשר קרוב, באמצעות מסך ההגדרות, ולהתקשר אליו דרך לשונית אנשי הקשר והחייגן.\n\nההתקשרות למספר הזהב אפשרית גם כאשר השיחות היוצאות הוגבלו באפליקציה והיא תלויה בהרשאת שיחה בלבד.\n\nהערה: ניתן לקבוע מספר חירום כמספר זהב, אך חשוב לציין שהאפליקציה אינה מיועדת למצבי חירום, אלא על מנת להפוך את השיחות לפשוטות ומהנות.</string>
+    <string name="tour_next_button">הבא</string>
+    <string name="tour_prev_button">הקודם</string>
+    <string name="tour_done">בוצע</string>
+    <string name="tour_open_app_info_button">לפתוח את פרטי היישום</string>
+    <string name="tour_set_as_default_app_button">הגדר כאפליקציית ברירת המחדל</string>
+    <string name="tour_app_permissions">הרשאות נדרשות</string>
+    <string name="tour_app_permissions_text">על מנת שהאפליקציה תוכל לנהל שיחות ולענות להם גם כשאינה פתוחה בעצמה, יש לבחור אותה כאפליקציית ברירת המחדל לניהול השיחות.\n\nבנוסף, על מנת שהאפליקציה תוכל לפעול כיאות היא זקוקה להרשאות נוספות:\n\1. טלפון (ביצוע שיחות).\n\2. פתיחת חלונות חדשים ברקע (הצגה מעל אפליקציות אחרות)\n3. גישה לאנשי קשר.\n4. צפייה ביומן השיחות.\n5. הרשאת הצגה במסך נעילה.\n\nהאפליקציה תעשה שימוש בהרשאות אשר קיבלה רק עבור ניהול השיחות כיאות.</string>
+    <string name="tour_permissions_screen">מסך ההרשאות</string>
+    <string name="tour_permissions_screen_text">רוב ההרשאות של המכשיר, הדרושות לאפליקציה, ניתנות בצורה אוטומטית בעת התקנת התוכנה או כאשר מגדירים את האפליקציה כברירת המחדל לשיחות.\n\nניתן תמיד לבקש את ההרשאות דרך מסך ההרשאות של האפליקציה, בעזרת התפריט בחלקו העליון של המסך (תפריט \'שלוש הנקודות\').\n\nמומלץ להיעזר בבני משפחה ואנשים קרובים, במידת הצורך.</string>
+    <string name="tour_overlay_draw_permission">ריצה ברקע</string>
+    <string name="tour_overlay_draw_permission_text">עקב הגדרות ההרשאות הייחודיות במכשירי שיאומי (Xiaomi), אין אפשרות לזהות באופן אוטומטי את ההרשאה להצגה מעל אפליקציות אחרות, הנדרשת להפעלה ברקע בעת קבלת שיחות.\n\nניתן להפעיל את ההרשאה באופן ידני דרך מסך ההרשאות של האפליקציה.\n\nהתמונות מיועדות להמחשה בלבד, ותצורת ההרשאות והמראה עשויים להשתנות בין מכשירים.</string>
+    <string name="tour_default_app">ניהול שיחות</string>
+    <string name="tour_default_app_text">על מנת לאפשר לאפליקציה לפעול בצורה תקינה ולנהל שיחות, יש להגדיר אותה כאפליקציית ברירת המחדל לניהול שיחות.\n\nללא הרשאה זו, האפליקציה לא תוכל לענות לשיחות כאשר היא לא פתוחה ובפוקוס.</string>
+    <string name="tour_almost_done">כמעט סיימנו!</string>
+    <string name="tour_almost_done_text">על מנת שהאפליקציה תפעל בצורה חלקה ברקע ותוכל לענות לשיחות, ודאו שאין הגבלות על פעילותה בהגדרות המכשיר.\n\nאנא הגדירו את מצב חיסכון הסוללה כ"לא מוגבל" עבור האפליקציה. ניתן להגדיר זאת דרך "פרטי היישום" שבתפריט ההגדרות, תחת הגדרות הרקע.\n\nשימו לב: הגדרות חיסכון הסוללה יכולות להשתנות ממכשיר למכשיר. העיקר הוא לוודא שהמכשיר לא מגביל את פעילות האפליקציה.\n\nהאפליקציה תוכננה לצריכת סוללה מינימלית.</string>
+    <string name="tour_all_done">סיום!</string>
+    <string name="tour_all_done_text">הכל מוכן! לפני שתסיימו, אנא הקדישו רגע לקרוא ולאשר את התקנון ותנאי השימוש של האפליקציה.\n\nלחצו על כפתור הסיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכלו להתאים אישית את האפליקציה לצרכיכם ולהתחיל להנות מכל יכולותיה.\n\nניתן תמיד לשוב ולצפות בסיור דרך תפריט שלוש הנקודות בחלקו העליון של מסך האפליקציה.</string>
+    <string name="tour_skip_button">לדלג</string>
+    <string name="tour_start_button">סיום</string>
+    <string name="tour_finished_but_without_default_app_and_battery_saver">הכל מוכן! לפני שתסיימו, אנא הקדישו רגע לקרוא ולאשר את התקנון ותנאי השימוש של האפליקציה.\n\nשימו לב: ניתן להתחיל להשתמש באפליקציה, אך ללא קביעתה כאפליקציית ברירת המחדל לשיחות וללא ביטול הגבלות הסוללה, היא לא תוכל לטפל בשיחות כראוי.\n\nלחצו על כפתור הסיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכלו להתאים אישית את האפליקציה לצרכיכם ולהתחיל להנות מכל יכולותיה.\nניתן תמיד לשוב ולצפות בסיור דרך תפריט שלוש הנקודות בחלקו העליון של מסך האפליקציה.</string>
+    <string name="tour_finished_but_without_default_app">הכל מוכן! לפני שתסיימו, אנא הקדישו רגע לקרוא ולאשר את התקנון ותנאי השימוש של האפליקציה.\n\nשימו לב: ניתן להתחיל להשתמש באפליקציה, אך ללא קביעתה כאפליקציית ברירת המחדל לשיחות, היא לא תוכל לטפל בשיחות כראוי. לחצו על כפתור הסיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכלו להתאים אישית את האפליקציה לצרכיכם ולהתחיל ליהנות מכל תכונותיה. ניתן תמיד לשוב ולצפות בסיור דרך תפריט שלוש הנקודות.</string>
+    <string name="tour_finished_but_without_battery_saver">הכל מוכן! לפני שתסיימו, אנא הקדישו רגע לקרוא ולאשר את התקנון ותנאי השימוש של האפליקציה.\n\nשימו לב: ניתן להתחיל להשתמש באפליקציה, אך ללא ביטול הגבלות הסוללה, היא לא תוכל לטפל בשיחות כראוי.\n\nלחצו על כפתור הסיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכלו להתאים אישית את האפליקציה לצרכיכם, ולהתחיל להנות מכל יכולותיה.\nניתן תמיד לשוב ולצפות בסיור דרך תפריט שלוש הנקודות.</string>
+    <string name="tour_finished_but_without_phone_permission">הכל מוכן! לפני שתסיימו, אנא הקדישו רגע לקרוא ולאשר את התקנון ותנאי השימוש של האפליקציה.\n\nשימו לב: לחצן המצוקה לא יוכל לפעול כראוי ללא הרשאת גישה לטלפון.\n\nלחצו על כפתור הסיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכלו להעניק הרשאות, להתאים אישית את האפליקציה לצרכיכם, ולהתחיל להנות מכל יכולותיה.\nניתן תמיד לשוב ולצפות בסיור דרך תפריט שלוש הנקודות.</string>
+    <string name="tour_finished_but_without_phone_permission_and_default_app">הכל מוכן! לפני שתסיימו, אנא הקדישו רגע לקרוא ולאשר את התקנון ותנאי השימוש של האפליקציה.\n\nשימו לב: לחצן המצוקה לא יוכל לפעול כראוי ללא הרשאת גישה לטלפון.\n\nבנוסף, ללא קביעת האפליקציה כברירת מחדל לניהול שיחות, היא לא תוכל לטפל בשיחות כראוי.\n\nלחצו על כפתור הסיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכלו להעניק הרשאות, להתאים אישית את האפליקציה לצרכיכם, ולהתחיל להנות מכל יכולותיה.\nניתן תמיד לשוב ולצפות בסיור דרך תפריט שלוש הנקודות.</string>
+    <string name="tour_finished_but_without_phone_permission_and_battery_saver">הכל מוכן! לפני שתסיימו, אנא הקדישו רגע לקרוא ולאשר את התקנון ותנאי השימוש של האפליקציה.\n\nשימו לב: לחצן המצוקה לא יוכל לפעול כראוי ללא הרשאת גישה לטלפון.\nבנוסף, ללא ביטול הגבלות הסוללה, האפליקציה לא תוכל לטפל בשיחות כראוי.\n\nלחצו על כפתור הסיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכלו להעניק הרשאות, להתאים אישית את האפליקציה לצרכיכם, ולהתחיל להנות מכל יכולותיה.\nניתן תמיד לשוב ולצפות בסיור דרך תפריט שלוש הנקודות.</string>
+    <string name="tour_finished_but_without_phone_permission_and_default_app_and_battery_saver">הכל מוכן! לפני שתסיימו, אנא הקדישו רגע לקרוא ולאשר את התקנון ותנאי השימוש של האפליקציה.\n\nשימו לב: לחצן המצוקה לא יוכל לפעול כראוי ללא הרשאת גישה לטלפון.\nבנוסף, ללא קביעת האפליקציה כברירת מחדל לניהול שיחות וללא ביטול הגבלות הסוללה, היא לא תוכל לטפל בשיחות כראוי.\n\nלחצו על כפתור הסיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכלו להעניק הרשאות, להתאים אישית את האפליקציה לצרכיכם, ולהתחיל להנות מכל יכולותיה.\nניתן תמיד לשוב ולצפות בסיור דרך תפריט שלוש הנקודות.</string>
+    <string name="tour_battery_saver_skipped_but_needed_alert">על מנת שהאפליקציה תפעל בצורה חלקה ברקע, חשוב להסיר את ההגבלות של האפליקציה ממצב החיסכון בסוללה. האפליקציה תוכננה לצריכת סוללה מינימלית. האם אתם בטוחים שברצונכם לדלג על שלב זה?</string>
+    <string name="no_open_app_info">לא, לפתוח את פרטי היישום</string>
+    <string name="tour_overlay_draw_permission_skipped_alert_title">הרשאת ריצה ברקע</string>
+    <string name="tour_overlay_draw_permission_skipped_alert_text">"על מנת שהאפליקציה תוכל לנהל שיחות ברקע (כאשר היא אינה פתוחה מראש), חשוב לאפשר את הרשאת פתיחת חלונות חדשים ברקע (ריצה ברקע). האם אתם בטוחים שברצונכם לדלג על שלב זה?"</string>
+    <string name="request_overlay_permission_alert_title">אישור לאפליקציה להציג את מסך השיחות גם כאשר אינה פתוחה</string>
+    <string name="request_overlay_permission_alert_text">אנא פתחו את \'הרשאות אחרות\' והעניקו הרשאה ל - \'לאפשר פתיחת חלונות חדשים בזמן שהיישום רץ ברקע\'.</string>
+    <string name="permissions_screen_title_text">האפליקציה זקוקה למספר הרשאות על מנת לנהל את השיחות כיאות.</string>
+    <string name="permissions_screen_default_phone_app_caption">אפליקציית ברירת המחדל לשיחות</string>
+    <string name="permissions_screen_default_phone_app_text">כדי שהאפליקציה תוכל לקבל ולבצע שיחות טלפון, יש להגדיר אותה כאפליקציית השיחות הראשית (אפליקציית ברירת המחדל לניהול שיחות). מתן הרשאה זו עשוי לאשר הרשאות נוספות, ולתת לאפליקציה גישה לאנשי הקשר, לטלפון וליומן השיחות במכשיר.</string>
+    <string name="permissions_screen_default_phone_app_button">הגדרה כאפליקציית ברירת המחדל</string>
+    <string name="permission_granted_capital_p">ההרשאה אושרה</string>
+    <string name="permissions_screen_overlay_draw_permission_caption">הרשאת פתיחת חלונות חדשים ברקע (ריצה ברקע)</string>
+    <string name="permissions_screen_overlay_draw_permission_text">הרשאת פתיחת חלונות חדשים ברקע דרושה לאפליקציה על מנת שתוכל להציג את מסך שיחה נכנסת ומסך שיחה פעילה גם כאשר האפליקציה עצמה אינה מוצגת, אלא רצה ברקע.</string>
+    <string name="favorites">מועדפים</string>
+    <string name="settings_allow_incoming_calls">לאפשר שיחות נכנסות</string>
+    <string name="settings_allow_outgoing_calls">לאפשר שיחות יוצאות</string>
+    <string name="start_calls_with_speaker_turned_on">להתחיל שיחה עם רמקול דלוק</string>
+    <string name="settings_automatically_answer_calls">מענה אוטומטי לשיחות</string>
+    <string name="settings_show_keypad_in_active_call">הצגת מקלדת במהלך שיחה</string>
+    <string name="allow_launching_contacts_whatsapp"> לאפשר פתיחת וואטסאפ (WhatsApp) מהאפליקציה</string>
+    <string name="settings_allow_call_waiting">לאפשר שיחה ממתינה</string>
+    <string name="permissions_approve_overlay_draw_permission_button">לאשר הרשאת ריצה ברקע</string>
+    <string name="permissions_phone_call_permission_caption">הרשאת טלפון</string>
+    <string name="permissions_phone_call_permission_caption_text">האפליקציה זקוקה להרשאת טלפון על מנת לאפשר שיחות יוצאות, במידה ואושרו במסך ההגדרות.</string>
+    <string name="permissions_approve_phone_permission">לאשר הרשאת טלפון</string>
+    <string name="permissions_contacts_permission_caption">הרשאת אנשי קשר</string>
+    <string name="permissions_contacts_permission_text">האפליקציה זקוקה להרשאת אנשי הקשר על מנת לאפשר התקשרות והצגה של אנשי הקשר</string>
+    <string name="permissions_approve_contacts_permission_caption">לאשר הרשאת אנשי קשר</string>
+    <string name="permissions_calls_log_permission_caption">הרשאת יומני שיחות</string>
+    <string name="permissions_calls_log_permission_text">האפליקציה זקוקה להרשאת יומני השיחות על מנת להציג את רישומי השיחות הנכנסות והיוצאות.</string>
+    <string name="permissions_calls_log_permission_button">לאשר הרשאת יומני שיחות</string>
+    <string name="permissions_enable_call_phone_permission_manually_title1">שיחות יוצאות</string>
+    <string name="permissions_enable_call_phone_permission_manually_title2">טלפון</string>
+    <string name="permissions_enable_contacts_permission_manually_title1">אנשי הקשר</string>
+    <string name="permissions_enable_contacts_permission_manually_title2">אנשי קשר</string>
+    <string name="permissions_enable_calls_log_permission_manually_title1">צפייה בשיחות</string>
+    <string name="permissions_enable_calls_log_permission_manually_title2">יומני שיחות</string>
+    <string name="how_to_enable_standard_permission_manually_text">
+    📞 ** איך להפעיל מחדש (ידנית) את ההרשאה ל%1$s באפליקציה **
+    \n\n
+    נראה שההרשאה ל%1$s סורבה עבור האפליקציה.
+        \n
+        על מנת להפעיל את ההרשאה שוב, יש לבצע את הצעדים הפשוטים הבאים:
+\n\n
+    1️⃣ **פתחו את ההגדרות**
+        \n
+       לחצו על אפליקציית **הגדרות** בטלפון שלכם (⚙️).
+\n\n
+    2️⃣ **חפשו את "יישומים" או "אפליקציות"**
+        \n
+       בתוך הגדרות המכשיר גללו מטה ובחרו באפשרות **יישומים**, אם אינכם מוצאים נסו לחפש **אפליקציות** (השם עשוי להשתנות במכשירים שונים).
+\n\n
+    3️⃣ **עברו לניהול יישומים**
+        \n
+       בתוך יישומים, לחצו על **ניהול יישומים**.
+        \n\n
+
+    4️⃣ **בחרו ביישום**
+        \n
+       חפשו את האפליקציה ברשימת היישומים (אפליקציות) ובחרו בה.
+        \n\n
+
+    5️⃣ **עברו להרשאות**
+        \n
+       בתוך פרטי היישום בחרו **הרשאות של יישומים**
+        \n\n
+
+    6️⃣ **אפשרו את ההרשאה**\n
+       לחצו על הרשאת **%2$s** ואז בחרו באישור.\n\n
+
+    🔄 **חיזרו לאפליקציה**
+        \n
+       לאחר שהפעלתם את ההרשאה, חזרו לאפליקציה, אשר אמורה לגלות את ההרשאה בצורה אוטומטית.
+        \n
+       במידה ותתקלו בשלב זה בבעיה, סגרו את האפליקציה ופתחו אותה שוב כדי לוודא מעבר בצורה חלקה.
+\n\n
+    מומלץ תמיד לבקש עזרה מאדם קרוב.
+</string>
+    <string name="enable_permission_manually_caption">הרשאה סורבה</string>
+    <string name="enable_permission_manually_ok_button">הבנתי!</string>
+    <string name="navigation_fragment_info_label">מידע</string>
+    <string name="from_no_one_captial_f">לא לאפשר</string>
+    <string name="from_favorites_only_captial_f">מאנשי קשר מועדפים בלבד</string>
+    <string name="from_contacts_only_captial_f">מאנשי קשר בלבד</string>
+    <string name="from_identified_only_captial_f">ממספרים מזוהים בלבד</string>
+    <string name="from_everyone_capital_f">מכולם</string>
+    <string name="to_no_one_captial_t">לא לאפשר</string>
+    <string name="to_favorites_only_captial_t">לאנשי קשר מועדפים בלבד</string>
+    <string name="to_contacts_only_captial_t">לאנשי קשר בלבד</string>
+    <string name="to_everyone_capital_t">לכולם</string>
+    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">האפליקציה איננה יכולה להוסיף אנשי קשר לרשימת בחירת מספר הזהב מכיוון שההרשאה לא ניתנה.</string>
+    <string name="make_call_permission_granted_try_again">הרשאת טלפון (שיחות יוצאות) אושרה! אנא נסו שנית</string>
+    <string name="read_contacts_permission_granted_try_again">הרשאת אנשי קשר אושרה! אנא נסו שנית</string>
+    <string name="grant_capital">לאשר</string>
+    <string name="app_is_not_default_dialer_when_make_call_alert">האפליקציה אינה אפליקציית ברירת המחדל לניהול שיחות. אנא אשרו אותה על מנת לנהל את השיחה. ניתן לנסות להמשיך בחיוג בעזרת האפליקציה הקיימת לניהול שיחות.</string>
+    <string name="view_calls_permission_was_granted_reloading">ההרשאת יומן שיחות אושרה! מתבצע רענון..</string>
+    <string name="read_contacts_permission_was_granted_reloading">הרשאת אנשי קשר אושרה! מתבצע רענון..</string>
+    <string name="default_dialer_permission_granted_try_again">האפליקציה נבחרה כברירת המחדל לניהול השיחות! אנא נסו שנית.</string>
+    <string name="auto_answer_capital_auto">מענה\nאוטומטי</string>
+    <string name="incoming_capital">שיחה נכנסת</string>
+    <string name="outgoing_capital">שיחה יוצאת</string>
+    <string name="missed_capital">שיחה לא נענתה</string>
+    <string name="rejected_capital">שיחה נדחיתה</string>
+    <string name="blocked_capital">שיחה נחסמה</string>
+    <string name="end_captial">סיום</string>
+    <string name="speaker_capital">רמקול</string>
+    <string name="keypad_capital">מקלדת</string>
+    <string name="to_view_calls_history_application_must_have_permission">על מנת לראות את שיחות הטלפון, יש לאשר את ההרשאה המתאימה במכשיר.</string>
+    <string name="contacts_permission_was_not_granted_showing_calls_list_with_phone_numbers_only">הרשאת הגישה לאנשי הקשר לא אושרה. רשימת השיחות תציג רק מספרי טלפון.</string>
+    <string name="to_display_the_calls_contacts_application_must_have_permission">על מנת להציג את שמות אנשי הקשר בשיחות, יש לאשר את ההרשאה המתאימה במכשיר.</string>
+    <string name="permission_was_granted">הרשאה אושרה!</string>
+    <string name="contacts_permission_was_not_granted_cannot_show_contact_details">לא ניתן להציג פרטי איש קשר כיוון שההרשאה לגישה לאנשי קשר לא ניתנה. ניתן לאשר את ההרשאה בהגדרות האפליקציה או בהגדרות המכשיר.</string>
+    <string name="cannot_continue_since_permission_was_not_approved">לא ניתן להמשיך כיוון שההרשאה לא אושרה.</string>
+    <string name="no_contacts_found_to_display">לא נמצאו אנשי קשר.</string>
+    <string name="no_favorites_contacts_found_to_display">בהגדרות נבחר מצב "מועדפים בלבד" לשיחות יוצאות, אך כרגע לא מוגדרים במכשירך אנשי קשר מועדפים. כדי לצפות בשאר אנשי הקשר, ניתן להוסיף אותם למועדפים או לשנות את ההגדרות באפליקציה (פתחו את תפריט ההגדרות באפליקציה, דרך תפריט השלוש נקודות ושנו את הגדרות השיחות היוצאות לאנשי קשר או כולם).</string>
+    <string name="no_calls_found">לא נמצאו שיחות.</string>
+    <string name="a_serious_error_has_occurred_call_cannot_continue">אירעה שגיאה חמורה ועל כן לא ניתן להמשיך בשיחה.</string>
+    <string name="error_is_capital">השגיאה היא: (%1$s).</string>
+    <string name="serious_error_capital">אירעה שגיאה חמורה בשיחה</string>
+    <string name="active_call_capital">שיחה פעילה</string>
+    <string name="click_to_go_back_to_call">לחצו על מנת לחזור לשיחה</string>
+    <string name="permission_denied_capital">ההרשאה נדחיתה</string>
+    <string name="the_app_cannot_answer_calls_from_the_background_without_permission">האפליקציה אינה יכולה לענות לשיחות ללא הרשאת \'לאפשר פתיחת חלונות חדשים בזמן שהיישום רץ ברקע\'. אנא אשרו את ההרשאה על מנת שהאפליקציה תוכל לתפקד כיאות.</string>
+    <string name="the_app_needs_permission_to_make_calls_please_grant">האפליקציה זקוקה להרשאה על מנת לבצע שיחות. אנא העניקו את ההרשאה או פתחו את מסך ההרשאות</string>
+    <string name="please_grant_default_dialer_permission_so_app_can_handle_calls">אנא בחרו את האפליקציה כאפליקציית ברירת המחדל לניהול שיחות על מנת שתוכלו לנהל את השיחות שלכם ולהבטיח חוויית שיחה נעימה ופשוטה.</string>
+    <string name="it_looks_like_the_app_could_not_load_call_screen_in_background">נראה שהאפליקציה לא הצליחה להציג את מסך השיחה ברקע בעת קבלת השיחה האחרונה. על מנת שהאפליקציה תוכל לענות לשיחות גם מהרקע, כאשר היא סגורה, אנא אפשרו בהגדרות המכשיר, את ההרשאה \'לאפשר פתיחת חלונות חדשים בזמן שהיישום רץ ברקע\'.</string>
+    <string name="app_is_missing_overlay_draw_permission">לאפליקציה דרושה הרשאת ריצה ברקע</string>
+    <string name="gold_capital">זהב</string>
+    <string name="missing_call_phone_permission">האפליקציה זקוקה להרשאת טלפון</string>
+    <string name="app_selected_as_default_phone_app">האפליקציה נבחרה לניהול השיחות!</string>
+    <string name="error_capital">שגיאה</string>
+    <string name="invalid_phone_number_capital">מספר טלפון לא תקין.</string>
+    <string name="whatsapp_is_not_installed_capital">אפליקציית וואטסאפ (WhatsApp) אינה מותקנת.</string>
+    <string name="it_looks_like_the_app_has_encountered_an_error_in_last_call_error">נראה שהאפליקציה נתקלה בשגיאה בזמן השיחה האחרונה (שגיאה: %1$s).</string>
+    <string name="tour_screen_lock_title">מסך נעילה</string>
+    <string name="tour_lock_screen_text">יש לאשר את הרשאת "הצג במסך הנעילה".\n\nכדי להפעיל את ההרשאה, בצעו את הפעולות הבאות:\n1. פתחו את הגדרות המכשיר.\n2. עבורו לקטגוריית "הרשאות אחרות".\n3. מצאו את האפשרות "הצג במסך הנעילה" והפעילו אותה.\n\nשימו לב: במכשירים שונים ההרשאה עשויה להופיע בשם או במיקום שונה. אם אינכם מוצאים אותה, נסו לחפש בקטגוריות אחרות בהגדרות.</string>
+    <string name="oops_a_serious_error_occurred_please_restart_the_app">אופס! קרתה שגיאה חמורה. אנא הפעילו מחדש את האפליקציה.</string>
+    <string name="tap_on_call_item_for_more">הקישו על שורת השיחה לפרטים</string>
+    <string name="tap_on_contact_row_for_more">הקישו על שורת איש הקשר לפרטים</string>
+    <string name="answer_capital">לענות</string>
+    <string name="decline_capital">לסרב</string>
+    <string name="speaker_capital_for_voice">רמקול</string>
+    <string name="end_capital_for_voice">סיום</string>
+    <string name="keypad_capital_for_voice">מקלדת</string>
+    <string name="tap_to_open_app">לחצו על מנת לפתוח את האפפ</string>
+    <string name="the_app_requires_permission_to_run_in_the_background">האפליקציה זקוקה להרשאת ריצה ברקע על מנת לענות על שיחות כאשר האפליקציה אינה בפוקוס של המשתמש. ניתן לקבוע זאת דרך מסך ההרשאות באפליקציה או דרך הגדרות המכשיר.</string>
+    <string name="no_contacts_are_displayed_because_outgoing_calls_are_disabled">אנשי הקשר אינם מוצגים כיון שהשיחות היוצאות הוגבלו באפליקציה. ניתן לשנות זאת דרך הגדרות האפליקציה (תפריט 3 הנקודות).</string>
+    <string name="terms_and_conditions">ברוכים הבאים לאפליקציית %1$s.\n\nהאפליקציה פותחה ככלי עזר למשתמשים מבוגרים, במטרה להקל על ניהול שיחות במכשירי אנדרואיד ולאפשר יצירת קשר מהיר עם אנשי קשר מוגדרים מראש במצבי מצוקה.\n\nהמערכת והשירותים הניתנים דרכה ייקראו להלן \"המערכת\".\n\n1. הסכמה לתנאים:\nהשימוש במערכת כפוף לתנאים הבאים (\"התנאים\"). נא לקרוא תנאים אלה בעיון לפני השימוש. שימוש במערכת מהווה את הסכמתכם המלאה והבלתי חוזרת לתנאים אלו.\n\nאם אינכם מסכימים לתנאים, כולם או חלקם, אנא הימנעו משימוש במערכת ומחקו את האפליקציה מהמכשיר.\n\n2. תמצית מטרת המערכת:\nהמערכת מיועדת להקל על ניהול שיחות באמצעות כפתורים וטקסטים גדולים ונגישים, במיוחד עבור משתמשים מבוגרים או בעלי צרכים מיוחדים.\n\n3. הבהרה חשובה לגבי לחצן המצוקה ומענה אוטומטי:\n* מומלץ לבדוק מראש את פעולת לחצן המצוקה עם איש קשר מוגדר מראש, כדי לוודא תקינות התפקוד. המערכת כוללת לחצן מצוקה לחיוג מהיר למספר טלפון קבוע, ועשויה לכלול גם מענה אוטומטי לשיחות ותכונת \"מספר זהב\".\n\nלתשומת לבכם: האפליקציה אינה מערכת חירום מקצועית ואינה מחליפה פנייה ישירה למוקדי חירום רשמיים (כגון משטרה, מד\"א, מכבי אש וכו\'). אין להסתמך אך ורק על לחצן המצוקה או על מענה אוטומטי במצבים קריטיים, שכן עלולות להתרחש תקלות (כגון בעיות רשת, חסימות הרשאות, מגבלות מערכת ההפעלה או חיסכון בסוללה). מומלץ להחזיק אמצעי גיבוי נוסף לתקשורת.\n\n4. פרטיות, הגנת מידע אישי והקלטות שיחה:\nהמערכת מציגה מידע המאוחסן במכשיר בלבד (כגון אנשי קשר ויומני שיחות), מבלי לשמור אותו או לשתפו עם צדדים שלישיים. האפליקציה אינה מקליטה שיחות ואינה שומרת אותן בכל דרך שהיא.\n\n5. הגבלות שימוש:\nחל איסור מוחלט להשתמש במערכת לכל מטרה שאינה שימוש אישי או פרטי. חל איסור על שימוש מסחרי, הפצת התרעות שווא, או כל שימוש בלתי חוקי.\n\n6. אחריות והגבלת אחריות:\nהאפליקציה והשירותים בה ניתנים \"כמות שהם\" (\"AS-IS\"). המפתחים אינם אחראים להתאמה אישית של המערכת, לשגיאות או תקלות, ואינם אחראים לכל נזק ישיר או עקיף שייגרם כתוצאה משימוש, שימוש לא תקין או תקלה במערכת, לרבות מענה לשיחות, מענה אוטומטי, מספר זהב או לחצן מצוקה. המשתמשים נושאים באחריות מלאה לשימושם במערכת.\n\n7. שינויים, עדכונים והפסקת שירות:\nהמפתחים שומרים לעצמם את הזכות לבצע שינויים, לעדכן או להפסיק את המערכת בכל עת וללא הודעה מוקדמת.\n\n8. פניות ובירורים:\nלשאלות, תלונות או תמיכה, ניתן לפנות בדוא\"ל לכתובת: support@easycallandanswer.com\n\n9. הצהרת משתמש והסכמה:\nשימו לב: חלון זה מוצג לצורך קריאה בלבד ואינו מהווה הסכמה. ההסכמה לתנאים ניתנת במסך הקודם על ידי לחיצה על \"אני מאשר/ת את תנאי השימוש\".\nבלחיצה על \"אני מאשר/ת את תנאי השימוש\", הנכם מצהירים כי קראתם, הבנתם והסכמתם לתנאים במלואם.\n\n10. זכויות יוצרים וקניין רוחני:\nכל רכיב במערכת, לרבות עיצוב, טקסט, לוגו, תכונות ותוכן – הינם רכושם הבלעדי של המפתחים ומוגנים לפי חוקי הקניין הרוחני החלים.\n\n© כל הזכויות שמורות Easy Call and Answer 2025.</string>
+    <string name="accept_terms_button">אני מאשר/ת את תנאי השימוש</string>
+    <string name="open_terms_of_use">פתיחת תנאי השימוש</string>
+    <string name="accept_terms_button_got_it">הבנתי!</string>
+    <string name="accept_term_caption">קראו ואשרו את תנאי השימוש</string>
+    <string name="please_open_and_read_terms_of_use_before_proceed">אנא פתח/י את תנאי השימוש וקרא/י אותם לפני אישור.</string>
+    <string name="please_approve_the_terms_of_use_before_finishi">אנא אשר/י את תנאי השימוש לפני סיום.</string>
+    <string name="tour_distress_button_caption">לחצן מצוקה</string>
+    <string name="tour_distress_button_description">* מומלץ לבדוק תחילה את פעולת לחצן המצוקה עם איש קשר מוגדר מראש ובתיאום עמו, על מנת לוודא את תקינותו.\n\nלחצן המצוקה באפליקציה נועד לסייע לכם ליצור קשר במהירות במקרה חירום, והוא נותר פעיל גם אם שיחות יוצאות מושבתות לחלוטין בהגדרות האפליקציה. אך כמובן יש לוודא שהמכשיר והאפליקציה יכולים להוציא שיחות\n\nשימו לב: האפליקציה לא נועדה לשמש כאפליקציית חירום מקצועית, אינה מחליפה את שירותי החירום הרשמיים ואינה מקושרת ישירות למוקדי חירום כגון המשטרה, אמבולנס או מכבי אש.\n\nעם זאת, ניתן להגדיר את לחצן המצוקה כך שיתקשר למספר חירום מסוים, אם תינתן הרשאה לשליפת מספרי חירום.\n\nמספרי חירום נשלפים ממערכת האנדרואיד, ולכן תלויים באזור ובמכשיר שלכם. משמעות הדבר היא שהמספרים אינם בהכרח מתאימים למדינה בה אתם נמצאים. בעת בחירת מספר חירום, האחריות לבדוק את נכונותו נופלת עליכם.\n\nבנוסף, ניתן לבחור איש קשר (במידה וניתנה הרשאת אנשי קשר) אשר האפליקציה תנסה להתקשר אליו במקרה חירום.\n\nחשוב: הלחצן דורש הרשאת טלפון (לשיחות יוצאות) מהמכשיר עצמו כדי לפעול! כמו כן, מומלץ להגדיר את האפליקציה כברירת מחדל לניהול שיחות; אחרת, האפליקציה עשויה לנסות לבצע את השיחה מחוץ לה.\n\nאם לחצן המצוקה מציג אייקון של פעמון, הוא מוכן לשימוש. אם לא, נא לבדוק את תקינות המכשיר ולהבטיח שהרשאת טלפון ניתנה.\n\nאם חסרות הרשאות, באפשרותכם להעניק אותן דרך מסך ההרשאות באפליקציה או דרך הגדרות המכשיר.</string>
+    <string name="emergency_distress_button_caption">חירום</string>
+    <string name="not_now_capital">לא כרגע</string>
+    <string name="phone_permission_required_for_distress_button">אזהרה: נבחר מספר ללחצן המצוקה, אך חסרה הרשאת "טלפון" (לשיחות יוצאות). לפיכך, לחצן המצוקה לא יכול לעבוד.</string>
+    <string name="not_now_click_for_selection">לא כרגע (לחצו לבחירה)</string>
+    <string name="to_add_contacts_to_the_list_app_must_be_default">לא ניתן להוסיף אנשי קשר לרשימת בחירת מספר כפתור מצוקה. אפשר לאשר את גישת אנשי הקשר דרך מסך ההרשאות של האפליקציה או דרך הגדרות המכשיר.</string>
+    <string name="cannot_show_selection_app_must_be_default">לא ניתן להציג את בחירת מספר החירום עבור כפתור מצוקה (יש להגדיר את האפליקציה כברירת מחדל)</string>
+    <string name="cannot_display_selection_contacts_permission_required">    לא ניתן להציג את בחירת איש הקשר עבור כפתור מצוקה (נדרש אישור גישה לאנשי קשר)</string><string name="unable_to_display_selection_unexpected_error">לא ניתן להציג את הבחירה (אירעה שגיאה בלתי צפויה)</string>
+    <string name="calling_emergency_number_tap_cancel_to_stop">חיוג למספר חירום! הקישו על "ביטול" כדי להפסיק.</string>
+    <string name="distress_button_cancel">ביטול</string>
+    <string name="permission_change_detected_reloading">שינוי בהרשאות זוהה. מתבצעת טעינה מחדש..</string>
+    <string name="emergency_number_unavailable_try_gold_number">מספר החירום לא זמין! נסה את מספר הזהב</string>
+    <string name="settings_capital">הגדרות</string>
+    <string name="phone_permission_granted">הרשאת טלפון (שיחות יוצאות) אושרה!</string>
+    <string name="new_version_installed">גרסה חדשה הותקנה! (%1$s)</string>
+    <string name="distress_button_permission_missing">הרשאה חסרה!</string>
+    <string name="settings_choose_distress_button_number">בחרו מספר ללחצן המצוקה</string>
+    <string name="cannot_choose_gold_number_without_contacts_permission">על מנת לבחור מספר זהב, נדרשת הרשאת גישה לאנשי קשר אך היא לא קיימת כרגע. ניתן לאשר את הגישה לאנשי קשר דרך מסך ההרשאות של האפליקציה או דרך הגדרות המכשיר.</string>
+    <string name="make_call_permission_was_granted_please_try_again">הרשאת טלפון לביצוע שיחות התקבלה! נא לנסות שוב</string>
+    <string name="permission_was_granted_please_try_again">ההרשאה התקבלה! נא לנסות שוב</string>
+    <string name="read_contacts_permission_was_granted_please_try_again">אישור להרשאת אנשי קשר התקבל! נא לנסות שוב</string>
+    <string name="missed_call_from">שיחה שלא נענתה: %1$s</string>
+    <string name="tour_call_report_title">שליחת דו״ח שיחות</string>
+    <string name="tour_call_report_description">שלחו דו\"ח שיחות לאיש קשר קרוב.\n\nעקבו אחר פעילות השיחות כדי לוודא שהכול כשורה. תקבלו סיכום ברור של שיחות נכנסות ויוצאות.\n\nהדו\"ח כולל תבניות כמו:\n\n• שיחות חוזרות לאותו מספר\n• שיחות ממספרים לא מוכרים או לא שמורים\n• שיחות יוצאות בשעות לא שגרתיות\n\nזו דרך פשוטה להישאר בקשר ובמודעות, במיוחד כאשר מטפלים בהורה מבוגר.\n\nניתן לשנות את הגדרות שליחת הדו\"ח בכל עת דרך תפריט שלוש הנקודות שבחלקו העליון של המסך.\n\nלתשומת ליבכם: אתם אחראים בלעדית לאופן השימוש וההפצה של מידע זה. הקפידו לכבד פרטיות ולהתאים לחוקים המקומיים בנוגע לשימוש במידע.</string>
+    <string name="call_report">דוח שיחות</string>
+    <string name="call_report_screen_is_already_opened">מסך דוח השיחות כבר פתוח</string>
+    <string name="change_capital">שינוי</string>
+    <string name="answering_capital">מענה</string>
+    <string name="premium_capital">פרימיום</string>
+    <string name="send_alert_via_sms_to_gold_number">שליחת התראה באמצעות SMS למספר זהב</string>
+    <string name="if_call_was_not_answered_play_increasing_siren_sound_after_15_seconds">אם השיחה לא נענתה, תופעל סירנה מתגברת לאחר 15 שניות</string>
+    <string name="sos">חירום</string>
+    <string name="lock_capital">נעילה</string>
+    <string name="report_capital">דוח</string>
+    <string name="other">אחר</string>
+    <string name="show_custom_lock_screen">הצגת מסך נעילה מותאם אישית</string>
+    <string name="lock_screen">מסך נעילה</string>
+    <string name="show_whatsapp_messages_on_lock_screen">הצגת הודעות WhatsApp על מסך הנעילה</string>
+    <string name="show_sms_messages_on_lock_screen">הצגת הודעות SMS על מסך הנעילה</string>
+    <string name="send_report_captial_s">שליחת דוח</string>
+    <string name="scheduled_send_time">שעת שליחה מתוזמנת</string>
+    <string name="send_to_gold_number">שליחה למספר זהב</string>
+    <string name="select_contact_to_receive_the_report">בחרו איש קשר לקבלת הדוח</string>
+    <string name="send_only_exceptional_data">שליחה של מידע חריג בלבד</string>
+    <string name="mark_call_as_exceptional_if_it_is_not_between">שיחה תיחשב כחריגה אם היא לא בין השעות</string>
+    <string name="a_number_is_considered_exceptional_if_it_appears_more_than">מספר ייחשב כחריג אם הוא מופיע יותר מ־</string>
+    <string name="call">שיחה</string>
+    <string name="time_allowed_to_cancel_seconds">זמן לביטול (בשניות)</string>
+    <string name="call_settings">הגדרות שיחה</string>
+    <string name="other_capital">אחר</string>
+    <string name="to">לבין</string>
+    <string name="number_is_considered_exceptional_if_it_s_not_in_contacts">מספר נחשב לחריג אם הוא לא באנשי הקשר</string>
+    <string name="welcome_to_easy_call_and_answer_premium">ברוכים הבאים לאפליקציית Easy Call And Answer!</string>
+    <string name="welcome_text_speech">אם תרצו לבצע שיחה, פשוט אמרו את שם האדם שברצונכם להתקשר אליו אחרי שאסיים לדבר. תוכלו לומר \"חיוג חירום\" כדי להפעיל את כפתור החירום, או לומר \"מספר זהב\" כדי להתקשר לאיש הקשר שהוגדר כמספר הזהב. כדי לראות את כל הפקודות הקוליות, פתחו את סיור הפרימיום מהתפריט העליון.</string>
+    <string name="premium_tour_page_welcome_text">בגרסת הפרימיום של האפליקציה תוכלו ליהנות מתכונות מתקדמות שישפרו משמעותית את חוויית השימוש שלכם, במיוחד עבור משתמשי אנדרואיד שמבקשים נגישות, נוחות ושליטה מרחוק.\n\nשליטה קולית מלאה מאפשרת לכם לענות לשיחות, להפעיל את לחצן החירום ולבצע פעולות נוספות – בלי לגעת במכשיר. רק יש לוודא שאין רעשי רקע שמפריעים לזיהוי הקול.\n\nבנוסף, תיהנו ממסך נעילה חכם שמאפשר חזרה מהירה לאפליקציה בלחיצה אחת.\n\nפיצ׳ר חדש נוסף הוא שליחת דוח שיחות – כלי שיעזור לכם לבדוק אם בוצעו או התקבלו שיחות ממספרים לא רצויים. הדוח נשלח רק למספר שתבחרו, והאפליקציה אינה שומרת או עושה שימוש בנתונים מעבר לכך.\n\nהאחריות לשימוש בכל התכונות, כמו גם באפליקציה עצמה, חלה עליכם – המשתמשים.</string>
+    <string name="premium_tour_page_welcome_title">הכירו את גרסת הפרימיום</string>
+    <string name="premium_tour_swipe_hint">החליקו ימינה כדי להמשיך\nלשלב הבא</string>
+    <string name="premium_tour_page_lock_title">מסך נעילה חכם בהתאמה אישית</string>
+    <string name="premium_tour_page_lock_text">מסך הנעילה המיוחד שלנו מציע חוויית שימוש חדשנית ונוחה במיוחד. במקום להיאבק עם מחוות סווייפ מסורבלות או לחפש את הדרך לפתוח את המכשיר – כאן מספיקה לחיצה אחת פשוטה כדי להיכנס חזרה לאפליקציה. קל, מהיר, זמין – בדיוק כשצריך.\nבמסך זה ניתן גם להפעיל את הפתיחה באמצעות פקודה קולית. לא צריך לגעת במכשיר – רק לומר את מילת הקסם, והמסך ייפתח. פתרון אידיאלי למצבים בהם הידיים לא פנויות או כשנדרשת נגישות גבוהה יותר.\nהמסך מציג התראות חכמות מקריאת הודעות טקסט ו-WhatsApp. המשתמש יכול לראות את התוכן, אך רק במצב קריאה – כך שגם אם נלחצים בטעות, לא תיפתח שיחה. זה חשוב במיוחד עבור מבוגרים שעלולים ללחוץ בטעות ולהיכנס לשיחה לא רצויה.\nזהו לא סתם מסך נעילה – אלא שער חכם ומדויק שנועד לשפר את השימוש היומיומי, להגביר את הנגישות, ולתת תחושת שליטה וביטחון. עם עיצוב נקי, הפעלה אינטואיטיבית ותמיכה קולית – מדובר בשדרוג אמיתי לחוויית המשתמש.</string>
+    <string name="premium_tour_page_voice_title">הפעלה קולית ללא מגע</string>
+    <string name="premium_tour_page_voice_text">דמיינו שליטה מלאה באפליקציה – בלי לגעת במכשיר בכלל. פשוט מדברים, והמערכת מבצעת. ענו לשיחות, הפעילו מצוקה, התקשרו לאהובים או פתחו את הנעילה – הכול בקול שלכם בלבד. כשהידיים עמוסות או המגע לא נוח – השליטה הקולית כאן כדי להפוך הכול לקל, מהיר וטבעי. המערכת מזהה פקודות גם מרחוק, גם בתנועה – כל עוד אין רעשי רקע חזקים. זו לא רק נוחות – זו נגישות, ביטחון, וכוח טכנולוגי שמעצים אתכם בכל רגע.</string>
+    <string name="premium_tour_page_call_report_title">דוח שיחות</string>
+    <string name="premium_tour_page_call_report_text">הישארו מעודכנים בפעילות השיחות של יקיריכם. הדוח מציג את השיחות הנכנסות והיוצאות – כך שתדעו שהם לא מתקשרים בטעות, ולא מקבלים שיחות ממספרים חשודים או לא מוכרים.</string>
+    <string name="premium_tour_page_distress_button_title">לחצן מצוקה משודרג</string>
+    <string name="premium_tour_page_distress_button_text">כשכל שנייה קובעת – ההגנה המתקדמת עושה את כל ההבדל. לחצן המצוקה בגרסת הפרימיום לא רק מתקשר – הוא גם שולח SMS עם מיקום ושעה, ואם אין מענה או שהשיחה לא יוצאת – תופעל אזעקה קולית חזקה שתמשוך תשומת לב מהסביבה.</string>
+    <string name="premium_tour_page_voice_commands_title">פקודות קוליות</string>
+    <string name="premium_tour_page_voice_commands_text">באפשרותך להפוך את החוויה לחלקה יותר על ידי הגדרת פקודות קוליות שמתאימות לך.\n\nמומלץ לבחור פקודות שקל לומר, ברורות וייחודיות – זה עוזר לאפליקציה להבין אותך טוב יותר.</string>
+    <string name="premium_screen_is_already_opened">Premium screen is already opened</string>
+
+
+</resources>

@@ -1,0 +1,362 @@
+<resources>
+    <string name="app_name">Easy Call &amp; Answer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_dialer">Dialer</string>
+    <string name="menu_contacts">Contacts</string>
+    <string name="menu_recent_calls">Calls</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="lorem_ipsum_title">Lorem Ipsum"</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply placeholder text of the printing and
+        typesetting industry. Lorem Ipsum has been the industry\'s standard placeholder text ever
+        since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+        type specimen book"
+    </string>
+    <string name="fab_content_description">Represents a view to invoke an action</string>
+    <string name="image_view_item_transform_content_description">Represents an image view in the
+        item
+    </string>
+    <string name="elderandyoung">elderandyoung</string>
+    <string name="decline_button">Decline</string>
+    <string name="accept_button">Accept</string>
+    <string name="call_capital">Call</string>
+    <string name="back_capital">Back</string>
+    <string name="call_type_icon">call_type_icon</string>
+    <string name="contacts_capital">Contacts</string>
+    <string name="unknown_caller">Unknown Caller</string>
+    <string name="incoming_call">Incoming Call</string>
+    <string name="conference">Conference</string>
+    <string name="call_waiting">Call Waiting</string>
+    <string name="Details_capital">Details</string>
+    <string name="calling_capital">Calling…</string>
+    <string name="save_gold_number">Save Gold Number</string>
+    <string name="enter_gold_phone_number">Enter Gold phone number</string>
+    <string name="start_typing_contact_name">Start typing Contact name</string>
+    <string name="existing_contact">Existing contact:</string>
+    <string name="save_existing_contact">Save existing contact</string>
+    <string name="save_phone_number">Save phone number</string>
+    <string name="phone_number">Phone number:</string>
+    <string name="add_new_contact">Add new Contact</string>
+    <string name="call_gold_number">Call Gold Number</string>
+    <string name="call_entered_number">Call entered number</string>
+    <string name="contact_name">Contact name</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="close_window">Close window</string>
+    <string name="birthday_capital">Birthday</string>
+    <string name="name_capital">Name</string>
+    <string name="remind_me_capital">Remind me</string>
+    <string name="remind_me_about_this_birthday">Remind me about this birthday</string>
+    <string name="save_contact">Save Contact</string>
+    <string name="enter_contact_name">Enter Contact name</string>
+    <string name="please_select_birthdate">Please select birthdate</string>
+    <string name="birthdate_capital">Birthdate</string>
+    <string name="approve_read_phone_calls_log">Approve Read Phone Calls Log</string>
+    <string name="no_permissions_caption">No Permissions</string>
+    <string name="approve_view_calls_permission">Approve View Calls Permission</string>
+    <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">The app needs View Calls permission in order to show the calls</string>
+    <string name="the_application_needs_contacts_permission_in_order_to_show_the_contacts_screen">The app needs Contacts permission in order to show the Contacts screen</string>
+    <string name="permissions_capital">Permissions</string>
+    <string name="help_capital">Help</string>
+    <string name="tour_capital">Tour</string>
+    <string name="favourites_capital">Favourites</string>
+    <string name="outgoing_calls_are_currently_restricted_to_favorites">Outgoing calls are currently restricted to Favorites. To enable this feature, please go to Settings. You can still call your Gold Number, if set.</string>
+    <string name="outgoing_calls_are_currently_restricted_to_contacts">Outgoing calls are currently restricted to Contacts. To enable this feature, please go to Settings. You can still call your Gold Number, if set.</string>
+    <string name="outgoing_calls_are_currently_turned_off">Outgoing calls are currently turned off. To enable this feature, please go to Settings. You can still call your Gold Number, if set.</string>
+    <string name="no_permission_to_view_contacts_caption">No permission to view Contacts</string>
+    <string name="no_permission_to_view_calls">No permission to view Calls</string>
+    <string name="approve_contacts_permission">APPROVE CONTACTS PERMISSION</string>
+    <string name="yes_skip_capital">Yes, Skip</string>
+    <string name="no_set_as_default_capital">No, Set as Default</string>
+    <string name="set_default_phone_app">Set Default Phone App</string>
+    <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">For handling calls, it is important to set the app as your default phone app (especially in emergency). Are you sure you want to skip this step?</string>
+    <string name="cancel_capital">Cancel</string>
+    <string name="battery_saver">Running In The Background</string>
+    <string name="for_the_app_to_run_smoothly_in_the_background_please_set_the_battery_saver">For the app to run smoothly in the background, please set the Battery saver to \'No restrictions\', in the Background Settings, through \'App info\' in Settings. The app is designed for minimum battery use.</string>
+    <string name="yes_open_app_info">Yes, Open App info</string>
+    <string name="permission_needed_capital_p">Permission Required</string>
+    <string name="ask_permission_capital_a">Grant permission</string>
+    <string name="close_capital">Close</string>
+    <string name="no_open_settings">No, Open Settings</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="ok">OK</string>
+    <string name="permission_could_not_be_granted_automatically">Although permission could not be granted automatically, you can still enable it by visiting your device\'s settings.</string>
+    <string name="app_must_have_permission_to_make_calls">"In order to make calls, the app must have the proper permission"</string>
+    <string name="to_add_a_gold_number_please_go_to_settings">To add a Gold Number, please go to Settings by tapping the three-dot menu.</string>
+    <string name="permission_was_granted_reloading">Permission was granted! Reloading..</string>
+    <string name="view_contacts_permission_was_granted_reloading">View Contacts permission was granted! Reloading..</string>
+    <string name="gold_number">Gold Number</string>
+    <string name="select_gold_number">Select Gold Number"</string>
+    <string name="in_order_to_read_contacts_details_app_must_have_the_proper_permission">In order to read Contacts details, the app must have the proper permission</string>
+    <string name="in_order_to_view_calls_history_the_application_must_have_the_proper_permission">In order to view calls history, the app must have the proper permission</string>
+    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">The app needs Phone permission to make calls, including emergency calls via the Distress button.</string>
+    <string name="enable_application_to_show_call_screen_from_background">Enable app to show Call screen from background</string>
+    <string name="enable_application_to_show_call_screen_from_background_text">Please enter \'Other Permissions\' and there grant access to \'Display pop-up windows while running in the background\'.</string>
+    <string name="go_to_settings">Go to Settings</string>
+    <string name="xiaomi_custom_permission_settings_explain">To let the app show pop-up windows during calls, the \'Draw over other apps\' permission must be enabled in your device settings. On Xiaomi phones, you\'ll need to turn this permission on manually. Tap below to open settings and enable it.</string>
+    <string name="default_dialer_permission_was_not_granted_but_needed">Default Phone App (Dialer) permission was not granted but needed for the app to answer calls.</string>
+    <string name="make_calls_permission_was_denied_but_needed">Phone (Call) permission denied, but needed to make calls (especially in emergency).</string>
+    <string name="make_calls_permission_was_granted">Make Calls permission was granted!</string>
+    <string name="read_contacts_permission_was_granted">Read Contacts permission was granted!</string>
+    <string name="read_contacts_permission_was_denied_but_needed">Read Contacts permission was denied but needed in order view Contacts.</string>
+    <string name="calls_log_permission_was_granted">Calls Log permission was granted!</string>
+    <string name="calls_log_permission_was_denied_but_needed">Calls Log permission was denied but needed in order view calls.</string>
+    <string name="overlay_draw_permission_was_granted">Overlay Draw permission was granted!</string>
+    <string name="to_filter_blocked_contacts_please_set_the_app_as_default">To filter blocked contacts, please set the app as the default app.</string>
+    <string name="unknown_blocked">Unknown (Blocked)</string>
+    <string name="unknown_because_of_error">Unknown (error)</string>
+    <string name="unknown_capital">Unknown</string>
+    <string name="it_is_important_to_set_the_app_as_default">It is important to set the app as your default phone app to allow it to handle calls for you (especially in emergency).</string>
+    <string name="settings_screen_is_already_opened">Settings screen is already opened</string>
+    <string name="permissions_screen_is_already_opened">Permissions screen is already opened</string>
+    <string name="tour_welcome">Welcome!</string>
+    <string name="tour_welcome_text">The app was designed specifically to simplify answering incoming calls – by using a large button instead of swiping on the device, an action that can sometimes be challenging for older people.\n\nFamily members can change the settings as needed, making the app both simple and powerful with many features.\n\nManage your calls easily and use the app as your primary dialer for receiving and managing calls.</string>
+    <string name="tour_powerful_features">Powerful Features</string>
+    <string name="tour_powerful_features_text">The app includes a wide range of useful features, specifically tailored for seniors, to manage all types of calls, both incoming and outgoing.\n\nThe app is designed to be very simple and easy to use, but you can always change the settings easily by tapping on the menu at the top of the screen (tap on the three dots).</string>
+    <string name="tour_customizable_settings">Settings</string>
+    <string name="tour_customizable_settings_text">It is recommended to seek help from close friends or family members to adjust the app settings so that they best suit your needs.\n\nIn the Settings screen, you can choose who can call you, such as only contacts, only favorites, or only non-blocked numbers.\n\nYou can also restrict outgoing calls if necessary. It is important to remember that the emergency button and the golden number will still work even if outgoing calls are restricted or blocked, as they depend solely on the phone\'s outgoing call permission.\n\nAdditionally, you can choose to start calls with the speakerphone on, set the app to answer calls automatically, and access other options that help the app function in the most customized and optimal way for you.</string>
+    <string name="tour_auto_answer">Auto Answer</string>
+    <string name="tour_auto_answer_text">It is possible to enable the app to automatically answer incoming calls, without the need to press the answer button when a new call is received.\n\nThe app allows the device to ring two or three times, so that you are alerted to the incoming call.\n\nAuto answering can be enabled only for certain contacts, by tapping on them in the Contacts screen and then checking the checkbox.\n\nUsing this option may cause confusion for those who are not accustomed to auto answering, and its use is solely the responsibility of the user.</string>
+    <string name="tour_gold_number">Gold Number</string>
+    <string name="tour_gold_number_text">You can set up a gold number for quick and easy calls to a close contact using the settings screen, and then call them via the Contacts tab or the dialer.\n\nCalls to the gold number are possible even when outgoing calls are restricted in the app, as they only require call permission.\n\nNote: An emergency number can be designated as the gold number, but please note that the app is not intended for emergency situations; it is designed to make your calls simple and enjoyable.</string>
+    <string name="tour_next_button">Next</string>
+    <string name="tour_prev_button">Prev</string>
+    <string name="tour_done">DONE</string>
+    <string name="tour_open_app_info_button">Open App info</string>
+    <string name="tour_set_as_default_app_button">Set As Default App</string>
+    <string name="tour_app_permissions">App Permissions</string>
+    <string name="tour_app_permissions_text">For the app to be able to manage calls and answer them even when it is not running, it must be set as the default call management app.\n\nAdditionally, for the app to function properly, it requires additional permissions:\n\1. Phone (for making calls).\n\2. Opening new windows in the background (display above other apps).\n3. Access to contacts.\n4. Viewing the call log.\n5. Permission to display on the lock screen.\n\nThe app will only use the permissions it has received solely for proper call management.</string>
+    <string name="tour_permissions_screen">Permissions Screen</string>
+    <string name="tour_permissions_screen_text">Most of the device permissions required for the app are automatically granted during installation or when setting the app as the default for calls.\n\nPermissions can always be requested through the app\'s permissions screen, using the menu at the top of the screen (the \'three dots\' menu).\n\nIt is recommended to seek help from family members and close contacts, if needed.</string>
+    <string name="tour_overlay_draw_permission">Overlay Draw Permission</string>
+    <string name="tour_overlay_draw_permission_text">Due to the unique permission settings on Xiaomi devices, it is not possible to automatically detect the permission to display over other apps, which is required for background operation during incoming calls.\n\nYou can enable this permission manually via the app\'s permissions screen.\n\nNote: The images are for illustration purposes only, and the configuration and appearance of the permissions may vary between devices.</string>
+    <string name="tour_default_app">Default App</string>
+    <string name="tour_default_app_text">To ensure that the app functions properly and manages calls, it must be set as the default call management app.\n\nWithout this permission, the app will not be able to answer calls when it is not open and in focus.</string>
+    <string name="tour_almost_done">Almost Done!</string>
+    <string name="tour_almost_done_text">To ensure the app runs smoothly in the background and can answer calls, please make sure that no restrictions are applied to its operation in the device settings.\n\nPlease set the battery saving mode for the app to "Unrestricted". This can be done via the "App Details" in the settings menu under the background settings.\n\nNote: Battery saving settings may vary between devices. The key is to ensure that the device does not restrict the app\'s operation.\n\nThe app is designed for minimal battery consumption.</string>
+    <string name="tour_all_done">All Done!</string>
+    <string name="tour_all_done_text">You\'re all set! Before finishing, please take a moment to read and accept the Terms and Conditions and the app\'s Terms of Use.\n\nTap the Finish button to complete the tour and open the Settings screen, where you can customize the app to your needs and enjoy all its capabilities.\n\nYou can always revisit the tour from the three-dot menu at the top of the app screen.</string>
+    <string name="tour_skip_button">SKIP</string>
+    <string name="tour_start_button">FINISH</string>
+    <string name="tour_finished_but_without_default_app_and_battery_saver">You\'re all set! Before finishing, please take a moment to read and accept the app\'s Terms and Conditions.\n\nPlease note: you can start using the app, but without setting it as the default phone app and without disabling battery restrictions, it will not be able to properly handle calls.\n\nTap the Finish button to complete the tour and open the Settings screen, where you can customize the app to your needs and start enjoying all its capabilities\nYou can always view the tour again from the three-dot menu at the top of the app\'s screen.</string>
+    <string name="tour_finished_but_without_default_app">You\'re all set! Before finishing, please take a moment to read and accept the app\'s Terms and Conditions. \n\nPlease note: you can start using the app, but without setting it as the default phone app, it will not be able to properly handle calls.\n\nTap the Finish button to complete the tour and open the Settings screen, where you can customize the app to your needs and start enjoying all its capabilities.\nYou can always view the tour again from the three-dot menu at the top of the app\'s screen.</string>
+    <string name="tour_finished_but_without_battery_saver">You\'re all set! Before finishing, please take a moment to read and accept the app\'s Terms and Conditions. \n\nPlease note: you can start using the app, but without disabling battery restrictions, it will not be able to properly handle calls. \n\nTap the Finish button to complete the tour and open the Settings screen, where you can customize the app to your needs and start enjoying all its capabilities. \nYou can always view the tour again from the three-dot menu at the top of the app\'s screen.</string>
+    <string name="tour_finished_but_without_phone_permission">You\'re all set! Before finishing, please take a moment to read and accept the app\'s Terms and Conditions.\n\nPlease note: the distress button will not work properly without Phone permission.\n\nTap the Finish button to complete the tour and open the Settings screen, where you can grant permissions, customize the app to your needs, and start enjoying all its capabilities.\nYou can always view the tour again from the three-dot menu at the top of the app\'s screen.</string>
+    <string name="tour_finished_but_without_phone_permission_and_default_app">You\'re all set! Before finishing, please take a moment to read and accept the app\'s Terms and Conditions.\n\nPlease note: the distress button will not work properly without Phone permission.\nAdditionally, without setting the app as the default phone app, it will not be able to handle calls properly.\n\nTap the Finish button to complete the tour and open the Settings screen, where you can grant permissions, customize the app to your needs, and start enjoying all its capabilities.\nYou can always view the tour again from the three-dot menu at the top of the app\'s screen.</string>
+    <string name="tour_finished_but_without_phone_permission_and_battery_saver">You\'re all set! Before finishing, please take a moment to read and accept the app\'s Terms and Conditions.\n\nPlease note: the distress button will not work properly without Phone permission.\nAdditionally, without disabling battery restrictions, the app will not be able to handle calls properly.\n\nTap the Finish button to complete the tour and open the Settings screen, where you can grant permissions, customize the app to your needs, and start enjoying all its capabilities.\nYou can always view the tour again from the three-dot menu at the top of the app\'s screen.</string>
+    <string name="tour_finished_but_without_phone_permission_and_default_app_and_battery_saver">You\'re all set! Before finishing, please take a moment to read and accept the app\'s Terms and Conditions.\n\nPlease note: the distress button will not work properly without Phone permission.\nAdditionally, without setting the app as the default phone app and without disabling battery restrictions, it will not be able to handle calls properly.\n\nTap the Finish button to complete the tour and open the Settings screen, where you can grant permissions, customize the app to your needs, and start enjoying all its capabilities.\nYou can always view the tour again from the three-dot menu at the top of the app\'s screen.</string>
+    <string name="tour_battery_saver_skipped_but_needed_alert">To keep the app running smoothly in the background, it is important to set the Battery saver to have no restrictions. The app is designed for minimum battery use. Are you sure you want to skip this step?</string>
+    <string name="no_open_app_info">No, Open App info</string>
+    <string name="tour_overlay_draw_permission_skipped_alert_title">Overlay Draw Permission</string>
+    <string name="tour_overlay_draw_permission_skipped_alert_text">In order for the app to handle calls from the background (while it\'s not loaded), it is important to grant Overlay Draw permission. Are you sure you want to skip this step?</string>
+    <string name="request_overlay_permission_alert_title">Enable app to show Call screen from background</string>
+    <string name="request_overlay_permission_alert_text">Please enter \'Other Permissions\' and there grant access to \'Display pop-up windows while running in the background\'</string>
+    <string name="permissions_screen_title_text">The app needs a few permissions in order to manage your calls in a clear and friendly way.</string>
+    <string name="permissions_screen_default_phone_app_caption">Default Phone App</string>
+    <string name="permissions_screen_default_phone_app_text">The app must become the default Calls handler (Default App/Dialer) in order to receive and make phone calls. Granting this permission usually trigger Contacts, Phone and Calls view permissions.</string>
+    <string name="permissions_screen_default_phone_app_button">Set As Default Phone App</string>
+    <string name="permission_granted_capital_p">Permission granted</string>
+    <string name="permissions_screen_overlay_draw_permission_caption">Overlay Draw permission</string>
+    <string name="permissions_screen_overlay_draw_permission_text">The Overlay Draw permission is required for Call Display, from the background, when the app itself is not loaded, for incoming and active calls.</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings_allow_incoming_calls">Allow incoming calls</string>
+    <string name="settings_allow_outgoing_calls">Allow outgoing calls</string>
+    <string name="start_calls_with_speaker_turned_on">Start calls with speaker on</string>
+    <string name="settings_automatically_answer_calls">Automatically answer calls</string>
+    <string name="settings_show_keypad_in_active_call">Show keypad during calls</string>
+    <string name="allow_launching_contacts_whatsapp">Allow launching contacts\' WhatsApp</string>
+    <string name="settings_allow_call_waiting">Allow Call Waiting</string>
+    <string name="permissions_approve_overlay_draw_permission_button">Approve Overlay Draw Permission</string>
+    <string name="permissions_phone_call_permission_caption">Phone Call permission</string>
+    <string name="permissions_phone_call_permission_caption_text">The app needs Phone (Call) permission in order to make phone calls as the Default Phone App for handling calls.</string>
+    <string name="permissions_approve_phone_permission">Approve Phone Permission</string>
+    <string name="permissions_contacts_permission_caption">Contacts permission</string>
+    <string name="permissions_contacts_permission_text">The application needs Contacts permission in order to let you call existing Contacts and to show the Contacts of phone numbers.</string>
+    <string name="permissions_approve_contacts_permission_caption">Approve Contacts Permission</string>
+    <string name="permissions_calls_log_permission_caption">Calls Log permission</string>
+    <string name="permissions_calls_log_permission_text">The application needs to have the Phone Log permission in order to show recent Incoming and Outgoing calls.</string>
+    <string name="permissions_calls_log_permission_button">Approve Phone Calls Log Permission</string>
+    <string name="permissions_enable_call_phone_permission_manually_title1">to make phone calls</string>
+    <string name="permissions_enable_call_phone_permission_manually_title2">Phone</string>
+    <string name="permissions_enable_contacts_permission_manually_title1">for Contacts</string>
+    <string name="permissions_enable_contacts_permission_manually_title2">Contacts</string>
+    <string name="permissions_enable_calls_log_permission_manually_title1">to view calls</string>
+    <string name="permissions_enable_calls_log_permission_manually_title2">Call logs</string>
+    <string name="how_to_enable_standard_permission_manually_text">
+        📞 ** How to Enable Phone Permission Manually **
+
+        It seems the app’s permission %1$s has been denied. To enable this feature again, follow these simple steps:
+
+        1️⃣ ** Open Settings **
+           Tap the **Settings** app on your phone (⚙️).
+
+        2️⃣ ** Find Permissions or Apps **
+           Scroll down and look for **Apps** or **App Permissions** (name may vary).
+
+        3️⃣ ** Go to Permission Manager **
+           Inside the app settings, look for the option called **Permissions** or **Permission Manager**.
+
+        4️⃣ ** Select \"%2$s\" Permission **
+           Tap on **Phone**, then find this app in the list.
+
+        5️⃣ ** Enable Permission **
+           Tap the app’s name and select **Allow** to grant the permission.
+
+        🔄 ** Restart the App **
+           After enabling the permission, the app should adjust automatically. In case you experience some issue, please close the app and open it again to ensure everything works smoothly.
+
+        If you need help, please ask someone to guide you, or contact support.
+     </string>
+    <string name="enable_permission_manually_caption">Enable Permission</string>
+    <string name="enable_permission_manually_ok_button">Got it!</string>
+    <string name="navigation_fragment_info_label">Info</string>
+    <string name="from_no_one_captial_f">From no one</string>
+    <string name="from_favorites_only_captial_f">From Favorites only</string>
+    <string name="from_contacts_only_captial_f">From Contacts only</string>
+    <string name="from_identified_only_captial_f">From Identified only</string>
+    <string name="from_everyone_capital_f">From everyone</string>
+    <string name="to_no_one_captial_t">To no one</string>
+    <string name="to_favorites_only_captial_t">To Favorites only</string>
+    <string name="to_contacts_only_captial_t">To Contacts only</string>
+    <string name="to_everyone_capital_t">To everyone</string>
+    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">The app cannot add Contacts to the Gold Number list since Contacts permission was not granted.</string>
+    <string name="make_call_permission_granted_try_again">Phone (Make calls) permission was granted! Please try again</string>
+    <string name="read_contacts_permission_granted_try_again">Read Contacts permission was granted! Please try again</string>
+    <string name="grant_capital">Grant</string>
+    <string name="app_is_not_default_dialer_when_make_call_alert">The app is not the default phone app (dialer). Please select it as the default or make the call anyway through another phone app</string>
+    <string name="view_calls_permission_was_granted_reloading">View Calls permission was granted! Reloading..</string>
+    <string name="read_contacts_permission_was_granted_reloading">Read Contacts permission was granted! Reloading..</string>
+    <string name="default_dialer_permission_granted_try_again">App was selected as default phone app (dialer)! Please try again.</string>
+    <string name="auto_answer_capital_auto">Auto\nanswer</string>
+    <string name="incoming_capital">Incoming</string>
+    <string name="outgoing_capital">Outgoing</string>
+    <string name="missed_capital">Missed</string>
+    <string name="rejected_capital">Rejected</string>
+    <string name="blocked_capital">Blocked</string>
+    <string name="end_captial">End</string>
+    <string name="speaker_capital">Speaker</string>
+    <string name="keypad_capital">Keypad</string>
+    <string name="to_view_calls_history_application_must_have_permission">In order to view calls history, the app must have the proper permission.</string>
+    <string name="contacts_permission_was_not_granted_showing_calls_list_with_phone_numbers_only">Contacts permission was not granted. Showing Calls list with phone numbers only.</string>
+    <string name="to_display_the_calls_contacts_application_must_have_permission">In order to display the calls\' Contacts, the app must have the proper permission.</string>
+    <string name="permission_was_granted">Permission was granted!</string>
+    <string name="contacts_permission_was_not_granted_cannot_show_contact_details">Cannot show contact name because the contacts permission is not granted. Please enable this permission in the app or device Settings.</string>
+    <string name="cannot_continue_since_permission_was_not_approved">Cannot continue since permission was not approved.</string>
+    <string name="no_contacts_found_to_display">No Contacts found.</string>
+    <string name="no_favorites_contacts_found_to_display">Your outgoing call setting is set to “Favorites Only”, but no favorite contacts are defined on your device. To view the rest of the contacts, you can either add them to favorites or change the settings in the app (open the app\’s settings menu via the three dots menu and change the outgoing call option to “Contacts” or everyone).</string>
+    <string name="no_calls_found">No calls found.</string>
+    <string name="a_serious_error_has_occurred_call_cannot_continue">A serious error has occurred, call cannot continue.</string>
+    <string name="error_is_capital">Error is: (%1$s).</string>
+    <string name="serious_error_capital">Serious Error In Call</string>
+    <string name="active_call_capital">Active Call</string>
+    <string name="click_to_go_back_to_call">Tap to return to the call</string>
+    <string name="permission_denied_capital">Permission Denied</string>
+    <string name="the_app_cannot_answer_calls_from_the_background_without_permission">The app cannot answer calls from the background without the \'Display pop-up windows while running in the background\' permission. Please grant this permission in order for the app to perform properly.</string>
+    <string name="the_app_needs_permission_to_make_calls_please_grant">The app needs permission to make calls. Please Grant this permission or open Permissions</string>
+    <string name="please_grant_default_dialer_permission_so_app_can_handle_calls">Please grant Default Dialer permission so this app can handle your calls, ensuring a seamless and integrated calling experience.</string>
+    <string name="it_looks_like_the_app_could_not_load_call_screen_in_background">It looks like the app couldn\’t load the call screen in the background during your last call. To answer calls when the app is closed, please allow \'Display pop-up windows while running in the background\' permission.</string>
+    <string name="app_is_missing_overlay_draw_permission">App is missing Overlay Draw permission</string>
+    <string name="gold_capital">Gold</string>
+    <string name="missing_call_phone_permission">Missing (Call) Phone permission</string>
+    <string name="app_selected_as_default_phone_app">App selected as default phone app!</string>
+    <string name="error_capital">Error</string>
+    <string name="invalid_phone_number_capital">Invalid phone number</string>
+    <string name="whatsapp_is_not_installed_capital">WhatsApp is not installed.</string>
+    <string name="it_looks_like_the_app_has_encountered_an_error_in_last_call_error">It looks like the app encountered an error in the last call (Error: %1$s).</string>
+    <string name="tour_screen_lock_title">Screen Lock</string>
+    <string name="tour_lock_screen_text">Please enable the "Show on lock screen" permission.\n\nTo enable this permission, please follow these steps:\n1. Open your device settings.\n2. Navigate to the "Other Permissions" category.\n3. Locate the "Show on lock screen" option and enable it.\n\nPlease note: On different devices, the permission may appear under a different name or in a different location. If you cannot find it, try looking in other settings categories.</string>
+    <string name="oops_a_serious_error_occurred_please_restart_the_app">Oops! A serious error occurred. Please restart the app.</string>
+    <string name="tap_on_call_item_for_more">Tap the Call item for details</string>
+    <string name="tap_on_contact_row_for_more">Tap the Contact row for details</string>
+    <string name="answer_capital">Answer</string>
+    <string name="decline_capital">Decline</string>
+    <string name="speaker_capital_for_voice">Speaker</string>
+    <string name="end_capital_for_voice">End</string>
+    <string name="keypad_capital_for_voice">Keypad</string>
+    <string name="tap_to_open_app">Tap to open app</string>
+    <string name="the_app_requires_permission_to_run_in_the_background">The app requires permission to run in the background, in order to answer calls when it is not in focus. You can grant this permission either through the app\’s Permissions screen or by adjusting the app’s settings in your device’s settings menu.</string>
+    <string name="no_contacts_are_displayed_because_outgoing_calls_are_disabled">No contacts are displayed because outgoing calls are disabled. You can change this option in the app\'s Settings menu.</string>
+    <string name="terms_and_conditions">Welcome to the %1$s application.\n\nThe application has been developed as an aid tool for adult users, and its purpose is to facilitate easier call management on Android devices and enable quick contact with predefined contacts in distress situations.\n\nThe application and the services provided through it shall hereinafter be referred to as \"the System\".\n\n1. Agreement to the Terms:\nUse of the System is subject to the following Terms (\"the Terms\"). Please read these Terms carefully before using the System. Your use of the System constitutes your full and irrevocable acceptance of these Terms.\n\nIf you do not agree to these Terms, in whole or in part, please do not use the System and remove it from your device immediately.\n\n2. Summary of the System\'s Purpose:\nFacilitating easier call management by emphasizing large buttons and text optimized for elderly users.\n\n3. Important Clarification Regarding the Distress Button and Automated Call Answering:\n* It is recommended to initially test the distress button functionality with a predefined contact and in coordination with them to ensure proper operation. The System includes a distress button designed for quick dialing to a predefined phone number, and may also feature automated call answering and a \"golden number\" function. It is important to emphasize that the application is not a professional emergency application and does not replace direct contact with official emergency centers (such as police, ambulance, fire brigade, etc.). Reliance solely on the distress button or automated call answering in critical situations is not advised, as malfunctions may occur (e.g., signal issues, network failures, permission blocks, operating system limitations, or battery-saving restrictions). It is recommended to have additional backup means for emergency communication.\n\n4. Privacy, Personal Data Protection, and Call Recording:\nThe System enables users to view various data stored on the smartphone, such as contacts and call logs as saved in the device. This information is not stored within the application nor shared with any third party. Please note that the application does not record any telephone calls made through it, and the System does not store or log calls in any manner.\n\n5. Usage Restrictions:\nIt is strictly prohibited to use the System for any purpose other than personal or private use, or for any commercial purposes, including the dissemination of false alerts using the distress button.\n\n6. Liability and Limitation of Liability:\nThe application and the services provided therein are offered \"as-is\" (\"AS-IS\"). The developers are not responsible for adapting the System to the user\'s needs, for any errors, inaccuracies, or changes in the information displayed, or for any changes made by the user or third parties. The developers shall not be liable for any direct or indirect damages resulting from use of the System, including damages arising from call answering, automated call answering, the golden number, the distress button, or any other component of the application. Users assume all risk regarding use of the System, and the developers accept no liability for malfunctions, operational failures, or damages resulting from improper use or over-reliance on the System.\n\n7. Changes, Updates, and Termination of Service:\nThe operators of the application reserve the right to modify, update, or discontinue the System at any time without prior notice.\n\n8. Contact for Inquiries or Complaints:\nFor inquiries, complaints, or questions, please contact support@easycallandanswer.com.\n\n9. User Declaration and Consent:\nPlease note: This window is displayed solely for reading and reviewing the Terms and does not constitute acceptance. Acceptance of the Terms is done on the previous screen by selecting \"I agree to the Terms of Use\".\nBy selecting \"I agree to the Terms of Use\", you declare that you have read, understood, and fully agree to these Terms.\n\n10. Intellectual Property Rights:\nAll content, features, and functionality within the System, including but not limited to software, text, graphics, logos, and design, are the exclusive property of the developers and are protected by intellectual property laws.\n\nAll Rights Reserved © Easy Call and Answer 2025.</string>
+    <string name="accept_terms_button">I agree to the Terms of Use</string>
+    <string name="open_terms_of_use">Open Terms of Use</string>
+    <string name="accept_terms_button_got_it">Got it!</string>
+    <string name="accept_term_caption">Read and Accept the Terms of Use</string>
+    <string name="please_open_and_read_terms_of_use_before_proceed">Please open and read the Terms of Use before proceeding.</string>
+    <string name="please_approve_the_terms_of_use_before_finishi">Please approve the Terms of Use before finishing.</string>
+    <string name="tour_distress_button_caption">Distress Button</string>
+    <string name="tour_distress_button_description">* It is recommended to initially test the distress button functionality with a predefined contact to ensure proper operation.\n\nThe distress button in the app is designed to help you quickly reach out for assistance in an emergency situation, and it remains active even if outgoing calls are completely disabled in the app settings. However, you must ensure that both the device and the app are capable of making outgoing calls.\n\nPlease note that the app is not intended to serve as a professional emergency application, does not substitute official emergency services and is not directly connected to emergency centers such as police, ambulance, or fire brigade.\n\nHowever, you can configure the distress button to dial a specific emergency number, if the necessary permission is granted to retrieve emergency numbers.\n\nEmergency numbers are retrieved from the Android system, and therefore depend on your region and device. This means that the numbers may not always be appropriate for the country you are in. When choosing an emergency number, it is your responsibility to verify that it is the correct one for you.\n\nAdditionally, you can select a contact (if Contacts permission is granted) whom the app will attempt to call in an emergency situation.\n\nImportant: The button requires Phone (outgoing call) permission on the device itself to function! It is also recommended to set the app as the default phone dialer; otherwise, the app may attempt to place the call externally.\n\nIf the distress button displays a bell icon, it is ready for use. Otherwise, please make sure your device supports outgoing calls and that Phone permission is granted.\n\nIf permissions are missing, you can grant them via the Permissions screen in the app or in the device settings.</string>
+    <string name="emergency_distress_button_caption">EMERGENCY</string>
+    <string name="not_now_capital">Not now</string>
+    <string name="phone_permission_required_for_distress_button">Warning: A number for the distress button has been selected, but the "Phone" permission (Outgoing calls) is missing. Therefore, the distress button cannot work.</string>
+    <string name="not_now_click_for_selection">Not now (Click for selection)</string>
+    <string name="to_add_contacts_to_the_list_app_must_be_default">Cannot add Contacts to the Distress Button number selection list. Please enable Contacts access via the app\'s permissions screen or your device settings.</string>
+    <string name="cannot_show_selection_app_must_be_default">Unable to display Distress Button number selection for the Distress Button (App must be set as default)</string>
+    <string name="cannot_display_selection_contacts_permission_required">Unable to display Distress Button contact selection (Contacts permission is required)</string>
+    <string name="unable_to_display_selection_unexpected_error">Unable to display selection (unexpected error)</string>
+    <string name="calling_emergency_number_tap_cancel_to_stop">Calling emergency number! Tap Cancel to stop.</string>
+    <string name="distress_button_cancel">Cancel</string>
+    <string name="permission_change_detected_reloading">Permission change detected. Reloading…</string>
+    <string name="emergency_number_unavailable_try_gold_number">Emergency number unavailable! Try Gold Number</string>
+    <string name="settings_capital">Settings</string>
+    <string name="phone_permission_granted">Phone (call) permission granted!</string>
+    <string name="new_version_installed">New version installed! (%1$s)</string>
+    <string name="distress_button_permission_missing">Permission Missing!</string>
+    <string name="settings_choose_distress_button_number">Select Distress Button Number</string>
+    <string name="cannot_choose_gold_number_without_contacts_permission">Cannot add Contacts to the Gold Number selection list. Please enable Contacts access via the app\'s permissions screen or your device settings.</string>
+    <string name="make_call_permission_was_granted_please_try_again">Phone (Make calls) permission was granted! Please try again</string>
+    <string name="permission_was_granted_please_try_again">Permission was granted! Please try again</string>
+    <string name="read_contacts_permission_was_granted_please_try_again">Contacts permission was granted! Please try again</string>
+    <string name="missed_call_from">Missed call from: %1$s</string>
+    <string name="tour_call_report_title">Send Call Report</string>
+    <string name="tour_call_report_description">Send a call report to a close contact.\n\nMonitor call activity to help ensure everything is okay. You\'ll receive a clear summary of incoming and outgoing calls.\n\nThe report includes patterns like:\n\n• Frequent calls to the same number\n• Unknown or unsaved callers\n• Outgoing calls made at unusual hours\n\nIt\'s a simple way to stay connected and aware, especially when caring for an aging parent.\n\nYou can always change the call report settings via the three-dots menu at the top of the screen.\n\nPlease note: You are solely responsible for how this information is used and shared. Make sure to respect privacy and comply with local laws regarding data use.</string>
+    <string name="call_report">Call Report</string>
+    <string name="call_report_screen_is_already_opened">Call Report screen is already opened</string>
+    <string name="change_capital">Change</string>
+    <string name="answering_capital">Answering</string>
+    <string name="premium_capital">Premium</string>
+    <string name="send_alert_via_sms_to_gold_number">Send alert via SMS to Gold Number</string>
+    <string name="if_call_was_not_answered_play_increasing_siren_sound_after_15_seconds">If call was not answered, play increasing Siren sound, after 15 seconds</string>
+    <string name="sos">SOS</string>
+    <string name="lock_capital">Lock</string>
+    <string name="report_capital">Report</string>
+    <string name="other">Other</string>
+    <string name="show_custom_lock_screen">Show custom Lock screen</string>
+    <string name="lock_screen">Lock Screen</string>
+    <string name="show_whatsapp_messages_on_lock_screen">Show WhatsApp messages on lock screen</string>
+    <string name="show_sms_messages_on_lock_screen">Show SMS messages on lock screen</string>
+    <string name="send_report_captial_s">Send report</string>
+    <string name="scheduled_send_time">Scheduled send time</string>
+    <string name="send_to_gold_number">Send to Gold Number</string>
+    <string name="select_contact_to_receive_the_report">Select Contact to receive the report</string>
+    <string name="send_only_exceptional_data">Send only exceptional data</string>
+    <string name="mark_call_as_exceptional_if_it_is_not_between">A call is considered exceptional if it is NOT between</string>
+    <string name="a_number_is_considered_exceptional_if_it_appears_more_than">A number is considered exceptional if it appears more than</string>
+    <string name="call">Call</string>
+    <string name="time_allowed_to_cancel_seconds">Time allowed to cancel (seconds)</string>
+    <string name="call_settings">Call Settings</string>
+    <string name="other_capital">Other</string>
+    <string name="to">to</string>
+    <string name="number_is_considered_exceptional_if_it_s_not_in_contacts">Number is considered exceptional if it\'s not in Contacts</string>
+    <string name="welcome_to_easy_call_and_answer_premium">Welcome to Easy Call And Answer!</string>
+    <string name="welcome_text_speech">Please let me know if you want to call someone. Just speak his name after I will finish talking. You can say \'Call Emergency\' in order to active the Distress button. Also, you can say \'Gold Number\' for calling gold number. You can open the Premium Tour from the top menu to view all voice commands</string>
+    <string name="premium_tour_page_welcome_text">The premium version of the app unlocks powerful features designed to significantly enhance your user experience — especially for Android users who need accessibility, ease of use, and remote control.\\n\\nFull voice control lets you answer calls, activate the emergency button, and perform actions — all without touching the device. Just make sure there\\\'s no background noise interfering with voice recognition.\\n\\nYou\\’ll also benefit from a smart lock screen that allows you to quickly return to the app with a single tap.\\n\\nA newly added feature is the call report — a useful tool that helps identify whether unwanted calls were received or accidental calls were made. The report is sent only to a number you choose, and the app does not store or use the data otherwise.\\n\\nResponsibility for using these features — and the app in general — rests entirely with you, the user.</string>
+    <string name="premium_tour_page_welcome_title">Premium Version</string>
+    <string name="premium_tour_swipe_hint">Swipe left to continue\nto the next step</string>
+    <string name="premium_tour_page_lock_title">Smart Custom Lock Screen</string>
+    <string name="premium_tour_page_lock_text">Our special smart and custom lock screen offers a new, effortless experience. Instead of struggling with awkward swipe gestures or finding how to unlock the device – a single tap takes you right back to the app. Easy, fast, and always available when you need it.\nYou can also open it using a voice command. No need to touch the device – just say the magic word and the screen responds. Perfect for when your hands are busy or when quick access is essential.\nThe screen shows smart notifications from SMS and WhatsApp messages. Content is shown in read-only mode – so even if it\'s tapped by mistake, no chat will open. This is especially helpful for elderly users who may press something by accident.\nThis isn\'t just a lock screen – it\'s a thoughtful gateway that makes everyday use smoother, boosts control, and gives you peace of mind. With clean design, intuitive control, and voice support, it’s a real upgrade to your mobile experience.</string>
+    <string name="premium_tour_page_voice_title">Hands-Free Voice Control</string>
+    <string name="premium_tour_page_voice_text">Imagine full control of your app — without lifting a finger. Just speak, and the system takes care of the rest. Answer calls, trigger emergency help, contact a loved one, or unlock your screen — all with your voice alone. When your hands are full or touch isn\'t practical, voice control keeps things effortless, fast, and natural. Even on the move or from across the room, the system responds — as long as it\'s quiet enough. It\’s not just convenience — it’s accessibility, safety, and powerful tech that puts you in charge.</string>
+    <string name="premium_tour_page_call_report_title">Call Report</string>
+    <string name="premium_tour_page_call_report_text">Stay informed about your loved one’s call activity. The report shows the incoming and outgoing calls — so you know they’re not calling by mistake or receiving calls from unknown or suspicious numbers.</string>
+    <string name="premium_tour_page_distress_button_title">Upgraded Distress Button</string>
+    <string name="premium_tour_page_distress_button_text">When every second counts, advanced protection makes all the difference. The premium distress button doesn\'t just place a call — it also sends an emergency SMS with your location and time, and if there\'s no answer or the call doesn\'t go through, a loud alarm will sound to alert those nearby.</string>
+    <string name="premium_tour_page_voice_commands_title">Voice Commands</string>
+    <string name="premium_tour_page_voice_commands_text">You can make your experience even smoother by setting up voice commands that work best for you.\\n\\n\nIt is advisable to choose commands that are easy to say, clear, and unique — this helps the app understand you better</string>
+    <string name="premium_screen_is_already_opened">Premium screen is already opened</string>
+
+</resources>

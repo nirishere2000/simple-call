@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tour_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tour_rounded_back_with_border"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="16dp">
+
+    <!--
+        &lt;!&ndash; תמונה &ndash;&gt;
+        <ImageView
+            android:id="@+id/tour_image2"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="tour_image_description"
+            android:src="@drawable/elderandyoung" />
+    -->
+
+    <!-- תמונה -->
+
+
+
+    <!--    <FrameLayout
+            android:id="@+id/tour_image_back"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:clipToOutline="true"
+            android:outlineProvider="background"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="tour_image_description"
+            android:background="@drawable/rounded_corners"
+
+
+            >
+
+            <ImageView
+                android:id="@+id/tour_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/elderandyoung" />
+
+            <ImageView
+                android:id="@+id/contactExistingPhotoBorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/circle_background"
+
+                />
+        </FrameLayout>-->
+
+    <!-- כותרת -->
+    <TextView
+        android:id="@+id/tour_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="start"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:text="page1"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- טקסט הסבר -->
+    <LinearLayout
+        android:id="@+id/descriptionTextArea"
+        android:layout_width="wrap_content"
+        android:layout_height="155dp"
+        android:layout_below="@id/tour_title"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
+
+        <!-- שדה אחר, למשל tour_title -->
+
+        <ScrollView
+            android:id="@+id/scrollable_tour_description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.4">
+
+            <TextView
+                android:id="@+id/tour_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Description for page 1."
+                android:textColor="#555555"
+                android:textSize="18sp" />
+        </ScrollView>
+
+        <!-- דגרדיאנט מעל חץ גלילה -->
+        <View
+            android:id="@+id/gradient_view"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/gradient"
+            android:visibility="gone" />
+        <!-- app:layout_constraintTop_toBottomOf="@id/scrollable_tour_description"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"-->
+
+
+        <!-- חץ גלילה בתחתית ה-ScrollView -->
+        <ImageView
+            android:id="@+id/scroll_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="10dp"
+            android:src="@android:drawable/arrow_down_float"
+            android:visibility="gone" />
+        <!--        app:layout_constraintTop_toBottomOf="@id/scrollable_tour_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"-->
+
+        <!-- שדות נוספים עם layout_weight מתאימים אם נדרשים -->
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/tour_image"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/rounded_corners"
+        android:contentDescription="tour_image_description"
+        android:maxHeight="155dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/goldnumberincontactsexample" />
+
+    <!-- קונטיינר לכפתורים בעמוד האחרון -->
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:visibility="visible">
+
+        <!-- כפתור Last -->
+        <Button
+            android:id="@+id/button_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:backgroundTint="#CCCCCC"
+            android:text="@string/tour_prev_button"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:id="@+id/step_is_done_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/overlayDrawPermissionGrantedText"
+                android:layout_width="30dp"
+                android:layout_height="36dp"
+                android:src="@android:drawable/checkbox_on_background" />
+
+            <TextView
+                android:id="@+id/done_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                android:gravity="start"
+                android:text="@string/tour_done"
+                android:textColor="#555555"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!--
+                <Button
+                    android:id="@+id/button_open_default_dialer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="38dp"
+                    android:text="Set As Default App"
+                    android:textSize="18sp"
+                    android:backgroundTint="#000000"
+                    android:textColor="#FFFFFF"
+                    android:visibility="gone"
+                     />
+        -->
+
+        <LinearLayout
+            android:id="@+id/last_page_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+           android:visibility="gone"
+
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_open_default_dialer"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+
+                android:backgroundTint="#555555"
+                android:text="@string/tour_set_as_default_app_button"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_battery_saver"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="#555555"
+                android:text="@string/tour_open_app_info_button"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <!--        <Button
+                        android:id="@+id/button_open_settings_for_overlay_draw"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="28dp"
+                        android:text="Open Settings"
+                        android:textSize="18sp"
+                        android:backgroundTint="#CCCCCC"
+                        android:textColor="#000000"
+                        />-->
+
+
+
+            <Button
+                android:id="@+id/button_open_settings_for_overlay_draw"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+
+                android:backgroundTint="#555555"
+                android:text="@string/open_settings"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/prevAndNextButtonsGap"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+
+            android:layout_weight="0.6" />
+
+        <!-- כפתור Next -->
+        <Button
+            android:id="@+id/button_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:backgroundTint="#CCCCCC"
+            android:text="@string/tour_next_button"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

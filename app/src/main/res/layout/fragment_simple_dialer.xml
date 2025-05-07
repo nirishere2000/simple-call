@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#090909"
+    tools:context="com.nirotem.simplecall.ui.dialer.DialerFragment">
+
+    <!-- TextView for phone number -->
+    <LinearLayout
+        android:id="@+id/mainContentBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/contactNameContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+
+            >
+            <TextView
+                android:id="@+id/textContactName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/textEnteredNumberBack"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="1dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--            android:background="@drawable/rounded_corners"-->
+            <TextView
+                android:id="@+id/textEnteredNumber"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingHorizontal="12dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="#CBCBCE"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/noOutGoingCallsCaptionBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/upperBlock">
+
+            <TextView
+                android:id="@+id/appWasConfiguredWithoutOutgoingCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginHorizontal="24dp"
+                android:text="@string/outgoing_calls_are_currently_turned_off"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/goldNumberBar"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="14dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <!--    <ImageView
+                        android:id="@+id/addToFavImage"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="12dp"
+                        android:paddingTop="4dp"
+                        android:src="@drawable/gold_heart_transparent"
+                        app:layout_constraintStart_toStartOf="@id/textAddChangePhoto" />-->
+
+
+                <ImageView
+                    android:id="@+id/goldHeartImage"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+
+                    android:layout_marginEnd="15dp"
+                    android:paddingTop="4dp"
+                    android:src="@drawable/gold_heart_shape_transparent"
+                    app:layout_constraintStart_toStartOf="@id/textAddChangePhoto" />
+
+                <!--    <ImageView
+                        android:id="@+id/addToFavImage"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:paddingTop="4dp"
+                        android:src="@drawable/transparentgoldheart"
+                        app:layout_constraintStart_toStartOf="@id/textAddChangePhoto" />-->
+
+                <!--  android:textColor="#CCC67E"-->
+                <TextView
+                    android:id="@+id/goldNumberBarContactName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="start|center"
+                    android:maxWidth="185dp"
+                    android:minWidth="80dp"
+                    android:paddingBottom="1dp"
+                    android:text="@string/gold_number"
+                    android:textColor="#CCC67E"
+                    android:textDirection="locale"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:id="@+id/goldNumberBarGoldButtonBack"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="23dp"
+
+                    android:background="@drawable/circle_background"
+                    android:clipToOutline="true">
+
+                    <ImageView
+                        android:id="@+id/goldNumberBarGoldButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/gold_circle"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/goldNumberBarGoldNumberButtonCircle"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="1dp"
+                        android:background="@drawable/blackphonedialer"
+                        android:scaleType="centerCrop"
+                        tools:ignore="RtlHardcoded" />
+
+                </FrameLayout>
+
+                <!-- <FrameLayout
+                    android:id="@+id/goldNumberBarGoldButtonBack2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="10dp"
+                   >
+
+                    <ImageView
+                        android:id="@+id/goldNumberBarGoldButton2"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="12dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/variant_black_background"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/goldNumberBarGoldNumberButtonCircle2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/callbuttontransparent"
+
+                        />
+
+
+                </FrameLayout>-->
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/keypadBack"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_marginVertical="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainContentBack"
+        app:layout_constraintBottom_toTopOf="@+id/controlButtonsBack"
+
+        >
+
+        <include
+            android:id="@+id/numbersKeypadBack"
+            layout="@layout/keypad_dialer"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/controlButtonsBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        >
+
+
+        <!--        <LinearLayout
+                    android:id="@+id/actionButtonsBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/specialKeypadsBack"
+                  >
+
+                    <ImageView
+                        android:id="@+id/deleteOneCharButton"
+                        android:layout_width="115dp"
+                        android:layout_height="115dp"
+
+                        android:contentDescription="@string/call_entered_number"
+
+                        android:src="@drawable/backdeletebuttondiffcolor" />
+
+                    <ImageView
+                        android:id="@+id/dialerCallButton"
+                        android:layout_width="115dp"
+                        android:layout_height="115dp"
+
+                        android:contentDescription="@string/call_entered_number"
+
+                        android:src="@drawable/callbutton" />
+
+                </LinearLayout>-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center">
+
+            <!-- האימג' שיהיה באמצע המסך אופקית -->
+            <ImageView
+                android:id="@+id/dialerCallButton"
+                android:layout_width="125dp"
+                android:layout_height="115dp"
+
+                android:src="@drawable/callbutton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+            <ImageView
+                android:id="@+id/deleteOneCharButton"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:src="@drawable/backdeletebuttondiffcolor"
+                app:layout_constraintBottom_toBottomOf="@id/dialerCallButton"
+                app:layout_constraintEnd_toStartOf="@id/dialerCallButton"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/dialerCallButton" />
+
+            <FrameLayout
+                android:id="@+id/goldenButtonBack"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:visibility="visible"
+                android:clipToOutline="true"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/circle_background"
+                app:layout_constraintBottom_toBottomOf="@id/dialerCallButton"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toEndOf="@id/dialerCallButton"
+                app:layout_constraintTop_toTopOf="@id/dialerCallButton">
+
+                <ImageView
+                    android:id="@+id/goldNumberButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    app:srcCompat="@drawable/gold_circle"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/goldNumberButtonCircle"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    tools:ignore="RtlHardcoded"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/blackphonedialer"
+
+
+                     />
+
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>

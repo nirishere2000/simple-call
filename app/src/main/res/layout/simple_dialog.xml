@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background"
+    android:padding="24dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+    <!-- כותרת הדיאלוג -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="תנאי השימוש"
+        android:textSize="22sp"
+        android:textColor="#545454"
+        android:textStyle="bold"
+        android:gravity="start"
+         />
+
+    <!-- תוכן ההודעה בתוך ScrollView למקרה שהטקסט ארוך -->
+        <LinearLayout
+            android:id="@+id/descriptionTextArea"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintBottom_toTopOf="@id/btnClose">
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingVertical="20dp"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="start"
+            android:lineSpacingExtra="4dp"
+            android:text="תוכן תנאי השימוש יוצג כאן..."
+            android:textAlignment="viewStart"
+            android:textColor="#747474"
+            android:textSize="18sp" />
+    </ScrollView>
+            <!-- דגרדיאנט מעל חץ גלילה -->
+            <View
+                android:id="@+id/gradient_view"
+                android:layout_width="match_parent"
+
+
+                android:layout_height="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/gradient"
+                android:visibility="visible" />
+
+            <!-- חץ גלילה בתחתית ה-ScrollView -->
+            <ImageView
+                android:id="@+id/scroll_arrow"
+                android:layout_width="24dp"
+
+                android:layout_height="24dp"
+                android:layout_marginTop="4dp"
+                android:src="@android:drawable/arrow_down_float"
+                android:visibility="visible" />
+        </LinearLayout>
+
+
+    <!-- כפתור סגירה -->
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#545454"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="סגור"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+
+        android:layout_marginHorizontal="20dp"
+        android:padding="12dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <bool name="startingLanguageIsHebrew">false</bool>
+    <string name="currAppVersion" translatable="false">0.0.25</string>
+    <bool name="isPremium">false</bool>
+    <bool name="isAdvancedDialer">false</bool>
+    <bool name="playVoiceSound">false</bool>
+    <bool name="playDigitsSound">false</bool>
+
+<!-- Settings-->
+    <bool name="startCallWithSpeakerOn">false</bool>
+    <bool name="shouldAllowCallWaiting">false</bool>
+    <bool name="shouldShowKeypadInActiveCall">false</bool>
+    <bool name="autoAnswerAllCalls">false</bool>
+    <bool name="allowOpenWhatsApp">false</bool>
+    <string name="allowAnswerCallsMode" translatable="false">FROM_EVERYONE</string>
+    <string name="allowOutgoingCallsMode" translatable="false">FAVOURITES_ONLY</string>
+    <bool name="allowVoiceCommands">false</bool>
+<!-- End Settings-->
+</resources>

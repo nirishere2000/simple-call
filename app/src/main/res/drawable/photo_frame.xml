@@ -1,0 +1,21 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- רקע עדין עם גוון שמנתי -->
+    <solid android:color="#CAAF65" />
+
+    <!-- גבול עדין עם צבע חום קלאסי -->
+    <stroke
+        android:width="2dp"
+        android:color="#CAAF65" />
+
+    <!-- ריפוד פנימי -->
+    <padding
+        android:left="3dp"
+        android:top="3dp"
+        android:right="3dp"
+        android:bottom="3dp" />
+
+    <!-- פינות מעוגלות להרגשה נעימה -->
+    <!-- <corners android:radius="20dp" /> -->
+</shape>

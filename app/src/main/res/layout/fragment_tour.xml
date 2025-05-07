@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tour_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tour_rounded_back_with_border"
+>
+
+<!--    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/konfettiView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>-->
+<!--    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/konfettiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+    <!--
+        <ImageView
+            android:id="@+id/tour_image2"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="tour_image_description"
+            android:src="@drawable/elderandyoung" />
+    -->
+
+    <!-- תמונה -->
+    <ImageView
+        android:id="@+id/tour_image"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:maxHeight="155dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/rounded_corners"
+        android:contentDescription="tour_image_description"
+        android:src="@drawable/edit_button"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="155dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="25dp"
+        android:visibility="gone"
+        android:id="@+id/distressButtonBack"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <include
+
+            layout="@layout/distress_button_small"
+            />
+    </LinearLayout>
+
+    <!-- כותרת -->
+    <!-- We start with "Error" in case there's an error and the text won't change -->
+    <TextView
+        android:id="@+id/tour_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="210dp"
+        android:text="@string/error_capital"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- טקסט הסבר -->
+    <LinearLayout
+        android:id="@+id/descriptionTextArea"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tour_title"
+        app:layout_constraintBottom_toTopOf="@id/bottom_buttons_panel"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- שדה אחר, למשל tour_title -->
+
+        <ScrollView
+            android:id="@+id/scrollable_tour_description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="28dp"
+            >
+
+            <TextView
+                android:id="@+id/tour_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Description for page 1."
+                android:textColor="#555555"
+                android:textSize="18sp" />
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layoutDirection="locale"
+            >
+
+        </LinearLayout>
+        <!-- דגרדיאנט מעל חץ גלילה -->
+        <View
+            android:id="@+id/gradient_view"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="30dp"
+
+            android:layout_height="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/gradient"
+            android:visibility="visible" />
+
+        <!-- חץ גלילה בתחתית ה-ScrollView -->
+        <ImageView
+            android:id="@+id/scroll_arrow"
+            android:layout_width="24dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="4dp"
+            android:src="@android:drawable/arrow_down_float"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_buttons_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+    <!-- קונטיינר לכפתורים בעמוד האחרון -->
+    <LinearLayout
+        android:id="@+id/last_page_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|center_vertical"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintBottom_toTopOf="@id/button_next"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/stepAcceptAppTermsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="start"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/step_accept_app_termsCheckbox"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@android:drawable/checkbox_off_background" />
+
+            <TextView
+                android:id="@+id/step_accept_app_termsText"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="8dp"
+                android:gravity="start|center_vertical"
+                android:text="@string/accept_terms_button"
+                android:textColor="#555555"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/step_is_done_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:gravity="start"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/overlayDrawPermissionGrantedText"
+                android:layout_width="33dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@android:drawable/checkbox_on_background" />
+
+            <TextView
+                android:id="@+id/done_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="1dp"
+                android:gravity="start"
+                android:text="@string/tour_done"
+                android:textColor="#555555"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_open_default_dialer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:backgroundTint="#555555"
+            android:text="@string/tour_set_as_default_app_button"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/button_battery_saver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:backgroundTint="#555555"
+            android:text="@string/tour_open_app_info_button"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/button_open_settings_for_overlay_draw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:backgroundTint="#555555"
+            android:text="@string/open_settings"
+            android:visibility="gone"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buttonOpenTermsAndUse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:backgroundTint="#555555"
+            android:text="@string/open_terms_of_use"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            android:textSize="18sp" />
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/spinnersContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/goldNumberListSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_spinner_background"
+                android:layout_marginEnd="6dp"
+                android:visibility="invisible"
+                android:padding="8dp" />
+            <Spinner
+                android:id="@+id/callsReportListSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_spinner_background"
+                android:layout_marginEnd="6dp"
+                android:visibility="invisible"
+                android:padding="8dp" />
+            <Spinner
+                android:id="@+id/emergencyNumbersListSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:background="@drawable/rounded_spinner_background"
+                android:layout_marginEnd="6dp"
+                android:padding="8dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/next_prev_buttons_panel"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Left button (Prev) -->
+            <Button
+                android:id="@+id/button_prev"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#CCCCCC"
+                android:text="@string/tour_prev_button"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <!-- Spacer to push the next button to the right -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Right button (Next) -->
+            <Button
+                android:id="@+id/button_next"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#CCCCCC"
+                android:text="@string/tour_next_button"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

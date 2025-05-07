@@ -1,0 +1,16 @@
+<resources>
+    <string name="currAppVersion" translatable="false">0.0.24</string>
+    <bool name="isPremium">false</bool>
+    <!--<number name="sendReportHour">19</number>
+    <number name="sendReportMinute">0</number>
+    <number name="sendReportDaysInterval">1</number>
+    <number name="sendReportPhoneNumber">1</number>
+    <number name="sendReportContact">1</number>
+    <bool name="sendReportIsGoldNumber">false</bool>
+    <bool name="sendReportExceptionalCallIfFromNonContact">false</bool>
+    <number name="sendReportExceptionalNumberIfMoreThan">2</number>
+    <number name="sendReportExceptionalCallIfNotBetweenStartHour">7</number>
+    <number name="sendReportExceptionalCallIfNotBetweenStartMinute">0</number>
+    <number name="sendReportExceptionalCallIfNotBetweenEndHour">20</number>
+    <number name="sendReportExceptionalCallIfNotBetweenEndMinute">0</number>-->
+</resources>
