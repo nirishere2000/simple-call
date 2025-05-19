@@ -28,9 +28,10 @@ class PremiumTourAdapter(private val steps: List<TourStep>) : RecyclerView.Adapt
     private lateinit var distressButtonBack: LinearLayout
     private lateinit var distressButtonIcon: ImageView
     private lateinit var distressButtonTextDisabled: TextView
+    private lateinit var scrollContainer: LinearLayout
     private lateinit var scrollView: ScrollView
     private lateinit var scrollArrow: ImageView
-    private lateinit var gradientView: View
+   // private lateinit var gradientView: View
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TourViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_premium_tour_step, parent, false)
@@ -45,90 +46,69 @@ class PremiumTourAdapter(private val steps: List<TourStep>) : RecyclerView.Adapt
     override fun getItemCount(): Int = steps.size
 
     inner class TourViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val swipeGuideLayout: FrameLayout = itemView.findViewById(R.id.swipeGuideLayout)
+        //private val swipeGuideLayout: FrameLayout = itemView.findViewById(R.id.swipeGuideLayout)
+        private val commandsContainer: View = itemView.findViewById(R.id.commandsContainer)
+        private val distressButtonBack: LinearLayout = itemView.findViewById(R.id.premium_distress_button_image)
+        private val distressButtonIcon: ImageView = itemView.findViewById(R.id.emergency_button_icon)
+        private val distressButtonTextDisabled: TextView = itemView.findViewById(R.id.emergency_button_text_disabled)
+        private val scrollContainer: LinearLayout = itemView.findViewById(R.id.premium_tour_scroll_arrow_container)
+        private val scrollView: ScrollView = itemView.findViewById(R.id.premium_tour_scrollable_text)
+        private val scrollArrow: ImageView = itemView.findViewById(R.id.premium_tour_scroll_arrow)
 
         fun bind(step: TourStep, position: Int) {
+            // כותרת, תיאור ותמונה
             itemView.findViewById<TextView>(R.id.tourTitle).text = step.title
             itemView.findViewById<TextView>(R.id.tourDescription).text = step.description
-            val stepImage = itemView.findViewById<ImageView>(R.id.tourImage)
-            if (step.imageResId != null) {
-                stepImage.setImageResource(step.imageResId)
-                stepImage.visibility = VISIBLE
-            }
-            else {
-                stepImage.visibility = GONE
-            }
-
-            if (step.key == "voice") {
-                val commandsContainer = itemView.findViewById<View>(R.id.commandsContainer)
-                commandsContainer?.visibility = View.VISIBLE
-            }
-            else {
-                val commandsContainer = itemView.findViewById<View>(R.id.commandsContainer)
-                commandsContainer?.visibility = View.GONE
+            step.imageResId?.let {
+                itemView.findViewById<ImageView>(R.id.premium_tour_image).apply {
+                    setImageResource(it)
+                    visibility = View.VISIBLE
+                }
+            } ?: run {
+                itemView.findViewById<ImageView>(R.id.premium_tour_image).visibility = View.GONE
             }
 
-            // distress:
-            distressButtonBack = itemView.findViewById(R.id.distressButtonBack)
-            distressButtonIcon = itemView.findViewById(R.id.emergency_button_icon)
-            distressButtonTextDisabled = itemView.findViewById(R.id.emergency_button_text_disabled)
+            // הצגת voice-commands רק ב־step.key=="voice"
+            commandsContainer.visibility = if (step.key == "voice") VISIBLE else GONE
+            distressButtonBack.visibility = if (step.key == "distress") VISIBLE else GONE
+            distressButtonIcon.setImageResource(R.drawable.ic_bell_gold)
+            distressButtonIcon.visibility = if (step.key == "distress") VISIBLE else GONE // making sure the button look is enabled for the Tour display
+            distressButtonTextDisabled.visibility = GONE // making sure the button look is enabled for the Tour display
 
-            if (step.key == "distress") {
-                distressButtonBack.visibility = VISIBLE
-                distressButtonIcon.visibility = VISIBLE
-                distressButtonTextDisabled.visibility = GONE
-            }
-            else {
-                distressButtonBack.visibility = GONE
-                distressButtonIcon.visibility = GONE
-                distressButtonTextDisabled.visibility = GONE
-            }
-
-
-
-            val arrowIcon = itemView.findViewById<ImageView>(R.id.arrowIcon)
-
-            val isRTL = TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_RTL
-            arrowIcon.rotationY = if (isRTL) 0f else 180f
-
-            scrollView = itemView.findViewById(R.id.scrollable_text)
-            scrollArrow = itemView.findViewById(R.id.scroll_arrow)
-            gradientView = itemView.findViewById(R.id.gradient_view)
+            // אתחול גלילה
+            scrollView.scrollTo(0, 0)
             scrollView.viewTreeObserver.addOnGlobalLayoutListener(object :
                 ViewTreeObserver.OnGlobalLayoutListener {
                 override fun onGlobalLayout() {
                     scrollView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                    if (itemView.context != null) {
-                        checkScroll(itemView.context)
-                    }
-
+                    checkScroll()
                 }
             })
-            // Also reset scroll position
-            scrollView.scrollTo(0, 0)
+            scrollView.postDelayed({ checkScroll() }, 50)
+            scrollView.setOnScrollChangeListener { _, _, _, _, _ -> checkScroll() }
 
-            scrollView.postDelayed({
-                checkScroll(itemView.context)
-            }, 50)
+            // אנימציה חיה לחץ
+            scrollArrow.startAnimation(AnimationUtils.loadAnimation(itemView.context, R.anim.arrow_fade))
+        }
 
-            scrollView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-                checkScroll(itemView.context)
+        private fun checkScroll() {
+            if (scrollView.canScrollVertically(1)) {
+                if (scrollArrow.animation == null) {
+                    scrollArrow.startAnimation(AnimationUtils.loadAnimation(itemView.context, R.anim.blink))
+                }
+                scrollContainer.visibility = VISIBLE
+            } else {
+                scrollArrow.clearAnimation()
+                scrollContainer.visibility = GONE
             }
+        }
 
-            val arrow = itemView.findViewById<ImageView>(R.id.settings_scroll_arrow)
-            val anim = AnimationUtils.loadAnimation(itemView.context, R.anim.arrow_fade)
-            arrow.startAnimation(anim)
-
-
-            /*            if (!alreadySawTooltip) {
-                            itemView.findViewById<FrameLayout>(R.id.swipeGuideLayout).visibility = VISIBLE
-                            alreadySawTooltip = true
-                        }
-                        else {
-                            itemView.findViewById<FrameLayout>(R.id.swipeGuideLayout).visibility = GONE
-                        }*/
+        fun cleanUp() {
+            // קוראים ב־onDestroy של ה־Adapter או כשיוצאים מהדף
+            scrollView.setOnScrollChangeListener(null)
         }
     }
+
 
     private fun checkScroll(context: Context) {
         if (scrollView.canScrollVertically(1)) {
@@ -136,12 +116,10 @@ class PremiumTourAdapter(private val steps: List<TourStep>) : RecyclerView.Adapt
                 val blinkAnimation = AnimationUtils.loadAnimation(context, R.anim.blink)
                 scrollArrow.startAnimation(blinkAnimation)
             }
-            scrollArrow.visibility = View.VISIBLE
-            gradientView.visibility = View.VISIBLE
+            scrollContainer.visibility = View.VISIBLE
         } else {
             scrollArrow.clearAnimation()
-            scrollArrow.visibility = View.GONE
-            gradientView.visibility = View.GONE
+            scrollContainer.visibility = View.GONE
         }
     }
 

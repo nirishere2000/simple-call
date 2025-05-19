@@ -146,7 +146,7 @@
                         android:id="@+id/starts_with_speaker_on_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -171,7 +171,7 @@
                         android:id="@+id/should_answer_all_calls_auto_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
 
                 <LinearLayout
@@ -196,7 +196,7 @@
                         android:id="@+id/allow_call_waiting_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
 
                 <LinearLayout
@@ -221,7 +221,7 @@
                         android:id="@+id/show_keypad_inside_calls_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
             </LinearLayout>
 
@@ -275,7 +275,7 @@
                             android:id="@+id/distress_button_number_enabled_toggle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp"
+
                             android:visibility="invisible" />
                     </LinearLayout>
 
@@ -283,7 +283,7 @@
                         android:id="@+id/distress_button_number_contacts_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp"
+
                         android:background="@drawable/rounded_spinner_background"
                         android:padding="8dp"
                         android:visibility="invisible" />
@@ -318,7 +318,7 @@
                         android:id="@+id/distress_button_num_of_secs_to_cancel_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp"
+
                         android:background="@drawable/rounded_spinner_background"
                         android:padding="8dp"
                         android:visibility="visible" />
@@ -347,7 +347,7 @@
                         android:id="@+id/distress_also_send_sms_to_gold_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
 
                 <LinearLayout
@@ -372,7 +372,7 @@
                         android:id="@+id/increasing_siren_on_distress_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
 
 
@@ -385,7 +385,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="12dp"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -423,7 +423,7 @@
                         android:id="@+id/show_custom_lock_screen_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
 
                 <LinearLayout
@@ -448,7 +448,7 @@
                         android:id="@+id/show_whatsapp_messages_on_lock_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
 
                 <LinearLayout
@@ -473,7 +473,7 @@
                         android:id="@+id/show_sms_messages_on_lock_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
             </LinearLayout>
 
@@ -538,14 +538,14 @@
                                 android:id="@+id/should_send_report_toggle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="6dp" />
+                                 />
                         </LinearLayout>
 
                         <Spinner
                             android:id="@+id/send_report_days_interval"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp"
+
                             android:background="@drawable/rounded_spinner_background"
                             android:padding="8dp" />
                     </LinearLayout>
@@ -579,7 +579,7 @@
                             android:id="@+id/send_report_hour_and_minute"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp"
+
                             android:background="@drawable/rounded_spinner_background"
                             android:padding="8dp" />
                     </LinearLayout>
@@ -615,7 +615,7 @@
                             android:id="@+id/should_always_send_report_to_gold_number_toggle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp"
+
                             android:visibility="visible" />
                     </LinearLayout>
 
@@ -648,7 +648,7 @@
                             android:id="@+id/call_report_send_contact_toggle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp"
+
                             android:visibility="invisible" />
                     </LinearLayout>
 
@@ -656,7 +656,7 @@
                         android:id="@+id/contacts_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp"
+
                         android:background="@drawable/rounded_spinner_background"
                         android:padding="8dp"
                         android:visibility="invisible" />
@@ -684,7 +684,7 @@
                         android:id="@+id/send_only_exceptional_data_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
 
 
@@ -716,7 +716,7 @@
                             android:id="@+id/call_is_exceptional_if_not_between_toggle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp" />
+                             />
                     </LinearLayout>
 
                     <LinearLayout
@@ -730,7 +730,7 @@
                             android:id="@+id/call_is_exceptional_if_not_between_start_spinner"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp"
+
                             android:layout_weight="0.5"
                             android:background="@drawable/rounded_spinner_background"
                             android:padding="8dp" />
@@ -750,7 +750,7 @@
                             android:id="@+id/call_is_exceptional_if_not_between_end_spinner"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp"
+
                             android:layout_weight="0.5"
                             android:background="@drawable/rounded_spinner_background"
                             android:padding="8dp" />
@@ -785,14 +785,14 @@
                             android:id="@+id/number_is_exceptional_if_appears_more_than_toggle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp" />
+                             />
                     </LinearLayout>
 
                     <Spinner
                         android:id="@+id/number_is_exceptional_if_appears_more_than_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp"
+
                         android:background="@drawable/rounded_spinner_background"
                         android:padding="8dp" />
                 </LinearLayout>
@@ -821,7 +821,7 @@
                         android:id="@+id/number_is_exceptional_if_its_not_contact_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
                 </LinearLayout>
             </LinearLayout>
 
@@ -832,7 +832,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="12dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -875,7 +875,7 @@
                             android:id="@+id/gold_number_enabled_toggle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="6dp"
+
                             android:visibility="invisible" />
                     </LinearLayout>
 
@@ -883,7 +883,7 @@
                         android:id="@+id/gold_number_contacts_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp"
+
                         android:background="@drawable/rounded_spinner_background"
                         android:padding="8dp"
                         android:visibility="invisible" />
@@ -913,7 +913,27 @@
                         android:id="@+id/allow_opening_whatsapp_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp" />
+                         />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/settingsCommandsContainerLayout"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <include
+                        android:id="@+id/commandsContainer"
+                        layout="@layout/fragment_voice_commands"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

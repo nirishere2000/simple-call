@@ -55,9 +55,9 @@ class CallReportSettingsFragment : DialogFragment() {
                 checkScroll(view.context)
             }
 
-            loadView(view)*/
+            loadView(view)
 
-            val context = requireContext()
+            val context = requireContext()*/
 
         } catch (e: Exception) {
 
@@ -291,7 +291,7 @@ class CallReportSettingsFragment : DialogFragment() {
         return view
     }
 
-    private fun checkScroll(context: Context) {
+/*    private fun checkScroll(context: Context) {
         if (scrollView.canScrollVertically(1)) {
             if (scrollArrow.animation == null) {
                 //val blinkAnimation = AnimationUtils.loadAnimation(context, R.anim.blink)
@@ -302,7 +302,7 @@ class CallReportSettingsFragment : DialogFragment() {
             scrollArrow.clearAnimation()
             settingsScrollArrowContainer.visibility = GONE
         }
-    }
+    }*/
 
     override fun onDestroy() {
         super.onDestroy()

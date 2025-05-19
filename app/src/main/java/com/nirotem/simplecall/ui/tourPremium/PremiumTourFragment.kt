@@ -1,6 +1,8 @@
 package com.nirotem.simplecall.ui.tourPremium
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +43,51 @@ class PremiumTourFragment : Fragment() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
 
+                    // 1. קושרים ל-RecyclerView של ה-ViewPager
+                    val rv = viewPager.getChildAt(0) as? RecyclerView ?: return
+
+                    // 2. מוצאים את ה-ViewHolder בעמדה הנוכחית
+                    val holder = rv.findViewHolderForAdapterPosition(position)
+                            as? PremiumTourAdapter.TourViewHolder ?: return
+
+                    // 3. מרעננים את ה-UI של העמוד (גלילה, voice commands וכו')
+                    holder.bind(steps[position], position)
+
+                    // 4. מתמודדים עם ה-swipe guide
+                    val swipeGuide = holder.itemView
+                        .findViewById<FrameLayout>(R.id.swipeGuideLayout)
+                    if (position > 0 || wasGuideShown) {
+                        wasGuideShown = true
+                        swipeGuide.visibility = View.GONE
+                    } else {
+                        swipeGuide.visibility = View.VISIBLE
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            swipeGuide.animate()
+                                .alpha(0f)
+                                .setDuration(3500) // חצי שנייה דהייה
+                                .withEndAction {
+                                    swipeGuide.visibility = View.GONE
+                                 //   swipeGuide.alpha = 0.5f // לאפס את השקיפות חזרה לערך קודם, אם תשתמש שוב
+                                }
+                        }, 3500)
+
+                    }
+                }
+            })
+
+
+      /*      viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+
+                    val rv = viewPager.getChildAt(0) as? RecyclerView ?: return
+                    (rv.findViewHolderForAdapterPosition(position) as? PremiumTourAdapter.TourViewHolder)
+                        ?.bind(steps[position], position)
+
                     val recyclerView = viewPager.getChildAt(0) as? RecyclerView
+                    val holder = recyclerView.findViewHolderForAdapterPosition(position) as? PremiumTourAdapter.TourViewHolder
+                    holder?.bind(steps[position], position)
+
                     val currentViewHolder = recyclerView?.findViewHolderForAdapterPosition(position)
                     val swipeGuideLayout = currentViewHolder?.itemView?.findViewById<FrameLayout>(R.id.swipeGuideLayout)
 
@@ -49,54 +95,58 @@ class PremiumTourFragment : Fragment() {
                         wasGuideShown = true
                         swipeGuideLayout?.visibility = View.GONE
                     }
+                    else {
+                        swipeGuideLayout?.visibility = View.VISIBLE
+                    }
 
                     // אם עברנו מהעמוד הראשון — נסתיר את ההדר פעם אחת
-                    /*   if (!wasGuideShown) {
-       *//*                    swipeGuideLayout?.animate()?.alpha(0f)?.setDuration(500)?.withEndAction {
+                    *//*   if (!wasGuideShown) {
+       *//**//*                    swipeGuideLayout?.animate()?.alpha(0f)?.setDuration(500)?.withEndAction {
                         swipeGuideLayout.visibility = View.GONE
-                    }?.start()*//*
+                    }?.start()*//**//*
 
                     wasGuideShown = true
-                }*/
+                }*//*
                 }
-            })
+            })*/
 
             steps = listOf(
-                TourStep("welcome",// key (should be translated!)
+                TourStep("welcome",// key (should not be translated!)
                     getString(R.string.premium_tour_page_welcome_title),
                     getString(R.string.premium_tour_page_welcome_text),
                     R.drawable.goldnumbercall
                 ),
-                TourStep("distress",// key (should be translated!)
+                TourStep("distress",// key (should not be translated!)
                     getString(R.string.premium_tour_page_distress_button_title),
                     getString(R.string.premium_tour_page_distress_button_text),
                     null
                 ),
-                TourStep("lock",// key (should be translated!)
+                TourStep("lock",// key (should not be translated!)
                     getString(R.string.premium_tour_page_lock_title),
                     getString(R.string.premium_tour_page_lock_text),
-                    R.drawable.lock_screen
+                    R.drawable.unlock_screen
                 ),
-                TourStep("voiceIntro",// key (should be translated!)
+                TourStep("voiceIntro",// key (should not be translated!)
                     getString(R.string.premium_tour_page_voice_title),
                     getString(R.string.premium_tour_page_voice_text),
-                    R.drawable.logotransparent
+                    R.drawable.phonevoice
                 ),
                 TourStep("voice",// key (should be translated!)
                     getString(R.string.premium_tour_page_voice_commands_title),
                     getString(R.string.premium_tour_page_voice_commands_text),
                     null
-                ),
-                TourStep("report", // key (should be translated!)
+                )
+              /*  TourStep("report", // key (should be translated!)
                     getString(R.string.premium_tour_page_distress_button_title),
                     getString(R.string.premium_tour_page_distress_button_text),
-                    R.drawable.showonlockscreenpermission),
+                    R.drawable.showonlockscreenpermission),*/
             )
 
             premiumTourAdapter = PremiumTourAdapter(steps)
             //val adapter = PremiumTourAdapter(steps)
 
             viewPager.adapter = premiumTourAdapter
+            viewPager.offscreenPageLimit = steps.size
 
             if (OpenScreensStatus.shouldCloseSettingsScreens.value != null) {
                 OpenScreensStatus.shouldCloseSettingsScreens.value = OpenScreensStatus.shouldCloseSettingsScreens.value!! + 1

@@ -623,6 +623,7 @@ class TourFragment : Fragment() {
         stepDoneBack.visibility = GONE
         stepAcceptAppTermsContainer.visibility = if (page.key == "allDone") VISIBLE else GONE
         distressButtonBack.visibility = if (page.key == "distressButton") VISIBLE else GONE
+        distressButtonIcon.setImageResource(R.drawable.ic_bell_white)
         distressButtonIcon.visibility = if (page.key == "distressButton") VISIBLE else GONE // making sure the button look is enabled for the Tour display
         distressButtonTextDisabled.visibility = GONE // making sure the button look is enabled for the Tour display
         spinnersContainer.visibility = if (page.key == "distressButton" || page.key == "goldNumber" || page.key == "callsReport") VISIBLE else GONE

@@ -63,6 +63,6 @@
         android:src="@drawable/ic_bell_white"
         android:clickable="true"
         android:focusable="true"
-        android:visibility="gone"
+        android:visibility="visible"
     android:layout_gravity="center" />
 </FrameLayout>

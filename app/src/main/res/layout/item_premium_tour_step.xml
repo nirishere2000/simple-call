@@ -2,27 +2,55 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#141313">
 
-    <ImageView
-        android:id="@+id/tourImage"
+    <LinearLayout
+        android:id="@+id/premium_tour_image_container"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:scaleType="centerCrop"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/premium_tour_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/premium_distress_button_image"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+
+                layout="@layout/distress_button_small" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tourTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="12dp"
         android:focusable="true"
@@ -38,7 +66,7 @@
         android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tourImage" />
+        app:layout_constraintTop_toBottomOf="@id/premium_tour_image_container" />
 
 
     <!--   <TextView
@@ -51,7 +79,7 @@
           android:layout_marginLeft="16dp"
           android:layout_marginRight="16dp"
           android:text="Description"
-          app:layout_constraintTop_toBottomOf="@id/tourTitle"
+ v           app:layout_constraintTop_toBottomOf="@id/tourTitle"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintEnd_toEndOf="parent"/>-->
 
@@ -59,69 +87,65 @@
         android:id="@+id/tourDescriptionContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/commandsContainerLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tourTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="vertical"
-        >
+        app:layout_constraintTop_toBottomOf="@id/tourTitle">
 
         <ScrollView
-            android:id="@+id/scrollable_text"
+            android:id="@+id/premium_tour_scrollable_text"
             android:layout_width="match_parent"
-            android:layout_marginTop="12dp"
             android:layout_height="0dp"
+            android:layout_marginTop="12dp"
             android:layout_weight="1"
-            android:paddingHorizontal="18dp"
-          >
+            android:paddingHorizontal="18dp">
 
-        <TextView
-            android:id="@+id/tourDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/tourDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="16dp"
-            android:textColor="#C6C8CA"
-            android:text="Description"
-            android:textSize="18sp"
-           />
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="16dp"
+                android:text="Description"
+                android:textColor="#C6C8CA"
+                android:textSize="18sp" />
 
         </ScrollView>
-        <LinearLayout
-            android:id="@+id/settings_scroll_arrow_container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:paddingTop="10dp"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
 
-          >
+        <LinearLayout
+            android:id="@+id/premium_tour_scroll_arrow_container"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:visibility="gone">
+
 
             <View
-                android:id="@+id/gradient_view"
+                android:id="@+id/premium_tour_gradient_view"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="6dp"
-                android:background="@drawable/bg_gradient_premium"
-                 />
+                android:background="@drawable/bg_gradient_premium" />
 
             <ImageView
-                android:id="@+id/settings_scroll_arrow"
+                android:id="@+id/premium_tour_scroll_arrow"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="12dp"
 
-                android:src="@drawable/ic_arrow_down_premium"
                 android:contentDescription="scroll down"
+                android:src="@drawable/ic_arrow_down_premium"
 
                 app:tint="@color/premiumArrowColor" />
         </LinearLayout>
 
     </LinearLayout>
-
 
 
     <!--   <TextView
@@ -152,42 +176,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:layout_constraintTop_toTopOf="@id/tourImage"
-        app:layout_constraintBottom_toBottomOf="@id/tourImage"
+        android:layout_marginHorizontal="40dp"
         android:background="@drawable/rounded_background"
         android:padding="16dp"
-        android:layout_marginHorizontal="40dp"
-        android:visibility="visible">
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/premium_tour_image_container"
+        app:layout_constraintTop_toTopOf="@id/premium_tour_image_container">
 
         <TextView
             android:id="@+id/swipeGuideText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:lines="2"
+
             android:text="@string/premium_tour_swipe_hint"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:lines="2"
-            android:layout_gravity="center"
-            android:drawablePadding="10dp"
-            android:gravity="center"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/arrowIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/white_arrow"
-            android:rotationY="0" />
 
-
-
+            android:src="@drawable/white_arrow" />
     </FrameLayout>
 
-    <include
-        layout="@layout/fragment_voice_commands"
-        android:id="@+id/commandsContainer"
-        app:layout_constraintTop_toBottomOf="@id/tourDescriptionContainer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:id="@+id/commandsContainerLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/commandsContainer"
+            layout="@layout/fragment_voice_commands"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
+    <!--app:layout_constraintTop_toBottomOf="@id/tourDescriptionContainer"-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

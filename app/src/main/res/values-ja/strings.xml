@@ -315,16 +315,19 @@
     <string name="premium_tour_page_welcome_title">プレミアム版を見つけよう</string>
     <string name="premium_tour_page_welcome_text">Android ユーザーの体験を大幅に向上させる、プレミアム版の高度な機能をご紹介します。\n\n音声操作で、デバイスに触れずに通話の応答や緊急ボタンの起動が可能です。背景雑音がないことを確認してください。\n\nスマートロック画面により、ワンタップでアプリに戻ることができます。\n\n新機能「通話レポート」では、不必要な通話の受信や誤発信があったかを確認できます。レポートは指定した番号のみに送信され、他の用途には使用されません。\n\nこれらの機能の使用は、すべてユーザー自身の責任となります。</string>
     <string name="premium_tour_swipe_hint">左にスワイプして\n次のステップへ進んでください</string>
-    <string name="premium_tour_page_lock_title">スマートでカスタマイズ可能なロック画面</string>
-    <string name="premium_tour_page_lock_text">スマートでカスタマイズ可能なロック画面は、革新的で簡単なユーザー体験を提供します。複雑なスワイプ操作なしに、タップ一つでアプリに戻ることができます。シンプルで、素早く、いつでも利用可能です。\n音声コマンドで画面を開くことも可能です。デバイスに触れる必要はなく、合図の言葉を話すだけで画面が反応します。手がふさがっている時や素早くアクセスしたい時に最適です。\n画面にはSMSやWhatsAppの通知が表示され、内容は閲覧専用モードで確認できます。誤ってタップしてもチャットが開くことはありません。高齢者など、誤操作しやすいユーザーにも安心です。\nこれは単なるロック画面ではなく、日常利用をよりスムーズにし、操作性を高めるスマートなゲートウェイです。クリーンなデザイン、直感的な操作、音声サポート付きで、ユーザー体験を真に向上させます。</string>
+    <string name="premium_tour_page_lock_title">スマートなロック画面</string>
+    <string name="premium_tour_page_lock_text">私たちのスマートロック画面は、新しく手間のかからない体験を提供します。\n\n複雑なスワイプジェスチャーに悩んだり、デバイスのロック解除方法を理解しようとする代わりに – 1回のタップで直接アプリに戻ります。シンプルで迅速、必要なときにいつでも利用できます。\n\n音声コマンドが利用可能な場合、音声コマンドを使用してデバイスのロックを解除することもできます。デバイスに触れる必要はありません – 適切な言葉を言うだけで画面が反応します。手がふさがっているときや迅速なアクセスが必要なときに最適です。\n\n対応している場合、画面にはSMSやWhatsAppメッセージからのスマート通知が表示されます。コンテンツは読み取り専用モードで表示されるため、誤ってタップしてもチャットは開きません。これは、誤ってタップする可能性のある高齢のユーザーにとって特に便利です。\n\nクリーンなデザイン、直感的な操作、音声サポートにより、デバイスの使用体験が真に向上します。</string>
     <string name="premium_tour_page_voice_title">ハンズフリー音声操作</string>
-    <string name="premium_tour_page_voice_text">画面に触れずにアプリを完全に操作できるとしたら？ただ話すだけで、システムが即座に反応。通話応答、緊急ボタン、連絡先への発信、画面ロック解除まで、すべて声で。静かであれば移動中でも遠くからでも反応します。これは単なる便利さではなく、安全性、アクセシビリティ、そして真のパワーです。</string>
+    <string name="premium_tour_page_voice_text">アプリを完全にコントロールできると想像してみてください — スマートフォンに触れることなく。話すだけで、システムが残りを処理します。\n\n通話に応答し、緊急アラートを送信し、愛する人に連絡し、または画面のロックを解除 — すべてあなたの声だけで。\n\n手がふさがっているときやタッチ操作が難しいときでも、音声コントロールがすべてを簡単、迅速、自然にします。\n\n移動中や部屋の反対側からでも、システムは応答します — 背景ノイズが大きすぎない限り。\n\nこれは単なる便利さではありません。これはアクセシビリティ、安全性、そしてあなたに主導権を与える強力なテクノロジーです。</string>
     <string name="premium_tour_page_call_report_title">通話レポート</string>
     <string name="premium_tour_page_call_report_text">ご家族の通話状況を把握しましょう。レポートには発着信が表示され、誤発信や不審な番号からの着信がないか確認できます。</string>
     <string name="premium_tour_page_distress_button_title">アップグレードされた緊急ボタン</string>
     <string name="premium_tour_page_distress_button_text">一秒一秒が重要なとき、高度な保護が大きな違いを生みます。プレミアムの緊急ボタンは通話を行うだけでなく、位置情報と時間を含む緊急SMSも送信し、通話に応答がない場合や接続できない場合は、大音量のアラームが鳴り、周囲の人々に警告します。</string>
     <string name="premium_tour_page_voice_commands_title">音声コマンド</string>
     <string name="premium_tour_page_voice_commands_text">自分に合った音声コマンドを設定することで、よりスムーズな操作が可能になります。\n\n発音しやすく、明確でユニークなコマンドを選ぶことをおすすめします — アプリがあなたを正確に認識しやすくなります。</string>
-    <string name="premium_screen_is_already_opened">Premium screen is already opened</string>
-
+    <string name="premium_screen_is_already_opened">プレミアム画面はすでに開いています</string>
+    <string name="voice_command_answer_calls">ハンズフリーで着信に応答します。</string>
+    <string name="voice_command_call_gold_number">ハンズフリーでゴールドナンバーに発信します。</string>
+    <string name="voice_command_distress_button">ハンズフリーで緊急ボタンを起動します。</string>
+    <string name="voice_command_unlock_device">ハンズフリーでデバイスのロックを解除します。</string>
 </resources>

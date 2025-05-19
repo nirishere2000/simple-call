@@ -315,17 +315,21 @@
     <string name="premium_tour_page_welcome_title">探索高级版</string>
     <string name="premium_tour_page_welcome_text">探索高级版应用功能，全面提升您的 Android 使用体验。\n\n通过语音控制，无需触碰设备即可接听电话或启动紧急按钮。请确保环境安静、无干扰。\n\n高级版还包含智能锁屏，一键即可返回应用。\n\n新增“通话报告”功能，帮助您识别是否接听了不希望接听的电话或误拨号码。报告仅发送到您选择的号码，应用不会另作处理。\n\n所有功能的使用由您自行负责。</string>
     <string name="premium_tour_swipe_hint">向左滑动以继续\n下一步</string>
-    <string name="premium_tour_page_lock_title">智能自定义锁屏</string>
-    <string name="premium_tour_page_lock_text">我们的智能自定义锁屏带来创新且便捷的使用体验。不再需要复杂的滑动操作，只需轻触一下即可快速返回应用程序。简单、快捷，随时可用。\n还可以使用语音命令打开屏幕。无需接触设备，只要说出指令，屏幕就会响应。非常适合手不方便或需要快速访问的场景。\n该屏幕支持显示短信和 WhatsApp 消息的智能通知，以只读模式呈现内容，即使误触也不会打开聊天窗口。对年长用户尤其实用，避免因误操作而开启对话。\n这不仅仅是一个锁屏，而是一个贴心、智能的门户，提升日常使用体验，增强控制感。配合简洁设计、直观操作与语音支持，真正实现用户体验的升级。</string>
+    <string name="premium_tour_page_lock_title">智能锁屏</string>
+    <string name="premium_tour_page_lock_text">我们的智能锁屏带来全新且轻松的体验。\n\n无需再为复杂的滑动手势而苦恼，或试图搞清楚如何解锁设备——只需轻轻一按，即可立即返回应用。简单、快速，随时可用。\n\n如果支持语音命令，也可以使用语音解锁设备。无需触碰设备——只需说出关键字，屏幕就会响应。当你双手忙碌或需要快速访问时，这非常理想。\n\n如有支持，屏幕将显示来自短信和 WhatsApp 的智能通知。内容以只读模式呈现，即使误触也不会打开聊天。这对年长用户尤其有帮助，避免误触造成困扰。\n\n凭借简洁的设计、直观的操作和语音支持，这是对移动体验的真正升级。</string>
     <string name="premium_tour_page_voice_title">免提语音控制</string>
-    <string name="premium_tour_page_voice_text">想象一下，无需触碰设备即可完全控制应用程序。只需说话，系统就会立即响应。接听电话、启动紧急按钮、拨打常用联系人或解锁屏幕——只用你的声音即可。即使在移动中或远距离，只要环境安静，系统也能识别。它不仅仅是方便，更是安全、可及与强大的控制力。</string>
+    <string name="premium_tour_page_voice_text">想象一下完全控制您的应用程序 — 无需触碰手机。只需说话，系统就会处理其余的事情。\n\n接听电话、发送紧急警报、联系亲人或解锁屏幕 — 全部只需您的声音。\n\n当您的双手被占用或触摸不方便时，语音控制使一切变得简单、快速和自然。\n\n即使在移动中或从房间的另一端，系统也会响应 — 只要背景噪音不太大。\n\n这不仅仅是便利。它是可访问性、安全性和赋予您控制权的强大技术。</string>
     <string name="premium_tour_page_call_report_title">通话报告</string>
     <string name="premium_tour_page_call_report_text">随时了解亲人的通话活动。报告显示来电和去电 — 让您知道他们是否误拨电话或接到陌生或可疑号码的来电。</string>
     <string name="premium_tour_page_distress_button_title">升级版紧急按钮</string>
     <string name="premium_tour_page_distress_button_text">每一秒都至关重要，先进的保护让一切不同。升级版紧急按钮不仅可以拨打电话，还会发送包含您的位置和时间的紧急短信，如果电话无人接听或无法接通，还会发出响亮的警报，提醒周围的人。</string>
     <string name="premium_tour_page_voice_commands_title">语音指令</string>
     <string name="premium_tour_page_voice_commands_text">通过设置最适合您的语音指令，可以让体验更加流畅。\n\n建议选择易于发音、清晰且独特的指令，这样有助于应用更好地理解您的意思。</string>
-    <string name="premium_screen_is_already_opened">Premium screen is already opened</string>
+    <string name="premium_screen_is_already_opened">高级屏幕已打开</string>
+    <string name="voice_command_answer_calls">免提接听来电。</string>
+    <string name="voice_command_call_gold_number">免提拨打您的金牌联系人。</string>
+    <string name="voice_command_distress_button">免提启动紧急按钮。</string>
+    <string name="voice_command_unlock_device">免提解锁设备。</string>
 
 
 </resources>
