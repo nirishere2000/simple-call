@@ -19,13 +19,39 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.10"
+    }
+
     flavorDimensions += "version"
+
     productFlavors {
         create("standard") {
             dimension = "version"
+            applicationIdSuffix = ".standard"
+            versionNameSuffix = "-standard"
+            buildConfigField("Boolean", "IS_PREMIUM", "false")
         }
+
         create("premium") {
             dimension = "version"
+            applicationIdSuffix = ".premium"
+            versionNameSuffix = "-premium"
+            buildConfigField("Boolean", "IS_PREMIUM", "true")
+            //manifestPlaceholders.put("appLabel", "MyApp Premium")
+        }
+
+        create("voice") {
+            dimension = "version"
+            applicationIdSuffix = ".voice"
+            versionNameSuffix = "-voice"
+            buildConfigField("Boolean", "IS_PREMIUM", "true")
+            buildConfigField("Boolean", "IS_VOICE", "true")
+            //manifestPlaceholders.put("appLabel", "MyApp Premium")
         }
     }
 
@@ -48,6 +74,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -65,12 +92,15 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.crashlytics.buildtools)
+    "premiumImplementation"(project(":lockscreen"))
+    "voiceImplementation"(project(":voicerecognition"))
+    implementation(project(":sharedModules"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.libphonenumber)
     implementation(libs.simpleJson)
-    implementation(project(":callsreportslibrary"))
+/*    implementation(project(":callsreportslibrary"))*/
 
 
 /*   if (gradle.startParameter.taskNames.any { it.contains("Premium") || it.contains("premium") }) {

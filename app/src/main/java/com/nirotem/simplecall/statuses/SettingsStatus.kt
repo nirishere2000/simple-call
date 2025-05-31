@@ -3,7 +3,7 @@ package com.nirotem.simplecall.statuses
 import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import com.nirotem.simplecall.R
-import com.nirotem.simplecall.adapters.DescriptiveEnum
+import interfaces.DescriptiveEnum
 
 
 //import io.reactivex.subjects.BehaviorSubject
@@ -51,6 +51,7 @@ enum class LanguagesEnum(val codes: List<String>, val region: String) {
     ARABIC(listOf("ar", "ara", "arab"), "SA"),
     CHINESE(listOf("zh", "zho", "chi"), "CN"),
     INDONESIAN(listOf("id", "ind"), "ID"),
+    HINDI(listOf("hi", "hin"), "IN"),
     KOREAN(listOf("ko", "kor"), "KR"),
     JAPANESE(listOf("ja", "jpn"), "JP");
 
@@ -88,5 +89,6 @@ object SettingsStatus {
     var callsReportIsGoldNumber = MutableLiveData(false)
     var callsReportPhoneNumber = MutableLiveData<String?>(null)
     var callsReportContact = MutableLiveData<String?>(null)
+    var distressNumberOfSecsToCancel = 5L
     var isPremium = true
 }

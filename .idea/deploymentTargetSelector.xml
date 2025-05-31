@@ -16,6 +16,9 @@
       <SelectionState runConfigName="EasyCallAndAnswer.app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="EasyCallAndAnswer.voicerecognition">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

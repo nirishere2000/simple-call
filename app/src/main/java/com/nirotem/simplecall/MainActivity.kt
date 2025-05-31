@@ -1,18 +1,9 @@
 package com.nirotem.simplecall
 
-import android.Manifest.permission.CALL_PHONE
-import android.Manifest.permission.READ_CALL_LOG
-import android.Manifest.permission.READ_CONTACTS
-import android.Manifest.permission.READ_PHONE_STATE
-import android.Manifest.permission.RECORD_AUDIO
-import android.Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.Fragment
 import android.app.role.RoleManager
-import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
@@ -26,34 +17,22 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.PowerManager
-import android.provider.BlockedNumberContract
-import android.provider.ContactsContract
 import android.provider.Settings
-import android.speech.tts.TextToSpeech
 import android.telecom.TelecomManager
 import android.util.Log
-import android.util.TypedValue
-import android.util.Xml
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
-import android.view.View.VISIBLE
-import android.view.ViewGroup
 import android.view.WindowManager
-import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -62,16 +41,20 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEasyAppEnum
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEnum
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveEasyCallAndAnswerPackageName
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveSelectedAppPackage
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveWhenScreenUnlockedBehaviourEnum
 import com.nirotem.simplecall.databinding.ActivityMainBinding
 import com.nirotem.simplecall.helpers.DBHelper.saveContactsForCallWithoutPermissions
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.getAppVersionFromCache
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadAllowMakingCallsEnum
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadAlreadyPlayedWelcomeSpeech
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadCallActivityLoadedTimeStamp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadEmergencyNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadGoldNumber
@@ -83,6 +66,7 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowAnswerCall
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowCallWaiting
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowMakingCallsEnum
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowOpeningWhatsApp
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAlreadyPlayedWelcomeSpeech
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAppVersionInCache
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallActivityLoadedTimeStamp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveContactsMapping
@@ -112,9 +96,9 @@ import com.nirotem.simplecall.managers.MessageBoxManager.onNewMessageReceived
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
 import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
 import com.nirotem.simplecall.managers.SoundPoolManager
-import com.nirotem.simplecall.managers.SpeakCommandsManager
 import com.nirotem.simplecall.managers.TextToSpeechManager
-import com.nirotem.simplecall.managers.TextToSpeechManager.speak
+import com.nirotem.simplecall.managers.VoiceApi
+import com.nirotem.simplecall.managers.VoiceManager.speechCommandsEnabled
 import com.nirotem.simplecall.statuses.AllowOutgoingCallsEnum
 import com.nirotem.simplecall.statuses.LanguagesEnum
 import com.nirotem.simplecall.statuses.OpenScreensStatus
@@ -122,9 +106,8 @@ import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus.isBackgroundWindowsAllowed
 import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
-import com.nirotem.simplecall.ui.contacts.ContactsInLetterListItem
 import com.nirotem.simplecall.ui.tour.TourDialogFragment
-import org.xmlpull.v1.XmlPullParser
+
 
 import java.io.File
 import java.util.Locale
@@ -146,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     private var askingForMakingMakingCallPermission = false
     private var canStartCheckingForPhonePermission = false
     private var displayedEmergencyMsg: Snackbar? = null
-
+    val voiceApi: VoiceApi = VoiceApiImpl()
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -281,7 +264,26 @@ class MainActivity : AppCompatActivity() {
         saveContactsForCallWithoutPermissions(binding.root.context, lifecycleScope)
 
         if (isPremium) {
-           //   TextToSpeechManager.init(this)
+            //speechCommandsEnabled = true also should uncomment permission in manifest
+            val voiceCommandsInitSuccess = voiceApi.initVoiceCommands(this, this)
+            val alreadyPlayedWelcomeSpeech = loadAlreadyPlayedWelcomeSpeech(this)
+            val welcomeTitle = getString(R.string.welcome_to_easy_call_and_answer_premium)
+            val welcomeText = getString(R.string.welcome_text_speech_short) // if (alreadyPlayedWelcomeSpeech)
+                //getString(R.string.welcome_text_speech_short)
+           // else getString(R.string.welcome_text_speech)
+
+            if (!alreadyPlayedWelcomeSpeech) { // for now playing voice only on first time
+                saveAlreadyPlayedWelcomeSpeech(this, true)
+
+                /* להשמיע את הטקסט הארוך רק פעם ראשונה
+ ופעם השנייה להשמיע משהו קצר שיגיד ניתן האפליקציה מאזינה*/
+                TextToSpeechManager.initSpeech(this, welcomeTitle, welcomeText) {
+                    if (voiceApi.isEnabled() && voiceCommandsInitSuccess) {
+                        voiceApi.startListenToVoiceCommands(this)
+                    }
+                }
+            }
+
         }
 
 
@@ -303,6 +305,7 @@ class MainActivity : AppCompatActivity() {
                 || languageEnum == LanguagesEnum.INDONESIAN
                 || languageEnum == LanguagesEnum.KOREAN
                 || languageEnum == LanguagesEnum.JAPANESE
+                || languageEnum == LanguagesEnum.HINDI
 /*
                 || languageEnum == LanguagesEnum.CHINEESE
                 || languageEnum == LanguagesEnum.INONEZIC
@@ -319,12 +322,12 @@ class MainActivity : AppCompatActivity() {
             // The navigation drawer already has the items including the items in the overflow menu
             // We only inflate the overflow menu if the navigation drawer isn't visible
             menuInflater.inflate(R.menu.overflow, menu)
-            menu.findItem(R.id.nav_premium_tour_item)?.isVisible = true
+           // menu.findItem(R.id.nav_premium_tour_item)?.isVisible = true
         } else {
             // navView.itemTextColor = resources.getColorStateList(R.color.blue_500, theme)
             // navView.setBackgroundColor(resources.getColorStateList(R.color.blue_500, theme))
             menuInflater.inflate(R.menu.navigation_drawer, menu)
-            menu.findItem(R.id.nav_premium_tour_item)?.isVisible = true
+          //  menu.findItem(R.id.nav_premium_tour_item)?.isVisible = true
         }
         return result
     }
@@ -416,7 +419,9 @@ class MainActivity : AppCompatActivity() {
             super.onDestroy()
             Log.d("SimpleCall - MA432 - onDestroy", "onDestroy")
             saveIsAppLoaded(binding.root.context, false)
-            TextToSpeechManager.shutdown()
+            if (isPremium) {
+                TextToSpeechManager.shutdown()
+            }
         } catch (e: Exception) {
 
         }
@@ -746,7 +751,6 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("SimpleCall - loadUI", "Current Language: ${Locale.getDefault().language}")
 
-
         // Load your UI after all permissions and roles are granted
         binding.appBarMain.fab?.setOnClickListener { view ->
             /*  Snackbar.make(view, "Messages", Snackbar.LENGTH_LONG)
@@ -899,6 +903,11 @@ class MainActivity : AppCompatActivity() {
         SettingsStatus.emergencyNumber.value = loadEmergencyNumber(this)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val appLogo = findViewById<ImageView>(R.id.toolbar_logo)
+
+        if (isPremium) {
+            appLogo.setImageResource(R.drawable.dialbutton)
+        }
+
         appLogo?.setOnClickListener {
             openOptionsMenu()
         }
@@ -936,6 +945,8 @@ class MainActivity : AppCompatActivity() {
         // toolbar.overflowIcon = null
         // }
 
+
+
         /*        val usageStatsManager = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
                 val standbyBucket = usageStatsManager.appStandbyBucket
 
@@ -947,6 +958,15 @@ class MainActivity : AppCompatActivity() {
                 requestIgnoreBatteryOptimizations()*/
 
         if (!wasTourAlreadyShown(binding.root.context)) {
+            if (isPremium) { // save initial lock screen settings adjusted to easy call and answer
+                // In case we won't change anything - this should be saved for lockscreen lib
+                saveWhenScreenUnlockedBehaviourEnum(
+                    this,
+                    WhenScreenUnlockedBehaviourEasyAppEnum.EASY_CALL_AND_ANSWER_APP.toString()
+                )
+                saveEasyCallAndAnswerPackageName(this.packageName, this)
+            }
+
             showTourDialog()
         } else { // Check for Default Phone app and if it's already is then for Battery Saver ignore
             /*            val usageStatsManager =
@@ -1044,7 +1064,6 @@ class MainActivity : AppCompatActivity() {
         // setTourShown()
         //  }
     }
-
 
     private fun requestRole(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

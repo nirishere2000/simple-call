@@ -1,17 +1,17 @@
 package com.nirotem.simplecall.ui.settings
 
 import android.Manifest.permission.READ_PHONE_STATE
+import android.Manifest.permission.SEND_SMS
+import android.app.ActivityManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
-import android.provider.BlockedNumberContract
-import android.provider.ContactsContract
 import android.telephony.TelephonyManager
 import android.telephony.emergency.EmergencyNumber
-import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -21,36 +21,46 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import com.nirotem.simplecall.InCallServiceManager
+import com.nirotem.lockscreen.IdleMonitorService
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.CustomAppInfo
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEasyAppEnum
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.loadSelectedAppInfo
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.loadWhenScreenUnlockedBehaviourEnum
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveSelectedAppPackage
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveShouldServiceRun
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveWhenScreenUnlockedBehaviourEnum
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.R
-import com.nirotem.simplecall.WaitingCall
-import com.nirotem.simplecall.adapters.DescriptiveEnum
+import com.nirotem.simplecall.VoiceApiImpl
 import com.nirotem.simplecall.adapters.DescriptiveEnumAdapter
 import com.nirotem.simplecall.helpers.DBHelper.fetchContacts
 import com.nirotem.simplecall.helpers.DBHelper.fetchContactsOptimized
 import com.nirotem.simplecall.helpers.DBHelper.getContactNameFromPhoneNumber
 import com.nirotem.simplecall.helpers.DBHelper.getPhoneNumberFromContactName
-import com.nirotem.simplecall.helpers.DBHelper.getPhoneNumberFromContactNameAndFilterBlocked
-import com.nirotem.simplecall.helpers.DBHelper.isNumberInContacts
-import com.nirotem.simplecall.helpers.DBHelper.isNumberInFavorites
 import com.nirotem.simplecall.helpers.GeneralUtils.distressButtonSpinnerClickEvent
 import com.nirotem.simplecall.helpers.GeneralUtils.emergencyNumbersByRegion
 import com.nirotem.simplecall.helpers.GeneralUtils.loadContactsIntoEmergencySpinnerAsync
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.isGlobalAutoAnswer
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadAllowAnswerCallsEnum
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadAllowMakingCallsEnum
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressButtonShouldAlsoSendSmsToGoldNumber
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberOfSecsToCancel
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberShouldAlsoTalk
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadEmergencyNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowAnswerCallsEnum
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowCallWaiting
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowMakingCallsEnum
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowOpeningWhatsApp
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveDistressButtonShouldAlsoSendSmsToGoldNumber
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveDistressNumberOfSecsToCancel
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveDistressNumberShouldAlsoTalk
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumberContact
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumber
@@ -62,21 +72,25 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAllowCallWait
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAllowOpeningWhatsApp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldCallsStartWithSpeakerOn
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldShowKeypadInActiveCall
+import com.nirotem.simplecall.helpers.SpinnersHelper.setupSpinnerWithIcons
 import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
+import com.nirotem.simplecall.managers.VoiceApi
+import com.nirotem.simplecall.managers.VoiceManager.initVoiceCommandsSettings
 import com.nirotem.simplecall.statuses.AllowAnswerCallsEnum
 import com.nirotem.simplecall.statuses.AllowOutgoingCallsEnum
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.OpenScreensStatus.shouldUpdateSettingsScreens
+import com.nirotem.simplecall.statuses.PermissionsStatus.askForRecordPermission
 import com.nirotem.simplecall.statuses.PermissionsStatus.checkForPermissionsChangesAndShowToastIfChanged
+import com.nirotem.simplecall.statuses.PermissionsStatus.suggestManualPermissionGrant
 import com.nirotem.simplecall.statuses.SettingsStatus
+import interfaces.DescriptiveEnum
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.Locale
-import kotlin.toString
 
 class SettingsFragment : Fragment() {
     private val coroutineScope =
@@ -90,6 +104,12 @@ class SettingsFragment : Fragment() {
     private lateinit var scrollView: ScrollView
     private lateinit var scrollArrow: ImageView
     private lateinit var settingsScrollArrowContainer: LinearLayout
+    private var serviceIsRunning: Boolean = false
+    private lateinit var requestSmsPermissionLauncher: ActivityResultLauncher<String>
+    private val voiceApi: VoiceApi = VoiceApiImpl()
+    private var appsToLaunch: List<CustomAppInfo>? = null
+    private var selectedWhenScreenUnlockedBehaviourEnum: WhenScreenUnlockedBehaviourEasyAppEnum =
+        WhenScreenUnlockedBehaviourEasyAppEnum.EASY_CALL_AND_ANSWER_APP
 
     /*    private var distressNumberSelectedButNoCallPermissionMsgDisplayedCount = 0
         private var toFilterBlockedContactsMsgDisplayedCount = 0
@@ -116,27 +136,116 @@ class SettingsFragment : Fragment() {
                 checkScroll(view.context)
             }
 
+            requestSmsPermissionLauncher =
+                registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                    if (isGranted) {
+                        saveDistressButtonShouldAlsoSendSmsToGoldNumber(view.context, true)
+                        val toastMsg =
+                            getString(R.string.distress_button_send_sms_to_gold_number_settings_msg)
+                        showLongSnackBar(
+                            requireContext(),
+                            toastMsg,
+                            10000,
+                            anchorView = requireView()
+                        )
+                    } else {
+                        val distressAlsoSendSmsToGoldToggle =
+                            view.findViewById<SwitchMaterial>(R.id.distress_also_send_sms_to_gold_toggle)
+                        distressAlsoSendSmsToGoldToggle.isChecked = false
+                        suggestManualPermissionGrant(view.context)
+                    }
+                }
+
+
             // PREMIUM ONLY!
             if (SettingsStatus.isPremium) {
+                val context = requireContext()
                 val tabCalls = view.findViewById<LinearLayout>(R.id.tabCalls)
-              //  val tabCallsText = view.findViewById<TextView>(R.id.tabCallsText)
+                //  val tabCallsText = view.findViewById<TextView>(R.id.tabCallsText)
                 val tabDistressButton = view.findViewById<LinearLayout>(R.id.tabDistressButton)
                 val groupDistressButton = view.findViewById<LinearLayout>(R.id.groupDistressButton)
                 val groupCalls = view.findViewById<LinearLayout>(R.id.groupCalls)
                 val tabLock = view.findViewById<LinearLayout>(R.id.tabLock)
                 val groupLock = view.findViewById<LinearLayout>(R.id.groupLock)
                 val tabReports = view.findViewById<LinearLayout>(R.id.tabReports)
+                tabReports.visibility = GONE
+                val tabVoice = view.findViewById<LinearLayout>(R.id.tabVoice)
+                val groupVoice = view.findViewById<LinearLayout>(R.id.groupVoice)
                 val groupReports = view.findViewById<LinearLayout>(R.id.groupReports)
                 val tabOthers = view.findViewById<LinearLayout>(R.id.tabOthers)
                 val groupOthers = view.findViewById<LinearLayout>(R.id.groupOthers)
 
+                //val commandsContainer = view.findViewById<LinearLayout>(R.id.settingsCommandsContainerLayout)
+                //commandsContainer.visibility = GONE // if there is voice tab then it doesn't need to be in Others too
 
+                serviceIsRunning =
+                    isServiceRunning(requireContext(), IdleMonitorService::class.java)
+                val lockScreenToggle =
+                    view.findViewById<SwitchMaterial>(R.id.show_custom_lock_screen_toggle)
+                lockScreenToggle.isChecked = serviceIsRunning
+                lockScreenToggle.setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        startUnlockService()
+                    } else {
+                        stopUnlockServiceClick()
+                    }
+                }
+
+                initVoiceCommandsSettings(view, requireActivity())
+
+                val intervals = arrayOf("1", "2", "3", "5", "10", "20")
+                val distressButtonNumOfSecsToCancelAdapter = ArrayAdapter(
+                    view.context,
+                    android.R.layout.simple_spinner_item,
+                    intervals
+                )
+                distressButtonNumOfSecsToCancelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                val distressButtonNumOfSecsToCancelSpinner =
+                    view.findViewById<Spinner>(R.id.distress_button_num_of_secs_to_cancel_spinner)
+                distressButtonNumOfSecsToCancelSpinner.adapter =
+                    distressButtonNumOfSecsToCancelAdapter
+
+                var savedValue = loadDistressNumberOfSecsToCancel(context)
+                val index = intervals.indexOf(savedValue.toString())
+                if (index >= 0) {
+                    distressButtonNumOfSecsToCancelSpinner.setSelection(index)
+                } else {
+                    distressButtonNumOfSecsToCancelSpinner.setSelection(0)
+                }
+
+                distressButtonNumOfSecsToCancelSpinner.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>,
+                            view: View?,
+                            position: Int,
+                            id: Long
+                        ) {
+                            val selectedValue = intervals[position]
+                            saveDistressNumberOfSecsToCancel(selectedValue, context)
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>) {
+                            // כלום לא קורה כאן, וזה בסדר
+                        }
+                    }
+                distressButtonNumOfSecsToCancelSpinner.dropDownVerticalOffset = 25
+                distressButtonNumOfSecsToCancelSpinner.visibility = VISIBLE
+
+                val distressNumberShouldAlsoTalkToggle =
+                    view.findViewById<SwitchMaterial>(R.id.distress_number_should_also_talk_toggle)
+                distressNumberShouldAlsoTalkToggle.isChecked =
+                    loadDistressNumberShouldAlsoTalk(context)
+                distressNumberShouldAlsoTalkToggle.setOnCheckedChangeListener { buttonView, isChecked ->
+                    saveDistressNumberShouldAlsoTalk(context, isChecked)
+                }
 
                 groupCalls.visibility = VISIBLE
-                groupDistressButton.visibility = GONE
 
+                groupDistressButton.visibility = GONE
                 groupLock.visibility = GONE
                 groupReports.visibility = GONE
+                groupVoice.visibility = GONE
                 groupOthers.visibility = GONE
 
                 tabCalls.setOnClickListener {
@@ -144,6 +253,7 @@ class SettingsFragment : Fragment() {
                     groupCalls.visibility = VISIBLE
                     groupLock.visibility = GONE
                     groupReports.visibility = GONE
+                    groupVoice.visibility = GONE
                     groupOthers.visibility = GONE
                 }
 
@@ -152,7 +262,45 @@ class SettingsFragment : Fragment() {
                     groupCalls.visibility = GONE
                     groupLock.visibility = GONE
                     groupReports.visibility = GONE
+                    groupVoice.visibility = GONE
                     groupOthers.visibility = GONE
+
+                    // Send SMS:
+                    val distressAlsoSendSmsToGoldToggle =
+                        view.findViewById<SwitchMaterial>(R.id.distress_also_send_sms_to_gold_toggle)
+                    distressAlsoSendSmsToGoldToggle.isChecked =
+                        loadDistressButtonShouldAlsoSendSmsToGoldNumber(context)
+                    // If already checked and no permission:
+                    if (distressAlsoSendSmsToGoldToggle.isChecked && ContextCompat.checkSelfPermission(
+                            context,
+                            SEND_SMS
+                        )
+                        != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        requestSmsPermissionLauncher.launch(SEND_SMS)
+                    }
+                    // when checked:
+                    distressAlsoSendSmsToGoldToggle.setOnCheckedChangeListener { buttonView, isChecked ->
+                        if (isChecked) {
+                            if (ContextCompat.checkSelfPermission(context, SEND_SMS)
+                                != PackageManager.PERMISSION_GRANTED
+                            ) { // no permission - ask
+                                requestSmsPermissionLauncher.launch(SEND_SMS)
+                            } else { // already have permission:
+                                saveDistressButtonShouldAlsoSendSmsToGoldNumber(context, true)
+                                val toastMsg =
+                                    getString(R.string.distress_button_send_sms_to_gold_number_settings_msg)
+                                showLongSnackBar(
+                                    context,
+                                    toastMsg,
+                                    10000,
+                                    anchorView = requireView()
+                                )
+                            }
+                        } else {
+                            saveDistressButtonShouldAlsoSendSmsToGoldNumber(context, false)
+                        }
+                    }
                 }
 
                 tabLock.setOnClickListener {
@@ -160,32 +308,69 @@ class SettingsFragment : Fragment() {
                     groupCalls.visibility = GONE
                     groupReports.visibility = GONE
                     groupLock.visibility = VISIBLE
+                    groupVoice.visibility = GONE
                     groupOthers.visibility = GONE
                 }
 
-                tabReports.setOnClickListener {
-                    groupDistressButton.visibility = GONE
-                    groupCalls.visibility = GONE
-                    groupLock.visibility = GONE
-                    groupReports.visibility = VISIBLE
-                    groupOthers.visibility = GONE
+                setWhenScreenUnlockedBehaviourSpinner(view)
+                handleWhenScreenUnlocked(selectedWhenScreenUnlockedBehaviourEnum, view)
+                setAppToLaunch(view, context)
+
+                if (voiceApi.isEnabled()) {
+                    tabVoice.setOnClickListener {
+                        groupDistressButton.visibility = GONE
+                        groupCalls.visibility = GONE
+                        groupLock.visibility = GONE
+                        groupReports.visibility = GONE
+                        groupVoice.visibility = VISIBLE
+                        groupOthers.visibility = GONE
+
+                        val commandToggleAnswerCalls =
+                            view.findViewById<SwitchMaterial>(R.id.command_toggle_answer_calls)
+                        val commandToggleGoldNumber =
+                            view.findViewById<SwitchMaterial>(R.id.command_toggle_gold_number)
+                        val commandToggleUnlockScreen =
+                            view.findViewById<SwitchMaterial>(R.id.command_toggle_unlock_screen)
+                        val commandToggleDistressButton =
+                            view.findViewById<SwitchMaterial>(R.id.command_toggle_distress_button)
+
+                        val atLeastOnceCommandEnabled =
+                            commandToggleAnswerCalls.isChecked || commandToggleGoldNumber.isChecked
+                                    || commandToggleDistressButton.isChecked || commandToggleUnlockScreen.isChecked
+
+                        if (atLeastOnceCommandEnabled) {
+                            askForRecordPermission(view.context, requireActivity())
+                        }
+                    }
+                    tabVoice.visibility = VISIBLE
+                } else {
+                    tabVoice.visibility = GONE
                 }
+
+                /*                tabReports.setOnClickListener {
+                                    groupDistressButton.visibility = GONE
+                                    groupCalls.visibility = GONE
+                                    groupLock.visibility = GONE
+                                    groupReports.visibility = VISIBLE
+                                    groupOthers.visibility = GONE
+                                }*/
 
                 tabOthers.setOnClickListener {
                     groupDistressButton.visibility = GONE
                     groupCalls.visibility = GONE
                     groupLock.visibility = GONE
                     groupReports.visibility = GONE
+                    groupVoice.visibility = GONE
                     groupOthers.visibility = VISIBLE
                 }
 
                 // Insert data into controls:
 
 
-               /* tabCallsText.setOnClickListener {
-                    groupCalls.visibility = VISIBLE
-                    Toast.makeText(this.requireContext(), "aerfsdf", Toast.LENGTH_SHORT).show()
-                }*/
+                /* tabCallsText.setOnClickListener {
+                     groupCalls.visibility = VISIBLE
+                     Toast.makeText(this.requireContext(), "aerfsdf", Toast.LENGTH_SHORT).show()
+                 }*/
             }
             // END PREMIUM ONLY
 
@@ -205,7 +390,8 @@ class SettingsFragment : Fragment() {
 
             val context = requireContext()
             val emergencyPhoneNumber = loadEmergencyNumber(context)
-            val existsDistressNumberForDistressButtonButWithoutPermission = (emergencyPhoneNumber != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)
+            val existsDistressNumberForDistressButtonButWithoutPermission =
+                (emergencyPhoneNumber != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)
             if (existsDistressNumberForDistressButtonButWithoutPermission) {
                 var toastMsg =
                     getString(R.string.phone_permission_required_for_distress_button)
@@ -222,6 +408,8 @@ class SettingsFragment : Fragment() {
 
                 showLongSnackBar(context, toastMsg, anchorView = requireView())
             }
+
+
         } catch (e: Exception) {
             Log.e("SimplyCall - Settings", "Settings Error (${e.message})")
         }
@@ -231,7 +419,11 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = if (SettingsStatus.isPremium) inflater.inflate(R.layout.fragment_premium_settings, container, false) else inflater.inflate(R.layout.fragment_settings, container, false)
+        val view = if (SettingsStatus.isPremium) inflater.inflate(
+            R.layout.fragment_premium_settings,
+            container,
+            false
+        ) else inflater.inflate(R.layout.fragment_settings, container, false)
         fragmentRoot = view
         return view
     }
@@ -243,7 +435,8 @@ class SettingsFragment : Fragment() {
                 OpenScreensStatus.shouldClosePermissionsScreens.value!! + 1
         }
         if (OpenScreensStatus.shouldClosePremiumTourScreens.value != null) {
-            OpenScreensStatus.shouldClosePremiumTourScreens.value = OpenScreensStatus.shouldClosePremiumTourScreens.value!! + 1
+            OpenScreensStatus.shouldClosePremiumTourScreens.value =
+                OpenScreensStatus.shouldClosePremiumTourScreens.value!! + 1
         }
 
         val currContext = view.context
@@ -637,7 +830,8 @@ class SettingsFragment : Fragment() {
         /** Gold Number: */
         try {
             //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            goldNumberEnabledToggle.isEnabled = PermissionsStatus.readContactsPermissionGranted.value == true
+            goldNumberEnabledToggle.isEnabled =
+                PermissionsStatus.readContactsPermissionGranted.value == true
             if (PermissionsStatus.readContactsPermissionGranted.value == true) {
                 loadContactsIntoSpinnerAsync(goldNumberSpinner)
             } else {
@@ -732,15 +926,15 @@ class SettingsFragment : Fragment() {
                 }*/
 
         // Report interval spinner
-        val intervalSpinner: Spinner = view.findViewById(R.id.report_interval_spinner)
-        val intervals = arrayOf("1", "3", "7", "14", "30")
-        val intervalAdapter = ArrayAdapter(
-            currContext,
-            android.R.layout.simple_spinner_item,
-            intervals
-        )
-        intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        intervalSpinner.adapter = intervalAdapter
+        /*        val intervalSpinner: Spinner = view.findViewById(R.id.report_interval_spinner)
+                val intervals = arrayOf("1", "3", "7", "14", "30")
+                val intervalAdapter = ArrayAdapter(
+                    currContext,
+                    android.R.layout.simple_spinner_item,
+                    intervals
+                )
+                intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                intervalSpinner.adapter = intervalAdapter*/
 
         // Contacts Spinner:
         // val spinner = view.findViewById<Spinner>(R.id.contacts_spinner)
@@ -756,6 +950,192 @@ class SettingsFragment : Fragment() {
 
 
         return view
+    }
+
+    private fun setWhenScreenUnlockedBehaviourSpinner(view: View) {
+        val resourceWhenScreenUnlockedBehaviourMode =
+            view.context.resources.getString(R.string.whenScreenUnlockedBehaviour)
+
+        val whenScreenUnlockedBehaviourMode = loadWhenScreenUnlockedBehaviourEnum(view.context)
+        selectedWhenScreenUnlockedBehaviourEnum =
+            if (whenScreenUnlockedBehaviourMode != null) WhenScreenUnlockedBehaviourEasyAppEnum.valueOf(
+                whenScreenUnlockedBehaviourMode
+            ) else
+                (if (resourceWhenScreenUnlockedBehaviourMode.isNotEmpty()) WhenScreenUnlockedBehaviourEasyAppEnum.valueOf(
+                    resourceWhenScreenUnlockedBehaviourMode
+                ) else WhenScreenUnlockedBehaviourEasyAppEnum.EASY_CALL_AND_ANSWER_APP)
+
+        val whenScreenUnlockedBehaviourSpinner =
+            view.findViewById<Spinner>(R.id.when_screen_is_unlocked_behaviour_spinner)
+
+        val whenScreenUnlockedBehaviourDataList = mutableListOf(
+            WhenScreenUnlockedBehaviourEasyAppEnum.EASY_CALL_AND_ANSWER_APP,
+            WhenScreenUnlockedBehaviourEasyAppEnum.EXTERNAL_APP,
+            WhenScreenUnlockedBehaviourEasyAppEnum.HOME_SCREEN
+        )
+
+/*        val whenScreenUnlockedBehaviourDataList: MutableList<WhenScreenUnlockedBehaviourEasyAppEnum> =
+            WhenScreenUnlockedBehaviourEasyAppEnum.entries.toMutableList()*/
+        val whenScreenUnlockedBehaviourEnumAdapter = DescriptiveEnumAdapter(
+            requireContext(),
+            whenScreenUnlockedBehaviourDataList
+        )
+
+        whenScreenUnlockedBehaviourEnumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        whenScreenUnlockedBehaviourSpinner.adapter = whenScreenUnlockedBehaviourEnumAdapter
+        whenScreenUnlockedBehaviourSpinner.dropDownVerticalOffset = 25
+
+        setSelectedEnumInSpinner(
+            whenScreenUnlockedBehaviourSpinner,
+            selectedWhenScreenUnlockedBehaviourEnum,
+            whenScreenUnlockedBehaviourDataList
+        )
+
+        val fragmentView = view
+
+        whenScreenUnlockedBehaviourSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    // Directly cast to AllowAnswerCallsEnum
+                    selectedWhenScreenUnlockedBehaviourEnum =
+                        parent.getItemAtPosition(position) as WhenScreenUnlockedBehaviourEasyAppEnum
+                    handleWhenScreenUnlocked(selectedWhenScreenUnlockedBehaviourEnum, fragmentView)
+
+                    saveWhenScreenUnlockedBehaviourEnum(
+                        requireContext(),
+                        selectedWhenScreenUnlockedBehaviourEnum.name
+                    )
+
+                    // loadForm(requireView())
+                    //handleMissingPermissions()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // Optionally handle this case
+                }
+            }
+    }
+
+    fun findAppIndexByPackage(appList: List<CustomAppInfo>, targetPackage: String): Int {
+        return appList.indexOfFirst { it.packageName == targetPackage }
+    }
+
+    private fun setAppToLaunch(currView: View, context: Context) {
+        // Select App to Launch
+        val selectAppToLaunchSpinner =
+            currView.findViewById<Spinner>(R.id.select_app_to_launch_spinner)
+
+        appsToLaunch = loadAppsToLaunch(context).sortedBy { it.appName.lowercase() }
+        if (appsToLaunch != null) {
+            setupSpinnerWithIcons(selectAppToLaunchSpinner, appsToLaunch!!)
+        }
+        val selectedPackageName = loadSelectedAppInfo(context)
+
+        try {
+            if (selectedPackageName != null && appsToLaunch != null) {
+                val index = findAppIndexByPackage(appsToLaunch!!, selectedPackageName)
+                if (index > -1) { // found the item in the list
+                    selectAppToLaunchSpinner.setSelection(index)
+                }
+                else {
+                    selectAppToLaunchSpinner.setSelection(0)
+                }
+            }
+            else if (appsToLaunch != null) {
+                selectAppToLaunchSpinner.setSelection(0)
+            }
+
+        } catch (ex: Exception) {
+            null // אם האפליקציה הוסרה או לא קיימת
+
+            Log.e(
+                "Unlock By Click - SettingsDashboardFragment",
+                "Unable to find package $selectedPackageName"
+            )
+        }
+        selectAppToLaunchSpinner.dropDownVerticalOffset = 135
+        selectAppToLaunchSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    // Directly cast to AllowAnswerCallsEnum
+                    val selectedAppInfo = parent.getItemAtPosition(position) as CustomAppInfo
+                    saveSelectedAppPackage(requireContext(), selectedAppInfo.packageName)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // Optionally handle this case
+                }
+            }
+    }
+
+    private fun loadAppsToLaunch(context: Context): List<CustomAppInfo> {
+        val pm = context.packageManager
+        val intent = Intent(Intent.ACTION_MAIN, null)
+        intent.addCategory(Intent.CATEGORY_LAUNCHER)
+
+        val apps = pm.queryIntentActivities(intent, 0)
+        val currentPackage = context.packageName
+
+        val appList = apps.mapNotNull { resolveInfo ->
+            val packageName = resolveInfo.activityInfo.packageName
+
+            if (packageName == currentPackage) return@mapNotNull null // don't add the app here
+
+            val appName = resolveInfo.loadLabel(pm).toString()
+            val icon = resolveInfo.loadIcon(pm)
+
+            CustomAppInfo(appName, packageName, icon)
+        }
+
+        return appList
+    }
+
+
+    private fun <T> setSelectedEnumInSpinner(
+        spinner: Spinner,
+        selectedEnumValue: T,
+        dataList: MutableList<T>
+    ) where T : Enum<T>, T : DescriptiveEnum {
+        val index = dataList.indexOf(selectedEnumValue)
+        if (index != -1) { // found the item in the list
+            spinner.setSelection(index)
+        } else {
+            try {  // Handle the case where the enum is not found
+                //toggleSpinner.setSelection(0)
+                spinner.isEnabled = false // switchToggle.isChecked
+            } catch (e: Exception) {
+                Log.e(
+                    "SimplyCall - SettingsFragment",
+                    "setSelectedEnumInSpinner Error (${e.message})"
+                )
+            }
+        }
+    }
+
+    private fun handleWhenScreenUnlocked(
+        selectedBehaviourMode: WhenScreenUnlockedBehaviourEasyAppEnum,
+        view: View
+    ) {
+        // External App Only:
+        val selectAppToLaunchField =
+            view.findViewById<LinearLayout>(R.id.select_app_to_launch_container)
+
+        if (selectAppToLaunchField != null) {
+            val selectAppToLaunchFieldShouldBeVisible =
+                selectedBehaviourMode == WhenScreenUnlockedBehaviourEasyAppEnum.EXTERNAL_APP
+            selectAppToLaunchField.visibility =
+                if (selectAppToLaunchFieldShouldBeVisible) VISIBLE else GONE
+        }
     }
 
     private fun initDistressButton(view: View) {
@@ -871,6 +1251,16 @@ class SettingsFragment : Fragment() {
 
     }
 
+    fun isServiceRunning(context: Context, serviceClass: Class<*>): Boolean {
+        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                return true
+            }
+        }
+        return false
+    }
+
     fun isValidEmergencyNumberForRegion(number: String, regionCode: String): Boolean {
         // המרה לאותיות גדולות עבור קוד המדינה
         val validNumbers = emergencyNumbersByRegion[regionCode.uppercase()] ?: emptyList()
@@ -911,7 +1301,7 @@ class SettingsFragment : Fragment() {
                 }
             }
         } catch (e: Exception) {
-            Log.e("SimplyCall - TourFragment", "getEmergencyNumbers Error (${e.message})")
+            Log.e("SimplyCall - SettingsFragment", "getEmergencyNumbers Error (${e.message})")
             return emptyList()
         }
         // בדיקת הרשאת קריאת מצב הטלפון
@@ -1232,14 +1622,56 @@ class SettingsFragment : Fragment() {
         }
     }
 
+    private fun startUnlockService() {
+        /* parentFragmentManager.beginTransaction()
+             .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+             .replace(R.id.main_fragment, SeniorDashboardFragment())
+             .commitNow()
+ */
+
+        serviceIsRunning = true
+        // startServiceButton.text = getString(R.string.stop_service)
+        // startServiceButton.background.setTint(Color.parseColor("#E91E63"))
+        // startServiceButton.setTextColor(Color.parseColor("#FFFFFF"))
+
+        val context = requireContext()
+        saveShouldServiceRun(true, context)
+
+        val intent = Intent(context, IdleMonitorService::class.java)
+        context.startService(intent)
+
+        Log.d("SimplyCall - Settings", "Unlock service started!")
+
+        val toastMsg = getString(R.string.lock_service_was_activated_msg)
+        showLongSnackBar(context, toastMsg, 10000, anchorView = requireView())
+    }
+
+    private fun stopUnlockServiceClick() {
+        val context = requireContext()
+
+        //startServiceButton.background.setTint(Color.parseColor("#4CAF50")) // green
+        // startServiceButton.text = context.getString(R.string.activate_service)
+
+        stopUnlockService()
+    }
+
+    private fun stopUnlockService() {
+        val context = requireContext()
+
+        //saveShouldServiceRun(false, context)
+
+        serviceIsRunning = false
+        val intent = Intent(context, IdleMonitorService::class.java)
+        context.stopService(intent)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         try {
             scrollView.setOnScrollChangeListener(null)
             OpenScreensStatus.isSettingsScreenOpened = false
             coroutineScope.cancel() // Clean up the coroutine
-        }
-        catch (e: Exception) {
+        } catch (e: Exception) {
 
         }
     }

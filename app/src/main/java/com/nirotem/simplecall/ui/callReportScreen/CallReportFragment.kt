@@ -24,7 +24,7 @@ import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import androidx.lifecycle.lifecycleScope
-import com.example.callsreportslibrary.CallReportSettingsFragment
+//import com.example.callsreportslibrary.CallReportSettingsFragment
 import com.nirotem.simplecall.databinding.FragmentCallReportBinding
 import com.nirotem.simplecall.helpers.DBHelper.saveContactsForCallWithoutPermissions
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
@@ -213,8 +213,10 @@ class CallReportFragment : Fragment() {
     }
 
     private fun openCallReportSettingsWindow() {
-       val overlayFragment = CallReportSettingsFragment()
-       overlayFragment.show(parentFragmentManager, "allReportSettingsWindowDialogFragmentTag")
+     /*  val overlayFragment = CallReportSettingsFragment()
+       overlayFragment.show(parentFragmentManager, "allReportSettingsWindowDialogFragmentTag")*/
+
+
         // waitingCallOverlayFragment = overlayFragment
         /*        val args = Bundle().apply {
                     putBoolean("IS_OUT_GOING", isOutgoingCall)

@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.CountDownTimer
 import android.provider.Settings
-import android.speech.tts.TextToSpeech
 import android.util.TypedValue
 import android.view.View
 import android.view.View.GONE
@@ -24,48 +23,50 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.snackbar.Snackbar
+import com.nirotem.simplecall.OngoingCall
 import com.nirotem.simplecall.OutgoingCall
 import com.nirotem.simplecall.R
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberOfSecsToCancel
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberShouldAlsoTalk
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadEmergencyNumber
 import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
-import com.nirotem.simplecall.managers.TextToSpeechManager.speak
-import com.nirotem.simplecall.managers.TextToSpeechManager.speakOrSnackBar
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.statuses.SettingsStatus
+import com.nirotem.simplecall.statuses.SettingsStatus.distressNumberOfSecsToCancel
+import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
+import kotlinx.coroutines.*
 import java.util.*
 
 object DistressButtonManager {
-
+    var emergencyIsOn = false
+    var emergencyCallWasAnswered = false
     private var timer: CountDownTimer? = null
     private var emergencyDelayTimeAnimationIsRunning = false
     private var emergencyDelayTimeAnimationSecondsPassed: Long = 0
-    private const val EMERGENCY_DELAY_TIME_ANIMATION_SECONDS: Long = 6 // actually it's 1 second less than that (if this equals 6 then it's 5 secs)
+   // private const val EMERGENCY_DELAY_TIME_ANIMATION_SECONDS: Long = 6 // actually it's 1 second less than that (if this equals 6 then it's 5 secs)
     private var countDownTimer: CountDownTimer? = null
     private var askingForMakingMakingCallPermission = false
     private var displayedEmergencyMsg: Snackbar? = null
+    private var shouldAlsoCallForHelp = true
+    private var emergencyJob: Job? = null
 
-    fun startSirenCountDown  (countdownSeconds: Int, onSirenTriggered: () -> Unit, context: Context) {
-        speakOrSnackBar("תושמע סירנה בעוד $countdownSeconds שניות", context)
-
-        timer = object : CountDownTimer((countdownSeconds * 1000).toLong(), 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                val secondsLeft = (millisUntilFinished / 1000).toInt()
-                when (secondsLeft) {
-                    10 -> speak("הסירנה תושמע בעוד עשר שניות")
-                    5 -> speak("הסירנה תופעל בעוד חמש שניות")
+    private fun startRepeatingEmergencyMessage(context: Context) {
+        emergencyJob = CoroutineScope(Dispatchers.Main).launch {
+            while (shouldAlsoCallForHelp) {
+                if (!emergencyCallWasAnswered && OngoingCall.call == null && OutgoingCall.call == null) {
+                    TextToSpeechManager.speak(context.getString(R.string.distress_button_activated_help_is_needed_immediately_speech))
+                }
+                if (emergencyIsOn) {
+                    delay(20_000) // 20 שניות
                 }
             }
-
-            override fun onFinish() {
-                speak("הסירנה מופעלת עכשיו")
-                onSirenTriggered()
-            }
-        }.start()
+        }
     }
 
-    fun cancel() {
-        timer?.cancel()
-        speak("הסירנה בוטלה")
+    private fun stopRepeatingEmergencyMessage() {
+        emergencyJob?.cancel()
+        emergencyJob = null
     }
 
     fun checkForDistressButton(
@@ -134,6 +135,14 @@ object DistressButtonManager {
         activity: Activity
     ) {
         if (!emergencyDelayTimeAnimationIsRunning) {
+            emergencyIsOn = true
+            SettingsStatus.emergencyNumber.value = loadEmergencyNumber(context)
+            distressNumberOfSecsToCancel = loadDistressNumberOfSecsToCancel(context)
+            shouldAlsoCallForHelp = if (isPremium) loadDistressNumberShouldAlsoTalk(context) else false
+            if (shouldAlsoCallForHelp) {
+                startRepeatingEmergencyMessage(context)
+            }
+
             if (PermissionsStatus.callPhonePermissionGranted.value == true) {
                 emergencyDelayTimeAnimationIsRunning = true
 
@@ -142,23 +151,25 @@ object DistressButtonManager {
                 val distressCircle = activity.findViewById<FrameLayout>(R.id.distress_circle)
                 distressCircle?.visibility = VISIBLE
                 val toastMsg = context.getString(R.string.calling_emergency_number_tap_cancel_to_stop)
-                displayedEmergencyMsg = showLongSnackBar(context, toastMsg, ((EMERGENCY_DELAY_TIME_ANIMATION_SECONDS * 1000).toInt()))
+                displayedEmergencyMsg = showLongSnackBar(context, toastMsg, (((distressNumberOfSecsToCancel + 1) * 1000).toInt()))
 
                 val emergencyButtonText = activity.findViewById<TextView>(R.id.emergency_button_text)
-                emergencyButtonText.text = "($EMERGENCY_DELAY_TIME_ANIMATION_SECONDS)"
+                emergencyButtonText.text = "(${(distressNumberOfSecsToCancel + 1)})"
 
                 val emergencyButton = activity.findViewById<ImageView>(R.id.emergency_button)
                 val pulsateAnim = AnimationUtils.loadAnimation(context, R.anim.pulsate)
                 emergencyButton.startAnimation(pulsateAnim)
                 emergencyDelayTimeAnimationSecondsPassed = 0
                 startEmergencyTimer(view, context, supportFragmentManager, requestPermissionLauncher, activity)
-            } else {
+            } else { // handle permissions as fast as can
                 callEmergencyNumber(context, view, supportFragmentManager, requestPermissionLauncher, activity)
             }
         }
     }
 
     private fun resetEmergencyButton(activity: Activity, context: Context) {
+        emergencyIsOn = false
+        emergencyCallWasAnswered = false
         stopEmergencyTimer()
         displayedEmergencyMsg?.dismiss()
         emergencyDelayTimeAnimationIsRunning = false
@@ -166,7 +177,7 @@ object DistressButtonManager {
         val emergencyButton = activity.findViewById<ImageView>(R.id.emergency_button)
         emergencyButton.clearAnimation()
         val emergencyButtonText = activity.findViewById<TextView>(R.id.emergency_button_text)
-        emergencyButtonText.text = context.getString(R.string.emergency_distress_button_caption)
+        emergencyButtonText.text = context.getString(R.string.quick_call_button_caption)
         val emergencyButtonCancelBack = activity.findViewById<FrameLayout>(R.id.emergencyMessage)
         emergencyButtonCancelBack?.visibility = GONE
         val distressCircle = activity.findViewById<FrameLayout>(R.id.distress_circle)
@@ -303,18 +314,18 @@ object DistressButtonManager {
         activity: Activity
     ) {
         val emergencyButtonText = activity.findViewById<TextView>(R.id.emergency_button_text)
-        countDownTimer = object : CountDownTimer((EMERGENCY_DELAY_TIME_ANIMATION_SECONDS * 1000), 1000) {
+        countDownTimer = object : CountDownTimer(((distressNumberOfSecsToCancel + 1) * 1000), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 if (emergencyDelayTimeAnimationIsRunning) {
                     emergencyDelayTimeAnimationSecondsPassed++
-                    val secondsDiff = EMERGENCY_DELAY_TIME_ANIMATION_SECONDS - emergencyDelayTimeAnimationSecondsPassed
+                    val secondsDiff = (distressNumberOfSecsToCancel + 1) - emergencyDelayTimeAnimationSecondsPassed
                     emergencyButtonText.text = "($secondsDiff)"
                 }
             }
 
             override fun onFinish() {
                 if (emergencyDelayTimeAnimationIsRunning &&
-                    emergencyDelayTimeAnimationSecondsPassed >= EMERGENCY_DELAY_TIME_ANIMATION_SECONDS
+                    emergencyDelayTimeAnimationSecondsPassed >= (distressNumberOfSecsToCancel + 1)
                 ) {
                     resetEmergencyButton(activity, context)
                     callEmergencyNumber(context, view, supportFragmentManager, requestPermissionLauncher, activity)
@@ -324,6 +335,7 @@ object DistressButtonManager {
     }
 
     private fun stopEmergencyTimer() {
+        stopRepeatingEmergencyMessage()
         countDownTimer?.cancel()
         countDownTimer = null
     }

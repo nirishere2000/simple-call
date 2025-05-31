@@ -3,10 +3,6 @@ package com.nirotem.simplecall.helpers
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import com.example.callsreportslibrary.SharedPreferencesCache.loadCallsReportIsGoldNumberLib
-import com.example.callsreportslibrary.SharedPreferencesCache.saveCallsReportContactLib
-import com.example.callsreportslibrary.SharedPreferencesCache.saveCallsReportIsGoldNumberLib
-import com.example.callsreportslibrary.SharedPreferencesCache.saveCallsReportNumberLib
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.statuses.AllowOutgoingCallsEnum
 import com.nirotem.simplecall.statuses.SettingsStatus
@@ -81,7 +77,7 @@ object SharedPreferencesCache {
         saveVariableInMemory(context, "gold_phone_contactName", goldPhoneNumberContact)
     }
 
-    fun loadCallsReportIsGoldNumber(context: Context): Boolean {
+  /*  fun loadCallsReportIsGoldNumber(context: Context): Boolean {
         var callsReportIsGoldNumber = loadCallsReportIsGoldNumberLib(context)
 
         if (callsReportIsGoldNumber.isNullOrEmpty()) {
@@ -105,7 +101,7 @@ object SharedPreferencesCache {
     fun saveCallsReportIsGoldNumber(callsReportIsGoldNumber: Boolean, context: Context) {
         SettingsStatus.callsReportIsGoldNumber.value = callsReportIsGoldNumber
         saveCallsReportIsGoldNumberLib(callsReportIsGoldNumber, context)
-    }
+    }*/
 
     fun shouldAllowOpeningWhatsApp(context: Context): Boolean {
         var allowOpeningWhatsApp = loadVariableFromMemory("AllowOpeningWhatsApp", context)
@@ -404,5 +400,137 @@ object SharedPreferencesCache {
 
     fun saveAppVersionInCache(appVersion: String?, context: Context) {
         saveVariableInMemory(context, "curr_app_version", appVersion)
+    }
+
+    fun getAnswerCallVoiceCommand(context: Context?): String? {
+        return loadVariableFromMemory("answer_call_voice_command", context)
+    }
+
+    fun saveAnswerCallVoiceCommand(voiceCommand: String?, context: Context) {
+        saveVariableInMemory(context, "answer_call_voice_command", voiceCommand)
+    }
+
+    fun getDistressButtonVoiceCommand(context: Context?): String? {
+        return loadVariableFromMemory("distress_button_voice_command", context)
+    }
+
+    fun saveDistressButtonVoiceCommand(voiceCommand: String?, context: Context) {
+        saveVariableInMemory(context, "distress_button_voice_command", voiceCommand)
+    }
+
+    fun getGoldNumberVoiceCommand(context: Context?): String? {
+        return loadVariableFromMemory("gold_number_voice_command", context)
+    }
+
+    fun saveGoldNumberVoiceCommand(voiceCommand: String?, context: Context) {
+        saveVariableInMemory(context, "gold_number_voice_command", voiceCommand)
+    }
+
+    fun getUnlockDeviceVoiceCommand(context: Context?): String? {
+        return loadVariableFromMemory("unlock_device_voice_command", context)
+    }
+
+    fun saveUnlockDeviceVoiceCommand(voiceCommand: String?, context: Context) {
+        saveVariableInMemory(context, "unlock_device_voice_command", voiceCommand)
+    }
+
+    fun loadAlreadyPlayedWelcomeSpeech(context: Context): Boolean {
+        val alreadyPlayedWelcomeSpeech = loadVariableFromMemory("already_played_welcome_speech", context)
+        return alreadyPlayedWelcomeSpeech == "true"
+    }
+
+    fun saveAlreadyPlayedWelcomeSpeech(context: Context, alreadyPlayedWelcomeSpeech: Boolean) {
+        val varToSave = if (alreadyPlayedWelcomeSpeech) "true" else "false"
+        saveVariableInMemory(context, "already_played_welcome_speech", varToSave)
+    }
+
+    fun loadDistressNumberOfSecsToCancel(context: Context): Long {
+        val fallbackValue = context.resources.getString(R.string.distressNumberOfSecsToCancel).toLong()
+        val distressNumberOfSecsToCancel = loadVariableFromMemory("distress_number_of_secs_to_cancel", context)
+        return distressNumberOfSecsToCancel?.toLongOrNull() ?: fallbackValue
+    }
+
+    fun saveDistressNumberOfSecsToCancel(distressNumberOfSecsToCancel: String, context: Context) {
+        val fallbackValue = context.resources.getString(R.string.distressNumberOfSecsToCancel).toLong()
+        SettingsStatus.distressNumberOfSecsToCancel = distressNumberOfSecsToCancel.toLongOrNull() ?: fallbackValue
+        saveVariableInMemory(context, "distress_number_of_secs_to_cancel", distressNumberOfSecsToCancel)
+    }
+
+    fun loadDistressNumberShouldAlsoTalk(context: Context): Boolean {
+        val distressNumberShouldAlsoTalk = loadVariableFromMemory("distress_number_should_also_talk", context)
+        if (distressNumberShouldAlsoTalk == null) {
+            return context.resources.getBoolean(R.bool.distressNumberShouldAlsoTalk)
+        }
+        return distressNumberShouldAlsoTalk == "true"
+    }
+
+    fun saveDistressNumberShouldAlsoTalk(context: Context, distressNumberShouldAlsoTalk: Boolean) {
+        val varToSave = if (distressNumberShouldAlsoTalk) "true" else "false"
+        saveVariableInMemory(context, "distress_number_should_also_talk", varToSave)
+    }
+
+    fun loadIsAnswerCallsVoiceCommandEnabled(context: Context): Boolean {
+        val isAnswerCallsVoiceCommandEnabled = loadVariableFromMemory("is_answer_calls_voice_command_enabled", context)
+        if (isAnswerCallsVoiceCommandEnabled == null) {
+            return context.resources.getBoolean(R.bool.isAnswerCallsVoiceCommandEnabled)
+        }
+        return isAnswerCallsVoiceCommandEnabled == "true"
+    }
+
+    fun saveIsAnswerCallsVoiceCommandEnabled(context: Context, isAnswerCallsVoiceCommandEnabled: Boolean) {
+        val varToSave = if (isAnswerCallsVoiceCommandEnabled) "true" else "false"
+        saveVariableInMemory(context, "is_answer_calls_voice_command_enabled", varToSave)
+    }
+
+    fun loadIsGoldNumberVoiceCommandEnabled(context: Context): Boolean {
+        val isGoldNumberVoiceCommandEnabled = loadVariableFromMemory("is_gold_number_voice_command_enabled", context)
+        if (isGoldNumberVoiceCommandEnabled == null) {
+            return context.resources.getBoolean(R.bool.isGoldNumberVoiceCommandEnabled)
+        }
+        return isGoldNumberVoiceCommandEnabled == "true"
+    }
+
+    fun saveIsGoldNumberVoiceCommandEnabled(context: Context, isGoldNumberVoiceCommandEnabled: Boolean) {
+        val varToSave = if (isGoldNumberVoiceCommandEnabled) "true" else "false"
+        saveVariableInMemory(context, "is_gold_number_voice_command_enabled", varToSave)
+    }
+
+    fun loadIsDistressButtonVoiceCommandEnabled(context: Context): Boolean {
+        val isDistressButtonVoiceCommandEnabled = loadVariableFromMemory("is_distress_button_voice_command_enabled", context)
+        if (isDistressButtonVoiceCommandEnabled == null) {
+            return context.resources.getBoolean(R.bool.isDistressButtonVoiceCommandEnabled)
+        }
+        return isDistressButtonVoiceCommandEnabled == "true"
+    }
+
+    fun saveIsDistressButtonVoiceCommandEnabled(context: Context, isDistressButtonVoiceCommandEnabled: Boolean) {
+        val varToSave = if (isDistressButtonVoiceCommandEnabled) "true" else "false"
+        saveVariableInMemory(context, "is_distress_button_voice_command_enabled", varToSave)
+    }
+
+    fun loadIsUnlockScreenVoiceCommandEnabled(context: Context): Boolean {
+        val isUnlockScreenVoiceCommandEnabled = loadVariableFromMemory("is_unlock_screen_voice_command_enabled", context)
+        if (isUnlockScreenVoiceCommandEnabled == null) {
+            return context.resources.getBoolean(R.bool.isUnlockScreenVoiceCommandEnabled)
+        }
+        return isUnlockScreenVoiceCommandEnabled == "true"
+    }
+
+    fun saveIsUnlockScreenVoiceCommandEnabled(context: Context, isUnlockScreenVoiceCommandEnabled: Boolean) {
+        val varToSave = if (isUnlockScreenVoiceCommandEnabled) "true" else "false"
+        saveVariableInMemory(context, "is_unlock_screen_voice_command_enabled", varToSave)
+    }
+
+    fun loadDistressButtonShouldAlsoSendSmsToGoldNumber(context: Context): Boolean {
+        val distressAlsoSendSmsToGoldNumber = loadVariableFromMemory("distress_should_also_send_sms_to_gold_number", context)
+        if (distressAlsoSendSmsToGoldNumber == null) {
+            return context.resources.getBoolean(R.bool.distressButtonShouldAlsoSendSmsToGoldNumber)
+        }
+        return distressAlsoSendSmsToGoldNumber == "true"
+    }
+
+    fun saveDistressButtonShouldAlsoSendSmsToGoldNumber(context: Context, distressAlsoSendSmsToGoldNumber: Boolean) {
+        val varToSave = if (distressAlsoSendSmsToGoldNumber) "true" else "false"
+        saveVariableInMemory(context, "distress_should_also_send_sms_to_gold_number", varToSave)
     }
 }

@@ -7,11 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.StringRes
-
-interface DescriptiveEnum {
-    @get:StringRes
-    val descriptionRes: Int
-}
+import interfaces.DescriptiveEnum
 
 class DescriptiveEnumAdapter<T>(
     context: Context,

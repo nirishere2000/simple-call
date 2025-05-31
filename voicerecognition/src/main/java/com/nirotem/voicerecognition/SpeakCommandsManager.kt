@@ -1,10 +1,13 @@
-package com.nirotem.simplecall.managers
+package com.nirotem.voicerecognition
 
 import android.Manifest.permission.RECORD_AUDIO
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -13,23 +16,25 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.MutableLiveData
+
 import java.util.Locale
 
 object SpeakCommandsManager : RecognitionListener {
-
-    var speechCommandsEnabled = false // this is the real place where it's init and not initValues
-    var lastCommand = MutableLiveData("")
+    val lastCommand = MutableLiveData<String>("")
     private lateinit var speechRecognizer: SpeechRecognizer
-    private val REQUEST_RECORD_AUDIO_PERMISSION = 1
+    private lateinit var listenIntent: Intent
+    private val handler = Handler(Looper.getMainLooper())
+    private const val restartDelay = 250L    // פער קצר בין סשנים
     //private var currContext: Context? = null
 
-    fun init(context: Context, activity: AppCompatActivity? = null): Boolean {
-        if (!speechCommandsEnabled) { return false }
+    fun initVoiceCommands(context: Context, activity: AppCompatActivity? = null): Boolean {
+        //if (!speechCommandsEnabled) { return false }
         //currContext = context
         // בקשת הרשאה להקלטה אם אין
+
         if (ActivityCompat.checkSelfPermission(context, RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             if (activity != null) {
-                ActivityCompat.requestPermissions(activity, arrayOf(RECORD_AUDIO), REQUEST_RECORD_AUDIO_PERMISSION)
+               // ActivityCompat.requestPermissions(activity, arrayOf(RECORD_AUDIO), REQUEST_RECORD_AUDIO_PERMISSION)
             } else {
                Toast.makeText(context, "No permission", Toast.LENGTH_LONG).show()
             }
@@ -39,7 +44,10 @@ object SpeakCommandsManager : RecognitionListener {
         return true
     }
 
-    fun startListen(context: Context) {
+
+
+
+  /*  fun startListenToVoiceCommands(context: Context) {
         if (!speechCommandsEnabled) { return }
         lastCommand.value = ""
 
@@ -51,11 +59,11 @@ object SpeakCommandsManager : RecognitionListener {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-            putExtra(RecognizerIntent.EXTRA_PROMPT, "נא להקליט פקודה קולית")
+            putExtra(RecognizerIntent.EXTRA_PROMPT, "Please say voice command")
            // putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 50000000);
              putExtra("android.speech.extra.DICTATION_MODE", true);
              putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 20000) // 20 שניות
-       //putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 20000) // 20 שניות
+       //putExtra(RecognizerIntent.EXTRA_SPEECH_INPU  T_MINIMUM_LENGTH_MILLIS, 20000) // 20 שניות
         }
 
         speechRecognizer.setRecognitionListener(object : RecognitionListener {
@@ -113,11 +121,11 @@ object SpeakCommandsManager : RecognitionListener {
                 matches?.firstOrNull()?.let { partialCommand ->
 
                     handleVoiceCommand(partialCommand.trim())
-                    /*            if (partialCommand.contains("המילה_הרצויה", ignoreCase = true)) {
+                    *//*            if (partialCommand.contains("המילה_הרצויה", ignoreCase = true)) {
                                     // המילה זוהתה – נעצור הקשבה ונעביר לטיפול
                                     speechRecognizer.stopListening()
                                     handleVoiceCommand(partialCommand)
-                                }*/
+                                }*//*
                 }
             }
 
@@ -131,7 +139,107 @@ object SpeakCommandsManager : RecognitionListener {
             "SimplyCall - SpeakCommandsManager",
             "Started Listening"
         )
+    }*/
+
+    /*   הפונקציה שאתה קורא מבחוץ  */
+    fun startListenToVoiceCommands(context: Context) {
+      //  if (!speechCommandsEnabled) return
+        lastCommand.postValue("")
+
+        /* 1. יצירת מופע SpeechRecognizer – אם אפשר, מנוע On-device  */
+        speechRecognizer =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                SpeechRecognizer.createOnDeviceSpeechRecognizer(context)
+            } else {
+                SpeechRecognizer.createSpeechRecognizer(context)
+            }
+
+        /* 2. Intent אחד שנשמור לכל הסשנים  */
+        val listenIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            putExtra(RecognizerIntent.EXTRA_PROMPT, "Please say voice command")
+
+            // טיפים שהוספנו:
+            putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)          // לקבל טקסט תוך-כדי
+            putExtra("android.speech.extra.DICTATION_MODE", true)          // מאריך סשן בחלק מהמכשירים
+            putExtra("android.speech.extra.PREFER_OFFLINE", true)          // אופליין אם זמין
+            putExtra("android.speech.extra.SUPPRESS_BEEP", true)           // מבטל ביפ (יצרנים מסוימים)
+            putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 20_000)
+        }
+
+        /* 3. מאזין קבוע עם RESTART פנימי */
+        speechRecognizer.setRecognitionListener(object : RecognitionListener {
+
+            // 3.a אירועים בסיסיים
+            override fun onReadyForSpeech(params: Bundle?) {}
+            override fun onBeginningOfSpeech() {}
+            override fun onRmsChanged(rms: Float) {}
+            override fun onBufferReceived(buffer: ByteArray?) {}
+
+            // 3.b סוף דיבור – מפעילים מחדש
+            override fun onEndOfSpeech() = restartListening()
+
+            // 3.c תוצאה מלאה
+            override fun onResults(results: Bundle) {
+                results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                    ?.firstOrNull()
+                    ?.let { handleVoiceCommand(it) }
+
+                restartListening()
+            }
+
+            // 3.d תוצאות חלקיות
+            override fun onPartialResults(partialResults: Bundle) {
+                partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                    ?.firstOrNull()
+                    ?.let { handleVoiceCommand(it.trim()) }
+            }
+
+            // 3.e שגיאות – רובן נפתרות ע״י RESTART
+            override fun onError(errorCode: Int) {
+                when (errorCode) {
+                    SpeechRecognizer.ERROR_NO_MATCH,
+                    SpeechRecognizer.ERROR_SPEECH_TIMEOUT ->
+                        restartListening()
+
+                    SpeechRecognizer.ERROR_RECOGNIZER_BUSY ->
+                        handler.postDelayed({ restartListening() }, 500)
+
+                    else ->
+                        Log.e("SimplyCall-SR", "Fatal error $errorCode")
+                }
+            }
+
+            override fun onEvent(eventType: Int, params: Bundle?) {}
+        })
+
+        speechRecognizer.startListening(listenIntent)
+        Log.d("SimplyCall-SR", "Started Listening")
     }
+
+    /*  🅒 פונקציית עזר להפעלה-מחדש */
+    private fun restartListening() {
+        handler.postDelayed({
+            try {
+                speechRecognizer.cancel()          // מבטל סשן קודם לגמרי
+                speechRecognizer.startListening(listenIntent)
+            } catch (e: Exception) {
+                Log.e("SimplyCall-SR", "restart failed: ${e.message}")
+            }
+        }, restartDelay)
+    }
+
+    /*  🅓 ניקוי משאבים – לקרוא ב-onDestroy()  */
+    fun stopVoiceCommands() {
+        if (::speechRecognizer.isInitialized) {
+            speechRecognizer.stopListening()
+            speechRecognizer.cancel()
+            speechRecognizer.destroy()
+        }
+    }
+
 
     override fun onResults(results: Bundle?) {
         val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)

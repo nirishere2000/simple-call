@@ -3,6 +3,8 @@ package com.nirotem.simplecall.statuses
 import android.Manifest.permission.CALL_PHONE
 import android.Manifest.permission.READ_CALL_LOG
 import android.Manifest.permission.READ_CONTACTS
+import android.Manifest.permission.RECORD_AUDIO
+import android.Manifest.permission.SEND_SMS
 import android.app.Activity
 import android.app.AppOpsManager
 import android.app.role.RoleManager
@@ -30,6 +32,7 @@ import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
 //import timber.log.Timber
 
 object PermissionsStatus {
+    private val REQUEST_RECORD_AUDIO_PERMISSION = 1
     var defaultDialerPermissionGranted = MutableLiveData(false) // Needed to answer calls
     var readContactsPermissionGranted =
         MutableLiveData(false) // Needed for Contacts screen and Add New Contact and Gold Number and Call Details/History
@@ -300,6 +303,33 @@ object PermissionsStatus {
         }
         catch (e: Exception) {
             Log.e("Permission Status - checkForPermissionsChangesAndShowToastIfChanged", "Error (${e.message})")
+        }
+    }
+
+    fun askForRecordPermission(context: Context, activity: Activity) {
+        try {
+            if (ActivityCompat.checkSelfPermission(context, RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activity, arrayOf(RECORD_AUDIO), REQUEST_RECORD_AUDIO_PERMISSION)
+            }
+        }
+        catch (e: Exception) {
+            Log.e("Permission Status - askForRecordPermission", "Error (${e.message})")
+            suggestManualPermissionGrant(context)
+        }
+    }
+
+    fun askForSMSPermission(context: Context, activity: Activity) {
+        try {
+            if (ContextCompat.checkSelfPermission(context, SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activity, arrayOf(SEND_SMS), 1)
+            }
+
+
+        }
+        catch (e: Exception) {
+            Log.e("Permission Status - askForSMSPermission", "Error (${e.message})")
+            suggestManualPermissionGrant(context)
         }
     }
 }

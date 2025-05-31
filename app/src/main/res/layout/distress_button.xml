@@ -27,7 +27,7 @@
         android:autoSizeMinTextSize="12sp"
         android:autoSizeMaxTextSize="20sp"
         android:autoSizeStepGranularity="1sp"
-        android:text="@string/emergency_distress_button_caption"
+        android:text="@string/quick_call_button_caption"
         android:textSize="22sp"
         android:textColor="@android:color/white"
         android:textStyle="bold"/>

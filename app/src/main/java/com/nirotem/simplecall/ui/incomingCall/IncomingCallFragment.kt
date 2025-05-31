@@ -18,11 +18,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.nirotem.simplecall.CallActivity
 import com.nirotem.simplecall.OngoingCall
 import com.nirotem.simplecall.R
+import com.nirotem.simplecall.VoiceApiImpl
 import com.nirotem.simplecall.databinding.FragmentIncomingCallBinding
 import com.nirotem.simplecall.helpers.DBHelper.getContactIdFromPhoneNumber
 import com.nirotem.simplecall.helpers.DBHelper.getContactPhoto
 import com.nirotem.simplecall.managers.SoundPoolManager
-import com.nirotem.simplecall.managers.SpeakCommandsManager
+import com.nirotem.simplecall.managers.VoiceApi
 
 class IncomingCallFragment : Fragment() {
     private lateinit var textViewPhoneNumber: TextView
@@ -32,6 +33,7 @@ class IncomingCallFragment : Fragment() {
     private var _binding: FragmentIncomingCallBinding? = null
     private val handler = Handler(Looper.getMainLooper())
     private var updateTitleRunnable: Runnable? = null
+    private val voiceApi: VoiceApi = VoiceApiImpl()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -63,10 +65,11 @@ class IncomingCallFragment : Fragment() {
         Log.d("SimplyCall - IncomingCallFragment", "Fragment loaded")
 
         try {
-            if (SpeakCommandsManager.speechCommandsEnabled) {
-                SpeakCommandsManager.lastCommand.value = ""
-                SpeakCommandsManager.lastCommand.observe(viewLifecycleOwner) {
-                    val spokeCommand = SpeakCommandsManager.lastCommand.value
+
+            if (voiceApi.isEnabled()) {
+                voiceApi.updateLastCommand("")
+                voiceApi.getLastCommand().observe(viewLifecycleOwner) {
+                    val spokeCommand = voiceApi.getLastCommand().value
 
                     if (spokeCommand != null) {
                         val indexAnswerLocal = spokeCommand.lastIndexOf(getString(R.string.answer_capital))
@@ -84,7 +87,7 @@ class IncomingCallFragment : Fragment() {
                         }
                     }
                 }
-                SpeakCommandsManager.startListen(root.context)
+                voiceApi.startListenToVoiceCommands(root.context)
             }
         }
         catch (e: Exception) {
@@ -192,7 +195,7 @@ class IncomingCallFragment : Fragment() {
         //Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show()
         Log.d("SimplyCall - IncomingCallFragment", "callRejected button clicked - Fragment")
         userReacted = true
-        SpeakCommandsManager.stopListen()
+        voiceApi.stopListen()
         //  stopRingtone(true)
 
         OngoingCall.hangup()
@@ -238,7 +241,7 @@ class IncomingCallFragment : Fragment() {
      //   stopRingtone(true)
         try {
             updateTitleRunnable?.let { handler.removeCallbacks(it) }
-            SpeakCommandsManager.stopListen()
+            voiceApi.stopListen()
         }
         catch (e: Exception) {
             Log.e("SimplyCall - IncomingCallFragment", "onDestroyView 1 - got error (${e.message})")

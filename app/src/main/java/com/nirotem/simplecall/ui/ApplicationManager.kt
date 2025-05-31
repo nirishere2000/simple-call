@@ -4,7 +4,7 @@ import android.app.Application
 
 import android.util.Log
 import android.widget.Toast
-import com.example.callsreportslibrary.SharedPreferencesCache.CALLS_REPORT_LIB_SHARED_PREF_APP
+//import com.example.callsreportslibrary.SharedPreferencesCache.CALLS_REPORT_LIB_SHARED_PREF_APP
 import com.nirotem.simplecall.CallActivity
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.EASY_CALL_AND_ANSWER_SHARED_FILE
@@ -61,7 +61,7 @@ class ApplicationManager : Application() {
     private fun clearAllPreferences() {
         listOf(
             EASY_CALL_AND_ANSWER_SHARED_FILE,
-            CALLS_REPORT_LIB_SHARED_PREF_APP
+            /*CALLS_REPORT_LIB_SHARED_PREF_APP*/
         ).forEach {
             getSharedPreferences(it, MODE_PRIVATE).edit().clear().apply()
         }

@@ -136,7 +136,7 @@ object MessageBoxManager {
             snackBar = Snackbar.make(baseView, message, length)
             val snackBarView = snackBar.view
             val textView = snackBarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
-            textView.maxLines = 8 // מבטיח שהטקסט לא ייחתך
+            textView.maxLines = 10 // מבטיח שהטקסט לא ייחתך
 
             val isRTL = context.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
@@ -159,6 +159,16 @@ object MessageBoxManager {
             textView.compoundDrawablePadding = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 8f, context.resources.displayMetrics
             ).toInt()
+
+            // --- הוספת סגירה בלחיצה על הסנאקבר ---
+            snackBarView.setOnClickListener {
+                snackBar!!.dismiss()
+            }
+
+            // --- הוספת סגירה בלחיצה על הפרגמנט (baseView) ---
+            baseView.setOnClickListener {
+                snackBar!!.dismiss()
+            }
 
             snackBar.show()
         }

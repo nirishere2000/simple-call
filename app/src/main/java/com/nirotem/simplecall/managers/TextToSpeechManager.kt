@@ -3,11 +3,9 @@ package com.nirotem.simplecall.managers
 import android.content.Context
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
-import com.nirotem.simplecall.R
-import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
-import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
+//import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
+
 import java.util.*
-import java.util.concurrent.LinkedBlockingQueue
 
 object TextToSpeechManager : TextToSpeech.OnInitListener {
 
@@ -18,11 +16,14 @@ object TextToSpeechManager : TextToSpeech.OnInitListener {
     private var welcomeText = ""
     private val speechQueue = ArrayDeque<String>() // תור לשמירה על טקסטים לדיבור
     private var isSpeaking = false // דגל שמעיד אם הדיבור פעיל
+    private var initOnSpeechCompleteCallBack: () -> Unit = {}
 
-    fun init(context: Context) {
-        textToSpeech = TextToSpeech(context.applicationContext, this)
-        welcomeTitle = context.getString(R.string.welcome_to_easy_call_and_answer_premium)
-        welcomeText = context.getString(R.string.welcome_text_speech)
+
+    fun initSpeech(context: Context, welcomeTitlePrm: String, welcomeTextPrm: String, onFinished: () -> Unit = {}) {
+        welcomeTitle = welcomeTitlePrm // context.getString(R.string.welcome_to_easy_call_and_answer_premium)
+        welcomeText = welcomeTextPrm // context.getString(R.string.welcome_text_speech)
+        initOnSpeechCompleteCallBack = onFinished
+        textToSpeech = TextToSpeech(context, this)
     }
 
     override fun onInit(status: Int) {
@@ -31,17 +32,35 @@ object TextToSpeechManager : TextToSpeech.OnInitListener {
             setLanguage(currentLocale)
             isTtsReady = true
 
-            if (isPremium && welcomeTitle.isNotEmpty()) {
-                addToQueueAndSpeak(welcomeTitle)
-            }
+            when {
+                // יש כותרת וגם טקסט - שרשרת מלאה
+                welcomeTitle.isNotEmpty() && welcomeText.isNotEmpty() -> {
+                    addToQueueAndSpeak(welcomeTitle) {
+                        addToQueueAndSpeak(welcomeText, initOnSpeechCompleteCallBack)
+                    }
+                }
 
-            if (isPremium && welcomeText.isNotEmpty()) {
-                addToQueueAndSpeak(welcomeText)
+                // רק כותרת
+                welcomeTitle.isNotEmpty() -> {
+                    addToQueueAndSpeak(welcomeTitle, initOnSpeechCompleteCallBack)
+                }
+
+                // אין כותרת - רק טקסט
+                welcomeText.isNotEmpty() -> {
+                    addToQueueAndSpeak(welcomeText, initOnSpeechCompleteCallBack)
+                }
+
+                // כלום? נפעיל מיד את הקול-בק החיצוני
+                else -> initOnSpeechCompleteCallBack()
             }
         }
     }
 
-    fun speak(text: String): Boolean {
+    /** @param text        הטקסט להקראה
+    * @param onFinished  פעולה שתופעל כש-TTS סיים (ברירת-המחדל: כלום)
+    * @return            true אם ההקראה התחילה בהצלחה
+    */
+    fun speak(text: String, onFinished: () -> Unit = {}): Boolean {
         try {
             if (isTtsReady && !isSpeaking) { // רק אם לא מדברים כרגע
                 val utteranceId = UUID.randomUUID().toString()
@@ -62,6 +81,7 @@ object TextToSpeechManager : TextToSpeech.OnInitListener {
                     override fun onDone(utteranceId: String?) {
                         // קרה כאשר הקריאה הסתיימה
                         onSpeechFinished()  // הפעל את הפונקציה ברגע שהדיבור מסתיים
+                        onFinished()
                     }
 
                     override fun onError(utteranceId: String?) {
@@ -78,25 +98,25 @@ object TextToSpeechManager : TextToSpeech.OnInitListener {
 
     fun speakOrSnackBar(text: String, context: Context) {
         if (!speak(text)) {
-            showLongSnackBar(context, text)
+           // com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar(context, text)
         }
     }
 
-    fun addToQueueAndSpeak(text: String) {
+    fun addToQueueAndSpeak(text: String, onFinished: () -> Unit = {}) {
         // הוספת הטקסט לתור
         speechQueue.add(text)
         if (!isSpeaking) {
             // אם אין דיבור פעיל, נתחיל לקרוא את הטקסט הראשון בתור
-            speakNextInQueue()
+            speakNextInQueue(onFinished)
         }
     }
 
-    private fun speakNextInQueue() {
+    private fun speakNextInQueue(onFinished: () -> Unit = {}) {
         // אם יש טקסט בתור, נקרוא אותו
         if (speechQueue.isNotEmpty()) {
             val nextText = speechQueue.poll() // קח את הטקסט הראשון בתור
             if (nextText != null) {
-                speak(nextText)
+                speak(nextText, onFinished)
             }
         }
     }

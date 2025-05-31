@@ -64,12 +64,12 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadUpdatedTourCaption
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadUserAlreadyOpenedTermsAndConditionsOnce
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadUserApprovedTermsAndConditions
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallsReportContact
+/*import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallsReportContact
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallsReportIsGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallsReportNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveContactsMapping
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumber
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumberContact
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumberContact*/
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumberContact
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveUpdatedTourCaption
@@ -325,14 +325,14 @@ class TourFragment : Fragment() {
             ),
             TourPage(
                 key = "distressButton",
-                title = getString(R.string.tour_distress_button_caption),
-                description = getString(R.string.tour_distress_button_description),
+                title = getString(R.string.tour_quick_call_button_caption),
+                description = getString(R.string.tour_quick_call_button_description),
                 imageRes = null,
                 secondImageRes = null,
                 isXiaomiOnly = false,
                 isPremium = false
             ),
-            TourPage(
+/*            TourPage(
                 key = "callsReport",
                 title = getString(R.string.tour_call_report_title),
                 description =  getString(R.string.tour_call_report_description),
@@ -340,7 +340,7 @@ class TourFragment : Fragment() {
                 secondImageRes = null,
                 isPremium = true,
                 isXiaomiOnly = false
-            ),
+            ),*/
             TourPage( // special page - only for Xiaomi
                 key = "xiaomiOverlayDraw",
                 title = getString(R.string.tour_overlay_draw_permission),
@@ -1633,7 +1633,7 @@ class TourFragment : Fragment() {
         }
     }
 
-    private fun handleCallsReportSelectContact(context: Context, selectedContactName: Any?) {
+/*    private fun handleCallsReportSelectContact(context: Context, selectedContactName: Any?) {
         // We should not have blocked number and we could create an error is we'll return unknown here
         if (selectedContactName != null) {
             val selectedCallsReportContact = selectedContactName.toString()
@@ -1649,7 +1649,7 @@ class TourFragment : Fragment() {
             saveCallsReportNumber(null, context)
             saveCallsReportIsGoldNumber(false, context)
         }
-    }
+    }*/
 
     private fun handleGoldNumberSelectContact(context: Context, selectedContactName: Any?) {
         /*        val selectedGoldPhoneNumber = if (PermissionsStatus.defaultDialerPermissionGranted.value == true)

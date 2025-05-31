@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     >
 
     <LinearLayout
@@ -30,6 +29,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/commandAnswerCalls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Say: 'Answer'"
@@ -50,10 +50,10 @@
 
 
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/commandToggleAnswer"
+            android:id="@+id/command_toggle_answer_calls"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:thumbTint="@color/white"
             android:trackTint="@color/teal_200" />
     </LinearLayout>
@@ -81,6 +81,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/commandGoldNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Say: 'Call Gold Number'"
@@ -99,10 +100,10 @@
         </LinearLayout>
 
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/commandToggleGoldNumber"
+            android:id="@+id/command_toggle_gold_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:thumbTint="@color/white"
             android:trackTint="@color/teal_200" />
     </LinearLayout>
@@ -130,6 +131,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/commandDistressButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Say: 'Call Emergency'"
@@ -147,10 +149,10 @@
         </LinearLayout>
 
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/commandToggleDistress"
+            android:id="@+id/command_toggle_distress_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:thumbTint="@color/white"
             android:trackTint="@color/teal_200" />
     </LinearLayout>
@@ -177,6 +179,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/commandUnlockDevice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Say: 'Unlock Device'"
@@ -194,10 +197,10 @@
         </LinearLayout>
 
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/commandToggleUnlock"
+            android:id="@+id/command_toggle_unlock_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:thumbTint="@color/white"
             android:trackTint="@color/teal_200" />
     </LinearLayout>

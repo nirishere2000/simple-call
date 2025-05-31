@@ -145,8 +145,7 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/starts_with_speaker_on_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -170,8 +169,7 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/should_answer_all_calls_auto_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -195,8 +193,7 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/allow_call_waiting_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -220,8 +217,7 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/show_keypad_inside_calls_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -243,7 +239,7 @@
                     android:shadowDx="0"
                     android:shadowDy="0"
                     android:shadowRadius="10"
-                    android:text="@string/tour_distress_button_caption"
+                    android:text="@string/tour_quick_call_button_caption"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -307,7 +303,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
-
                             android:text="@string/time_allowed_to_cancel_seconds"
                             android:textColor="#CBCBCE"
                             android:textSize="18sp"
@@ -321,7 +316,7 @@
 
                         android:background="@drawable/rounded_spinner_background"
                         android:padding="8dp"
-                        android:visibility="visible" />
+                        android:visibility="invisible" />
 
                 </LinearLayout>
 
@@ -346,8 +341,7 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/distress_also_send_sms_to_gold_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -358,21 +352,20 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/increasing_siren_on_distress_label"
+                        android:id="@+id/distress_number_should_also_talk_label"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
-                        android:text="@string/if_call_was_not_answered_play_increasing_siren_sound_after_15_seconds"
+                        android:text="@string/play_voice_call_for_help_if_call_unanswered"
                         android:textColor="#CBCBCE"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/increasing_siren_on_distress_toggle"
+                        android:id="@+id/distress_number_should_also_talk_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
 
@@ -385,7 +378,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="12dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -422,59 +415,74 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/show_custom_lock_screen_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_marginVertical="15dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/show_whatsapp_messages_on_lock_label"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:text="@string/show_whatsapp_messages_on_lock_screen"
-                        android:textColor="#CBCBCE"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/show_whatsapp_messages_on_lock_toggle"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/when_screen_is_unlocked_behaviour_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
+                            android:text="@string/settings_when_lock_screen_is_unlocked"
+                            android:textColor="#CBCBCE"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/when_screen_is_unlocked_behaviour_spinner"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                         />
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/rounded_spinner_background"
+                        android:padding="8dp" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/select_app_to_launch_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_marginVertical="12dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/show_sms_messages_on_lock_label"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:text="@string/show_sms_messages_on_lock_screen"
-                        android:textColor="#CBCBCE"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/show_sms_messages_on_lock_toggle"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/select_app_to_launch_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/select_app_to_launch"
+                            android:textColor="#CBCBCE"
+                            android:layout_marginBottom="6dp"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/select_app_to_launch_spinner"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                         />
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/rounded_spinner_background"
+                        android:padding="8dp" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <!-- קבוצה D -->
@@ -537,8 +545,7 @@
                             <com.google.android.material.switchmaterial.SwitchMaterial
                                 android:id="@+id/should_send_report_toggle"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                 />
+                                android:layout_height="wrap_content" />
                         </LinearLayout>
 
                         <Spinner
@@ -683,8 +690,7 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/send_only_exceptional_data_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
 
@@ -715,8 +721,7 @@
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/call_is_exceptional_if_not_between_toggle"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                             />
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -784,8 +789,7 @@
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/number_is_exceptional_if_appears_more_than_toggle"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                             />
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
 
                     <Spinner
@@ -820,8 +824,7 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/number_is_exceptional_if_its_not_contact_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -832,7 +835,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="12dp"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -912,11 +915,10 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/allow_opening_whatsapp_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:id="@+id/settingsCommandsContainerLayout"
                     android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
@@ -927,6 +929,51 @@
 
                     <include
                         android:id="@+id/commandsContainer"
+                        layout="@layout/fragment_voice_commands"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </LinearLayout>-->
+            </LinearLayout>
+
+            <!-- קבוצה VOICE -->
+            <LinearLayout
+                android:id="@+id/groupVoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:letterSpacing="0.05"
+                    android:shadowColor="#881425AF"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="10"
+                    android:text="@string/voice"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:id="@+id/settingsCommandsContainerLayoutVoiceGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <include
+                        android:id="@+id/commandsContainerVoiceGroup"
                         layout="@layout/fragment_voice_commands"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -1060,7 +1107,7 @@
 
         <!-- טאב D -->
         <LinearLayout
-            android:id="@+id/tabReports"
+            android:id="@+id/tabVoice"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -1069,6 +1116,32 @@
             android:focusable="true"
             android:gravity="center"
             android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/microphone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/voice"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- טאב D -->
+        <LinearLayout
+            android:id="@+id/tabReports"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#2A1A1A"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="24dp"

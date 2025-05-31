@@ -15,11 +15,9 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.ContactsContract
 import android.telecom.Call
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,7 +28,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -60,9 +57,7 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsInMiddleOfCal
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldCallsStartWithSpeakerOn
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldShowKeypadInActiveCall
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
-import com.nirotem.simplecall.managers.SpeakCommandsManager
 import com.nirotem.simplecall.ui.waitingCall.WaitingCallFragment
-import kotlin.text.lastIndexOf
 
 class ActiveCallFragment : Fragment() {
     private lateinit var textViewPhoneNumber: TextView

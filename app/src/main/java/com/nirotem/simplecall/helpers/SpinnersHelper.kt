@@ -2,8 +2,16 @@ package com.nirotem.simplecall.helpers
 
 import android.Manifest.permission.READ_PHONE_STATE
 import android.content.Context
+import android.view.LayoutInflater
 
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.Spinner
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.nirotem.lockscreen.managers.SharedPreferencesCache.CustomAppInfo
 
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.helpers.DBHelper.fetchContacts
@@ -63,5 +71,42 @@ object SpinnersHelper {
 
 
         return contactsWithEmergencyNumbers
+    }
+
+    fun setupSpinnerWithIcons(spinner: Spinner, appList: List<CustomAppInfo>) {
+        val adapter = object : ArrayAdapter<CustomAppInfo>(
+            spinner.context,
+            R.layout.spinner_item_with_icon,
+            appList
+        ) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return createCustomView(position, convertView, parent, isDropDown = false)
+            }
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                return createCustomView(position, convertView, parent, isDropDown = true)
+            }
+
+            private fun createCustomView(position: Int, convertView: View?, parent: ViewGroup, isDropDown: Boolean): View {
+                val inflater = LayoutInflater.from(context)
+                val view = convertView ?: inflater.inflate(R.layout.spinner_item_with_icon, parent, false)
+
+                val icon = view.findViewById<ImageView>(R.id.app_icon)
+                val name = view.findViewById<TextView>(R.id.app_name)
+
+                val appInfo = getItem(position)
+
+                icon.setImageDrawable(appInfo?.icon)
+                name.text = appInfo?.appName
+
+                if (isDropDown) {
+                    view.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                }
+
+                return view
+            }
+        }
+
+        spinner.adapter = adapter
     }
 }

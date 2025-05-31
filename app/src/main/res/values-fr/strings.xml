@@ -39,147 +39,147 @@
     <string name="call_entered_number">Appeler le numéro saisi</string>
     <string name="contact_name">Nom du contact</string>
     <string name="enter_phone_number">Saisissez le numéro de téléphone</string>
-     <string name="close_window">Fermer la fenêtre</string>
-     <string name="birthday_capital">Anniversaire</string>
-     <string name="name_capital">Nom</string>
-     <string name="remind_me_capital">Rappelle-moi</string>
-     <string name="remind_me_about_this_birthday">Rappelle-moi cet anniversaire</string>
-     <string name="save_contact">Enregistrer le contact</string>
-      <string name="enter_contact_name">Saisissez le nom du contact</string>
-     <string name="please_select_birthdate">Veuillez sélectionner une date d\'anniversaire</string>
-     <string name="birthdate_capital">Date de naissance</string>
-     <string name="approve_read_phone_calls_log">Approuver l\'accès au journal des appels</string>
-     <string name="no_permissions_caption">Pas d\'autorisations</string>
-     <string name="approve_view_calls_permission">Approuver l\'accès aux appels</string>
+    <string name="close_window">Fermer la fenêtre</string>
+    <string name="birthday_capital">Anniversaire</string>
+    <string name="name_capital">Nom</string>
+    <string name="remind_me_capital">Rappelle-moi</string>
+    <string name="remind_me_about_this_birthday">Rappelle-moi cet anniversaire</string>
+    <string name="save_contact">Enregistrer le contact</string>
+    <string name="enter_contact_name">Saisissez le nom du contact</string>
+    <string name="please_select_birthdate">Veuillez sélectionner une date d\'anniversaire</string>
+    <string name="birthdate_capital">Date de naissance</string>
+    <string name="approve_read_phone_calls_log">Approuver l\'accès au journal des appels</string>
+    <string name="no_permissions_caption">Pas d\'autorisations</string>
+    <string name="approve_view_calls_permission">Approuver l\'accès aux appels</string>
     <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">L\'application a besoin de la permission d\'afficher les appels pour les montrer</string>
-      <string name="the_application_needs_contacts_permission_in_order_to_show_the_contacts_screen">L\'application a besoin de la permission d\'accéder aux contacts pour afficher l\'écran des contacts</string>
-     <string name="permissions_capital">Autorisations</string>
-     <string name="help_capital">Aide</string>
-     <string name="tour_capital">Visite guidée</string>
-     <string name="favourites_capital">Favoris</string>
-     <string name="outgoing_calls_are_currently_restricted_to_favorites">Les appels sortants sont actuellement limités aux favoris. Pour activer cette fonction, allez dans Paramètres. Vous pouvez toujours appeler votre numéro d\'or, s\'il est défini.</string>
-     <string name="outgoing_calls_are_currently_restricted_to_contacts">Les appels sortants sont actuellement limités aux contacts. Pour activer cette fonction, allez dans Paramètres. Vous pouvez toujours appeler votre numéro d\'or, s\'il est défini.</string>
-     <string name="outgoing_calls_are_currently_turned_off">Les appels sortants sont actuellement désactivés. Pour activer cette fonction, allez dans Paramètres. Vous pouvez toujours appeler votre numéro d\'or, s\'il est défini.</string>
-     <string name="no_permission_to_view_contacts_caption">Pas d\'autorisation pour afficher les contacts</string>
-     <string name="no_permission_to_view_calls">Pas d\'autorisation pour afficher les appels</string>
-     <string name="approve_contacts_permission">Autoriser l\'accès aux contacts</string>
-     <string name="yes_skip_capital">Oui, passer</string>
-     <string name="no_set_as_default_capital">Non, définir par défaut</string>
-     <string name="set_default_phone_app">Définir l\'application téléphonique par défaut</string>
-     <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">Pour gérer les appels, il est important de définir l\'application comme application téléphonique par défaut (surtout en cas d\'urgence). Êtes-vous sûr de vouloir ignorer cette étape?</string>
-     <string name="cancel_capital">Annuler</string>
-     <string name="battery_saver">Exécution en arrière-plan</string>
-     <string name="for_the_app_to_run_smoothly_in_the_background_please_set_the_battery_saver">Pour que l\'application fonctionne correctement en arrière-plan, réglez l\'économiseur de batterie sur « Aucune restriction » dans les paramètres d\'arrière-plan via « Infos de l\'application » dans les Paramètres. L\'application est conçue pour une consommation minimale de batterie.</string>
-     <string name="yes_open_app_info">Oui, ouvrir les informations de l\'application</string>
-     <string name="permission_needed_capital_p">Permission requise</string>
-     <string name="ask_permission_capital_a">Accorder la permission</string>
-     <string name="close_capital">Fermer</string>
-     <string name="no_open_settings">Non, ouvrir les paramètres</string>
-     <string name="open_settings">Ouvrir les paramètres</string>
-     <string name="ok">OK</string>
-       <string name="permission_could_not_be_granted_automatically">Bien que la permission n\'ait pas pu être accordée automatiquement, vous pouvez toujours l\'activer en accédant aux paramètres de votre appareil.</string>
-       <string name="app_must_have_permission_to_make_calls">Pour passer des appels, l\'application doit disposer des autorisations appropriées.</string>
-       <string name="to_add_a_gold_number_please_go_to_settings">Pour ajouter un numéro d\'or, veuillez accéder aux Paramètres en appuyant sur le menu à trois points.</string>
-       <string name="permission_was_granted_reloading">La permission a été accordée ! Rechargement…</string>
-       <string name="view_contacts_permission_was_granted_reloading">L\'accès aux contacts a été accordé ! Rechargement…</string>
-       <string name="gold_number">Numéro d\'or</string>
-       <string name="select_gold_number">Sélectionnez le numéro d\'or</string>
-       <string name="in_order_to_read_contacts_details_app_must_have_the_proper_permission">Pour lire les détails des contacts, l\'application doit disposer des autorisations appropriées.</string>
-       <string name="in_order_to_view_calls_history_the_application_must_have_the_proper_permission">Pour afficher l\'historique des appels, l\'application doit disposer des autorisations appropriées.</string>
-       <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">L\'application a besoin de l\'autorisation Téléphone pour passer des appels, y compris les appels d\'urgence via le Bouton d\'Urgence.</string>
-        <string name="enable_application_to_show_call_screen_from_background">Autoriser l\'application à afficher l\'écran d\'appel en arrière-plan</string>
-        <string name="enable_application_to_show_call_screen_from_background_text">Veuillez accéder à « Autres autorisations » et y accorder l\'accès à « Afficher des fenêtres contextuelles en arrière-plan ».</string>
-        <string name="go_to_settings">Aller aux paramètres</string>
-        <string name="xiaomi_custom_permission_settings_explain">Pour permettre à l\'application d\'afficher des fenêtres contextuelles pendant les appels, l\'autorisation « Dessiner par-dessus les autres applications » doit être activée dans les paramètres de votre appareil. Sur les téléphones Xiaomi, vous devrez activer cette permission manuellement. Appuyez ci-dessous pour ouvrir les paramètres et l\'activer.</string>
-        <string name="default_dialer_permission_was_not_granted_but_needed">L\'autorisation de l\'application téléphonique par défaut (Composeur) n\'a pas été accordée, mais elle est nécessaire pour que l\'application puisse répondre aux appels.</string>
-         <string name="make_calls_permission_was_denied_but_needed">Permission téléphone refusée, requise pour appels (surtout urgences).</string>
-         <string name="make_calls_permission_was_granted">L\'autorisation pour passer des appels a été accordée !</string>
-         <string name="read_contacts_permission_was_granted">L\'autorisation pour lire les contacts a été accordée !</string>
-         <string name="read_contacts_permission_was_denied_but_needed">L\'autorisation pour lire les contacts a été refusée, mais elle est nécessaire pour afficher les contacts.</string>
-         <string name="calls_log_permission_was_granted">L\'accès au journal des appels a été accordé !</string>
-         <string name="calls_log_permission_was_denied_but_needed">L\'accès au journal des appels a été refusé, mais il est nécessaire pour afficher les appels.</string>
-         <string name="overlay_draw_permission_was_granted">L\'autorisation de superposition a été accordée !</string>
-         <string name="to_filter_blocked_contacts_please_set_the_app_as_default">Pour filtrer les contacts bloqués, définissez l\'application par défaut.</string>
-         <string name="unknown_blocked">Inconnu (bloqué)</string>
-         <string name="unknown_because_of_error">Inconnu (erreur)</string>
-          <string name="unknown_capital">Inconnu</string>
-          <string name="it_is_important_to_set_the_app_as_default">Il est important de définir l\'application comme application téléphonique par défaut afin qu\'elle puisse gérer les appels pour vous (surtout en cas d\'urgence).</string>
-          <string name="settings_screen_is_already_opened">L\'écran des paramètres est déjà ouvert</string>
-          <string name="permissions_screen_is_already_opened">L\'écran des autorisations est déjà ouvert</string>
-          <string name="tour_welcome">Bienvenue !</string>
-    <string name="tour_welcome_text">L\'application a été conçue spécialement pour faciliter la réception des appels entrants – en appuyant sur un gros bouton au lieu de glisser sur l\'appareil, une action qui peut parfois être difficile pour les personnes âgées.\n\nLes membres de la famille peuvent modifier les paramètres selon leurs besoins, rendant l\'application à la fois simple et puissante avec de nombreuses fonctionnalités.\n\nGérez facilement vos appels et utilisez l\'application comme composeur principal pour recevoir et gérer les appels.</string>
-          <string name="tour_powerful_features">Fonctionnalités puissantes</string>
+    <string name="the_application_needs_contacts_permission_in_order_to_show_the_contacts_screen">L\'application a besoin de la permission d\'accéder aux contacts pour afficher l\'écran des contacts</string>
+    <string name="permissions_capital">Autorisations</string>
+    <string name="help_capital">Aide</string>
+    <string name="tour_capital">Visite guidée</string>
+    <string name="favourites_capital">Favoris</string>
+    <string name="outgoing_calls_are_currently_restricted_to_favorites">Les appels sortants sont actuellement limités aux favoris. Pour activer cette fonction, allez dans Paramètres. Vous pouvez toujours appeler votre numéro d\'or, s\'il est défini.</string>
+    <string name="outgoing_calls_are_currently_restricted_to_contacts">Les appels sortants sont actuellement limités aux contacts. Pour activer cette fonction, allez dans Paramètres. Vous pouvez toujours appeler votre numéro d\'or, s\'il est défini.</string>
+    <string name="outgoing_calls_are_currently_turned_off">Les appels sortants sont actuellement désactivés. Pour activer cette fonction, allez dans Paramètres. Vous pouvez toujours appeler votre numéro d\'or, s\'il est défini.</string>
+    <string name="no_permission_to_view_contacts_caption">Pas d\'autorisation pour afficher les contacts</string>
+    <string name="no_permission_to_view_calls">Pas d\'autorisation pour afficher les appels</string>
+    <string name="approve_contacts_permission">Autoriser l\'accès aux contacts</string>
+    <string name="yes_skip_capital">Oui, passer</string>
+    <string name="no_set_as_default_capital">Non, définir par défaut</string>
+    <string name="set_default_phone_app">Définir l\'application téléphonique par défaut</string>
+    <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">Pour gérer les appels, il est important de définir l\'application comme application téléphonique par défaut (surtout en cas d\'urgence). Êtes-vous sûr de vouloir ignorer cette étape?</string>
+    <string name="cancel_capital">Annuler</string>
+    <string name="battery_saver">Exécution en arrière-plan</string>
+    <string name="for_the_app_to_run_smoothly_in_the_background_please_set_the_battery_saver">Pour que l\'application fonctionne correctement en arrière-plan, réglez l\'économiseur de batterie sur « Aucune restriction » dans les paramètres d\'arrière-plan via « Infos de l\'application » dans les Paramètres. L\'application est conçue pour une consommation minimale de batterie.</string>
+    <string name="yes_open_app_info">Oui, ouvrir les informations de l\'application</string>
+    <string name="permission_needed_capital_p">Permission requise</string>
+    <string name="ask_permission_capital_a">Accorder la permission</string>
+    <string name="close_capital">Fermer</string>
+    <string name="no_open_settings">Non, ouvrir les paramètres</string>
+    <string name="open_settings">Ouvrir les paramètres</string>
+    <string name="ok">OK</string>
+    <string name="permission_could_not_be_granted_automatically">Bien que la permission n\'ait pas pu être accordée automatiquement, vous pouvez toujours l\'activer en accédant aux paramètres de votre appareil.</string>
+    <string name="app_must_have_permission_to_make_calls">Pour passer des appels, l\'application doit disposer des autorisations appropriées.</string>
+    <string name="to_add_a_gold_number_please_go_to_settings">Pour ajouter un numéro d\'or, veuillez accéder aux Paramètres en appuyant sur le menu à trois points.</string>
+    <string name="permission_was_granted_reloading">La permission a été accordée ! Rechargement…</string>
+    <string name="view_contacts_permission_was_granted_reloading">L\'accès aux contacts a été accordé ! Rechargement…</string>
+    <string name="gold_number">Numéro d\'or</string>
+    <string name="select_gold_number">Sélectionnez le numéro d\'or</string>
+    <string name="in_order_to_read_contacts_details_app_must_have_the_proper_permission">Pour lire les détails des contacts, l\'application doit disposer des autorisations appropriées.</string>
+    <string name="in_order_to_view_calls_history_the_application_must_have_the_proper_permission">Pour afficher l\'historique des appels, l\'application doit disposer des autorisations appropriées.</string>
+    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">L\'application a besoin de l\'autorisation Téléphone pour passer des appels, y compris des appels rapides via le bouton d\'appel rapide.</string>
+    <string name="enable_application_to_show_call_screen_from_background">Autoriser l\'application à afficher l\'écran d\'appel en arrière-plan</string>
+    <string name="enable_application_to_show_call_screen_from_background_text">Veuillez accéder à « Autres autorisations » et y accorder l\'accès à « Afficher des fenêtres contextuelles en arrière-plan ».</string>
+    <string name="go_to_settings">Aller aux paramètres</string>
+    <string name="xiaomi_custom_permission_settings_explain">Pour permettre à l\'application d\'afficher des fenêtres contextuelles pendant les appels, l\'autorisation « Dessiner par-dessus les autres applications » doit être activée dans les paramètres de votre appareil. Sur les téléphones Xiaomi, vous devrez activer cette permission manuellement. Appuyez ci-dessous pour ouvrir les paramètres et l\'activer.</string>
+    <string name="default_dialer_permission_was_not_granted_but_needed">L\'autorisation de l\'application téléphonique par défaut (Composeur) n\'a pas été accordée, mais elle est nécessaire pour que l\'application puisse répondre aux appels.</string>
+    <string name="make_calls_permission_was_denied_but_needed">Permission téléphone refusée, requise pour appels (surtout urgences).</string>
+    <string name="make_calls_permission_was_granted">L\'autorisation pour passer des appels a été accordée !</string>
+    <string name="read_contacts_permission_was_granted">L\'autorisation pour lire les contacts a été accordée !</string>
+    <string name="read_contacts_permission_was_denied_but_needed">L\'autorisation pour lire les contacts a été refusée, mais elle est nécessaire pour afficher les contacts.</string>
+    <string name="calls_log_permission_was_granted">L\'accès au journal des appels a été accordé !</string>
+    <string name="calls_log_permission_was_denied_but_needed">L\'accès au journal des appels a été refusé, mais il est nécessaire pour afficher les appels.</string>
+    <string name="overlay_draw_permission_was_granted">L\'autorisation de superposition a été accordée !</string>
+    <string name="to_filter_blocked_contacts_please_set_the_app_as_default">Pour filtrer les contacts bloqués, définissez l\'application par défaut.</string>
+    <string name="unknown_blocked">Inconnu (bloqué)</string>
+    <string name="unknown_because_of_error">Inconnu (erreur)</string>
+    <string name="unknown_capital">Inconnu</string>
+    <string name="it_is_important_to_set_the_app_as_default">Il est important de définir l\'application comme application téléphonique par défaut afin qu\'elle puisse gérer les appels pour vous (surtout en cas d\'urgence).</string>
+    <string name="settings_screen_is_already_opened">L\'écran des paramètres est déjà ouvert</string>
+    <string name="permissions_screen_is_already_opened">L\'écran des autorisations est déjà ouvert</string>
+    <string name="tour_welcome">Bienvenue !</string>
+    <string name="tour_welcome_text">L\'application a été conçue spécialement pour faciliter la gestion et la passation d\'appels ainsi que la réception des appels entrants – en appuyant sur un gros bouton au lieu de glisser sur l\'appareil, une action qui peut parfois être difficile pour les personnes âgées.\n\nLes membres de la famille peuvent modifier les paramètres selon leurs besoins, rendant l\'application à la fois simple et puissante avec de nombreuses fonctionnalités.\n\nGérez facilement vos appels et utilisez l\'application comme composeur principal pour recevoir et gérer les appels.</string>
+    <string name="tour_powerful_features">Fonctionnalités puissantes</string>
     <string name="tour_powerful_features_text">L\'application comprend un large éventail de fonctionnalités utiles, spécialement adaptées aux seniors, pour gérer tous types d\'appels, entrants et sortants.\n\nL\'application est conçue pour être très simple et facile à utiliser, mais vous pouvez toujours modifier les paramètres facilement en appuyant sur le menu en haut de l\'écran (appuyez sur les trois points).</string>
-          <string name="tour_customizable_settings">Paramètres personnalisables</string>
-    <string name="tour_customizable_settings_text">Nous vous recommandons de demander l\'aide d\'amis proches et de membres de votre famille pour vous aider à modifier les paramètres de l\'application et à l\'adapter de manière optimale à vos besoins.\n\nSur l\'écran des paramètres, vous pouvez choisir qui est autorisé à vous appeler, par exemple, uniquement les contacts, uniquement les favoris ou uniquement les numéros non bloqués.\n\nIl est également possible de restreindre les appels sortants si nécessaire. Il est important de se rappeler que le bouton d\'urgence et le numéro doré fonctionneront même si les appels sortants sont restreints ou bloqués, car ils dépendent uniquement de l\'autorisation téléphonique de l\'appareil (pour les appels sortants).\n\nDe plus, vous pouvez choisir de lancer les appels avec le haut-parleur activé, d\'ordonner à l\'application de répondre automatiquement aux appels, et d\'accéder à des options supplémentaires qui aideront l\'application à fonctionner de la manière la plus adaptée et optimale pour vous.</string>
+    <string name="tour_customizable_settings">Paramètres personnalisables</string>
+    <string name="tour_customizable_settings_text">Sur l\'écran des paramètres, vous pouvez choisir qui est autorisé à vous appeler, par exemple, uniquement les contacts, uniquement les favoris ou uniquement les numéros non bloqués.\n\nIl est également possible de restreindre les appels sortants si nécessaire. Il est important de se rappeler que le bouton d\'urgence et le numéro doré fonctionneront même si les appels sortants sont restreints ou bloqués, car ils dépendent uniquement de l\'autorisation téléphonique de l\'appareil (pour les appels sortants).\n\nDe plus, vous pouvez choisir de lancer les appels avec le haut-parleur activé, d\'ordonner à l\'application de répondre automatiquement aux appels, et d\'accéder à des options supplémentaires qui aideront l\'application à fonctionner de la manière la plus adaptée et optimale pour vous.</string>
     <string name="tour_auto_answer">Réponse automatique</string>
-    <string name="tour_auto_answer_text">Il est possible d\'activer la réponse automatique aux appels entrants dans l\'application, sans avoir à appuyer sur le bouton de réponse lorsqu\'un nouvel appel est reçu.\n\nL\'application permet à l\'appareil de sonner deux ou trois fois, afin que vous soyez averti de l\'appel entrant.\n\nLa réponse automatique peut être activée uniquement pour certains contacts, en les sélectionnant sur l\'écran des contacts puis en cochant la case correspondante.\n\nL\'utilisation de cette option peut prêter à confusion pour ceux qui ne sont pas habitués à la réponse automatique, et son utilisation est entièrement de la responsabilité de l\'utilisateur.</string>
-     <string name="tour_gold_number">Numéro d\'or</string>
+    <string name="tour_auto_answer_text">Il est possible d\'activer la réponse automatique aux appels entrants dans l\'application, sans avoir à appuyer sur le bouton de réponse lorsqu\'un nouvel appel est reçu.\n\nL\'application permet à l\'appareil de sonner plusieurs fois, afin que vous soyez averti(e) de l\'appel entrant.\n\nLa réponse automatique peut être activée uniquement pour certains contacts, en les sélectionnant sur l\'écran des contacts puis en cochant la case correspondante.\n\nL\'utilisation de cette option peut prêter à confusion pour ceux qui ne sont pas habitués à la réponse automatique, et son utilisation est entièrement de la responsabilité de l\'utilisateur.</string>
+    <string name="tour_gold_number">Numéro d\'or</string>
     <string name="tour_gold_number_text">Vous pouvez définir un numéro doré pour passer des appels rapides et faciles à un contact proche, en utilisant l\'écran des paramètres, puis en l\'appelant via l\'onglet Contacts ou le composeur.\n\nL\'appel vers le numéro doré est possible même lorsque les appels sortants sont restreints dans l\'application, car il nécessite uniquement l\'autorisation d\'appel.\n\nNote : Il est possible de définir un numéro d\'urgence comme numéro doré, mais il est important de noter que l\'application n\'est pas destinée aux situations d\'urgence, mais plutôt à rendre vos appels simples et agréables.</string>
-     <string name="tour_next_button">Suivant</string>
-      <string name="tour_prev_button">Précédent</string>
-     <string name="tour_done">TERMINÉ</string>
-     <string name="tour_open_app_info_button">Ouvrir les informations de l\'application</string>
-     <string name="tour_set_as_default_app_button">Définir comme application par défaut</string>
-     <string name="tour_app_permissions">Autorisations de l\'application</string>
+    <string name="tour_next_button">Suivant</string>
+    <string name="tour_prev_button">Précédent</string>
+    <string name="tour_done">TERMINÉ</string>
+    <string name="tour_open_app_info_button">Ouvrir les informations de l\'application</string>
+    <string name="tour_set_as_default_app_button">Définir comme application par défaut</string>
+    <string name="tour_app_permissions">Autorisations de l\'application</string>
     <string name="tour_app_permissions_text">Pour que l\'application puisse gérer les appels et y répondre, même lorsqu\'elle n\'est pas ouverte, il faut la définir comme l\'application par défaut pour la gestion des appels.\n\nDe plus, pour que l\'application fonctionne correctement, elle a besoin d\'autorisations supplémentaires :\n\1. Téléphone (pour passer des appels).\n\2. Ouverture de nouvelles fenêtres en arrière-plan (affichage au-dessus d\'autres applications).\n3. Accès aux contacts.\n4. Consultation du journal des appels.\n5. Autorisation d\'affichage sur l\'écran de verrouillage.\n\nL\'application utilisera les autorisations reçues uniquement pour gérer correctement les appels.</string>
-     <string name="tour_permissions_screen">Écran des autorisations</string>
+    <string name="tour_permissions_screen">Écran des autorisations</string>
     <string name="tour_permissions_screen_text">La plupart des autorisations de l\'appareil requises pour l\'application sont accordées automatiquement lors de l\'installation du logiciel ou lors de la définition de l\'application comme application par défaut pour les appels.\n\nLes autorisations peuvent toujours être demandées via l\'écran des autorisations de l\'application, en utilisant le menu en haut de l\'écran (le menu des "trois points").\n\nIl est recommandé de demander de l\'aide à des membres de la famille et à des personnes proches, si nécessaire.</string>
-     <string name="tour_overlay_draw_permission">Autorisation de superposition</string>
+    <string name="tour_overlay_draw_permission">Autorisation de superposition</string>
     <string name="tour_overlay_draw_permission_text">En raison des paramètres d\'autorisations spécifiques aux appareils Xiaomi, il n\'est pas possible de détecter automatiquement l\'autorisation d\'affichage au-dessus des autres applications, nécessaire pour le fonctionnement en arrière-plan lors des appels entrants.\n\nVous pouvez activer cette autorisation manuellement via l\'écran des autorisations de l\'application.\n\nNote : Les images sont fournies à titre d\'illustration uniquement, et la configuration ainsi que l\'apparence des autorisations peuvent varier d\'un appareil à l\'autre.</string>
-     <string name="tour_default_app">Application par défaut</string>
+    <string name="tour_default_app">Application par défaut</string>
     <string name="tour_default_app_text">Pour que l\'application fonctionne correctement et gère les appels, elle doit être définie comme application par défaut pour la gestion des appels.\n\nSans cette autorisation, l\'application ne pourra pas répondre aux appels lorsqu\'elle n\'est pas ouverte et active.</string>
-     <string name="tour_almost_done">Presque terminé !</string>
+    <string name="tour_almost_done">Presque terminé !</string>
     <string name="tour_almost_done_text">Pour que l\'application fonctionne correctement en arrière-plan et puisse répondre aux appels, assurez-vous qu\'aucune restriction ne soit appliquée à son fonctionnement dans les paramètres de l\'appareil.\n\nVeuillez définir le mode économie de batterie de l\'application sur "Non restreint". Cela peut être configuré via les "Détails de l\'application" dans le menu des paramètres, sous les paramètres de fond.\n\nNotez que les paramètres d\'économie de batterie peuvent varier selon les appareils. L\'essentiel est de s\'assurer que l\'appareil ne limite pas le fonctionnement de l\'application.\n\nL\'application est conçue pour une consommation minimale de batterie.</string>
-     <string name="tour_all_done">Terminé !</string>
+    <string name="tour_all_done">Terminé !</string>
     <string name="tour_all_done_text">Tout est prêt! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions Générales et les Conditions d\'Utilisation de l\'application.\n\nEnsuite, appuyez sur le bouton Terminer pour compléter la visite guidée et ouvrir l\'écran des Paramètres, où vous pourrez personnaliser l\'application selon vos besoins et profiter de toutes ses capacités.\n\nVous pouvez toujours revoir la visite guidée depuis le menu à trois points en haut de l\'écran de l\'application.</string>
     <string name="tour_skip_button">Passer</string>
-     <string name="tour_start_button">Terminer</string>
+    <string name="tour_start_button">Terminer</string>
     <string name="tour_finished_but_without_default_app_and_battery_saver">Tout est prêt! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions Générales de l\'application.\n\nVeuillez noter : vous pouvez commencer à utiliser l\'application, mais sans la définir comme application téléphonique par défaut et sans lever les restrictions de batterie, elle ne pourra pas gérer les appels correctement.\n\nAppuyez sur le bouton "Terminer" pour compléter la visite guidée et ouvrir l\'écran des Paramètres, où vous pourrez personnaliser l\'application selon vos besoins et profiter de toutes ses possibilités\nVous pouvez toujours revoir la visite guidée depuis le menu à trois points en haut de l\'écran de l\'application.</string>
     <string name="tour_finished_but_without_default_app">Tout est prêt! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions Générales de l\'application.\n\nVeuillez noter : vous pouvez commencer à utiliser l\'application, mais sans la définir comme application téléphonique par défaut, elle ne pourra pas gérer les appels correctement.\n\nAppuyez sur le bouton "Terminer" pour compléter la visite guidée et ouvrir l\'écran des Paramètres, où vous pourrez personnaliser l\'application selon vos besoins et profiter de toutes ses possibilités.\nVous pouvez toujours revoir la visite guidée depuis le menu à trois points.</string>
     <string name="tour_finished_but_without_battery_saver">Tout est prêt! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions Générales de l\'application.\n\nVeuillez noter : vous pouvez commencer à utiliser l\'application, mais sans lever les restrictions de batterie, elle ne pourra pas gérer les appels correctement.\n\nAppuyez sur le bouton "Terminer" pour compléter la visite guidée et ouvrir l\'écran des Paramètres, où vous pourrez personnaliser l\'application selon vos besoins et profiter de toutes ses possibilités.\nVous pouvez toujours revoir la visite guidée depuis le menu à trois points.</string>
-    <string name="tour_finished_but_without_phone_permission">Tout est prêt! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions Générales de l\'application.\n\nVeuillez noter : le bouton d\'urgence ne fonctionnera pas correctement sans l\'autorisation Téléphone.\n\nAppuyez sur le bouton "Terminer" pour compléter la visite guidée et ouvrir l\'écran des Paramètres, où vous pourrez accorder les autorisations, personnaliser l\'application selon vos besoins et profiter de toutes ses possibilités.\nVous pouvez toujours revoir la visite guidée depuis le menu à trois points.</string>
-    <string name="tour_finished_but_without_phone_permission_and_default_app">Tout est prêt! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions Générales de l\'application.\n\nVeuillez noter : le bouton d\'urgence ne fonctionnera pas correctement sans l\'autorisation Téléphone.\nDe plus, sans définir l\'application comme application téléphonique par défaut, elle ne pourra pas gérer correctement les appels.\n\nAppuyez sur le bouton "Terminer" pour compléter la visite guidée et ouvrir l\'écran des Paramètres, où vous pourrez accorder les autorisations, personnaliser l\'application selon vos besoins et profiter de toutes ses possibilités.\nVous pouvez toujours revoir la visite guidée depuis le menu à trois points.</string>
-    <string name="tour_finished_but_without_phone_permission_and_battery_saver">Tout est prêt! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions Générales de l\'application.\n\nVeuillez noter : le bouton d\'urgence ne fonctionnera pas correctement sans l\'autorisation Téléphone.\nDe plus, sans lever les restrictions de batterie, l\'application ne pourra pas gérer correctement les appels.\n\nAppuyez sur le bouton "Terminer" pour compléter la visite guidée et ouvrir l\'écran des Paramètres, où vous pourrez accorder les autorisations, personnaliser l\'application selon vos besoins et profiter de toutes ses possibilités.\nVous pouvez toujours revoir la visite guidée depuis le menu à trois points.</string>
-    <string name="tour_finished_but_without_phone_permission_and_default_app_and_battery_saver">Tout est prêt! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions Générales de l\'application.\n\nVeuillez noter : le bouton d\'urgence ne fonctionnera pas correctement sans l\'autorisation Téléphone.\nDe plus, sans définir l\'application comme application téléphonique par défaut et sans lever les restrictions de batterie, elle ne pourra pas gérer correctement les appels.\n\nAppuyez sur le bouton "Terminer" pour compléter la visite guidée et ouvrir l\'écran des Paramètres, où vous pourrez accorder les autorisations, personnaliser l\'application selon vos besoins et profiter de toutes ses possibilités.\nVous pouvez toujours revoir la visite guidée depuis le menu à trois points.</string>
+    <string name="tour_finished_but_without_phone_permission">Vous êtes prêt ! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions générales de l\'application.\n\nVeuillez noter : le bouton d\'appel rapide ne fonctionnera pas correctement sans l\'autorisation Téléphone.\n\nAppuyez sur le bouton Terminer pour compléter la visite et ouvrir l\'écran Paramètres, où vous pourrez accorder des autorisations, personnaliser l\'application selon vos besoins et commencer à profiter de toutes ses fonctionnalités.\n\nVous pouvez toujours revoir la visite depuis le menu à trois points en haut de l\'écran de l\'application.</string>
+    <string name="tour_finished_but_without_phone_permission_and_default_app">Vous êtes prêt ! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions générales de l\'application.\n\nVeuillez noter : le bouton d\'appel rapide ne fonctionnera pas correctement sans l\'autorisation Téléphone.\nDe plus, sans définir l\'application comme application téléphonique par défaut, elle ne pourra pas gérer les appels correctement.\n\nAppuyez sur le bouton Terminer pour compléter la visite et ouvrir l\'écran Paramètres, où vous pourrez accorder des autorisations, personnaliser l\'application selon vos besoins et commencer à profiter de toutes ses fonctionnalités.\n\nVous pouvez toujours revoir la visite depuis le menu à trois points en haut de l\'écran de l\'application.</string>
+    <string name="tour_finished_but_without_phone_permission_and_battery_saver">Vous êtes prêt ! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions générales de l\'application.\n\nVeuillez noter : le bouton d\'appel rapide ne fonctionnera pas correctement sans l\'autorisation Téléphone.\nDe plus, sans désactiver les restrictions de batterie, l\'application ne pourra pas gérer les appels correctement.\n\nAppuyez sur le bouton Terminer pour compléter la visite et ouvrir l\'écran Paramètres, où vous pourrez accorder des autorisations, personnaliser l\'application selon vos besoins et commencer à profiter de toutes ses fonctionnalités.\n\nVous pouvez toujours revoir la visite depuis le menu à trois points en haut de l\'écran de l\'application.</string>
+    <string name="tour_finished_but_without_phone_permission_and_default_app_and_battery_saver">Vous êtes prêt ! Avant de terminer, prenez un moment pour lire et accepter les Conditions générales de l\'application.\n\nVeuillez noter : le bouton d\'appel rapide ne fonctionnera pas correctement sans l\'autorisation Téléphone.\nDe plus, sans définir l\'application comme application téléphonique par défaut et sans désactiver les restrictions de batterie, elle ne pourra pas gérer les appels correctement.\n\nAppuyez sur Terminer pour finaliser la visite et ouvrir les paramètres, où vous pourrez accorder les autorisations, personnaliser l\'application selon vos besoins et profiter pleinement de toutes ses fonctionnalités.\n\nVous pouvez toujours revoir la visite via le menu à trois points en haut de l\'écran de l\'application.</string>
     <string name="tour_battery_saver_skipped_but_needed_alert">Pour que l\'application fonctionne sans accroc en arrière-plan, il est important de régler l\'économiseur de batterie sur « Aucune restriction ». L\'application est conçue pour une consommation minimale de batterie. Êtes-vous sûr de vouloir passer cette étape ?</string>
-     <string name="no_open_app_info">Non, ouvrir les informations de l\'application</string>
-     <string name="tour_overlay_draw_permission_skipped_alert_title">Autorisation de superposition</string>
-     <string name="tour_overlay_draw_permission_skipped_alert_text">Pour que l\'application puisse gérer les appels en arrière-plan (lorsqu\'elle n\'est pas chargée), il est important d\'accorder l\'autorisation « Dessiner par-dessus ». Êtes-vous sûr de vouloir passer cette étape ?</string>
-     <string name="request_overlay_permission_alert_title">Activer l\'affichage de l\'écran d\'appel en arrière-plan</string>
-     <string name="request_overlay_permission_alert_text">Veuillez accéder à « Autres autorisations » et y accorder l\'accès à « Afficher des fenêtres contextuelles en arrière-plan ».</string>
-     <string name="permissions_screen_title_text">L\'application a besoin de quelques autorisations pour gérer vos appels de manière claire et conviviale.</string>
-     <string name="permissions_screen_default_phone_app_caption">Application téléphonique par défaut</string>
-  <string name="permissions_screen_default_phone_app_text">L\'application doit devenir le gestionnaire d\'appels par défaut (application téléphonique par défaut) afin de pouvoir recevoir et passer des appels. Accorder cette autorisation déclenche généralement l\'accès aux contacts, au téléphone et aux appels.</string>
-      <string name="permissions_screen_default_phone_app_button">Définir comme application téléphonique par défaut</string>
-      <string name="permission_granted_capital_p">Permission accordée</string>
-      <string name="permissions_screen_overlay_draw_permission_caption">Autorisation pour superposer</string>
-      <string name="permissions_screen_overlay_draw_permission_text">L\'autorisation « Dessiner par-dessus » est requise pour l\'affichage de l\'écran d\'appel en arrière-plan, lorsque l\'application n\'est pas chargée, pour les appels entrants et actifs.</string>
-      <string name="favorites">Favoris</string>
-      <string name="settings_allow_incoming_calls">Autoriser les appels entrants</string>
-      <string name="settings_allow_outgoing_calls">Autoriser les appels sortants</string>
-      <string name="start_calls_with_speaker_turned_on">Démarrer les appels avec le haut-parleur activé</string>
-      <string name="settings_automatically_answer_calls">Répondre automatiquement aux appels</string>
-      <string name="settings_show_keypad_in_active_call">Afficher le clavier pendant les appels</string>
-     <string name="allow_launching_contacts_whatsapp">Autoriser le lancement du WhatsApp des contacts</string>
-     <string name="settings_allow_call_waiting">Autoriser l\'attente d\'appel</string>
-     <string name="permissions_approve_overlay_draw_permission_button">Approuver l\'autorisation de superposition</string>
-     <string name="permissions_phone_call_permission_caption">Autorisation d\'appels</string>
-     <string name="permissions_phone_call_permission_caption_text">L\'application a besoin de l\'autorisation d\'appels téléphoniques afin de passer des appels en tant qu\'application téléphonique par défaut.</string>
-     <string name="permissions_approve_phone_permission">Approuver l\'autorisation d\'appels</string>
-     <string name="permissions_contacts_permission_caption">Autorisation d\'accès aux contacts</string>
-     <string name="permissions_contacts_permission_text">L\'application a besoin de l\'autorisation d\'accéder aux contacts afin de vous permettre d\'appeler des contacts existants et d\'afficher les contacts des numéros de téléphone.</string>
-     <string name="permissions_approve_contacts_permission_caption">Approuver l\'autorisation d\'accès aux contacts</string>
-     <string name="permissions_calls_log_permission_caption">Autorisation d\'accès au journal des appels</string>
-     <string name="permissions_calls_log_permission_text">L\'application a besoin de l\'autorisation d\'accéder au journal des appels pour afficher les appels récents entrants et sortants.</string>
-     <string name="permissions_calls_log_permission_button">Approuver l\'autorisation pour le journal des appels</string>
-     <string name="permissions_enable_call_phone_permission_manually_title1">pour passer des appels</string>
-     <string name="permissions_enable_call_phone_permission_manually_title2">Téléphone</string>
-     <string name="permissions_enable_contacts_permission_manually_title1">pour les contacts</string>
-     <string name="permissions_enable_contacts_permission_manually_title2">Contacts</string>
-     <string name="permissions_enable_calls_log_permission_manually_title1">pour afficher les appels</string>
-     <string name="permissions_enable_calls_log_permission_manually_title2">Journaux d\'appels</string>
-     <string name="how_to_enable_standard_permission_manually_text">
+    <string name="no_open_app_info">Non, ouvrir les informations de l\'application</string>
+    <string name="tour_overlay_draw_permission_skipped_alert_title">Autorisation de superposition</string>
+    <string name="tour_overlay_draw_permission_skipped_alert_text">Pour que l\'application puisse gérer les appels en arrière-plan (lorsqu\'elle n\'est pas chargée), il est important d\'accorder l\'autorisation « Dessiner par-dessus ». Êtes-vous sûr de vouloir passer cette étape ?</string>
+    <string name="request_overlay_permission_alert_title">Activer l\'affichage de l\'écran d\'appel en arrière-plan</string>
+    <string name="request_overlay_permission_alert_text">Veuillez accéder à « Autres autorisations » et y accorder l\'accès à « Afficher des fenêtres contextuelles en arrière-plan ».</string>
+    <string name="permissions_screen_title_text">L\'application a besoin de quelques autorisations pour gérer vos appels de manière claire et conviviale.</string>
+    <string name="permissions_screen_default_phone_app_caption">Application téléphonique par défaut</string>
+    <string name="permissions_screen_default_phone_app_text">L\'application doit devenir le gestionnaire d\'appels par défaut (application téléphonique par défaut) afin de pouvoir recevoir et passer des appels. Accorder cette autorisation déclenche généralement l\'accès aux contacts, au téléphone et aux appels.</string>
+    <string name="permissions_screen_default_phone_app_button">Définir comme application téléphonique par défaut</string>
+    <string name="permission_granted_capital_p">Permission accordée</string>
+    <string name="permissions_screen_overlay_draw_permission_caption">Autorisation pour superposer</string>
+    <string name="permissions_screen_overlay_draw_permission_text">L\'autorisation « Dessiner par-dessus » est requise pour l\'affichage de l\'écran d\'appel en arrière-plan, lorsque l\'application n\'est pas chargée, pour les appels entrants et actifs.</string>
+    <string name="favorites">Favoris</string>
+    <string name="settings_allow_incoming_calls">Autoriser les appels entrants</string>
+    <string name="settings_allow_outgoing_calls">Autoriser les appels sortants</string>
+    <string name="start_calls_with_speaker_turned_on">Démarrer les appels avec le haut-parleur activé</string>
+    <string name="settings_automatically_answer_calls">Répondre automatiquement aux appels</string>
+    <string name="settings_show_keypad_in_active_call">Afficher le clavier pendant les appels</string>
+    <string name="allow_launching_contacts_whatsapp">Autoriser le lancement du WhatsApp des contacts</string>
+    <string name="settings_allow_call_waiting">Autoriser l\'attente d\'appel</string>
+    <string name="permissions_approve_overlay_draw_permission_button">Approuver l\'autorisation de superposition</string>
+    <string name="permissions_phone_call_permission_caption">Autorisation d\'appels</string>
+    <string name="permissions_phone_call_permission_caption_text">L\'application a besoin de l\'autorisation d\'appels téléphoniques afin de passer des appels en tant qu\'application téléphonique par défaut.</string>
+    <string name="permissions_approve_phone_permission">Approuver l\'autorisation d\'appels</string>
+    <string name="permissions_contacts_permission_caption">Autorisation d\'accès aux contacts</string>
+    <string name="permissions_contacts_permission_text">L\'application a besoin de l\'autorisation d\'accéder aux contacts afin de vous permettre d\'appeler des contacts existants et d\'afficher les contacts des numéros de téléphone.</string>
+    <string name="permissions_approve_contacts_permission_caption">Approuver l\'autorisation d\'accès aux contacts</string>
+    <string name="permissions_calls_log_permission_caption">Autorisation d\'accès au journal des appels</string>
+    <string name="permissions_calls_log_permission_text">L\'application a besoin de l\'autorisation d\'accéder au journal des appels pour afficher les appels récents entrants et sortants.</string>
+    <string name="permissions_calls_log_permission_button">Approuver l\'autorisation pour le journal des appels</string>
+    <string name="permissions_enable_call_phone_permission_manually_title1">pour passer des appels</string>
+    <string name="permissions_enable_call_phone_permission_manually_title2">Téléphone</string>
+    <string name="permissions_enable_contacts_permission_manually_title1">pour les contacts</string>
+    <string name="permissions_enable_contacts_permission_manually_title2">Contacts</string>
+    <string name="permissions_enable_calls_log_permission_manually_title1">pour afficher les appels</string>
+    <string name="permissions_enable_calls_log_permission_manually_title2">Journaux d\'appels</string>
+    <string name="how_to_enable_standard_permission_manually_text">
          📞 ** Comment activer manuellement l\'autorisation pour %1$s dans l\'application **
 
          Il semble que l\'autorisation pour %1$s ait été refusée pour cette application.
@@ -205,90 +205,90 @@
 
          Si vous avez besoin d\'aide, demandez à quelqu\'un de vous guider ou contactez le support.
       </string>
-     <string name="enable_permission_manually_caption">Activer l\'autorisation</string>
-     <string name="enable_permission_manually_ok_button">Compris !</string>
-     <string name="navigation_fragment_info_label">Info</string>
-     <string name="from_no_one_captial_f">De personne</string>
-     <string name="from_favorites_only_captial_f">Uniquement des favoris</string>
-     <string name="from_contacts_only_captial_f">Uniquement des contacts</string>
-     <string name="from_identified_only_captial_f">Uniquement identifiés</string>
-     <string name="from_everyone_capital_f">De tout le monde</string>
-     <string name="to_no_one_captial_t">À personne</string>
-     <string name="to_favorites_only_captial_t">Uniquement aux favoris</string>
-     <string name="to_contacts_only_captial_t">Uniquement aux contacts</string>
-     <string name="to_everyone_capital_t">À tout le monde</string>
-     <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">
+    <string name="enable_permission_manually_caption">Activer l\'autorisation</string>
+    <string name="enable_permission_manually_ok_button">Compris !</string>
+    <string name="navigation_fragment_info_label">Info</string>
+    <string name="from_no_one_captial_f">De personne</string>
+    <string name="from_favorites_only_captial_f">Uniquement des favoris</string>
+    <string name="from_contacts_only_captial_f">Uniquement des contacts</string>
+    <string name="from_identified_only_captial_f">Uniquement identifiés</string>
+    <string name="from_everyone_capital_f">De tout le monde</string>
+    <string name="to_no_one_captial_t">À personne</string>
+    <string name="to_favorites_only_captial_t">Uniquement aux favoris</string>
+    <string name="to_contacts_only_captial_t">Uniquement aux contacts</string>
+    <string name="to_everyone_capital_t">À tout le monde</string>
+    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">
          L\’application ne peut pas ajouter des contacts à la liste du numéro d’or car l\’autorisation d’accès aux contacts n’a pas été accordée.
      </string>
-     <string name="make_call_permission_granted_try_again">
+    <string name="make_call_permission_granted_try_again">
          L\’autorisation pour passer des appels a été accordée ! Veuillez réessayer.
      </string>
-     <string name="read_contacts_permission_granted_try_again">
+    <string name="read_contacts_permission_granted_try_again">
          L\’autorisation de lire les contacts a été accordée ! Veuillez réessayer.
      </string>
-     <string name="grant_capital">Accorder</string>
-     <string name="app_is_not_default_dialer_when_make_call_alert">
+    <string name="grant_capital">Accorder</string>
+    <string name="app_is_not_default_dialer_when_make_call_alert">
          L\’application n’est pas l\’application téléphonique par défaut. Veuillez la sélectionner comme par défaut ou passer l’appel via une autre application.
      </string>
-     <string name="view_calls_permission_was_granted_reloading">
+    <string name="view_calls_permission_was_granted_reloading">
          L\’autorisation pour afficher les appels a été accordée ! Rechargement…
      </string>
-     <string name="read_contacts_permission_was_granted_reloading">
+    <string name="read_contacts_permission_was_granted_reloading">
          L\’autorisation de lire les contacts a été accordée ! Rechargement…
      </string>
-     <string name="default_dialer_permission_granted_try_again">
+    <string name="default_dialer_permission_granted_try_again">
          L\’application a été définie comme application téléphonique par défaut ! Veuillez réessayer.
      </string>
-     <string name="auto_answer_capital_auto">Réponse\nautomatique</string>
-     <string name="incoming_capital">Entrant</string>
-     <string name="outgoing_capital">Sortant</string>
-     <string name="missed_capital">Manqués</string>
-     <string name="rejected_capital">Rejetés</string>
-     <string name="blocked_capital">Bloqués</string>
-     <string name="end_captial">Terminer</string>
-     <string name="speaker_capital">Haut-parleur</string>
-     <string name="keypad_capital">Clavier</string>
-     <string name="to_view_calls_history_application_must_have_permission">
+    <string name="auto_answer_capital_auto">Réponse\nautomatique</string>
+    <string name="incoming_capital">Entrant</string>
+    <string name="outgoing_capital">Sortant</string>
+    <string name="missed_capital">Manqués</string>
+    <string name="rejected_capital">Rejetés</string>
+    <string name="blocked_capital">Bloqués</string>
+    <string name="end_captial">Terminer</string>
+    <string name="speaker_capital">Haut-parleur</string>
+    <string name="keypad_capital">Clavier</string>
+    <string name="to_view_calls_history_application_must_have_permission">
          Pour voir l’historique des appels, l\’application doit disposer de l\’autorisation adéquate.
      </string>
-     <string name="contacts_permission_was_not_granted_showing_calls_list_with_phone_numbers_only">
+    <string name="contacts_permission_was_not_granted_showing_calls_list_with_phone_numbers_only">
          L\’autorisation d’accéder aux contacts n’a pas été accordée. Seule la liste d’appels avec numéros de téléphone est affichée.
      </string>
-     <string name="to_display_the_calls_contacts_application_must_have_permission">
+    <string name="to_display_the_calls_contacts_application_must_have_permission">
          Pour afficher les contacts des appels, l\’application doit disposer de l\’autorisation adéquate.
      </string>
-     <string name="permission_was_granted">Permission accordée !</string>
+    <string name="permission_was_granted">Permission accordée !</string>
     <string name="contacts_permission_was_not_granted_cannot_show_contact_details">Impossible d\’afficher le nom du contact car l\’autorisation d\’accéder aux contacts n\’est pas accordée. Veuillez activer cette autorisation dans les paramètres de l\’application ou du dispositif.</string>
-     <string name="cannot_continue_since_permission_was_not_approved">
+    <string name="cannot_continue_since_permission_was_not_approved">
          Impossible de continuer car l\’autorisation n’a pas été approuvée.
      </string>
-     <string name="no_contacts_found_to_display">Aucun contact trouvé.</string>
+    <string name="no_contacts_found_to_display">Aucun contact trouvé.</string>
     <string name="no_favorites_contacts_found_to_display">Dans les paramètres, le mode "Favoris uniquement" est sélectionné pour les appels sortants, mais aucun contact favori n\’est défini sur votre appareil. Pour afficher le reste des contacts, vous pouvez soit les ajouter aux favoris, soit modifier les paramètres dans l\’application (ouvrez le menu des paramètres de l\’application via le menu des trois points et changez l\’option des appels sortants en "Contacts" ou "Tous").</string>
-     <string name="no_calls_found">Aucun appel trouvé.</string>
-     <string name="a_serious_error_has_occurred_call_cannot_continue">
+    <string name="no_calls_found">Aucun appel trouvé.</string>
+    <string name="a_serious_error_has_occurred_call_cannot_continue">
          Une erreur grave s\’est produite, l\’appel ne peut pas continuer.
      </string>
-     <string name="error_is_capital">L\’erreur est : (%1$s).</string>
-     <string name="serious_error_capital">Erreur grave lors de l\’appel</string>
-     <string name="active_call_capital">Appel actif</string>
-     <string name="click_to_go_back_to_call">Touchez pour revenir à l\’appel</string>
-     <string name="permission_denied_capital">Permission refusée</string>
-     <string name="the_app_cannot_answer_calls_from_the_background_without_permission">
+    <string name="error_is_capital">L\’erreur est : (%1$s).</string>
+    <string name="serious_error_capital">Erreur grave lors de l\’appel</string>
+    <string name="active_call_capital">Appel actif</string>
+    <string name="click_to_go_back_to_call">Touchez pour revenir à l\’appel</string>
+    <string name="permission_denied_capital">Permission refusée</string>
+    <string name="the_app_cannot_answer_calls_from_the_background_without_permission">
          L\’application ne peut pas répondre aux appels en arrière-plan sans l\’autorisation « Afficher des fenêtres contextuelles en arrière-plan ». Veuillez accorder cette autorisation pour que l\’application fonctionne correctement.
      </string>
-     <string name="the_app_needs_permission_to_make_calls_please_grant">
+    <string name="the_app_needs_permission_to_make_calls_please_grant">
          L\’application a besoin de la permission pour passer des appels. Veuillez accorder cette permission ou ouvrir les autorisations.
      </string>
-     <string name="please_grant_default_dialer_permission_so_app_can_handle_calls">
+    <string name="please_grant_default_dialer_permission_so_app_can_handle_calls">
          Veuillez accorder la permission de l\’application téléphonique par défaut afin que cette application puisse gérer vos appels, assurant ainsi une expérience d’appel fluide et intégrée.
      </string>
-     <string name="it_looks_like_the_app_could_not_load_call_screen_in_background">
+    <string name="it_looks_like_the_app_could_not_load_call_screen_in_background">
          Il semble que l\’application n’ait pas pu charger l’écran d’appel en arrière-plan lors de votre dernier appel. Pour répondre aux appels lorsque l\’application est fermée, veuillez accorder l\’autorisation « Afficher des fenêtres contextuelles en arrière-plan ».
      </string>
-     <string name="app_is_missing_overlay_draw_permission">
+    <string name="app_is_missing_overlay_draw_permission">
          L\’application ne dispose pas de l\’autorisation pour superposer.
      </string>
-     <string name="gold_capital">Or</string>
+    <string name="gold_capital">Or</string>
     <string name="missing_call_phone_permission">Autorisation Téléphone manquante</string>
     <string name="app_selected_as_default_phone_app">Application sélectionnée comme application téléphonique par défaut!</string>
     <string name="error_capital">Erreur</string>
@@ -312,12 +312,12 @@
     <string name="accept_terms_button">J\’accepte les Conditions d\’Utilisation</string>
     <string name="open_terms_of_use">Ouvrir les conditions d\’utilisation</string>
     <string name="accept_terms_button_got_it">Compris !</string>
-    <string name="accept_term_caption">Lisez et acceptez les Conditions d\’Utilisation</string>
+    <string name="accept_term_caption">Conditions d\'utilisation</string>
     <string name="please_open_and_read_terms_of_use_before_proceed">Veuillez ouvrir et lire les Conditions d\’Utilisation avant d\’accepter.</string>
     <string name="please_approve_the_terms_of_use_before_finishi">Veuillez approuver les Conditions d\’Utilisation avant de terminer.</string>
-    <string name="tour_distress_button_caption">Bouton d\’Urgence</string>
-    <string name="tour_distress_button_description">* Il est recommandé de vérifier d\'abord le fonctionnement du bouton d\'urgence avec un contact défini à l\'avance, en coordination avec cette personne, pour assurer son bon fonctionnement.\n\nLe bouton d\'urgence dans l\'application est conçu pour vous permettre de solliciter rapidement de l\'aide en cas d\'urgence, et il reste actif même si les appels sortants sont complètement désactivés dans les paramètres de l\'application. Cependant, vous devez vous assurer que l\'appareil et l\'application sont réellement capables d\'effectuer des appels sortants.\n\nVeuillez noter : l\'application n\'est pas destinée à être utilisée comme une application d\'urgence professionnelle, ne remplace pas les services d\'urgence officiels et n\'est pas directement connectée aux centres d\'urgence tels que le SAMU, la police ou les pompiers.\n\nCependant, vous pouvez configurer le bouton d\'urgence pour qu\'il compose un numéro d\'urgence spécifique, à condition que l\'autorisation nécessaire pour accéder aux numéros d\'urgence soit accordée.\n\nLes numéros d\'urgence sont récupérés depuis le système Android et dépendent donc de votre région et de votre appareil. Cela signifie que ces numéros ne sont pas toujours adaptés au pays dans lequel vous vous trouvez. Lors du choix d\'un numéro d\'urgence, il vous incombe de vérifier qu\'il est correct.\n\nDe plus, vous pouvez choisir un contact (si l\'autorisation d\'accéder aux contacts est accordée) que l\'application tentera d\'appeler en cas d\'urgence.\n\nImportant : le bouton nécessite l\'autorisation téléphonique (pour les appels sortants) sur l\'appareil pour fonctionner correctement ! Il est également recommandé de définir l\'application comme l\'application téléphonique par défaut ; sinon, l\'application pourrait tenter de passer l\'appel en dehors de celle-ci.\n\nSi une icône de cloche apparaît sur le bouton d\'urgence, cela signifie qu\'il est prêt à être utilisé. Sinon, assurez-vous que l\'appareil prend en charge les appels sortants et que l\'autorisation téléphonique a été accordée.\n\nEn cas de permissions manquantes, vous pouvez les accorder via l\'écran des autorisations de l\'application ou via les paramètres de l\'appareil.</string>
-    <string name="emergency_distress_button_caption">URGENCE</string>
+    <string name="tour_quick_call_button_caption">Appel rapide</string>
+    <string name="tour_quick_call_button_description">* Il est recommandé de tester d\'abord le bouton d\'appel rapide avec un contact prédéfini pour s\'assurer qu\'il fonctionne correctement.\n\nLe bouton d\'appel rapide de l\'application vous permet de contacter rapidement un contact sélectionné d\'un simple appui.\n\nLe bouton reste fonctionnel même si les appels sortants sont restreints dans l\'application, tant que l\'appareil et le système autorisent les appels sortants.\n\nRemarque : l\'application n\'est pas destinée à un usage d\'urgence et ne remplace pas les services de communication officiels.\n\nVous pouvez définir un contact préféré (sous réserve des autorisations de contact) que l\'application appellera lorsque le bouton sera pressé.\n\nImportant : le bouton nécessite l\'autorisation d\'appels téléphoniques pour fonctionner correctement.\n\nIl est recommandé de définir l\'application comme application téléphonique par défaut pour une utilisation optimale.\n\nSi le bouton d\'appel rapide affiche une icône de cloche, il est prêt à être utilisé. Sinon, veuillez vérifier les paramètres de votre appareil et vous assurer que les autorisations nécessaires sont accordées.\n\nEn cas d\'autorisations manquantes, vous pouvez les accorder via l\'écran des autorisations de l\'application ou les paramètres de l\'appareil.</string>
+    <string name="quick_call_button_caption">Appel rapide</string>
     <string name="not_now_capital">Pas maintenant</string>
     <string name="phone_permission_required_for_distress_button">Attention : Un numéro pour le bouton d\'urgence a été sélectionné, mais l\'autorisation "Téléphone" (appels sortants) est manquante. Par conséquent, le bouton d\'urgence ne peut pas fonctionner.</string>
     <string name="not_now_click_for_selection">Pas maintenant (Cliquez pour sélectionner)</string>
@@ -347,15 +347,13 @@
     <string name="answering_capital">Réponse</string>
     <string name="premium_capital">Premium</string>
     <string name="send_alert_via_sms_to_gold_number">Envoyer une alerte par SMS au numéro Gold</string>
-    <string name="if_call_was_not_answered_play_increasing_siren_sound_after_15_seconds">Si l\'appel n\'est pas répondu, une sirène croissante sera jouée après 15 secondes</string>
-    <string name="sos">Urgence</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">Lancer un appel vocal à l\'aide si l\'appel n\'est pas répondu</string>
+    <string name="sos">Aide</string>
     <string name="lock_capital">Verrouiller</string>
     <string name="report_capital">Rapport</string>
     <string name="other">Autre</string>
     <string name="show_custom_lock_screen">Afficher un écran de verrouillage personnalisé</string>
     <string name="lock_screen">Écran de verrouillage</string>
-    <string name="show_whatsapp_messages_on_lock_screen">Afficher les messages WhatsApp sur l\'écran de verrouillage</string>
-    <string name="show_sms_messages_on_lock_screen">Afficher les messages SMS sur l\'écran de verrouillage</string>
     <string name="send_report_captial_s">Envoyer le rapport</string>
     <string name="scheduled_send_time">Heure d\'envoi programmée</string>
     <string name="send_to_gold_number">Envoyer au numéro Gold</string>
@@ -370,7 +368,6 @@
     <string name="to">à</string>
     <string name="number_is_considered_exceptional_if_it_s_not_in_contacts">Le numéro est considéré comme exceptionnel s\'il n\'est pas dans les contacts</string>
     <string name="welcome_to_easy_call_and_answer_premium">Bienvenue sur l\'application Easy Call And Answer !</string>
-    <string name="welcome_text_speech">Faites-moi savoir si vous souhaitez passer un appel. Dites simplement le nom de la personne que vous voulez appeler après que j\'aie fini de parler. Vous pouvez dire \"Appeler Urgence\" pour activer le bouton d\'urgence, ou dire \"Numéro d\'Or\" pour appeler le contact enregistré comme numéro d\'or. Pour voir toutes les commandes vocales, ouvrez la visite premium depuis le menu en haut.</string>
     <string name="premium_tour_page_welcome_title">Version améliorée</string>
     <string name="premium_tour_page_welcome_text">Découvrez les fonctionnalités avancées de la version Premium, conçues pour améliorer considérablement votre expérience utilisateur, en particulier sur Android.\n\nLe contrôle vocal vous permet de répondre aux appels et d’activer le bouton d’urgence sans toucher l’appareil. Assurez-vous simplement qu’il n’y a pas de bruit de fond.\n\nVous bénéficiez également d’un écran de verrouillage intelligent qui vous ramène à l’application en un seul clic.\n\nUne nouvelle fonctionnalité : le rapport d’appels, qui permet de vérifier si des appels non souhaités ont été reçus ou passés par erreur. Le rapport est envoyé uniquement au numéro que vous choisissez, sans autre utilisation des données.\n\nL’utilisation de ces fonctionnalités est sous votre entière responsabilité.</string>
     <string name="premium_tour_swipe_hint">Faites glisser vers la gauche\npour passer à l’étape suivante</string>
@@ -389,4 +386,16 @@
     <string name="voice_command_call_gold_number">Appelez votre contact du Numéro d’Or sans utiliser les mains.</string>
     <string name="voice_command_distress_button">Activez le bouton d\'urgence sans utiliser les mains.</string>
     <string name="voice_command_unlock_device">Déverrouillez votre appareil sans utiliser les mains.</string>
+    <string name="initial_voice_command_answer_calls">Répondre à l\'appel</string>
+    <string name="say_voice_command">Dites : \'%1$s\'</string>
+    <string name="initial_voice_command_call_gold_number">Appeler le Numéro d\'or</string>
+    <string name="initial_voice_command_distress_button">Appeler les urgences</string>
+    <string name="initial_voice_command_unlock_screen">Déverrouiller l\'appareil</string>
+    <string name="lock_service_was_activated_msg">Le service a été activ ! Vous pouvez toujours modifier les paramètres sans l\'arrêter (les modifications prendront effet sous peu).\nVous pouvez fermer l\'application à tout moment — l\'écran de verrouillage intelligent apparaîtra automatiquement après une période d\'inactivité.\nAppuyez sur cette notification pour la fermer.\nEn appuyant sur l\'écran de verrouillage, vous revenez directement à l\'application — vous pouvez ainsi passer un appel facilement sans avoir à la rechercher sur l\'écran d\'accueil.</string>
+    <string name="welcome_text_speech_short">La version Premium offre des fonctionnalités avancées pour le Bouton d\’Urgence, ainsi qu’un écran de verrouillage intelligent qui apparaît automatiquement après une période d\’inactivité. En appuyant sur cet écran, vous revenez directement dans l\’application pour passer un appel facilement, sans le chercher sur l\’écran d\’accueil.</string>
+    <string name="distress_button_activated_help_is_needed_immediately_speech">Bouton d\'Urgence activé – une aide est nécessaire immédiatement</string>
+    <string name="voice">Voix</string>
+    <string name="distress_button_send_sms_to_gold_number_settings_msg">Cette application utilise l\'autorisation SMS uniquement pour envoyer des messages au Numéro d\'or sélectionné.\nL\'envoi de SMS dépend de la connexion réseau et peut entraîner des frais dans certaines régions.\nL\'application tentera d\'envoyer jusqu\'à 3 messages.\nL\'utilisateur est seul responsable de tout coût ou problème d\'envoi.\n</string>
+    <string name="settings_when_lock_screen_is_unlocked">Lors du déverrouillage de l\'écran</string>
+    <string name="select_app_to_launch">Sélectionner l\'application à lancer</string>
 </resources>

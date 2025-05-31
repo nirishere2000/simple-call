@@ -1,7 +1,7 @@
 package com.nirotem.simplecall.adapters
 
+import android.app.Activity
 import android.content.Context
-import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,20 +10,18 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.animation.AnimationUtils
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.nirotem.simplecall.R
-import com.nirotem.simplecall.statuses.OpenScreensStatus
+import com.nirotem.simplecall.managers.VoiceManager.initVoiceCommandsSettings
+import com.nirotem.simplecall.statuses.PermissionsStatus.askForRecordPermission
 import com.nirotem.simplecall.ui.tourPremium.TourStep
-import kotlinx.coroutines.cancel
-import java.util.Locale
 
-
-class PremiumTourAdapter(private val steps: List<TourStep>) : RecyclerView.Adapter<PremiumTourAdapter.TourViewHolder>() {
+class PremiumTourAdapter(private val steps: List<TourStep>, activity: Activity) : RecyclerView.Adapter<PremiumTourAdapter.TourViewHolder>() {
 
     private lateinit var distressButtonBack: LinearLayout
     private lateinit var distressButtonIcon: ImageView
@@ -31,10 +29,12 @@ class PremiumTourAdapter(private val steps: List<TourStep>) : RecyclerView.Adapt
     private lateinit var scrollContainer: LinearLayout
     private lateinit var scrollView: ScrollView
     private lateinit var scrollArrow: ImageView
+    private var activityForPermissions = activity
    // private lateinit var gradientView: View
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TourViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_premium_tour_step, parent, false)
+       // initVoiceCommands(view)
         return TourViewHolder(view)
     }
 
@@ -70,6 +70,23 @@ class PremiumTourAdapter(private val steps: List<TourStep>) : RecyclerView.Adapt
 
             // הצגת voice-commands רק ב־step.key=="voice"
             commandsContainer.visibility = if (step.key == "voice") VISIBLE else GONE
+
+            if (step.key == "voice") {
+                val commandToggleAnswerCalls = itemView.findViewById<SwitchMaterial>(R.id.command_toggle_answer_calls)
+                val commandToggleGoldNumber = itemView.findViewById<SwitchMaterial>(R.id.command_toggle_gold_number)
+                val commandToggleUnlockScreen = itemView.findViewById<SwitchMaterial>(R.id.command_toggle_unlock_screen)
+                val commandToggleDistressButton = itemView.findViewById<SwitchMaterial>(R.id.command_toggle_distress_button)
+
+                val atLeastOnceCommandEnabled = commandToggleAnswerCalls.isChecked || commandToggleGoldNumber.isChecked
+                        || commandToggleDistressButton.isChecked || commandToggleUnlockScreen.isChecked
+
+                if (atLeastOnceCommandEnabled) {
+                    askForRecordPermission(itemView.context, activityForPermissions)
+                }
+
+                initVoiceCommandsSettings(itemView, activityForPermissions)
+            }
+
             distressButtonBack.visibility = if (step.key == "distress") VISIBLE else GONE
             distressButtonIcon.setImageResource(R.drawable.ic_bell_gold)
             distressButtonIcon.visibility = if (step.key == "distress") VISIBLE else GONE // making sure the button look is enabled for the Tour display
@@ -108,7 +125,6 @@ class PremiumTourAdapter(private val steps: List<TourStep>) : RecyclerView.Adapt
             scrollView.setOnScrollChangeListener(null)
         }
     }
-
 
     private fun checkScroll(context: Context) {
         if (scrollView.canScrollVertically(1)) {

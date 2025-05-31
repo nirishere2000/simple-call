@@ -50,6 +50,8 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadLastExternalCal
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallActivityLoadedTimeStamp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveLastCallError
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAllowCallWaiting
+import com.nirotem.simplecall.managers.DistressButtonManager.emergencyCallWasAnswered
+import com.nirotem.simplecall.managers.DistressButtonManager.emergencyIsOn
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
 import com.nirotem.simplecall.statuses.AllowAnswerCallsEnum
 import com.nirotem.simplecall.statuses.LanguagesEnum
@@ -351,6 +353,9 @@ CALL_DIRECTION_OUTGOING = 2
                                 OutgoingCall.isCalling = false
                                 createNotificationChannel()
                                 createCallNotificationForTray()
+                                if (emergencyIsOn && OutgoingCall.phoneNumberOrContact == SettingsStatus.emergencyNumber.value) {
+                                    emergencyCallWasAnswered = true
+                                }
                             } else if (isCallWaiting) {
                                 WaitingCall.replacedWithWaitingCall = false // important before WaitingCall.startedRinging.value = false
                                 WaitingCall.wasAnswered =

@@ -16,7 +16,6 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -28,21 +27,20 @@ import com.nirotem.simplecall.OutgoingCall
 import com.nirotem.simplecall.OutgoingCall.isCalling
 import com.nirotem.simplecall.OutgoingCall.wasAnswered
 import com.nirotem.simplecall.R
+import com.nirotem.simplecall.VoiceApiImpl
 import com.nirotem.simplecall.WaitingCall
-import com.nirotem.simplecall.helpers.DBHelper.getContactNameFromPhoneNumber
 import com.nirotem.simplecall.helpers.DBHelper.getContactNameFromPhoneNumberAndReturnNullIfNotFound
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.getContactNameFromPhoneNumberInJson
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallActivityLoadedTimeStamp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveLastExternalCallDate
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
-import com.nirotem.simplecall.managers.SpeakCommandsManager
+import com.nirotem.simplecall.managers.VoiceApi
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.ui.activeCall.ActiveCallFragment
 import com.nirotem.simplecall.ui.conferenceCall.ConferenceCallFragment
 import com.nirotem.simplecall.ui.goldNumber.GoldNumberFragment
 import com.nirotem.simplecall.ui.incomingCall.IncomingCallFragment
-import com.nirotem.simplecall.ui.waitingCall.WaitingCallFragment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -52,7 +50,7 @@ class EventScreenActivity : AppCompatActivity() {
     private var currFragmentView: View? = null
     private var isSpeakerOn = false
     private var activeCallFragment: ActiveCallFragment? = null
-
+    private val voiceApi: VoiceApi = VoiceApiImpl()
     //  private lateinit var mediaPlayer: MediaPlayer
     private lateinit var callerNumberTextView: TextView
     private lateinit var activeFragment: androidx.fragment.app.Fragment
@@ -148,8 +146,8 @@ class EventScreenActivity : AppCompatActivity() {
         }
 
         try {
-            if (SpeakCommandsManager.speechCommandsEnabled) {
-                SpeakCommandsManager.init(this, this)
+            if (voiceApi.isEnabled()) {
+                voiceApi.initVoiceCommands(this, this)
             }
         } catch (e: Exception) {
             Log.e(

@@ -21,6 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "EasyCallAndAnswer"
 include(":app")
-include(":callsreportslibrary")
+/*include(":callsreportslibrary")*/
 include(":sharedModules")
 include(":lockscreen")
+include(":voicerecognition")

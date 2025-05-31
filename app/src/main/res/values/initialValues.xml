@@ -14,6 +14,16 @@
     <bool name="allowOpenWhatsApp">false</bool>
     <string name="allowAnswerCallsMode" translatable="false">FROM_EVERYONE</string>
     <string name="allowOutgoingCallsMode" translatable="false">FAVOURITES_ONLY</string>
+    <string name="whenScreenUnlockedBehaviour" translatable="false">EASY_CALL_AND_ANSWER_APP</string>
+    <string name="distressNumberOfSecsToCancel" translatable="false">5</string>
+    <bool name="distressNumberShouldAlsoTalk">true</bool>
     <bool name="allowVoiceCommands">false</bool>
+    <!-- Voice Commands-->
+    <bool name="isAnswerCallsVoiceCommandEnabled">false</bool>
+    <bool name="isGoldNumberVoiceCommandEnabled">false</bool>
+    <bool name="isDistressButtonVoiceCommandEnabled">false</bool>
+    <bool name="isUnlockScreenVoiceCommandEnabled">false</bool>
+    <bool name="distressButtonShouldAlsoSendSmsToGoldNumber">false</bool>
 <!-- End Settings-->
+
 </resources>

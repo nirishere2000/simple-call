@@ -11,9 +11,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/callsreportslibrary" />
             <option value="$PROJECT_DIR$/lockscreen" />
             <option value="$PROJECT_DIR$/sharedModules" />
+            <option value="$PROJECT_DIR$/voicerecognition" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

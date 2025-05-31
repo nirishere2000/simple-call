@@ -142,7 +142,7 @@ class PremiumTourFragment : Fragment() {
                     R.drawable.showonlockscreenpermission),*/
             )
 
-            premiumTourAdapter = PremiumTourAdapter(steps)
+            premiumTourAdapter = PremiumTourAdapter(steps, requireActivity())
             //val adapter = PremiumTourAdapter(steps)
 
             viewPager.adapter = premiumTourAdapter
