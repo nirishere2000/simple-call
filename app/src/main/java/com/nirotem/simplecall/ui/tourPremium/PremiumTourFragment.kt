@@ -113,12 +113,12 @@ class PremiumTourFragment : Fragment() {
             steps = listOf(
                 TourStep("welcome",// key (should not be translated!)
                     getString(R.string.premium_tour_page_welcome_title),
-                    getString(R.string.premium_tour_page_welcome_text),
+                    getString(R.string.premium_tour_page_welcome_text_not_updated_must_fix),
                     R.drawable.goldnumbercall
                 ),
                 TourStep("distress",// key (should not be translated!)
-                    getString(R.string.premium_tour_page_distress_button_title),
-                    getString(R.string.premium_tour_page_distress_button_text),
+                    getString(R.string.premium_tour_page_quick_call_title),
+                    getString(R.string.premium_tour_page_quick_call_text),
                     null
                 ),
                 TourStep("lock",// key (should not be translated!)
@@ -128,7 +128,7 @@ class PremiumTourFragment : Fragment() {
                 ),
                 TourStep("voiceIntro",// key (should not be translated!)
                     getString(R.string.premium_tour_page_voice_title),
-                    getString(R.string.premium_tour_page_voice_text),
+                    getString(R.string.premium_tour_page_voice_text_not_updated_must_fix),
                     R.drawable.phonevoice
                 ),
                 TourStep("voice",// key (should be translated!)
@@ -137,8 +137,8 @@ class PremiumTourFragment : Fragment() {
                     null
                 )
               /*  TourStep("report", // key (should be translated!)
-                    getString(R.string.premium_tour_page_distress_button_title),
-                    getString(R.string.premium_tour_page_distress_button_text),
+                    getString(R.string.premium_tour_page_quick_call_title),
+                    getString(R.string.premium_tour_page_quick_call_text),
                     R.drawable.showonlockscreenpermission),*/
             )
 

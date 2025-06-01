@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    android:id="@+id/distress_button_cancel"
+    android:id="@+id/quick_call_button_cancel_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,7 +27,7 @@
         android:autoSizeMinTextSize="12sp"
         android:autoSizeMaxTextSize="20sp"
         android:autoSizeStepGranularity="1sp"
-        android:text="@string/distress_button_cancel"
+        android:text="@string/quick_call_button_cancel"
         android:textSize="22sp"
         android:textColor="@android:color/white"
         android:textStyle="bold"/>

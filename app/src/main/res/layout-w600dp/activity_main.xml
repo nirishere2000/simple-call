@@ -45,7 +45,7 @@ across the layout configurations
         <!-- שאר התוכן של המסך כאן -->
         <include
 
-            layout="@layout/distress_button_cancel"
+            layout="@layout/quick_call_button_cancel_layout"
             />
     </FrameLayout>
 
@@ -62,7 +62,7 @@ across the layout configurations
         <!-- שאר התוכן של המסך כאן -->
         <include
 
-            layout="@layout/distress_button"
+            layout="@layout/quick_call_button"
             />
     </FrameLayout>
 </FrameLayout>

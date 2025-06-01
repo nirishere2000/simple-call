@@ -38,7 +38,7 @@
                 android:focusable="true">
 
                 <!-- תוכן מותאם אישית של לחצן המצוקה -->
-                <include layout="@layout/distress_button_small" />
+                <include layout="@layout/quick_call_button_small" />
             </FrameLayout>
 
             <ImageView

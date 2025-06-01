@@ -55,7 +55,7 @@ object DistressButtonManager {
         emergencyJob = CoroutineScope(Dispatchers.Main).launch {
             while (shouldAlsoCallForHelp) {
                 if (!emergencyCallWasAnswered && OngoingCall.call == null && OutgoingCall.call == null) {
-                    TextToSpeechManager.speak(context.getString(R.string.distress_button_activated_help_is_needed_immediately_speech))
+                    TextToSpeechManager.speak(context.getString(R.string.quick_call_activated_voice_message_speech))
                 }
                 if (emergencyIsOn) {
                     delay(20_000) // 20 שניות
@@ -150,7 +150,7 @@ object DistressButtonManager {
                 emergencyButtonCancelBack?.visibility = VISIBLE
                 val distressCircle = activity.findViewById<FrameLayout>(R.id.distress_circle)
                 distressCircle?.visibility = VISIBLE
-                val toastMsg = context.getString(R.string.calling_emergency_number_tap_cancel_to_stop)
+                val toastMsg = context.getString(R.string.calling_quick_call_number_tap_cancel_to_stop)
                 displayedEmergencyMsg = showLongSnackBar(context, toastMsg, (((distressNumberOfSecsToCancel + 1) * 1000).toInt()))
 
                 val emergencyButtonText = activity.findViewById<TextView>(R.id.emergency_button_text)
@@ -203,7 +203,7 @@ object DistressButtonManager {
                 true
             )
         } else {
-            val toastMsg = context.getString(R.string.emergency_number_unavailable_try_gold_number)
+            val toastMsg = context.getString(R.string.quick_call_unavailable_try_gold_number)
             showLongSnackBar(context, toastMsg, 8000)
         }
     }

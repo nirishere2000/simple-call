@@ -41,7 +41,7 @@
 
             <include
 
-                layout="@layout/distress_button_small" />
+                layout="@layout/quick_call_button_small" />
         </LinearLayout>
     </LinearLayout>
 

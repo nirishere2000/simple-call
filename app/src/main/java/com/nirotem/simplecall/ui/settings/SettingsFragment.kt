@@ -141,7 +141,7 @@ class SettingsFragment : Fragment() {
                     if (isGranted) {
                         saveDistressButtonShouldAlsoSendSmsToGoldNumber(view.context, true)
                         val toastMsg =
-                            getString(R.string.distress_button_send_sms_to_gold_number_settings_msg)
+                            getString(R.string.quick_call_send_sms_to_gold_number_settings_msg)
                         showLongSnackBar(
                             requireContext(),
                             toastMsg,
@@ -289,7 +289,7 @@ class SettingsFragment : Fragment() {
                             } else { // already have permission:
                                 saveDistressButtonShouldAlsoSendSmsToGoldNumber(context, true)
                                 val toastMsg =
-                                    getString(R.string.distress_button_send_sms_to_gold_number_settings_msg)
+                                    getString(R.string.quick_call_send_sms_to_gold_number_settings_msg)
                                 showLongSnackBar(
                                     context,
                                     toastMsg,
@@ -394,7 +394,7 @@ class SettingsFragment : Fragment() {
                 (emergencyPhoneNumber != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)
             if (existsDistressNumberForDistressButtonButWithoutPermission) {
                 var toastMsg =
-                    getString(R.string.phone_permission_required_for_distress_button)
+                    getString(R.string.phone_permission_required_for_quick_call)
                 showLongSnackBar(context, toastMsg, anchorView = requireView())
             } else if (PermissionsStatus.defaultDialerPermissionGranted.value != true) {
                 //toFilterBlockedContactsMsgDisplayedCount++
@@ -1152,7 +1152,7 @@ class SettingsFragment : Fragment() {
 
         /*        if (PermissionsStatus.callPhonePermissionGranted.value != true) {
                     var toastMsg =
-                        getString(R.string.phone_permission_required_for_distress_button)
+                        getString(R.string.phone_permission_required_for_quick_call)
                     //Snackbar.make(fragmentView, toastMsg, 8000).show()
                     showLongSnackBar(context, toastMsg, anchorView = requireView())
                 }*/

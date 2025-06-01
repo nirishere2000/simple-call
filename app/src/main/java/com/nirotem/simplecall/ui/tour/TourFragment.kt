@@ -724,7 +724,7 @@ class TourFragment : Fragment() {
 
             if (existsDistressNumberForDistressButtonButWithoutPermission) {
                 var toastMsg =
-                    getString(R.string.phone_permission_required_for_distress_button)
+                    getString(R.string.phone_permission_required_for_quick_call)
                 //Snackbar.make(fragmentView, toastMsg, 8000).show()
                 lastSnackbar =  showLongSnackBar(context, toastMsg, anchorView = requireView())
             }

@@ -262,7 +262,7 @@
                             android:layout_height="wrap_content"
 
                             android:layout_weight="1"
-                            android:text="@string/settings_choose_distress_button_number"
+                            android:text="@string/settings_choose_quick_call_number"
                             android:textColor="#CBCBCE"
                             android:textSize="18sp"
                             android:textStyle="bold" />

@@ -249,7 +249,7 @@ object GeneralUtils {
         val existsDistressNumberForDistressButtonButWithoutPermission = (selectedPhoneItem != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)
         if (existsDistressNumberForDistressButtonButWithoutPermission) {
             var toastMsg =
-                context.getString(R.string.phone_permission_required_for_distress_button)
+                context.getString(R.string.phone_permission_required_for_quick_call)
             //Snackbar.make(fragmentView, toastMsg, 8000).show()
             showLongSnackBar(context, toastMsg, null, anchorView)
         }

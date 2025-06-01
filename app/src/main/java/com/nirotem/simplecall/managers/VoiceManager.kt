@@ -72,7 +72,7 @@ object VoiceManager {
             com.nirotem.simplecall.helpers.SharedPreferencesCache.getDistressButtonVoiceCommand(view.context)
         if (voiceCommandDistressButton == null) {
             voiceCommandDistressButton =
-                view.context.getString(com.nirotem.simplecall.R.string.initial_voice_command_distress_button)
+                view.context.getString(com.nirotem.simplecall.R.string.initial_voice_command_quick_call)
         }
         commandDistressButtonTextView.text = view.context.getString(
             com.nirotem.simplecall.R.string.say_voice_command,
