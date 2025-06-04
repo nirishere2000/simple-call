@@ -1,6 +1,5 @@
 package com.nirotem.simplecall.helpers
 
-import android.Manifest.permission.READ_PHONE_STATE
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -14,20 +13,15 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.nirotem.simplecall.R
-import com.nirotem.simplecall.helpers.DBHelper.fetchContactsOptimized
 import com.nirotem.simplecall.helpers.DBHelper.getPhoneNumberFromContactName
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadEmergencyNumber
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadEmergencyNumberContact
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumber
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumberContact
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadQuickCallNumber
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadQuickCallNumberContact
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveQuickCallNumber
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveQuickCallNumberContact
 import com.nirotem.simplecall.helpers.SpinnersHelper.loadContactsAndEmergencyIntoList
 import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
 import com.nirotem.simplecall.statuses.PermissionsStatus
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 object GeneralUtils {
     var distressButtonSpinnerClickEvent = MutableLiveData(false)
@@ -93,8 +87,8 @@ object GeneralUtils {
             loadContactsAndEmergencyIntoList(emergencyNumbersList, context, anchorView, true)
 
         // טוענים מספרי חירום שמורים (פונקציות אלו מניחות שקיימות במערכת)
-        val emergencyPhoneNumber = loadEmergencyNumber(context)
-        val emergencyPhoneNumberContact = loadEmergencyNumberContact(context)
+        val emergencyPhoneNumber = loadQuickCallNumber(context)
+        val emergencyPhoneNumberContact = loadQuickCallNumberContact(context)
 
         if (contactsWithEmergencyNumbers.isNotEmpty()) {
             // יוצרים ArrayAdapter מותאם אישית להצגת הנתונים
@@ -225,8 +219,8 @@ object GeneralUtils {
 
         // We should not have blocked number and we could create an error is we'll return unknown here
         if (selectedPhoneItem == null) { // user chose NOT NOW
-            saveEmergencyNumberContact(null, context)
-            saveEmergencyNumber(null, context)
+            saveQuickCallNumberContact(null, context)
+            saveQuickCallNumber(null, context)
         } else if (phoneHasContact) {
             val selectedEmergencyNumberContact = selectedPhoneItem.toString()
             var selectedEmergencyPhoneNumber =
@@ -239,11 +233,11 @@ object GeneralUtils {
                 selectedEmergencyPhoneNumber =
                     selectedPhoneItem.toString() // Not a Contact, but local emergency number
             }
-            saveEmergencyNumberContact(selectedEmergencyNumberContact, context)
-            saveEmergencyNumber(selectedEmergencyPhoneNumber, context)
+            saveQuickCallNumberContact(selectedEmergencyNumberContact, context)
+            saveQuickCallNumber(selectedEmergencyPhoneNumber, context)
         } else { // Emergency number - save Contact as null
-            saveEmergencyNumberContact(null, context)
-            saveEmergencyNumber(selectedPhoneItem.toString(), context)
+            saveQuickCallNumberContact(null, context)
+            saveQuickCallNumber(selectedPhoneItem.toString(), context)
         }
 
         val existsDistressNumberForDistressButtonButWithoutPermission = (selectedPhoneItem != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)

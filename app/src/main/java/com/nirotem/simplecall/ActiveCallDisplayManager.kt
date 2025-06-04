@@ -26,6 +26,7 @@ import com.nirotem.simplecall.activities.EventScreenActivity
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadIsAppLoaded
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
 import com.nirotem.simplecall.managers.SoundPoolManager
+import com.nirotem.simplecall.statuses.PermissionsStatus.isBackgroundWindowsAllowed
 
 class ActiveCallDisplayManager(context: Context) {
     companion object {
@@ -40,7 +41,7 @@ class ActiveCallDisplayManager(context: Context) {
     private var waitingCallCustomView: View? = null
     private var activeCallCustomView: View? = null
     private var currentCallIsCallWaiting: Boolean = false
-    private var isXiaomi: Boolean = false
+    //private var isXiaomi: Boolean = false
     private var appIsLoaded: Boolean = false
     private var serviceContext: Context? = context
     private var shouldPlayVoiceSounds = context.resources.getBoolean(R.bool.playVoiceSound)
@@ -54,14 +55,14 @@ class ActiveCallDisplayManager(context: Context) {
         )
         if (isOutgoing) { // we did not set this info in handleIncoming
             serviceContext = context
-            canDrawOverlays = Settings.canDrawOverlays(context)
-            isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
+            canDrawOverlays = Settings.canDrawOverlays(context) && isBackgroundWindowsAllowed(context)
+            //isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
             appIsLoaded = loadIsAppLoaded(context)
             currentCallIsCallWaiting = isCallWaiting
         }
         // canDrawOverlays = Settings.canDrawOverlays(context)
 
-        if (canDrawOverlays || isXiaomi || appIsLoaded) {
+        if (canDrawOverlays || appIsLoaded) {
             if (isOutgoing) {
                 showCallScreenThroughActivity(
                     context,
@@ -241,14 +242,14 @@ class ActiveCallDisplayManager(context: Context) {
 
     fun handleOutgoingCall(context: Context) {
         serviceContext = context
-        canDrawOverlays = Settings.canDrawOverlays(context)
+        canDrawOverlays = Settings.canDrawOverlays(context) && isBackgroundWindowsAllowed(context)
         currentCallIsCallWaiting = false
-        isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
+        //isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
         appIsLoaded = loadIsAppLoaded(context)
 
         //startRingtone(getSoundToPlayName(isCallWaiting))
 
-        if (canDrawOverlays || isXiaomi || appIsLoaded) {
+        if (canDrawOverlays || appIsLoaded) {
             showCallScreenThroughActivity(
                 context,
                 isCallWaiting = false,
@@ -270,9 +271,9 @@ class ActiveCallDisplayManager(context: Context) {
 
     fun handleIncomingCall(context: Context, isCallWaiting: Boolean, isAutoAnswer: Boolean) {
         serviceContext = context
-        canDrawOverlays = Settings.canDrawOverlays(context)
+        canDrawOverlays = Settings.canDrawOverlays(context) && isBackgroundWindowsAllowed(context)
         currentCallIsCallWaiting = isCallWaiting
-        isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
+        //isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
         appIsLoaded = loadIsAppLoaded(context)
 
         //Log.d("SimplyCall - ActiveCallDisplayManager", "Before canDrawOverlays = $canDrawOverlays")
@@ -280,10 +281,10 @@ class ActiveCallDisplayManager(context: Context) {
         //startRingtone(getSoundToPlayName(isCallWaiting))
 
        // Log.d("SimplyCall - ActiveCallDisplayManager", "After startRingtone")
-        Log.d("Simplycall - handleIncomingCall", "handleIncomingCall: appIsLoaded = $appIsLoaded, isXiaomi = $isXiaomi, canDrawOverlays=$canDrawOverlays")
+        Log.d("Simplycall - handleIncomingCall", "handleIncomingCall: appIsLoaded = $appIsLoaded, canDrawOverlays=$canDrawOverlays")
 
 
-        if (canDrawOverlays || isXiaomi || appIsLoaded) { // for Xiaomi we cannot detect canDrawOverlays
+        if (canDrawOverlays || appIsLoaded) { // for Xiaomi we cannot detect canDrawOverlays
             if (isCallWaiting) {
                 //showCallWaiting(context, WaitingCall.phoneNumberOrContact)
                 // The way we are working it will create a new instance of the acitivty
@@ -331,7 +332,7 @@ class ActiveCallDisplayManager(context: Context) {
                 if (OutgoingCall.onHold) {
                     // we just showed small icon for it so remove it
                 } else {
-                    if (canDrawOverlays || isXiaomi || appIsLoaded) {
+                    if (canDrawOverlays || appIsLoaded) {
                         if (WaitingCall.onHold) { // then we need to get it back to active call
                             // load active call screen
                             changeActivityCall(context, WaitingCall.phoneNumberOrContact)
@@ -352,7 +353,7 @@ class ActiveCallDisplayManager(context: Context) {
                     }
                 }
             } else { // Call was not answered yet - we just remove the Incoming Call UI
-                if (canDrawOverlays || isXiaomi || appIsLoaded) {
+                if (canDrawOverlays || appIsLoaded) {
                     removeActivity()
                 } else { // We can just give toast:
 /*                    Toast.makeText(
@@ -370,7 +371,7 @@ class ActiveCallDisplayManager(context: Context) {
                 if (WaitingCall.onHold) {
                     // we just showed small icon for it so remove it
                 } else {
-                    if (canDrawOverlays || isXiaomi || appIsLoaded) {
+                    if (canDrawOverlays || appIsLoaded) {
                         if (OngoingCall.onHold) { // then we need to get it back to active call
                             // load active call screen
                          //   changeActivityCall(context, OngoingCall.phoneNumberOrContact)
@@ -390,7 +391,7 @@ class ActiveCallDisplayManager(context: Context) {
                     }
                 }
             } else { // call was not answered yet, just remove waiting call screen
-                if (canDrawOverlays || isXiaomi || appIsLoaded) {
+                if (canDrawOverlays || appIsLoaded) {
                     Log.d(
                         "SimplyCall - ActiveCallDisplayManager",
                         "Disconnect - canDrawOverlays -> removeActivity(context)"
@@ -424,7 +425,7 @@ class ActiveCallDisplayManager(context: Context) {
                 if (OngoingCall.onHold) {
                     // we just showed small icon for it so remove it
                 } else {
-                    if (canDrawOverlays || isXiaomi || appIsLoaded) {
+                    if (canDrawOverlays || appIsLoaded) {
                         if (WaitingCall.onHold) { // then we need to get it back to active call
                             // load active call screen
                             changeActivityCall(context, WaitingCall.phoneNumberOrContact)
@@ -445,7 +446,7 @@ class ActiveCallDisplayManager(context: Context) {
                     }
                 }
             } else { // Call was not answered yet - we just remove the Incoming Call UI
-                if (canDrawOverlays || isXiaomi || appIsLoaded) {
+                if (canDrawOverlays || appIsLoaded) {
                     removeActivity()
                 } else {
 /*                    Toast.makeText(

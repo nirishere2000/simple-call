@@ -378,20 +378,20 @@ class PermissionsFragment : Fragment() {
             root.findViewById<Button>(R.id.approvePhoneLogPermission)
 
 
-        displayPermissionGrantedViews(
-            PermissionsStatus.defaultDialerPermissionGranted, approveDefaultDialerPermissionButton,
+        displayPermissionGrantedViewsByBoolValue(
+            PermissionsStatus.defaultDialerPermissionGranted.value == true, approveDefaultDialerPermissionButton,
             defaultDialerPermissionGrantedImage, defaultDialerPermissionGrantedText
         )
 
-        val isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
-        if (!isXiaomi) { // trying to detect permission as usual
-            displayPermissionGrantedViews(
-                PermissionsStatus.canDrawOverlaysPermissionGranted,
+        //val isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
+        //if (!isXiaomi) { // trying to detect permission as usual
+        displayPermissionGrantedViewsByBoolValue(
+                PermissionsStatus.canDrawOverlaysPermissionGranted.value == true && PermissionsStatus.backgroundWindowsAllowed.value == true,
                 approveOverlayDrawPermissionButton,
                 overlayDrawPermissionGrantedImage,
                 overlayDrawPermissionGrantedText
             )
-        } else { // We cannot detect this permission in Xiaomi, so we'll give user special text
+/*        } else { // We cannot detect this permission in Xiaomi, so we'll give user special text
             approveOverlayDrawPermissionButton.visibility = VISIBLE
             overlayDrawPermissionGrantedImage.visibility = GONE
             overlayDrawPermissionGrantedText.visibility = GONE
@@ -399,31 +399,50 @@ class PermissionsFragment : Fragment() {
                 root.findViewById<TextView>(R.id.textOverlayDrawPermissionsExplain)
             textOverlayDrawPermissionsExplain.text =
                 getString(R.string.xiaomi_custom_permission_settings_explain)
-        }
+        }*/
 
-        displayPermissionGrantedViews(
-            PermissionsStatus.callPhonePermissionGranted, approveCallPhonePermissionButton,
+        displayPermissionGrantedViewsByBoolValue(
+            PermissionsStatus.callPhonePermissionGranted.value == true, approveCallPhonePermissionButton,
             callPhonePermissionGrantedImage, callPhonePermissionGrantedText
         )
 
-        displayPermissionGrantedViews(
-            PermissionsStatus.readContactsPermissionGranted, approveReadContactsPermissionButton,
+        displayPermissionGrantedViewsByBoolValue(
+            PermissionsStatus.readContactsPermissionGranted.value == true, approveReadContactsPermissionButton,
             contactsPermissionGrantedImage, contactsPermissionGrantedText
         )
 
-        displayPermissionGrantedViews(
-            PermissionsStatus.readCallLogPermissionGranted, approvePhoneLogPermissionButton,
+        displayPermissionGrantedViewsByBoolValue(
+            PermissionsStatus.readCallLogPermissionGranted.value == true, approvePhoneLogPermissionButton,
             callsLogPermissionGrantedTextImage, callsLogPermissionGrantedText
         )
     }
 
-    private fun displayPermissionGrantedViews(
+   /* private fun displayPermissionGrantedViews(
         permissionGrantedObject: MutableLiveData<Boolean>,
         approvePermissionButton: Button,
         permissionGrantedImage: ImageView,
         permissionGrantedTextImage: TextView
     ) {
-        if (permissionGrantedObject.value === null || !permissionGrantedObject.value!!) {
+        if (permissionGrantedObject.value != true) {
+            // val explainContactsPermissionText = "The application needs Phone Call permission in order to make phone calls as the Application Default Dialer."
+            // contactsPermissionExplainText.text = explainContactsPermissionText
+            approvePermissionButton.visibility = VISIBLE
+            permissionGrantedImage.visibility = GONE
+            permissionGrantedTextImage.visibility = GONE
+        } else {
+            approvePermissionButton.visibility = GONE
+            permissionGrantedImage.visibility = VISIBLE
+            permissionGrantedTextImage.visibility = VISIBLE
+        }
+    }*/
+
+    private fun displayPermissionGrantedViewsByBoolValue(
+        booleanPermissionGranted: Boolean,
+        approvePermissionButton: Button,
+        permissionGrantedImage: ImageView,
+        permissionGrantedTextImage: TextView
+    ) {
+        if (!booleanPermissionGranted) {
             // val explainContactsPermissionText = "The application needs Phone Call permission in order to make phone calls as the Application Default Dialer."
             // contactsPermissionExplainText.text = explainContactsPermissionText
             approvePermissionButton.visibility = VISIBLE
@@ -615,18 +634,23 @@ class PermissionsFragment : Fragment() {
             askingViewCallsPermission = false
         }
 
-        if (PermissionsStatus.canDrawOverlaysPermissionGranted.value === null || (!(PermissionsStatus.canDrawOverlaysPermissionGranted.value!!))) {
+        if (PermissionsStatus.backgroundWindowsAllowed.value != true) {
             if (isBackgroundWindowsAllowed(fragmentRoot.context)) {
+                PermissionsStatus.backgroundWindowsAllowed.value = true
+                displayPermissionsGrantedViews(fragmentRoot)
+                if (!permissionsGrantedBecauseOfDefaultDialer) { // && !isXiaomi) { // For isXiaomi we are not sure if permission was really granted
+                    showCustomToastDialog(requireContext(),
+                        getString(R.string.overlay_draw_permission_was_granted)) // for user we write same msg as for canDrawOverlaysPermissionGranted
+                }
+            }
+        }
+
+        if (PermissionsStatus.canDrawOverlaysPermissionGranted.value != true) {
+            if (Settings.canDrawOverlays(fragmentRoot.context)) {
                 // Permission is granted
                 PermissionsStatus.canDrawOverlaysPermissionGranted.value = true
                 displayPermissionsGrantedViews(fragmentRoot)
-                val isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
-                if (!permissionsGrantedBecauseOfDefaultDialer && !isXiaomi) { // For isXiaomi we are not sure if permission was really granted
-/*                    Toast.makeText(
-                        context,
-                        getString(R.string.overlay_draw_permission_was_granted),
-                        Toast.LENGTH_LONG
-                    ).show()*/
+                if (!permissionsGrantedBecauseOfDefaultDialer) { // && !isXiaomi) { // For isXiaomi we are not sure if permission was really granted
                     showCustomToastDialog(requireContext(),
                         getString(R.string.overlay_draw_permission_was_granted))
                 }

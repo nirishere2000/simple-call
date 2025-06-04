@@ -376,22 +376,22 @@ object SharedPreferencesCache {
         saveVariableInMemory(context, "user_approved_terms_and_conditions", valToSave)
     }
 
-    fun loadEmergencyNumber(context: Context?): String? {
-        return loadVariableFromMemory("emergency_phone_number", context)
+    fun loadQuickCallNumber(context: Context?): String? {
+        return loadVariableFromMemory("quick_call_phone_number", context)
     }
 
-    fun saveEmergencyNumber(emergencyNumber: String?, context: Context) {
-        SettingsStatus.emergencyNumber.value = emergencyNumber
-        saveVariableInMemory(context, "emergency_phone_number", emergencyNumber)
+    fun saveQuickCallNumber(quickCallNumber: String?, context: Context) {
+        SettingsStatus.quickCallNumber.value = quickCallNumber
+        saveVariableInMemory(context, "quick_call_phone_number", quickCallNumber)
     }
 
-    fun saveEmergencyNumberContact(emergencyNumberContact: String?, context: Context) {
-        SettingsStatus.emergencyNumberContact.value = emergencyNumberContact
-        saveVariableInMemory(context, "emergency_phone_number_contact", emergencyNumberContact)
+    fun saveQuickCallNumberContact(quickCallNumberContact: String?, context: Context) {
+        SettingsStatus.quickCallNumberContact.value = quickCallNumberContact
+        saveVariableInMemory(context, "quick_call_phone_number_contact", quickCallNumberContact)
     }
 
-    fun loadEmergencyNumberContact(context: Context?): String? {
-        return loadVariableFromMemory("emergency_phone_number_contact", context)
+    fun loadQuickCallNumberContact(context: Context?): String? {
+        return loadVariableFromMemory("quick_call_phone_number_contact", context)
     }
 
     fun getAppVersionFromCache(context: Context?): String? {
@@ -495,17 +495,17 @@ object SharedPreferencesCache {
         saveVariableInMemory(context, "is_gold_number_voice_command_enabled", varToSave)
     }
 
-    fun loadIsDistressButtonVoiceCommandEnabled(context: Context): Boolean {
-        val isDistressButtonVoiceCommandEnabled = loadVariableFromMemory("is_distress_button_voice_command_enabled", context)
-        if (isDistressButtonVoiceCommandEnabled == null) {
-            return context.resources.getBoolean(R.bool.isDistressButtonVoiceCommandEnabled)
+    fun loadIsQuickCallVoiceCommandEnabled(context: Context): Boolean {
+        val isQuickCallVoiceCommandEnabled = loadVariableFromMemory("is_quick_call_voice_command_enabled", context)
+        if (isQuickCallVoiceCommandEnabled == null) {
+            return context.resources.getBoolean(R.bool.isQuickCallVoiceCommandEnabled)
         }
-        return isDistressButtonVoiceCommandEnabled == "true"
+        return isQuickCallVoiceCommandEnabled == "true"
     }
 
-    fun saveIsDistressButtonVoiceCommandEnabled(context: Context, isDistressButtonVoiceCommandEnabled: Boolean) {
-        val varToSave = if (isDistressButtonVoiceCommandEnabled) "true" else "false"
-        saveVariableInMemory(context, "is_distress_button_voice_command_enabled", varToSave)
+    fun saveIsQuickCallVoiceCommandEnabled(context: Context, isQuickCallVoiceCommandEnabled: Boolean) {
+        val varToSave = if (isQuickCallVoiceCommandEnabled) "true" else "false"
+        saveVariableInMemory(context, "is_quick_call_voice_command_enabled", varToSave)
     }
 
     fun loadIsUnlockScreenVoiceCommandEnabled(context: Context): Boolean {
@@ -522,15 +522,15 @@ object SharedPreferencesCache {
     }
 
     fun loadDistressButtonShouldAlsoSendSmsToGoldNumber(context: Context): Boolean {
-        val distressAlsoSendSmsToGoldNumber = loadVariableFromMemory("distress_should_also_send_sms_to_gold_number", context)
-        if (distressAlsoSendSmsToGoldNumber == null) {
-            return context.resources.getBoolean(R.bool.distressButtonShouldAlsoSendSmsToGoldNumber)
+        val quickCallAlsoSendSmsToGoldNumber = loadVariableFromMemory("quick_call_should_also_send_sms_to_gold_number", context)
+        if (quickCallAlsoSendSmsToGoldNumber == null) {
+            return context.resources.getBoolean(R.bool.quickCallShouldAlsoSendSmsToGoldNumber)
         }
-        return distressAlsoSendSmsToGoldNumber == "true"
+        return quickCallAlsoSendSmsToGoldNumber == "true"
     }
 
-    fun saveDistressButtonShouldAlsoSendSmsToGoldNumber(context: Context, distressAlsoSendSmsToGoldNumber: Boolean) {
-        val varToSave = if (distressAlsoSendSmsToGoldNumber) "true" else "false"
-        saveVariableInMemory(context, "distress_should_also_send_sms_to_gold_number", varToSave)
+    fun saveQuickCallShouldAlsoSendSmsToGoldNumber(context: Context, quickCallAlsoSendSmsToGoldNumber: Boolean) {
+        val varToSave = if (quickCallAlsoSendSmsToGoldNumber) "true" else "false"
+        saveVariableInMemory(context, "quick_call_should_also_send_sms_to_gold_number", varToSave)
     }
 }

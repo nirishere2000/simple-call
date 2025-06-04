@@ -72,8 +72,8 @@ enum class LanguagesEnum(val codes: List<String>, val region: String) {
 object SettingsStatus {
     var userAllowOutgoingCallsEnum =
         MutableLiveData<AllowOutgoingCallsEnum>(AllowOutgoingCallsEnum.NO_ONE) // Needed to answer calls
-    var emergencyNumber = MutableLiveData<String?>(null)
-    var emergencyNumberContact = MutableLiveData<String?>(null)
+    var quickCallNumber = MutableLiveData<String?>(null)
+    var quickCallNumberContact = MutableLiveData<String?>(null)
     var goldNumber = MutableLiveData<String?>(null)
     var goldNumberContact = MutableLiveData<String?>(null)
     var allowOpeningWhatsApp = MutableLiveData(false)

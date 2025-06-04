@@ -8,11 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadIsAnswerCallsVoiceCommandEnabled
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadIsDistressButtonVoiceCommandEnabled
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadIsQuickCallVoiceCommandEnabled
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadIsGoldNumberVoiceCommandEnabled
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadIsUnlockScreenVoiceCommandEnabled
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsAnswerCallsVoiceCommandEnabled
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsDistressButtonVoiceCommandEnabled
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsQuickCallVoiceCommandEnabled
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsGoldNumberVoiceCommandEnabled
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsUnlockScreenVoiceCommandEnabled
 import com.nirotem.simplecall.statuses.PermissionsStatus.askForRecordPermission
@@ -81,10 +81,10 @@ object VoiceManager {
 
         val commandToggleDistressButton =
             view.findViewById<SwitchMaterial>(R.id.command_toggle_distress_button)
-        val isDistressButtonCommandEnabled = loadIsDistressButtonVoiceCommandEnabled(view.context)
+        val isDistressButtonCommandEnabled = loadIsQuickCallVoiceCommandEnabled(view.context)
         commandToggleDistressButton.isChecked = isDistressButtonCommandEnabled
         commandToggleDistressButton.setOnCheckedChangeListener { buttonView, isChecked ->
-            saveIsDistressButtonVoiceCommandEnabled(view.context, isChecked)
+            saveIsQuickCallVoiceCommandEnabled(view.context, isChecked)
             askForRecordPermission(view.context, activity)
         }
 

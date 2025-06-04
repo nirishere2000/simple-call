@@ -13,6 +13,7 @@ import android.content.Context.TELECOM_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Binder
 import android.os.Build
 import android.provider.Settings
 import android.telecom.TelecomManager
@@ -41,7 +42,9 @@ object PermissionsStatus {
         MutableLiveData(false) // For Calls screen, Single Call history, Contact Calls history
     var canDrawOverlaysPermissionGranted =
         MutableLiveData(false) // For Loading Activity when app is not loaded (Incoming call)
+    var backgroundWindowsAllowed = MutableLiveData(false)
     var callPhonePermissionGranted = MutableLiveData(false) // To make phone calls
+    var permissionToShowWhenDeviceLockedAllowed = MutableLiveData(false)
 
     // asking for permissions
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
@@ -209,6 +212,16 @@ object PermissionsStatus {
     }
 
     fun isBackgroundWindowsAllowed(context: Context): Boolean {
+        val isXiaomi = (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true))
+        if (isXiaomi) {
+            return isBackgroundWindowsAllowedMIUIXiaomi(context)
+        }
+        else {
+            return isBackgroundWindowsAllowedStandard(context)
+        }
+    }
+
+    fun isBackgroundWindowsAllowedStandard(context: Context): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val appOpsManager = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
             val mode = appOpsManager.unsafeCheckOpNoThrow(
@@ -219,6 +232,29 @@ object PermissionsStatus {
             return mode == AppOpsManager.MODE_ALLOWED
         }
         return false
+    }
+
+    fun isBackgroundWindowsAllowedMIUIXiaomi(context: Context): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            val mgr = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+            return try {
+                val method = AppOpsManager::class.java.getMethod(
+                    "checkOpNoThrow",
+                    Int::class.java, Int::class.java, String::class.java
+                )
+                // 10021 is MIUI’s "background start activity" op
+                val mode = method.invoke(
+                    mgr,
+                    10021,
+                    android.os.Process.myUid(),
+                    context.packageName
+                ) as Int
+                mode == AppOpsManager.MODE_ALLOWED
+            } catch (e: Exception) {
+                false
+            }
+        }
+        return true
     }
 
     private fun openAppSettings(context: Context) {
@@ -270,10 +306,18 @@ object PermissionsStatus {
                 }
             }
 
-            if (PermissionsStatus.canDrawOverlaysPermissionGranted.value === null || (!(PermissionsStatus.canDrawOverlaysPermissionGranted.value!!))) {
-                if (isBackgroundWindowsAllowed(context)) {
+           // if (PermissionsStatus.canDrawOverlaysPermissionGranted.value == true && PermissionsStatus.backgroundWindowsAllowed.value == true) {
+            if (PermissionsStatus.canDrawOverlaysPermissionGranted.value != true) {
+                if (Settings.canDrawOverlays(context)) {
                     // Permission is granted
                     PermissionsStatus.canDrawOverlaysPermissionGranted.value = true
+                }
+            }
+
+            if (PermissionsStatus.backgroundWindowsAllowed.value != true) {
+                if (isBackgroundWindowsAllowed(context)) {
+                    // Permission is granted
+                    PermissionsStatus.backgroundWindowsAllowed.value = true
                 }
             }
         }
@@ -298,12 +342,89 @@ object PermissionsStatus {
                     context.getString(R.string.permission_change_detected_reloading), Toast.LENGTH_LONG).show()*/
                 showCustomToastDialog(context, context.getString(R.string.permission_change_detected_reloading))
             }
-            PermissionsStatus.defaultDialerPermissionGranted.value = dialerPermissionGranted
-            PermissionsStatus.readContactsPermissionGranted.value = readContactsPermission
+            defaultDialerPermissionGranted.value = dialerPermissionGranted
+            readContactsPermissionGranted.value = readContactsPermission
+
+            val canShowWhenDeviceLockedAllowed = isShowOnLockScreenAllowed(context)
+            if (canShowWhenDeviceLockedAllowed != permissionToShowWhenDeviceLockedAllowed.value) {
+                showCustomToastDialog(context, context.getString(R.string.permission_change_detected_reloading))
+            }
+            permissionToShowWhenDeviceLockedAllowed.value = canShowWhenDeviceLockedAllowed
+
+            val canPaintOnBackgroundWindows = isBackgroundWindowsAllowed(context)
+            val canDrawOverlays = Settings.canDrawOverlays(context)
+            if (canPaintOnBackgroundWindows != backgroundWindowsAllowed.value
+                || canDrawOverlays != canDrawOverlaysPermissionGranted.value) {
+                showCustomToastDialog(context, context.getString(R.string.permission_change_detected_reloading))
+            }
+            canDrawOverlaysPermissionGranted.value = canDrawOverlays
+            backgroundWindowsAllowed.value = canPaintOnBackgroundWindows
         }
         catch (e: Exception) {
             Log.e("Permission Status - checkForPermissionsChangesAndShowToastIfChanged", "Error (${e.message})")
         }
+    }
+
+    fun isShowOnLockScreenAllowed(context: Context): Boolean {
+        return if (Build.MANUFACTURER.equals("Xiaomi", true)) {
+            isShowOnLockScreenAllowedMIUIXiaomi(context)    // הפונקציה שבנינו
+        } else {
+            // ברוב המכשירים די ב‑Overlay
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                true
+                //Settings.canDrawOverlays(context) // but we already check this for draw overlay
+            } else true
+        }
+    }
+
+    fun isShowOnLockScreenAllowedMIUIXiaomi(context: Context): Boolean {
+        try {
+            val MIUI_LOCKSCREEN_OP_NUM = 10020
+            val appOps = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+            val uid    = Binder.getCallingUid()
+            val pkg    = context.packageName
+
+            /* ---------- 1. מנסים למצוא OPSTR_* ---------- */
+            val opStr = runCatching {
+                val names = listOf(
+                    "OPSTR_SHOW_ON_LOCK_SCREEN",
+                    "OPSTR_DISPLAY_ON_LOCK_SCREEN",
+                    "OPSTR_WAKEUP_ON_LOCK_SCREEN"
+                )
+                val cls = AppOpsManager::class.java
+                names.firstNotNullOf { n ->
+                    runCatching {
+                        cls.getDeclaredField(n).apply { isAccessible = true }.get(null) as String
+                    }.getOrNull()
+                }
+            }.getOrNull()
+
+            if (opStr != null && opStr.any { !it.isDigit() }) {
+                val mode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    appOps.unsafeCheckOpNoThrow(opStr, uid, pkg)
+                } else {
+                    AppOpsManager.MODE_ALLOWED // try to allow
+                }
+                return mode == AppOpsManager.MODE_ALLOWED
+            }
+
+            /* ---------- 2. Fallback למספר 10020 (Reflection) ---------- */
+            val modeNum = runCatching {
+                val m = AppOpsManager::class.java.getMethod(
+                    "checkOpNoThrow",
+                    Int::class.javaPrimitiveType,
+                    Int::class.javaPrimitiveType,
+                    String::class.java
+                )
+                m.invoke(appOps, MIUI_LOCKSCREEN_OP_NUM, uid, pkg) as Int
+            }.getOrElse { AppOpsManager.MODE_ERRORED }
+
+            return modeNum == AppOpsManager.MODE_ALLOWED
+        }
+        catch(e: Exception) {
+            Log.d("lockscreen - PermissionStatus", "isSowOnLockScreenAllowedMIUIXiaomi error (${e.message})")
+        }
+        return true
     }
 
     fun askForRecordPermission(context: Context, activity: Activity) {

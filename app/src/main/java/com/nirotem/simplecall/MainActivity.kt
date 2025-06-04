@@ -3,6 +3,7 @@ package com.nirotem.simplecall
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.AppOpsManager
 import android.app.role.RoleManager
 import android.content.Context
 import android.content.ContextWrapper
@@ -14,6 +15,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.PixelFormat
 import android.net.Uri
+import android.os.Binder
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -46,9 +48,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEasyAppEnum
-import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEnum
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveEasyCallAndAnswerPackageName
-import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveSelectedAppPackage
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveWhenScreenUnlockedBehaviourEnum
 import com.nirotem.simplecall.databinding.ActivityMainBinding
 import com.nirotem.simplecall.helpers.DBHelper.saveContactsForCallWithoutPermissions
@@ -56,7 +56,7 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.getAppVersionFromCa
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadAllowMakingCallsEnum
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadAlreadyPlayedWelcomeSpeech
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadCallActivityLoadedTimeStamp
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadEmergencyNumber
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadQuickCallNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadGoldNumberContact
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadLastCallError
@@ -70,8 +70,8 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAlreadyPlayedWe
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAppVersionInCache
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallActivityLoadedTimeStamp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveContactsMapping
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumber
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumberContact
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveQuickCallNumber
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveQuickCallNumberContact
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumberContact
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsAppLoaded
@@ -98,17 +98,15 @@ import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
 import com.nirotem.simplecall.managers.SoundPoolManager
 import com.nirotem.simplecall.managers.TextToSpeechManager
 import com.nirotem.simplecall.managers.VoiceApi
-import com.nirotem.simplecall.managers.VoiceManager.speechCommandsEnabled
 import com.nirotem.simplecall.statuses.AllowOutgoingCallsEnum
 import com.nirotem.simplecall.statuses.LanguagesEnum
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus.isBackgroundWindowsAllowed
+import com.nirotem.simplecall.statuses.PermissionsStatus.isShowOnLockScreenAllowed
 import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
 import com.nirotem.simplecall.ui.tour.TourDialogFragment
-
-
 import java.io.File
 import java.util.Locale
 
@@ -449,8 +447,9 @@ class MainActivity : AppCompatActivity() {
         val telecomManager = getSystemService(TELECOM_SERVICE) as TelecomManager
         PermissionsStatus.defaultDialerPermissionGranted.value =
             telecomManager.defaultDialerPackage == packageName
-        PermissionsStatus.canDrawOverlaysPermissionGranted.value =
-            isBackgroundWindowsAllowed(this) // Settings.canDrawOverlays(this)
+        PermissionsStatus.canDrawOverlaysPermissionGranted.value = Settings.canDrawOverlays(this)
+            //isBackgroundWindowsAllowed(this) // Settings.canDrawOverlays(this)
+        PermissionsStatus.backgroundWindowsAllowed.value = isBackgroundWindowsAllowed(this)
         PermissionsStatus.readContactsPermissionGranted.value = ContextCompat.checkSelfPermission(
             this,
             android.Manifest.permission.READ_CONTACTS
@@ -467,6 +466,8 @@ class MainActivity : AppCompatActivity() {
             this,
             android.Manifest.permission.CALL_PHONE
         ) == PackageManager.PERMISSION_GRANTED
+
+        PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value = isShowOnLockScreenAllowed(this)
 
         /*        val batteryOPTIMIZATIONS = ContextCompat.checkSelfPermission(
                     this,
@@ -492,6 +493,7 @@ class MainActivity : AppCompatActivity() {
         SettingsStatus.goldNumber.value = loadGoldNumber(this)
         SettingsStatus.goldNumberContact.value = loadGoldNumberContact(this)
         SettingsStatus.allowOpeningWhatsApp.value = shouldAllowOpeningWhatsApp(this)
+
         /*  if (permissions.any {
                   ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
               }) {
@@ -596,8 +598,8 @@ class MainActivity : AppCompatActivity() {
                 // This can only happen if we delete the app (not updating) so currAppVersionFromJson is deleted and null
                 // But on some devices the cache isn't delete - so lastAppVersionFromCache is not null
                 // So we'll need to delete things from cache so, for example, Tour will run again and terms shoudl be opened again
-                saveEmergencyNumberContact(null, this)
-                saveEmergencyNumber(null, this)
+                saveQuickCallNumberContact(null, this)
+                saveQuickCallNumber(null, this)
                 saveUserApprovedTermsAndConditions(false, this)
                 saveUserAlreadyOpenedTermsAndConditionsOnce(false, this)
                 saveLastCallError(this, null)
@@ -900,7 +902,7 @@ class MainActivity : AppCompatActivity() {
         //val layoutParams = toolbarLogo.layoutParams as? FrameLayout.LayoutParams
 
 
-        SettingsStatus.emergencyNumber.value = loadEmergencyNumber(this)
+        SettingsStatus.quickCallNumber.value = loadQuickCallNumber(this)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val appLogo = findViewById<ImageView>(R.id.toolbar_logo)
 
@@ -919,7 +921,7 @@ class MainActivity : AppCompatActivity() {
             this,
             this
         )
-        SettingsStatus.emergencyNumber.observe(this) { emergencyNumber ->
+        SettingsStatus.quickCallNumber.observe(this) { emergencyNumber ->
             checkForDistressButton(
                 binding.root,
                 this,

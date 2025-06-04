@@ -28,7 +28,7 @@ import com.nirotem.simplecall.OutgoingCall
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberOfSecsToCancel
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberShouldAlsoTalk
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadEmergencyNumber
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadQuickCallNumber
 import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
@@ -79,7 +79,7 @@ object DistressButtonManager {
     ) {
         val emergencyButtonSmall = activity.findViewById<FrameLayout>(R.id.emergencyButtonSmall)
         val toolbar: Toolbar = activity.findViewById(R.id.toolbar)
-        if (SettingsStatus.emergencyNumber.value != null) {
+        if (SettingsStatus.quickCallNumber.value != null) {
             emergencyButtonSmall?.visibility = VISIBLE
             handleDistressButton(view, context, supportFragmentManager, requestPermissionLauncher, activity, lifecycleOwner)
         } else {
@@ -136,7 +136,7 @@ object DistressButtonManager {
     ) {
         if (!emergencyDelayTimeAnimationIsRunning) {
             emergencyIsOn = true
-            SettingsStatus.emergencyNumber.value = loadEmergencyNumber(context)
+            SettingsStatus.quickCallNumber.value = loadQuickCallNumber(context)
             distressNumberOfSecsToCancel = loadDistressNumberOfSecsToCancel(context)
             shouldAlsoCallForHelp = if (isPremium) loadDistressNumberShouldAlsoTalk(context) else false
             if (shouldAlsoCallForHelp) {
@@ -192,9 +192,9 @@ object DistressButtonManager {
         activity: Activity
     ) {
         val rootView: View = activity.findViewById(android.R.id.content)
-        if (SettingsStatus.emergencyNumber.value != null) {
+        if (SettingsStatus.quickCallNumber.value != null) {
             OutgoingCall.makeCall(
-                SettingsStatus.emergencyNumber.value.toString(),
+                SettingsStatus.quickCallNumber.value.toString(),
                 false,
                 rootView.context,
                 supportFragmentManager,

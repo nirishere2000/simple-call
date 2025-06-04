@@ -35,14 +35,10 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAutoAnswerPho
 import com.nirotem.simplecall.managers.SoundPoolManager
 import android.os.Handler
 import android.os.Looper
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import com.nirotem.simplecall.OngoingCall.formatPhoneNumberWithLib
 import com.nirotem.simplecall.helpers.DBHelper.isNumberBlocked
 import com.nirotem.simplecall.helpers.SharedPreferencesCache
@@ -353,7 +349,7 @@ CALL_DIRECTION_OUTGOING = 2
                                 OutgoingCall.isCalling = false
                                 createNotificationChannel()
                                 createCallNotificationForTray()
-                                if (emergencyIsOn && OutgoingCall.phoneNumberOrContact == SettingsStatus.emergencyNumber.value) {
+                                if (emergencyIsOn && OutgoingCall.phoneNumberOrContact == SettingsStatus.quickCallNumber.value) {
                                     emergencyCallWasAnswered = true
                                 }
                             } else if (isCallWaiting) {

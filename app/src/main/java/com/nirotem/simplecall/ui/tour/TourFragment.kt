@@ -2,16 +2,11 @@ package com.nirotem.simplecall.ui.tour
 
 
 import android.Manifest.permission.CALL_PHONE
-import android.Manifest.permission.READ_CALL_LOG
-import android.Manifest.permission.READ_CONTACTS
 import android.Manifest.permission.READ_PHONE_STATE
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.role.RoleManager
-import android.app.usage.UsageStatsManager
 import android.content.Context
-import android.content.Context.POWER_SERVICE
-import android.content.Context.TELECOM_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.util.TypedValue
@@ -22,8 +17,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.os.PowerManager
-import android.provider.BlockedNumberContract
 import android.provider.ContactsContract
 import android.provider.Settings
 import android.telecom.TelecomManager
@@ -46,33 +39,25 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.i18n.phonenumbers.PhoneNumberUtil
+import com.nirotem.sharedmodules.statuses.OemDetector
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.helpers.DBHelper.fetchContactsOptimized
 import com.nirotem.simplecall.helpers.DBHelper.getContactNameFromPhoneNumber
 import com.nirotem.simplecall.helpers.DBHelper.getPhoneNumberFromContactName
-import com.nirotem.simplecall.helpers.DBHelper.loadCallHistoryAsync
 import com.nirotem.simplecall.helpers.DBHelper.saveContactsForCallWithoutPermissions
 import com.nirotem.simplecall.helpers.DialogManager
 import com.nirotem.simplecall.helpers.GeneralUtils.emergencyNumbersByRegion
 import com.nirotem.simplecall.helpers.GeneralUtils.handleEmergencySelectContact
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadEmergencyNumber
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadEmergencyNumberContact
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadQuickCallNumber
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadQuickCallNumberContact
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadUpdatedTourCaption
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadUserAlreadyOpenedTermsAndConditionsOnce
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadUserApprovedTermsAndConditions
-/*import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallsReportContact
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallsReportIsGoldNumber
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallsReportNumber
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveContactsMapping
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumber
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveEmergencyNumberContact*/
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumberContact
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveUpdatedTourCaption
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveUserAlreadyOpenedTermsAndConditionsOnce
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveUserApprovedTermsAndConditions
 import com.nirotem.simplecall.helpers.isAppBatteryOptimizationIgnored
@@ -81,19 +66,14 @@ import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.OpenScreensStatus.shouldUpdateSettingsScreens
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus.checkForPermissionsChangesAndShowToastIfChanged
-import com.nirotem.simplecall.statuses.PermissionsStatus.isBackgroundWindowsAllowed
 import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
-import com.nirotem.simplecall.ui.contacts.ContactsInLetterListItem
-import com.nirotem.simplecall.ui.permissionsScreen.PermissionsAlertFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
-import kotlin.math.roundToInt
 
 class TourFragment : Fragment() {
 
@@ -297,15 +277,6 @@ class TourFragment : Fragment() {
                 isPremium = false
             ),
             TourPage(
-                key = "lockedScreen",
-                title = getString(R.string.tour_screen_lock_title),
-                description = getString(R.string.tour_lock_screen_text),
-                imageRes = R.drawable.showonlockscreenpermission,
-                secondImageRes = null,
-                isXiaomiOnly = false,
-                isPremium = false
-            ),
-            TourPage(
                 key = "defaultApp",
                 title = getString(R.string.tour_default_app),
                 description = getString(R.string.tour_default_app_text),
@@ -324,7 +295,7 @@ class TourFragment : Fragment() {
                 isPremium = false
             ),
             TourPage(
-                key = "distressButton",
+                key = "quickCall",
                 title = getString(R.string.tour_quick_call_button_caption),
                 description = getString(R.string.tour_quick_call_button_description),
                 imageRes = null,
@@ -342,12 +313,21 @@ class TourFragment : Fragment() {
                 isXiaomiOnly = false
             ),*/
             TourPage( // special page - only for Xiaomi
-                key = "xiaomiOverlayDraw",
+                key = "overlayDrawPermission",
                 title = getString(R.string.tour_overlay_draw_permission),
                 description = getString(R.string.tour_overlay_draw_permission_text),
-                imageRes = R.drawable.drawoverlaypermissionexample,
+                imageRes = R.drawable.other_permissions_samsung,
                 secondImageRes = null,
                 isXiaomiOnly = true,
+                isPremium = false
+            ),
+            TourPage(
+                key = "lockedScreen",
+                title = getString(R.string.tour_screen_lock_title),
+                description = getString(R.string.tour_lock_screen_text),
+                imageRes = R.drawable.showonlockscreenpermission,
+                secondImageRes = null,
+                isXiaomiOnly = false,
                 isPremium = false
             ),
             TourPage(
@@ -444,10 +424,11 @@ class TourFragment : Fragment() {
         // Set listeners for buttons
         buttonNext.setOnClickListener {
             if (viewContext != null) {
+                val runningInBackgroundAllowed = PermissionsStatus.canDrawOverlaysPermissionGranted.value == true && PermissionsStatus.backgroundWindowsAllowed.value == true
                 if (currentPageKey == "defaultApp" && PermissionsStatus.defaultDialerPermissionGranted.value != true) {
                     // default phone app - user clicked skip
                     showDefaultAppAlertDialog(viewContext!!) // alert him before skipping
-                } else if (currentPageKey == "xiaomiOverlayDraw" && !openedSettingsForOverlayDraw) { // User selected "Skip" so we'll give him alert
+                } else if (currentPageKey == "overlayDrawPermission" && (!runningInBackgroundAllowed && !openedSettingsForOverlayDraw)) { // User selected "Skip" so we'll give him alert
                     showOverlayDrawAlertDialog(viewContext!!)
                 } else if (currentPageKey == "batterySaver" && (!isAppBatteryOptimizationIgnored(
                         viewContext!!, packageName
@@ -615,22 +596,27 @@ class TourFragment : Fragment() {
         //    val descriptionTextAreaParams: ViewGroup.LayoutParams = descriptionTextArea.getLayoutParams()
 
         buttonPrev.visibility = if (currentPageIndex > 0) View.VISIBLE else View.GONE
-        buttonOpenSettingsForOverlayDraw.visibility =
-            if (page.key == "xiaomiOverlayDraw") View.VISIBLE else View.GONE
+        buttonOpenSettingsForOverlayDraw.visibility =  View.GONE
+          /*  if (page.key == "overlayDrawPermission") View.VISIBLE else View.GONE*/
         buttonOpenDefaultDialer.visibility = GONE
         buttonOpenBackgroundSettings.visibility = GONE
         buttonOpenTermsAndUse.visibility = GONE
         stepDoneBack.visibility = GONE
         stepAcceptAppTermsContainer.visibility = if (page.key == "allDone") VISIBLE else GONE
-        distressButtonBack.visibility = if (page.key == "distressButton") VISIBLE else GONE
+        distressButtonBack.visibility = if (page.key == "quickCall") VISIBLE else GONE
         distressButtonIcon.setImageResource(R.drawable.ic_bell_white)
-        distressButtonIcon.visibility = if (page.key == "distressButton") VISIBLE else GONE // making sure the button look is enabled for the Tour display
+        distressButtonIcon.visibility = if (page.key == "quickCall") VISIBLE else GONE // making sure the button look is enabled for the Tour display
         distressButtonTextDisabled.visibility = GONE // making sure the button look is enabled for the Tour display
-        spinnersContainer.visibility = if (page.key == "distressButton" || page.key == "goldNumber" || page.key == "callsReport") VISIBLE else GONE
+        spinnersContainer.visibility = if (page.key == "quickCall" || page.key == "goldNumber" || page.key == "callsReport") VISIBLE else GONE
 
         // konfettiView.stopGracefully()
         //descriptionTextAreaParams.height = convertDpToPx(255) // Convert dp to pixels
-        var pageShouldBeSkipped = (page.isXiaomiOnly && !isXiaomi) || (page.isPremium && !isPremium)
+        val isXiaomi = Build.MANUFACTURER.equals("Xiaomi", true)
+        val isStepLockScreenOnNotXiaomiAndNotPremium = page.key == "lockedScreen" && (isXiaomi == false) && !isPremium
+        val batterSaverShouldBeSkipped = currentPageKey == "batterySaver" && (isAppBatteryOptimizationIgnored(
+            viewContext!!, packageName
+        ))
+        var pageShouldBeSkipped = (page.isPremium && !isPremium) || isStepLockScreenOnNotXiaomiAndNotPremium || batterSaverShouldBeSkipped
         if (pageShouldBeSkipped && (movingForward || currentPageIndex > 0)) {
             if (movingForward) {
                 currentPageIndex++ // move next without doing anything
@@ -639,25 +625,99 @@ class TourFragment : Fragment() {
             }
             updateContent()
             return
-        } else if (page.key == "xiaomiOverlayDraw") { // xiaomi Overlay Draw
-            buttonNext.text =
-                if (openedSettingsForOverlayDraw) getString(R.string.tour_next_button) else getString(
+        } else if (page.key == "overlayDrawPermission") { // xiaomi Overlay Draw
+            buttonNext.text = getString(R.string.tour_next_button)
+                /*if (PermissionsStatus.canDrawOverlaysPermissionGranted.value == true && PermissionsStatus.backgroundWindowsAllowed.value == true) getString(R.string.tour_next_button) else getString(
                     R.string.tour_skip_button
-                )
+                )*/
 
             /*            val xiaomiOverlayDrawTextHeight = 200
                         val newHeightInPx = convertDpToPx(xiaomiOverlayDrawTextHeight) // Convert dp to pixels
                         descriptionTextAreaParams.height = newHeightInPx
                         descriptionTextArea.layoutParams = descriptionTextAreaParams*/
 
-            stepDoneBack.visibility =
-                GONE // we cannot detect this so it will stay gone in this case
+            if (PermissionsStatus.canDrawOverlaysPermissionGranted.value == true && PermissionsStatus.backgroundWindowsAllowed.value == true) {
+                stepDoneBack.visibility = VISIBLE
+                buttonOpenBackgroundSettings.visibility = GONE
+            }
+            else {
+                stepDoneBack.visibility = GONE
+                buttonOpenBackgroundSettings.visibility = VISIBLE
+            }
+            buttonOpenTermsAndUse.visibility = GONE
+            buttonOpenDefaultDialer.visibility = View.GONE
             lastPageButtons.visibility = View.VISIBLE
+
+            if (OemDetector.current() == OemDetector.Oem.SAMSUNG || OemDetector.current() == OemDetector.Oem.OTHER) {
+                tourImage.setImageResource(R.drawable.other_permissions_samsung)
+                tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_samsung)
+            }
+            else if (OemDetector.current() == OemDetector.Oem.GOOGLE) {
+                tourImage.setImageResource(R.drawable.other_permissions_pixel)
+                tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_pixel)
+            }
+            else {
+                tourImage.setImageResource(R.drawable.other_permissions_xioami)
+                tourDescription.text = getString(R.string.tour_overlay_draw_permission_text)
+            }
+
             if (!isPortrait) {
                 prevAndNextButtonsGap?.visibility = GONE
             }
 
-        } else if (page.key == "defaultApp") { // default phone app
+            //lockedScreen
+
+
+        } else if (page.key == "lockedScreen") { // xiaomi Overlay Draw
+            buttonNext.text = getString(R.string.tour_next_button)
+/*            if (PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value == true) getString(R.string.tour_next_button) else getString(
+                R.string.tour_skip_button
+            )*/
+
+        /*            val xiaomiOverlayDrawTextHeight = 200
+                    val newHeightInPx = convertDpToPx(xiaomiOverlayDrawTextHeight) // Convert dp to pixels
+                    descriptionTextAreaParams.height = newHeightInPx
+                    descriptionTextArea.layoutParams = descriptionTextAreaParams*/
+
+        if (PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value == true) {
+            buttonOpenBackgroundSettings.visibility = GONE
+
+            if (Build.MANUFACTURER.equals("Xiaomi", true)) {
+                if (isPremium) { //
+                    tourDescription.text = getString(R.string.premium_screen_lock_text)
+                    tourImage.setImageResource(R.drawable.lock_screen_all_languages)
+                    stepDoneBack.visibility = GONE
+                    lastPageButtons.visibility = GONE
+                }
+                else { // showing the same text about the permission
+                    tourImage.setImageResource(R.drawable.showonlockscreenpermission)
+                    tourDescription.text = getString(R.string.tour_lock_screen_text)
+                    stepDoneBack.visibility = VISIBLE
+                    lastPageButtons.visibility = View.VISIBLE
+                }
+            }
+            else { // other device types are not aware of this permission
+                // This should be shown only on premium. IF not premium this step should not be shown at all if device is not Xiaomi
+                stepDoneBack.visibility = GONE
+                lastPageButtons.visibility = View.GONE
+                tourDescription.text = getString(R.string.premium_screen_lock_text)
+            }
+            buttonOpenTermsAndUse.visibility = GONE
+            buttonOpenDefaultDialer.visibility = View.GONE
+        }
+        else {
+            stepDoneBack.visibility = GONE
+            buttonOpenBackgroundSettings.visibility = VISIBLE
+            tourImage.setImageResource(R.drawable.showonlockscreenpermission)
+            tourDescription.text = getString(R.string.tour_lock_screen_text)
+        }
+
+        if (!isPortrait) {
+            prevAndNextButtonsGap?.visibility = GONE
+        }
+
+
+    } else if (page.key == "defaultApp") { // default phone app
             if (PermissionsStatus.defaultDialerPermissionGranted.value == true) { // already default dialer
                 lastPageButtons.visibility = View.VISIBLE
                 if (!isPortrait) {
@@ -666,10 +726,12 @@ class TourFragment : Fragment() {
                 buttonNext.text = getString(R.string.tour_next_button)
                 buttonNext.visibility = VISIBLE // can finish now
                 stepDoneBack.visibility = VISIBLE
+                buttonOpenDefaultDialer.visibility = View.VISIBLE
 
             } else { // load default dialer request
                 buttonOpenDefaultDialer.visibility = View.VISIBLE
-                buttonNext.text = getString(R.string.tour_skip_button)
+                //buttonNext.text = getString(R.string.tour_skip_button)
+                buttonNext.text = getString(R.string.tour_next_button)
                 stepDoneBack.visibility = GONE
                 lastPageButtons.visibility = View.VISIBLE
                 if (!isPortrait) {
@@ -677,7 +739,8 @@ class TourFragment : Fragment() {
                 }
 
             }
-            // buttonOpenBackgroundSettings.visibility = GONE
+            buttonOpenTermsAndUse.visibility = GONE
+            buttonOpenBackgroundSettings.visibility = GONE
 
         }
         else if (page.key == "goldNumber") {
@@ -690,6 +753,7 @@ class TourFragment : Fragment() {
                     getString(R.string.cannot_choose_gold_number_without_contacts_permission)
                 lastSnackbar = showLongSnackBar(requireContext(), toastMsg, anchorView = requireView())
                 goldNumberSpinner.visibility = GONE
+                buttonNext.text = getString(R.string.tour_next_button)
             }
 
             emergencyNumbersListSpinner.visibility = View.GONE
@@ -713,16 +777,16 @@ class TourFragment : Fragment() {
             goldNumberSpinner.visibility = GONE
             lastPageButtons.visibility = View.GONE
         }
-        else if (page.key == "distressButton") {
+        else if (page.key == "quickCall") {
             val telephonyManager =
                 requireContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val countryCode = telephonyManager.simCountryIso?.uppercase() ?: "US"
-            val emergencyNumbers = getEmergencyNumbers(requireContext(), countryCode)
+            //val emergencyNumbers = getEmergencyNumbers(requireContext(), countryCode)
 
-            val emergencyPhoneNumber = loadEmergencyNumber(context)
-            val existsDistressNumberForDistressButtonButWithoutPermission = (emergencyPhoneNumber != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)
+            val emergencyPhoneNumber = loadQuickCallNumber(context)
+            val existsQuickCallNumberForQuickCallButtonButWithoutPermission = (emergencyPhoneNumber != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)
 
-            if (existsDistressNumberForDistressButtonButWithoutPermission) {
+            if (existsQuickCallNumberForQuickCallButtonButWithoutPermission) {
                 var toastMsg =
                     getString(R.string.phone_permission_required_for_quick_call)
                 //Snackbar.make(fragmentView, toastMsg, 8000).show()
@@ -733,11 +797,12 @@ class TourFragment : Fragment() {
 
                 // Snackbar.make(fragmentView, toastMsg, 8000).show()
                 lastSnackbar = showLongSnackBar(context, toastMsg, anchorView = requireView())
+
             }
 
 // נניח שכל איבר ב-emergencyNumbers הוא אובייקט שמכיל את number ואת emergencyServiceCategories
 // ניצור רשימת מחרוזות להצגה, למשל "מספר - קטגוריה"
-            var emergencyNumbersList = emergencyNumbers.map { number ->
+/*            var emergencyNumbersList = emergencyNumbers.map { number ->
                 val category = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     // number.emergencyServiceCategories.toString()
                     number.emergencyNumberSources.toString()
@@ -757,7 +822,7 @@ class TourFragment : Fragment() {
                 if (listOfStaticEmergencyNumbersPerRegion != null && listOfStaticEmergencyNumbersPerRegion.isNotEmpty()) {
                     emergencyNumbersList = listOfStaticEmergencyNumbersPerRegion
                 }
-            }
+            }*/
 
 // מצא את ה-Spinner (ב-XML שלך יש לו מזהה מתאים)
             //  val spinner: Spinner = findViewById(R.id.spinnerEmergencyNumbers)
@@ -765,7 +830,7 @@ class TourFragment : Fragment() {
 // צור ArrayAdapter והגדר אותו לספינר
             //val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, emergencyNumbersList)
             // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            loadContactsIntoEmergencySpinnerAsync(emergencyNumbersListSpinner, emergencyNumbersList)
+            loadContactsIntoEmergencySpinnerAsync(emergencyNumbersListSpinner, emptyList())
 
             callsReportSpinner.visibility = View.GONE
             goldNumberSpinner.visibility = View.GONE
@@ -835,12 +900,14 @@ class TourFragment : Fragment() {
             val termsOfUsedOpenedAtLeastOnceOrNull =
                 loadUserAlreadyOpenedTermsAndConditionsOnce(viewContext) // user should not have to open it everytime he visits the Tour
             termsOfUsedOpenedAtLeastOnce = termsOfUsedOpenedAtLeastOnceOrNull == true
-            if (termsOfUsedOpenedAtLeastOnce) {
+            if (termsOfUsedOpenedAtLeastOnce && appTermsAndUseApproved) {
                 stepAcceptAppTermsCheckbox.setImageResource(android.R.drawable.checkbox_on_background)
                 stepAcceptAppTermsCheckbox.isEnabled = false
                 stepAcceptAppTermsText.isEnabled = false
             } else {
                 stepAcceptAppTermsCheckbox.setImageResource(android.R.drawable.checkbox_off_background)
+                stepAcceptAppTermsCheckbox.isEnabled = true
+                stepAcceptAppTermsText.isEnabled = true
             }
             //  false // the user will have to approve terms of use everytime ghe gets here even if he already approved and went back:
             buttonOpenTermsAndUse.visibility = VISIBLE
@@ -848,7 +915,7 @@ class TourFragment : Fragment() {
             if (viewContext != null) {
                 val packageName = viewContext!!.packageName
                 // val pm = viewContext!!.getSystemService(POWER_SERVICE) as PowerManager
-                val emergencyPhoneNumber = loadEmergencyNumber(context)
+                val emergencyPhoneNumber = loadQuickCallNumber(context)
                 val existsDistressNumberForDistressButtonButWithoutPermission = (emergencyPhoneNumber != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)
                 if (PermissionsStatus.defaultDialerPermissionGranted.value != true) { // default dialer was not granted.
                     if (existsDistressNumberForDistressButtonButWithoutPermission) {
@@ -1413,7 +1480,12 @@ class TourFragment : Fragment() {
                         //Toast.makeText(this, "Item not found. Default selected.", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    buttonNext.text = getString(R.string.tour_skip_button)
+                    if (contactListIsNotEmpty) {
+                        buttonNext.text = getString(R.string.tour_skip_button)
+                    }
+                    else {
+                        buttonNext.text = getString(R.string.tour_next_button)
+                    }
                 }
 
                 goldNumberSpinner.onItemSelectedListener =
@@ -1450,8 +1522,8 @@ class TourFragment : Fragment() {
     ) {
         val contactsWithEmergencyNumbers: MutableList<String> = mutableListOf()
         val context = requireContext()
-        val emergencyPhoneNumber = loadEmergencyNumber(context)
-        val emergencyPhoneNumberContact = loadEmergencyNumberContact(context)
+        val quickCallPhoneNumber = loadQuickCallNumber(context)
+        val quickCallPhoneNumberContact = loadQuickCallNumberContact(context)
         /* goldNumberEnabledToggle.isChecked =
              (!goldPhoneNumber.isNullOrEmpty() && goldPhoneNumber != "Unknown" && goldPhoneNumber != context.getString(
                  R.string.unknown_capital
@@ -1535,9 +1607,10 @@ class TourFragment : Fragment() {
 
                 val contactListIsNotEmpty = contactsWithEmergencyNumbers.isNotEmpty()
                 spinner.isEnabled = contactListIsNotEmpty // Enable the spinner after loading
+                buttonNext.text = getString(R.string.tour_next_button)
                 // Set default selection to the first contact if needed
                 if (contactListIsNotEmpty) {
-                    if (!emergencyPhoneNumber.isNullOrEmpty() && emergencyPhoneNumber != "Unknown" && emergencyPhoneNumber != getString(
+                    if (!quickCallPhoneNumber.isNullOrEmpty() && quickCallPhoneNumber != "Unknown" && quickCallPhoneNumber != getString(
                             R.string.unknown_capital
                         )
                     ) {
@@ -1548,7 +1621,7 @@ class TourFragment : Fragment() {
                         ) // if it's local found emergency number and not a contact then contact and phone should be the same // (also, we don't check for blocked numbers here)*/
 
                         var selectedItem =
-                            if (emergencyPhoneNumberContact != null) emergencyPhoneNumberContact else emergencyPhoneNumber
+                            if (quickCallPhoneNumberContact != null) quickCallPhoneNumberContact else quickCallPhoneNumber
 
                         val spinnerPosition =
                             if (contactsSpinnerAdapter != null) contactsSpinnerAdapter!!.getPosition(
@@ -1557,11 +1630,12 @@ class TourFragment : Fragment() {
 
                         if (spinnerPosition >= 0) {
                             emergencyNumbersListSpinner.setSelection(spinnerPosition)
+                            buttonNext.text = getString(R.string.tour_next_button)
                         } else {
                             // Handle the case where the string does not match any Spinner item
                             // For example, set to a default position or show a message
                             var toastMsg: String
-                            if (emergencyPhoneNumberContact != null) { // it's Contact that wasn't found
+                            if (quickCallPhoneNumberContact != null) { // it's Contact that wasn't found
                                 toastMsg =
                                     if (PermissionsStatus.readContactsPermissionGranted.value == true) {
                                         getString(R.string.unable_to_display_selection_unexpected_error)
@@ -1583,7 +1657,7 @@ class TourFragment : Fragment() {
                             lastSnackbar = showLongSnackBar(requireContext(), toastMsg, anchorView = requireView())
                             emergencyNumbersListSpinner.setSelection(0) // Setting to the first item
                             //Toast.makeText(this, "Item not found. Default selected.", Toast.LENGTH_SHORT).show()
-
+                            buttonNext.text = getString(R.string.tour_skip_button)
 
                         }
                     } else {
@@ -1591,7 +1665,9 @@ class TourFragment : Fragment() {
                         spinner.setSelection(0)
                     }
                 } else {
-                    buttonNext.text = getString(R.string.tour_skip_button)
+                    //buttonNext.text = getString(R.string.tour_skip_button)
+                    buttonNext.text = getString(R.string.tour_next_button)
+
                 }
 
                 emergencyNumbersListSpinner.onItemSelectedListener =
@@ -1629,6 +1705,9 @@ class TourFragment : Fragment() {
                     }
             }
             val itemCount = emergencyNumbersListSpinner.adapter.count;
+            if (itemCount <= 1) {
+                 buttonNext.text = getString(R.string.tour_next_button)
+            }
             emergencyNumbersListSpinner.visibility = if (itemCount > 1) VISIBLE else GONE
         }
     }
@@ -1808,8 +1887,10 @@ class TourFragment : Fragment() {
 
     private fun showTermsOfUseDialog(context: Context) {
         val title = context.getString(R.string.accept_term_caption)
-        val termsText =
-            context.getString(R.string.terms_and_conditions, context.getString(R.string.app_name))
+        val appName = getString(R.string.app_name)
+        val acceptButtonText = getString(R.string.accept_terms_button)
+        val supportEmail = this.resources.getString(R.string.supportEmail)
+        val termsText = getString(R.string.terms_and_conditions, appName, acceptButtonText, supportEmail)
         val okButtonCaption = context.getString(R.string.accept_terms_button_got_it)
 
         val overlayFragment = DialogManager()

@@ -30,7 +30,6 @@ object SpinnersHelper {
 
 
     suspend fun loadContactsAndEmergencyIntoList(
-
         emergencyNumbersList: List<String>,
         context: Context,
         anchorView: View,
