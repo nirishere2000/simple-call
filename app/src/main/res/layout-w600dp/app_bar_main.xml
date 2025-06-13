@@ -42,7 +42,7 @@
             </FrameLayout>
 
             <ImageView
-                android:id="@+id/toolbar_logo"
+                android:id="@+id/toolbar_logo_600dp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -71,7 +71,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:contentDescription="@string/fab_content_description"
             app:srcCompat="@android:drawable/stat_notify_chat" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -112,6 +111,5 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        android:contentDescription="@string/fab_content_description"
         app:srcCompat="@android:drawable/stat_notify_chat" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>-->

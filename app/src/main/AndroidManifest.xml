@@ -93,7 +93,6 @@
         <activity android:name="com.nirotem.simplecall.activities.EventScreenActivity"
             android:showWhenLocked="true"
             android:turnScreenOn="true"
-            android:excludeFromRecents="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:taskAffinity=""

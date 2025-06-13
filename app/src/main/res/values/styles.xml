@@ -29,6 +29,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="LockScreenPermissionDialogBackground" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/lock_screen_dialog_background</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
 <!--    &lt;!&ndash; res/values/styles.xml &ndash;&gt;
     <style name="RoundedDialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowBackground">@drawable/rounded_dialog</item>

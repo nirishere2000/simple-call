@@ -25,12 +25,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/appIcon"
+                android:id="@+id/missingCallPermissionAppIcon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="7dp"
-                android:contentDescription="@string/elderandyoung"
                 android:src="@drawable/goldappiconphoneblack"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -40,15 +39,12 @@
 
             <TextView
                 android:id="@+id/permissionsScreenCaption"
-
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-
                 android:gravity="start"
-
                 android:text="@string/permissions_capital"
                 android:textColor="@color/white"
                 android:textSize="26sp"

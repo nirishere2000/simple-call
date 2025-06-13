@@ -15,12 +15,14 @@ import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.telephony.emergency.EmergencyNumber
 import android.util.Log
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
@@ -37,6 +39,7 @@ import com.nirotem.lockscreen.managers.SharedPreferencesCache.loadWhenScreenUnlo
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveSelectedAppPackage
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveShouldServiceRun
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveWhenScreenUnlockedBehaviourEnum
+import com.nirotem.sharedmodules.statuses.OemDetector
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.VoiceApiImpl
@@ -84,6 +87,7 @@ import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.OpenScreensStatus.shouldUpdateSettingsScreens
 import com.nirotem.simplecall.statuses.PermissionsStatus.askForRecordPermission
 import com.nirotem.simplecall.statuses.PermissionsStatus.checkForPermissionsChangesAndShowToastIfChanged
+import com.nirotem.simplecall.statuses.PermissionsStatus.featureOnlyAvailableOnPremiumAlert
 import com.nirotem.simplecall.statuses.PermissionsStatus.suggestManualPermissionGrant
 import com.nirotem.simplecall.statuses.SettingsStatus
 import interfaces.DescriptiveEnum
@@ -102,6 +106,7 @@ class SettingsFragment : Fragment() {
     private lateinit var goldNumberSpinner: Spinner
     private lateinit var goldNumberEnabledToggle: SwitchMaterial
     private lateinit var distressButtonNumberToggle: SwitchMaterial
+    private lateinit var quickCallAlsoSendSmsToGoldToggle: SwitchMaterial
     private lateinit var fragmentRoot: View
     private lateinit var scrollView: ScrollView
     private lateinit var scrollArrow: ImageView
@@ -114,6 +119,7 @@ class SettingsFragment : Fragment() {
         WhenScreenUnlockedBehaviourEasyAppEnum.EASY_CALL_AND_ANSWER_APP
     private var shouldInitQuickCall = true
     private var shouldInitGoldNumber = true
+    private var goldNumberSpinnerInitDone = false
 
     /*    private var distressNumberSelectedButNoCallPermissionMsgDisplayedCount = 0
         private var toFilterBlockedContactsMsgDisplayedCount = 0
@@ -141,10 +147,14 @@ class SettingsFragment : Fragment() {
             }
 
             // PREMIUM ONLY!
-            if (SettingsStatus.isPremium) {
-                requestSmsPermissionLauncher =
-                    registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-                        if (isGranted) {
+            //if (SettingsStatus.isPremium) {
+            requestSmsPermissionLauncher =
+                registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                    if (isGranted) {
+                        if (SettingsStatus.goldNumber.value == null || SettingsStatus.goldNumberContact.value == null) {
+                            quickCallAlsoSendSmsToGoldToggle.isChecked = false
+                            alertAboutNoGoldNumberForQuickCallSms()
+                        } else { // also have gold number
                             saveQuickCallShouldAlsoSendSmsToGoldNumber(view.context, true)
                             val toastMsg =
                                 getString(R.string.quick_call_send_sms_to_gold_number_settings_msg)
@@ -154,240 +164,314 @@ class SettingsFragment : Fragment() {
                                 10000,
                                 anchorView = requireView()
                             )
-                        } else {
-                            val distressAlsoSendSmsToGoldToggle =
-                                view.findViewById<SwitchMaterial>(R.id.distress_also_send_sms_to_gold_toggle)
-                            distressAlsoSendSmsToGoldToggle.isChecked = false
-                            suggestManualPermissionGrant(view.context)
                         }
-                    }
-
-
-                val context = requireContext()
-                val tabCalls = view.findViewById<LinearLayout>(R.id.tabCalls)
-                //  val tabCallsText = view.findViewById<TextView>(R.id.tabCallsText)
-                val tabDistressButton = view.findViewById<LinearLayout>(R.id.tabDistressButton)
-                val groupDistressButton = view.findViewById<LinearLayout>(R.id.groupDistressButton)
-                val groupCalls = view.findViewById<LinearLayout>(R.id.groupCalls)
-                val tabLock = view.findViewById<LinearLayout>(R.id.tabLock)
-                val groupLock = view.findViewById<LinearLayout>(R.id.groupLock)
-                val tabReports = view.findViewById<LinearLayout>(R.id.tabReports)
-                tabReports.visibility = GONE
-                val tabVoice = view.findViewById<LinearLayout>(R.id.tabVoice)
-                val groupVoice = view.findViewById<LinearLayout>(R.id.groupVoice)
-                val groupReports = view.findViewById<LinearLayout>(R.id.groupReports)
-                val tabOthers = view.findViewById<LinearLayout>(R.id.tabOthers)
-                val groupOthers = view.findViewById<LinearLayout>(R.id.groupOthers)
-
-                //val commandsContainer = view.findViewById<LinearLayout>(R.id.settingsCommandsContainerLayout)
-                //commandsContainer.visibility = GONE // if there is voice tab then it doesn't need to be in Others too
-
-                serviceIsRunning =
-                    isServiceRunning(requireContext(), IdleMonitorService::class.java)
-                val lockScreenToggle =
-                    view.findViewById<SwitchMaterial>(R.id.show_custom_lock_screen_toggle)
-                lockScreenToggle.isChecked = serviceIsRunning
-                lockScreenToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-                    if (isChecked) {
-                        startUnlockService()
                     } else {
-                        stopUnlockServiceClick()
+                        quickCallAlsoSendSmsToGoldToggle.isChecked = false
+                        suggestManualPermissionGrant(view.context)
                     }
                 }
 
-                if (voiceApi.isEnabled()) {
-                    initVoiceCommandsSettings(view, requireActivity())
-                }
 
-                val intervals = arrayOf("1", "2", "3", "5", "10", "20")
-                val quickCallNumOfSecsToCancelAdapter = ArrayAdapter(
-                    view.context,
-                    android.R.layout.simple_spinner_item,
-                    intervals
-                )
-                quickCallNumOfSecsToCancelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                val distressButtonNumOfSecsToCancelSpinner =
-                    view.findViewById<Spinner>(R.id.distress_button_num_of_secs_to_cancel_spinner)
-                distressButtonNumOfSecsToCancelSpinner.adapter =
-                    quickCallNumOfSecsToCancelAdapter
+            // val context = requireContext()
+            val tabCalls = view.findViewById<LinearLayout>(R.id.tabCalls)
+            //  val tabCallsText = view.findViewById<TextView>(R.id.tabCallsText)
+            val tabDistressButton = view.findViewById<LinearLayout>(R.id.tabDistressButton)
+            val groupDistressButton = view.findViewById<LinearLayout>(R.id.groupDistressButton)
+            val groupCalls = view.findViewById<LinearLayout>(R.id.groupCalls)
+            val tabLock = view.findViewById<LinearLayout>(R.id.tabLock)
+            val groupLock = view.findViewById<LinearLayout>(R.id.groupLock)
+            val tabReports = view.findViewById<LinearLayout>(R.id.tabReports)
+            tabReports.visibility = GONE
+            val tabVoice = view.findViewById<LinearLayout>(R.id.tabVoice)
+            val groupVoice = view.findViewById<LinearLayout>(R.id.groupVoice)
+            val groupReports = view.findViewById<LinearLayout>(R.id.groupReports)
+            val tabOthers = view.findViewById<LinearLayout>(R.id.tabOthers)
+            val groupOthers = view.findViewById<LinearLayout>(R.id.groupOthers)
 
-                var savedValue = loadDistressNumberOfSecsToCancel(context)
-                val index = intervals.indexOf(savedValue.toString())
-                if (index >= 0) {
-                    distressButtonNumOfSecsToCancelSpinner.setSelection(index)
+            //val commandsContainer = view.findViewById<LinearLayout>(R.id.settingsCommandsContainerLayout)
+            //commandsContainer.visibility = GONE // if there is voice tab then it doesn't need to be in Others too
+
+            serviceIsRunning =
+                isServiceRunning(requireContext(), IdleMonitorService::class.java)
+            val lockScreenToggle =
+                view.findViewById<SwitchMaterial>(R.id.show_custom_lock_screen_toggle)
+            lockScreenToggle.isChecked = serviceIsRunning
+            lockScreenToggle.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    if (SettingsStatus.isPremium) {
+                        startUnlockService()
+                    }
+                    else {
+                        lockScreenToggle.isChecked = false
+                        featureOnlyAvailableOnPremiumAlert(view.context)
+                    }
                 } else {
-                    distressButtonNumOfSecsToCancelSpinner.setSelection(0)
+                    stopUnlockServiceClick()
+                }
+            }
+
+            val goldNumberTextName = getString(R.string.gold_number)
+            val distressAlsoSendSmsToGoldLabel =
+                view.findViewById<TextView>(R.id.distress_also_send_sms_to_gold_label)
+            distressAlsoSendSmsToGoldLabel.text =
+                getString(R.string.send_alert_via_sms_to_gold_number, goldNumberTextName)
+
+            if (voiceApi.isEnabled()) {
+                initVoiceCommandsSettings(view, requireActivity())
+            }
+
+            val intervals = arrayOf("1", "2", "3", "5", "10", "20")
+            val quickCallNumOfSecsToCancelAdapter = object : ArrayAdapter<String>(
+                view.context,
+                android.R.layout.simple_spinner_item,
+                intervals
+            ) {
+                override fun getView(
+                    position: Int,
+                    convertView: View?,
+                    parent: ViewGroup
+                ): View {
+                    val view = super.getView(position, convertView, parent)
+                    val textView = view.findViewById<TextView>(android.R.id.text1)
+                    textView.setTextColor(Color.BLACK)
+                    textView.gravity = Gravity.START
+                    return view
                 }
 
-                distressButtonNumOfSecsToCancelSpinner.onItemSelectedListener =
-                    object : AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(
-                            parent: AdapterView<*>,
-                            view: View?,
-                            position: Int,
-                            id: Long
-                        ) {
-                            val selectedValue = intervals[position]
-                            saveDistressNumberOfSecsToCancel(selectedValue, context)
-                        }
+                override fun getDropDownView(
+                    position: Int,
+                    convertView: View?,
+                    parent: ViewGroup
+                ): View {
+                    val view = super.getDropDownView(position, convertView, parent)
+                    val textView = view.findViewById<TextView>(android.R.id.text1)
+                    textView.setBackgroundColor(Color.WHITE)
+                    textView.setTextColor(Color.BLACK)
+                    return view
+                }
+            }
+            quickCallNumOfSecsToCancelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            val distressButtonNumOfSecsToCancelSpinner =
+                view.findViewById<Spinner>(R.id.distress_button_num_of_secs_to_cancel_spinner)
+            distressButtonNumOfSecsToCancelSpinner.adapter =
+                quickCallNumOfSecsToCancelAdapter
 
-                        override fun onNothingSelected(parent: AdapterView<*>) {
-                            // כלום לא קורה כאן, וזה בסדר
+            val viewContext = view.context
+
+            var distressNumberOfSecsToCancelSavedValue =
+                loadDistressNumberOfSecsToCancel(view.context)
+            var distressNumberOfSecsToCancelSavedIndex =
+                intervals.indexOf(distressNumberOfSecsToCancelSavedValue.toString())
+            if (distressNumberOfSecsToCancelSavedIndex >= 0) {
+                distressButtonNumOfSecsToCancelSpinner.setSelection(
+                    distressNumberOfSecsToCancelSavedIndex
+                )
+            } else {
+                distressButtonNumOfSecsToCancelSpinner.setSelection(0)
+            }
+
+            distressButtonNumOfSecsToCancelSpinner.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val selectedValue = intervals[position]
+                        if (distressNumberOfSecsToCancelSavedValue != selectedValue.toLong()) {
+                            if (SettingsStatus.isPremium) {
+                                distressNumberOfSecsToCancelSavedValue = selectedValue.toLong()
+                                saveDistressNumberOfSecsToCancel(selectedValue, viewContext)
+                            } else {
+                                distressButtonNumOfSecsToCancelSpinner.setSelection(distressNumberOfSecsToCancelSavedIndex)
+                                featureOnlyAvailableOnPremiumAlert(viewContext)
+                            }
                         }
                     }
-                distressButtonNumOfSecsToCancelSpinner.dropDownVerticalOffset = 25
-                distressButtonNumOfSecsToCancelSpinner.visibility = VISIBLE
 
-                val distressNumberShouldAlsoTalkToggle =
-                    view.findViewById<SwitchMaterial>(R.id.distress_number_should_also_talk_toggle)
-                distressNumberShouldAlsoTalkToggle.isChecked =
-                    loadDistressNumberShouldAlsoTalk(context)
-                distressNumberShouldAlsoTalkToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-                    saveDistressNumberShouldAlsoTalk(context, isChecked)
+                    override fun onNothingSelected(parent: AdapterView<*>) {
+                        // כלום לא קורה כאן, וזה בסדר
+                    }
                 }
 
-                groupCalls.visibility = VISIBLE
+            distressButtonNumOfSecsToCancelSpinner.dropDownVerticalOffset = 25
+            distressButtonNumOfSecsToCancelSpinner.visibility = VISIBLE
 
+            val distressNumberShouldAlsoTalkToggle =
+                view.findViewById<SwitchMaterial>(R.id.distress_number_should_also_talk_toggle)
+            distressNumberShouldAlsoTalkToggle.isChecked =
+                loadDistressNumberShouldAlsoTalk(view.context)
+            distressNumberShouldAlsoTalkToggle.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (SettingsStatus.isPremium) {
+                    saveDistressNumberShouldAlsoTalk(view.context, isChecked)
+                }
+                else if (isChecked) {
+                    featureOnlyAvailableOnPremiumAlert(viewContext)
+                }
+            }
+
+            groupCalls.visibility = VISIBLE
+
+            groupDistressButton.visibility = GONE
+            groupLock.visibility = GONE
+            groupReports.visibility = GONE
+            groupVoice.visibility = GONE
+            groupOthers.visibility = GONE
+
+            tabCalls.setOnClickListener {
                 groupDistressButton.visibility = GONE
+                groupCalls.visibility = VISIBLE
+                groupLock.visibility = GONE
+                groupReports.visibility = GONE
+                groupVoice.visibility = GONE
+                groupOthers.visibility = GONE
+            }
+
+            tabDistressButton.setOnClickListener {
+                groupDistressButton.visibility = VISIBLE
+                groupCalls.visibility = GONE
                 groupLock.visibility = GONE
                 groupReports.visibility = GONE
                 groupVoice.visibility = GONE
                 groupOthers.visibility = GONE
 
-                tabCalls.setOnClickListener {
-                    groupDistressButton.visibility = GONE
-                    groupCalls.visibility = VISIBLE
-                    groupLock.visibility = GONE
-                    groupReports.visibility = GONE
-                    groupVoice.visibility = GONE
-                    groupOthers.visibility = GONE
+                if (shouldInitQuickCall) { // for premium we'll upload only when this tab is selected
+                    initQuickCallButton(view)
+                    shouldInitQuickCall = false
                 }
 
-                tabDistressButton.setOnClickListener {
-                    groupDistressButton.visibility = VISIBLE
-                    groupCalls.visibility = GONE
-                    groupLock.visibility = GONE
-                    groupReports.visibility = GONE
-                    groupVoice.visibility = GONE
-                    groupOthers.visibility = GONE
-
-                    if (shouldInitQuickCall) { // for premium we'll upload only when this tab is selected
-                        initQuickCallButton(view)
-                        shouldInitQuickCall = false
+                // Send SMS:
+                quickCallAlsoSendSmsToGoldToggle.isChecked =
+                    loadDistressButtonShouldAlsoSendSmsToGoldNumber(view.context)
+                // If already checked and no permission:
+                if (quickCallAlsoSendSmsToGoldToggle.isChecked && ContextCompat.checkSelfPermission(
+                        view.context,
+                        SEND_SMS
+                    )
+                    != PackageManager.PERMISSION_GRANTED
+                ) {
+                    requestSmsPermissionLauncher.launch(SEND_SMS)
+                } else {
+                    if (quickCallAlsoSendSmsToGoldToggle.isChecked && (SettingsStatus.goldNumber.value == null || SettingsStatus.goldNumberContact.value == null)) {
+                        quickCallAlsoSendSmsToGoldToggle.isChecked = false
+                        alertAboutNoGoldNumberForQuickCallSms()
                     }
-
-                    // Send SMS:
-                    val quickCallAlsoSendSmsToGoldToggle =
-                        view.findViewById<SwitchMaterial>(R.id.distress_also_send_sms_to_gold_toggle)
-                    quickCallAlsoSendSmsToGoldToggle.isChecked =
-                        loadDistressButtonShouldAlsoSendSmsToGoldNumber(context)
-                    // If already checked and no permission:
-                    if (quickCallAlsoSendSmsToGoldToggle.isChecked && ContextCompat.checkSelfPermission(
-                            context,
-                            SEND_SMS
-                        )
-                        != PackageManager.PERMISSION_GRANTED
-                    ) {
-                        requestSmsPermissionLauncher.launch(SEND_SMS)
-                    }
-                    // when checked:
-                    quickCallAlsoSendSmsToGoldToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-                        if (isChecked) {
-                            if (ContextCompat.checkSelfPermission(context, SEND_SMS)
+                }
+                // when checked:
+                quickCallAlsoSendSmsToGoldToggle.setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        if (SettingsStatus.isPremium) {
+                            if (ContextCompat.checkSelfPermission(view.context, SEND_SMS)
                                 != PackageManager.PERMISSION_GRANTED
                             ) { // no permission - ask
                                 requestSmsPermissionLauncher.launch(SEND_SMS)
                             } else { // already have permission:
-                                saveQuickCallShouldAlsoSendSmsToGoldNumber(context, true)
-                                val toastMsg =
-                                    getString(R.string.quick_call_send_sms_to_gold_number_settings_msg)
-                                showLongSnackBar(
-                                    context,
-                                    toastMsg,
-                                    10000,
-                                    anchorView = requireView()
-                                )
+                                if (SettingsStatus.goldNumber.value == null || SettingsStatus.goldNumberContact.value == null) {
+                                    quickCallAlsoSendSmsToGoldToggle.isChecked = false
+                                    alertAboutNoGoldNumberForQuickCallSms()
+                                } else { // Already have permission and gold number
+                                    saveQuickCallShouldAlsoSendSmsToGoldNumber(view.context, true)
+
+                                    val goldNumberName = view.context.getString(R.string.gold_number)
+                                    val toastMsg =
+                                        getString(
+                                            R.string.quick_call_send_sms_to_gold_number_settings_msg,
+                                            goldNumberName
+                                        )
+                                    showLongSnackBar(
+                                        view.context,
+                                        toastMsg,
+                                        10000,
+                                        anchorView = requireView()
+                                    )
+                                }
                             }
-                        } else {
-                            saveQuickCallShouldAlsoSendSmsToGoldNumber(context, false)
                         }
+                        else {
+                            quickCallAlsoSendSmsToGoldToggle.isChecked = false
+                            featureOnlyAvailableOnPremiumAlert(viewContext)
+                        }
+                    } else {
+                        saveQuickCallShouldAlsoSendSmsToGoldNumber(view.context, false)
                     }
                 }
+            }
 
-                tabLock.setOnClickListener {
-                    groupDistressButton.visibility = GONE
-                    groupCalls.visibility = GONE
-                    groupReports.visibility = GONE
-                    groupLock.visibility = VISIBLE
-                    groupVoice.visibility = GONE
-                    groupOthers.visibility = GONE
-                }
+            tabLock.setOnClickListener {
+                groupDistressButton.visibility = GONE
+                groupCalls.visibility = GONE
+                groupReports.visibility = GONE
+                groupLock.visibility = VISIBLE
+                groupVoice.visibility = GONE
+                groupOthers.visibility = GONE
+            }
 
-                setWhenScreenUnlockedBehaviourSpinner(view)
-                handleWhenScreenUnlocked(selectedWhenScreenUnlockedBehaviourEnum, view)
-                setAppToLaunch(view, context)
+            setWhenScreenUnlockedBehaviourSpinner(view)
+            handleWhenScreenUnlocked(selectedWhenScreenUnlockedBehaviourEnum, view)
+            setAppToLaunch(view, view.context)
 
-                if (voiceApi.isEnabled()) {
-                    tabVoice.setOnClickListener {
-                        groupDistressButton.visibility = GONE
-                        groupCalls.visibility = GONE
-                        groupLock.visibility = GONE
-                        groupReports.visibility = GONE
-                        groupVoice.visibility = VISIBLE
-                        groupOthers.visibility = GONE
-
-                        val commandToggleAnswerCalls =
-                            view.findViewById<SwitchMaterial>(R.id.command_toggle_answer_calls)
-                        val commandToggleGoldNumber =
-                            view.findViewById<SwitchMaterial>(R.id.command_toggle_gold_number)
-                        val commandToggleUnlockScreen =
-                            view.findViewById<SwitchMaterial>(R.id.command_toggle_unlock_screen)
-                        val commandToggleDistressButton =
-                            view.findViewById<SwitchMaterial>(R.id.command_toggle_distress_button)
-
-                        val atLeastOnceCommandEnabled =
-                            commandToggleAnswerCalls.isChecked || commandToggleGoldNumber.isChecked
-                                    || commandToggleDistressButton.isChecked || commandToggleUnlockScreen.isChecked
-
-                        if (atLeastOnceCommandEnabled) {
-                            askForRecordPermission(view.context, requireActivity())
-                        }
-                    }
-                    tabVoice.visibility = VISIBLE
-                } else {
-                    tabVoice.visibility = GONE
-                }
-
-                /*                tabReports.setOnClickListener {
-                                    groupDistressButton.visibility = GONE
-                                    groupCalls.visibility = GONE
-                                    groupLock.visibility = GONE
-                                    groupReports.visibility = VISIBLE
-                                    groupOthers.visibility = GONE
-                                }*/
-
-                tabOthers.setOnClickListener {
+            if (voiceApi.isEnabled()) {
+                tabVoice.setOnClickListener {
                     groupDistressButton.visibility = GONE
                     groupCalls.visibility = GONE
                     groupLock.visibility = GONE
                     groupReports.visibility = GONE
-                    groupVoice.visibility = GONE
-                    groupOthers.visibility = VISIBLE
+                    groupVoice.visibility = VISIBLE
+                    groupOthers.visibility = GONE
 
-                    if (shouldInitGoldNumber) {
-                        initGoldNumber(view)
-                        shouldInitGoldNumber = false
+                    val commandToggleAnswerCalls =
+                        view.findViewById<SwitchMaterial>(R.id.command_toggle_answer_calls)
+                    val commandToggleGoldNumber =
+                        view.findViewById<SwitchMaterial>(R.id.command_toggle_gold_number)
+                    val commandToggleUnlockScreen =
+                        view.findViewById<SwitchMaterial>(R.id.command_toggle_unlock_screen)
+                    val commandToggleDistressButton =
+                        view.findViewById<SwitchMaterial>(R.id.command_toggle_distress_button)
+
+                    val atLeastOnceCommandEnabled =
+                        commandToggleAnswerCalls.isChecked || commandToggleGoldNumber.isChecked
+                                || commandToggleDistressButton.isChecked || commandToggleUnlockScreen.isChecked
+
+                    if (atLeastOnceCommandEnabled) {
+                        askForRecordPermission(view.context, requireActivity())
                     }
                 }
-
-                // Insert data into controls:
-
-
-                /* tabCallsText.setOnClickListener {
-                     groupCalls.visibility = VISIBLE
-                     Toast.makeText(this.requireContext(), "aerfsdf", Toast.LENGTH_SHORT).show()
-                 }*/
+                tabVoice.visibility = VISIBLE
+            } else {
+                tabVoice.visibility = GONE
             }
+
+            /*                tabReports.setOnClickListener {
+                                groupDistressButton.visibility = GONE
+                                groupCalls.visibility = GONE
+                                groupLock.visibility = GONE
+                                groupReports.visibility = VISIBLE
+                                groupOthers.visibility = GONE
+                            }*/
+
+            tabOthers.setOnClickListener {
+                groupDistressButton.visibility = GONE
+                groupCalls.visibility = GONE
+                groupLock.visibility = GONE
+                groupReports.visibility = GONE
+                groupVoice.visibility = GONE
+                groupOthers.visibility = VISIBLE
+
+                if (shouldInitGoldNumber) {
+                    initGoldNumber(view)
+                    shouldInitGoldNumber = false
+                }
+            }
+
+            // Insert data into controls:
+
+
+            /* tabCallsText.setOnClickListener {
+                 groupCalls.visibility = VISIBLE
+                 Toast.makeText(this.requireContext(), "aerfsdf", Toast.LENGTH_SHORT).show()
+             }*/
+            //}
             // END PREMIUM ONLY
 
             loadView(view)
@@ -408,22 +492,25 @@ class SettingsFragment : Fragment() {
             val quickCallPhoneNumber = loadQuickCallNumber(context)
             val existsQuickCallNumberForQuickCallButWithoutPermission =
                 (quickCallPhoneNumber != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)
-            if (existsQuickCallNumberForQuickCallButWithoutPermission) {
+            if (existsQuickCallNumberForQuickCallButWithoutPermission && !SettingsStatus.alreadyShownQuickCallButWithoutPermissionMsg) {
+                SettingsStatus.alreadyShownQuickCallButWithoutPermissionMsg = true
                 var toastMsg =
                     getString(R.string.phone_permission_required_for_quick_call)
                 showLongSnackBar(context, toastMsg, anchorView = requireView())
-            } else if (PermissionsStatus.defaultDialerPermissionGranted.value != true) {
+            } else if (PermissionsStatus.defaultDialerPermissionGranted.value != true && !SettingsStatus.alreadyShowedBlockedMsg) {
+                SettingsStatus.alreadyShowedBlockedMsg = true
                 //toFilterBlockedContactsMsgDisplayedCount++
                 val toastMsg =
                     getString(R.string.to_filter_blocked_contacts_please_set_the_app_as_default)
                 showLongSnackBar(context, toastMsg, anchorView = requireView())
-            } else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
+            } /*else if (PermissionsStatus.readContactsPermissionGranted.value != true && !SettingsStatus.alreadyShownPermissionGoldNumberMsg) {
+                SettingsStatus.alreadyShownPermissionGoldNumberMsg = true
                 //cannotAddContactsPermissionIssueMsgDisplayedCount++
                 val toastMsg =
                     getString(R.string.the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission)
 
                 showLongSnackBar(context, toastMsg, anchorView = requireView())
-            }
+            }*/
 
 
         } catch (e: Exception) {
@@ -435,11 +522,18 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = if (SettingsStatus.isPremium) inflater.inflate(
+        /*        val view = if (SettingsStatus.isPremium) inflater.inflate(
+                    R.layout.fragment_premium_settings,
+                    container,
+                    false
+                ) else inflater.inflate(R.layout.fragment_settings, container, false)*/
+
+        val view = inflater.inflate(
             R.layout.fragment_premium_settings,
             container,
             false
-        ) else inflater.inflate(R.layout.fragment_settings, container, false)
+        )
+
         fragmentRoot = view
         return view
     }
@@ -463,6 +557,9 @@ class SettingsFragment : Fragment() {
         goldNumberEnabledToggle = view.findViewById(R.id.gold_number_enabled_toggle)
         // Setup gold number spinner
         goldNumberSpinner = view.findViewById(R.id.gold_number_contacts_spinner)
+
+        quickCallAlsoSendSmsToGoldToggle =
+            view.findViewById<SwitchMaterial>(R.id.distress_also_send_sms_to_gold_toggle)
 
         // Access the boolean resource
         // val isHebrew = resources.getBoolean(R.bool.startingLanguageIsHebrew)
@@ -844,32 +941,44 @@ class SettingsFragment : Fragment() {
         )
 
         /** Gold Number: */
-        if (!SettingsStatus.isPremium) {
+        /*if (!SettingsStatus.isPremium) {
             initGoldNumber(view)
-        }
-        else {
+        } else {
             shouldInitGoldNumber = true
-        }
+        }*/
+        shouldInitGoldNumber = true
 
-        if (!SettingsStatus.isPremium) { // for premium we'll upload only when tab is selected
-            initQuickCallButton(view)
-        }
-        else {
-            shouldInitQuickCall = true
-        }
+        /*        if (!SettingsStatus.isPremium) { // for premium we'll upload only when tab is selected
+                    initQuickCallButton(view)
+                } else {
+                    shouldInitQuickCall = true
+                }*/
+        shouldInitQuickCall = true
 
         val startWithSpeakerOnToggle =
             view.findViewById<SwitchMaterial>(R.id.starts_with_speaker_on_toggle)
         startWithSpeakerOnToggle.isChecked = shouldCallsStartWithSpeakerOn(currContext)
         startWithSpeakerOnToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            saveShouldCallsStartWithSpeakerOn(isChecked, currContext)
+            if (SettingsStatus.isPremium) {
+                saveShouldCallsStartWithSpeakerOn(isChecked, currContext)
+            }
+            else if (isChecked) {
+                startWithSpeakerOnToggle.isChecked = false
+                featureOnlyAvailableOnPremiumAlert(view.context)
+            }
         }
 
         val answerCallsAutomaticallyToggle =
             view.findViewById<SwitchMaterial>(R.id.should_answer_all_calls_auto_toggle)
         answerCallsAutomaticallyToggle.isChecked = isGlobalAutoAnswer(currContext)
         answerCallsAutomaticallyToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            saveIsGlobalAutoAnswer(isChecked, currContext)
+            if (SettingsStatus.isPremium) {
+                saveIsGlobalAutoAnswer(isChecked, currContext)
+            }
+            else if (isChecked) {
+                answerCallsAutomaticallyToggle.isChecked = false
+                featureOnlyAvailableOnPremiumAlert(view.context)
+            }
         }
 
         val allowCallWaitingToggle =
@@ -947,14 +1056,68 @@ class SettingsFragment : Fragment() {
     private fun initGoldNumber(view: View) {
         try {
             val context = requireContext()
+            val allowOutgoingCallsSpinner: Spinner =
+                view.findViewById(R.id.allow_making_calls_spinner)
             //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            goldNumberEnabledToggle.isEnabled =
-                PermissionsStatus.readContactsPermissionGranted.value == true
+            //goldNumberEnabledToggle.isEnabled = true
+                //PermissionsStatus.readContactsPermissionGranted.value == true
+
+            goldNumberEnabledToggle.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (!isChecked) {
+                    handleSwitchToggle(goldNumberSpinner, "", goldNumberEnabledToggle, contactsList)
+                    saveGoldNumber(null, context)
+                    saveGoldNumberContact(null, context)
+
+                    if (SettingsStatus.isPremium) { // quickCall Also Send Sms To Gold number - must have a gold number
+                        if (quickCallAlsoSendSmsToGoldToggle.isChecked) {
+                            quickCallAlsoSendSmsToGoldToggle.isChecked = false
+                            alertAboutNoGoldNumberForQuickCallSms()
+                        }
+                    }
+                } else { // user chose to enable gold number
+                    try {
+                        if (PermissionsStatus.readContactsPermissionGranted.value == true) {
+                            val itemCount = goldNumberSpinner.adapter?.count ?: 0
+
+                            if (itemCount > 1) { // One empty item
+                                val firstContact = goldNumberSpinner.getItemAtPosition(0)
+                                handleGoldNumberSelectContact(context, firstContact)
+                            }
+                            else if (goldNumberSpinnerInitDone) {
+                                goldNumberEnabledToggle.isChecked = false
+                                // Disable spinner
+                                goldNumberSpinner.isEnabled = false
+                                goldNumberSpinner.post { // make empty gold number spinner disabled but with the height of allowOutgoingCallsSpinner
+                                    val measuredHeight = allowOutgoingCallsSpinner.height
+                                    val layoutParams = goldNumberSpinner.layoutParams
+                                    layoutParams.height = measuredHeight
+                                    goldNumberSpinner.layoutParams = layoutParams
+                                }
+                                val toastMsg =
+                                    getString(R.string.no_contacts_available_for_selection)
+                                showLongSnackBar(context, toastMsg, anchorView = requireView())
+
+                            }
+                        }
+                        else {
+                            goldNumberEnabledToggle.isChecked = false
+                            val toastMsg =
+                                getString(R.string.the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission)
+                            showLongSnackBar(context, toastMsg, anchorView = requireView())
+                        }
+                    } catch (e: Exception) {
+
+                    }
+                }
+            }
+
             if (PermissionsStatus.readContactsPermissionGranted.value == true) {
+                goldNumberSpinnerInitDone = false
                 loadContactsIntoSpinnerAsync(goldNumberSpinner)
             } else {
-                val allowOutgoingCallsSpinner: Spinner = view.findViewById(R.id.allow_making_calls_spinner)
+                goldNumberSpinnerInitDone = true
 
+                // Disable spinner
                 goldNumberSpinner.isEnabled = false
                 goldNumberSpinner.post { // make empty gold number spinner disabled but with the height of allowOutgoingCallsSpinner
                     val measuredHeight = allowOutgoingCallsSpinner.height
@@ -963,11 +1126,14 @@ class SettingsFragment : Fragment() {
                     goldNumberSpinner.layoutParams = layoutParams
                 }
                 //goldNumberSpinner.visibility = GONE
+/*                if (!SettingsStatus.alreadyShownPermissionGoldNumberMsg) {
+                    SettingsStatus.alreadyShownPermissionGoldNumberMsg = true
+                    val toastMsg =
+                        getString(R.string.the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission)
 
-                val toastMsg =
-                    getString(R.string.the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission)
+                    showLongSnackBar(context, toastMsg, anchorView = requireView())
+                }*/
 
-                showLongSnackBar(context, toastMsg, anchorView = requireView())
             }
 
             val disabledColorString = "#4F4F4F"
@@ -1167,6 +1333,36 @@ class SettingsFragment : Fragment() {
                 selectedBehaviourMode == WhenScreenUnlockedBehaviourEasyAppEnum.EXTERNAL_APP
             selectAppToLaunchField.visibility =
                 if (selectAppToLaunchFieldShouldBeVisible) VISIBLE else GONE
+
+            val lockScreenMessage = when (selectedBehaviourMode) {
+                WhenScreenUnlockedBehaviourEasyAppEnum.EASY_CALL_AND_ANSWER_APP -> getString(R.string.lock_screen_leads_to_this_app)
+                WhenScreenUnlockedBehaviourEasyAppEnum.EXTERNAL_APP -> getString(R.string.lock_screen_leads_to_selected_app)
+                WhenScreenUnlockedBehaviourEasyAppEnum.HOME_SCREEN -> getString(R.string.lock_screen_leads_to_home_screen)
+                WhenScreenUnlockedBehaviourEasyAppEnum.CUSTOM_SCREEN -> "" // should never get here
+            }
+            val lockExplainLabel = view.findViewById<TextView>(R.id.lock_explain_label)
+            val finalText = buildString {
+                if (serviceIsRunning) {
+                    append(getString(R.string.lock_service_was_activated_msg))
+                    append("\n")
+                }
+                append(lockScreenMessage)
+            }
+
+            // קובעים את הצבע לפי המצב
+            val textColor = if (serviceIsRunning) {
+                ContextCompat.getColor(requireContext(), R.color.lock_text_active)
+            } else {
+                ContextCompat.getColor(requireContext(), R.color.lock_text_inactive)
+            }
+
+// אפקט פייד + צבע חדש
+            lockExplainLabel.apply {
+                alpha = 0f
+                setTextColor(textColor)
+                text = finalText
+                animate().alpha(1f).setDuration(300).start()
+            }
         }
     }
 
@@ -1251,7 +1447,22 @@ class SettingsFragment : Fragment() {
 
             }
 
-            distressButtonNumberToggle.visibility = VISIBLE
+            // Otherwise the user sees a jump that the Toggle is turned on
+            if (distressButtonNumberToggle.isChecked) {
+                distressButtonNumberToggle.apply {
+                    visibility = View.INVISIBLE   // מוסתר ברגע האינפלייט
+                    isChecked = true             // מציב ON עוד לפני הציור
+                    // גרסת Material-Switch לפעמים עדיין מציירת אנימציה קצרה.
+                    // הפקודה הבאה מדלגת עליה:
+                    jumpDrawablesToCurrentState()
+
+                    post {                        // ירוץ אחרי מדידה ו-layout
+                        visibility = View.VISIBLE // עכשיו הוא קופץ ישר ל-ON
+                    }
+                }
+            } else {
+                distressButtonNumberToggle.visibility = View.VISIBLE
+            }
             distressButtonSpinner.visibility = VISIBLE
             // After the function completes, show a Toast
             //  Toast.makeText(requireContext(), "Operation completed", Toast.LENGTH_SHORT).show()
@@ -1549,21 +1760,6 @@ class SettingsFragment : Fragment() {
                 )
             }
 
-            goldNumberEnabledToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (!isChecked) {
-                    handleSwitchToggle(goldNumberSpinner, "", goldNumberEnabledToggle, contactsList)
-                    saveGoldNumber(null, context)
-                    saveGoldNumberContact(null, context)
-                } else { // user chose to receive calls - change dropdown to initial value
-                    try {
-                        val firstContact = goldNumberSpinner.getItemAtPosition(0)
-                        handleGoldNumberSelectContact(context, firstContact)
-                    } catch (e: Exception) {
-
-                    }
-                }
-            }
-
             goldNumberSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>,
@@ -1585,6 +1781,7 @@ class SettingsFragment : Fragment() {
                     TODO("Not yet implemented")
                 }
             }
+            goldNumberSpinnerInitDone = true
 //            goldNumberSpinner.visibility = VISIBLE
 
             // Handle item selection
@@ -1611,23 +1808,26 @@ class SettingsFragment : Fragment() {
         }
     }
 
+    // quickCall Also Send Sms To Gold number - must have a gold number
+    private fun alertAboutNoGoldNumberForQuickCallSms() {
+        val context = requireContext()
 
-    private fun selectContactInSpinner(spinner: Spinner, contactName: String) {
-        val adapter = spinner.adapter
-        if (adapter != null) {
-            for (i in 0 until adapter.count) {
-                if (adapter.getItem(i) == contactName) {
-                    spinner.setSelection(i) // Select the matching contact
-                    Log.d("SimplyCall - Settings", "Spinner - select ${spinner.selectedItem}")
-                    contactsSpinnerAdapter = adapter as ArrayAdapter<String>
-                    contactsSpinnerAdapter.notifyDataSetChanged()
+        quickCallAlsoSendSmsToGoldToggle.isChecked = false
+        saveQuickCallShouldAlsoSendSmsToGoldNumber(context, false)
+        val goldNumberTextName = getString(R.string.gold_number)
+        val quickCallName = getString(R.string.quick_call_button_caption)
+        val toastMsg = getString(
+            R.string.gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call,
+            goldNumberTextName,
+            quickCallName
+        )
 
-                    spinner.invalidate()
-                    spinner.requestLayout()
-                    return
-                }
-            }
-        }
+        showLongSnackBar(
+            requireContext(),
+            toastMsg,
+            10000,
+            anchorView = requireView()
+        )
     }
 
     private fun checkScroll(context: Context) {
@@ -1653,7 +1853,8 @@ class SettingsFragment : Fragment() {
 
         if (PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value == true &&
             PermissionsStatus.canDrawOverlaysPermissionGranted.value == true &&
-            PermissionsStatus.backgroundWindowsAllowed.value == true) {
+            PermissionsStatus.backgroundWindowsAllowed.value == true
+        ) {
 
             serviceIsRunning = true
             // startServiceButton.text = getString(R.string.stop_service)
@@ -1668,24 +1869,122 @@ class SettingsFragment : Fragment() {
 
             Log.d("SimplyCall - Settings", "Unlock service started!")
 
-            val toastMsg = getString(R.string.lock_service_was_activated_msg)
-            showLongSnackBar(context, toastMsg, 10000, anchorView = requireView())
+            // Must be after serviceIsRunning = true
+            handleWhenScreenUnlocked(selectedWhenScreenUnlockedBehaviourEnum, requireView())
+
+            /*            val toastMsg = getString(R.string.lock_service_was_activated_msg)
+                        showLongSnackBar(context, toastMsg, 10000, anchorView = requireView())*/
+        } else {
+            val lockScreenToggle =
+                requireView().findViewById<SwitchMaterial>(R.id.show_custom_lock_screen_toggle)
+            lockScreenToggle.isChecked = false
+            loadLockScreenPermissionsIssueDialog()
         }
-        else {
-            AlertDialog.Builder(context)
-                .setTitle(context.getString(R.string.permission_denied_capital))
-                .setMessage(context.getString(R.string.permission_could_not_be_granted_automatically))
-                .setPositiveButton(context.getString(R.string.open_settings)) { dialog, _ ->
-                    openAppSettings(context)
-                }
-                .setNegativeButton(context.getString(R.string.ok)) { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .setCancelable(false)
-                .show()
+    }
+
+    private fun loadLockScreenPermissionsIssueDialog() {
+        val context = requireContext()
+
+        val dialogView =
+            LayoutInflater.from(context).inflate(R.layout.lock_screen_dialog_permission, null)
+        val imageView = dialogView.findViewById<ImageView>(R.id.permission_image)
+        val messageView = dialogView.findViewById<TextView>(R.id.permission_message)
+        val titleView = dialogView.findViewById<TextView>(R.id.lock_permission_dialog_title)
+
+        titleView.text = context.getString(R.string.permission_denied_capital)
+
+        // קביעת שמות ההרשאות לפי סוג מכשיר
+        val oem = OemDetector.current()
+
+        val overlayPermissionName = when (oem) {
+            OemDetector.Oem.XIAOMI -> context.getString(R.string.allow_pop_permission_display_name_xiaomi)
+            OemDetector.Oem.SAMSUNG -> context.getString(R.string.overlay_permission_display_name_samsung)
+            else -> context.getString(R.string.overlay_permission_display_name)
         }
 
+        val lockScreenPermissionName =
+            context.getString(R.string.lock_screen_permission_display_name)
+
+        val backgroundWindowsPermissionNameXiaomi =
+            context.getString(R.string.overlay_permission_display_name_xiaomi)
+
+        // בדיקת הרשאות חסרות
+        val isOverlayMissing = !(PermissionsStatus.canDrawOverlaysPermissionGranted.value ?: false)
+        val isLockScreenMissing =
+            !(PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value ?: false)
+        val isBackgroundWindowsMissing =
+            !(PermissionsStatus.backgroundWindowsAllowed.value ?: false)
+
+        val missingPermissionsList = mutableListOf<String>()
+
+        if (isOverlayMissing) {
+            missingPermissionsList.add(overlayPermissionName)
+        }
+        if (isLockScreenMissing) {
+            missingPermissionsList.add(lockScreenPermissionName)
+        }
+        if (isBackgroundWindowsMissing) {
+            missingPermissionsList.add(backgroundWindowsPermissionNameXiaomi)
+        }
+
+        val permissionsText = missingPermissionsList.joinToString(separator = ", ")
+
+        // עכשיו הודעה דינמית
+        val quantity = if (missingPermissionsList.size == 1) 1 else 2
+
+        messageView.text = context.resources.getQuantityString(
+            R.plurals.screen_lock_missing_permissions_text_dynamic_plural,
+            quantity,
+            permissionsText
+        )
+        // בחירת תמונה מתאימה
+        val imageResId = when (oem) {
+            OemDetector.Oem.SAMSUNG, OemDetector.Oem.OTHER -> R.drawable.other_permissions_samsung
+            OemDetector.Oem.GOOGLE -> R.drawable.other_permissions_pixel
+            OemDetector.Oem.XIAOMI -> {
+                when {
+                    (isOverlayMissing || isBackgroundWindowsMissing) && isLockScreenMissing -> R.drawable.other_permissions_xioami
+                    (isOverlayMissing || isBackgroundWindowsMissing) -> R.drawable.other_permissions_xioami
+                    isLockScreenMissing -> R.drawable.showonlockscreenpermission
+                    else -> R.drawable.other_permissions_xioami
+                }
+            }
+
+            else -> R.drawable.other_permissions_samsung
+        }
+
+        imageView.setImageResource(imageResId)
+
+        val alertDialog = AlertDialog.Builder(context, R.style.LockScreenPermissionDialogBackground)
+            .setView(dialogView)
+            .setPositiveButton(context.getString(R.string.open_settings)) { dialog, _ ->
+                openAppSettings(context)
+            }
+            .setNegativeButton(context.getString(R.string.ok)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(false)
+            .show()
+
+        // שינוי צבע כפתורי הדיאלוג
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            ?.setTextColor(ContextCompat.getColor(context, R.color.blue_500))
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            ?.setTextColor(ContextCompat.getColor(context, R.color.blue_500))
+
+        // שינוי גודל הדיאלוג — רווח 15dp מכל צד
+        val marginDp = 15
+        val marginPx = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            marginDp.toFloat(),
+            resources.displayMetrics
+        ).toInt()
+        val screenWidth = resources.displayMetrics.widthPixels
+        val desiredWidth = screenWidth - (marginPx * 2)
+        val window = alertDialog.window
+        window?.setLayout(desiredWidth, WindowManager.LayoutParams.WRAP_CONTENT)
     }
+
 
     private fun stopUnlockServiceClick() {
         val context = requireContext()
@@ -1702,6 +2001,8 @@ class SettingsFragment : Fragment() {
         //saveShouldServiceRun(false, context)
 
         serviceIsRunning = false
+        // Must be after serviceIsRunning = false
+        handleWhenScreenUnlocked(selectedWhenScreenUnlockedBehaviourEnum, requireView())
         val intent = Intent(context, IdleMonitorService::class.java)
         context.stopService(intent)
     }

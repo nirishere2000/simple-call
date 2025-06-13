@@ -63,10 +63,9 @@
         app:layout_constraintVertical_bias="0.618" />
 
     <ImageView
-        android:id="@+id/activeCallAppImage"
+        android:id="@+id/incomingCallAppImage"
         android:layout_width="183dp"
         android:layout_height="129dp"
-        android:contentDescription="@string/elderandyoung"
         android:src="@drawable/goldappiconphoneblack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

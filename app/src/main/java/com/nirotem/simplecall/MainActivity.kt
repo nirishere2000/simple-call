@@ -202,7 +202,19 @@ class MainActivity : AppCompatActivity() {
                     saveContactsForCallWithoutPermissions(binding.root.context, lifecycleScope)
 
                     canStartCheckingForPhonePermission = true
-                    if (PermissionsStatus.callPhonePermissionGranted.value != true) {
+
+                    val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+                    if (isPremiumAndAppNotDefault) {
+                        showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default))
+                        enableDistressButton(
+                            binding.root,
+                            this,
+                            this,
+                            requestPermissionLauncher,
+                            false
+                        )
+                    }
+                    else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
                         enableDistressButton(
                             binding.root, this, this, requestPermissionLauncher,
                             PermissionsStatus.callPhonePermissionGranted.value,
@@ -228,7 +240,20 @@ class MainActivity : AppCompatActivity() {
                         //Snackbar.make(rootView, toastMsg, 8000).show()
                         showLongSnackBar(this, toastMsg, 8000)
                         canStartCheckingForPhonePermission = true
-                        if (PermissionsStatus.callPhonePermissionGranted.value != true) {
+
+                        val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+
+                        if (isPremiumAndAppNotDefault) {
+                            showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default))
+                            enableDistressButton(
+                                binding.root,
+                                this,
+                                this,
+                                requestPermissionLauncher,
+                                false
+                            )
+                        }
+                        else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
                             enableDistressButton(
                                 binding.root, this, this, requestPermissionLauncher,
                                 PermissionsStatus.callPhonePermissionGranted.value,
@@ -266,9 +291,10 @@ class MainActivity : AppCompatActivity() {
             val voiceCommandsInitSuccess = voiceApi.initVoiceCommands(this, this)
             val alreadyPlayedWelcomeSpeech = loadAlreadyPlayedWelcomeSpeech(this)
             val welcomeTitle = getString(R.string.welcome_to_easy_call_and_answer_premium)
-            val welcomeText = getString(R.string.welcome_text_speech_short) // if (alreadyPlayedWelcomeSpeech)
-                //getString(R.string.welcome_text_speech_short)
-           // else getString(R.string.welcome_text_speech)
+            val welcomeText =
+                getString(R.string.welcome_text_speech_short) // if (alreadyPlayedWelcomeSpeech)
+            //getString(R.string.welcome_text_speech_short)
+            // else getString(R.string.welcome_text_speech)
 
             if (!alreadyPlayedWelcomeSpeech) { // for now playing voice only on first time
                 saveAlreadyPlayedWelcomeSpeech(this, true)
@@ -304,11 +330,11 @@ class MainActivity : AppCompatActivity() {
                 || languageEnum == LanguagesEnum.KOREAN
                 || languageEnum == LanguagesEnum.JAPANESE
                 || languageEnum == LanguagesEnum.HINDI
-/*
-                || languageEnum == LanguagesEnum.CHINEESE
-                || languageEnum == LanguagesEnum.INONEZIC
-                || languageEnum == LanguagesEnum.KOREAN
-                || languageEnum == LanguagesEnum.JAPANISE*/
+        /*
+                        || languageEnum == LanguagesEnum.CHINEESE
+                        || languageEnum == LanguagesEnum.INONEZIC
+                        || languageEnum == LanguagesEnum.KOREAN
+                        || languageEnum == LanguagesEnum.JAPANISE*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -320,12 +346,12 @@ class MainActivity : AppCompatActivity() {
             // The navigation drawer already has the items including the items in the overflow menu
             // We only inflate the overflow menu if the navigation drawer isn't visible
             menuInflater.inflate(R.menu.overflow, menu)
-           // menu.findItem(R.id.nav_premium_tour_item)?.isVisible = true
+            // menu.findItem(R.id.nav_premium_tour_item)?.isVisible = true
         } else {
             // navView.itemTextColor = resources.getColorStateList(R.color.blue_500, theme)
             // navView.setBackgroundColor(resources.getColorStateList(R.color.blue_500, theme))
             menuInflater.inflate(R.menu.navigation_drawer, menu)
-          //  menu.findItem(R.id.nav_premium_tour_item)?.isVisible = true
+            //  menu.findItem(R.id.nav_premium_tour_item)?.isVisible = true
         }
         return result
     }
@@ -448,7 +474,7 @@ class MainActivity : AppCompatActivity() {
         PermissionsStatus.defaultDialerPermissionGranted.value =
             telecomManager.defaultDialerPackage == packageName
         PermissionsStatus.canDrawOverlaysPermissionGranted.value = Settings.canDrawOverlays(this)
-            //isBackgroundWindowsAllowed(this) // Settings.canDrawOverlays(this)
+        //isBackgroundWindowsAllowed(this) // Settings.canDrawOverlays(this)
         PermissionsStatus.backgroundWindowsAllowed.value = isBackgroundWindowsAllowed(this)
         PermissionsStatus.readContactsPermissionGranted.value = ContextCompat.checkSelfPermission(
             this,
@@ -467,7 +493,8 @@ class MainActivity : AppCompatActivity() {
             android.Manifest.permission.CALL_PHONE
         ) == PackageManager.PERMISSION_GRANTED
 
-        PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value = isShowOnLockScreenAllowed(this)
+        PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value =
+            isShowOnLockScreenAllowed(this)
 
         /*        val batteryOPTIMIZATIONS = ContextCompat.checkSelfPermission(
                     this,
@@ -907,7 +934,18 @@ class MainActivity : AppCompatActivity() {
         val appLogo = findViewById<ImageView>(R.id.toolbar_logo)
 
         if (isPremium) {
-            appLogo.setImageResource(R.drawable.dialbutton)
+            // Must be first
+            SettingsStatus.appLogoResourceSmall = R.drawable.gold_phone_icon_transparent_192x192
+
+            // Must be after
+            val navAppLogo = findViewById<ImageView>(R.id.navAppLogo)
+            val messageBoxAppLogo = findViewById<ImageView>(R.id.msgBoxAppLogo)
+            val toolBarLogo600 = findViewById<ImageView>(R.id.toolbar_logo_600dp)
+
+            toolBarLogo600?.setImageResource(SettingsStatus.appLogoResourceSmall)
+            messageBoxAppLogo?.setImageResource(SettingsStatus.appLogoResourceSmall) // otherwise it has the default already from design-time
+            appLogo?.setImageResource(SettingsStatus.appLogoResourceSmall) // otherwise it has the default already from design-time
+            navAppLogo?.setImageResource(SettingsStatus.appLogoResourceSmall)
         }
 
         appLogo?.setOnClickListener {
@@ -946,7 +984,6 @@ class MainActivity : AppCompatActivity() {
         // הסרת אייקון ה-Overflow
         // toolbar.overflowIcon = null
         // }
-
 
 
         /*        val usageStatsManager = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
@@ -1022,7 +1059,19 @@ class MainActivity : AppCompatActivity() {
                 } else if (!alreadyAskedForDefaultDialer && (!isIgnoringBatteryOptimization || PermissionsStatus.callPhonePermissionGranted.value != true)) {
                     alreadyAskedForDefaultDialer = true
                     canStartCheckingForPhonePermission = true
-                    if (PermissionsStatus.callPhonePermissionGranted.value != true) {
+
+                    val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+                    if (isPremiumAndAppNotDefault) {
+                        showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default))
+                        enableDistressButton(
+                            binding.root,
+                            this,
+                            this,
+                            requestPermissionLauncher,
+                            false
+                        )
+                    }
+                    else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
                         enableDistressButton(
                             binding.root,
                             this,
@@ -1135,13 +1184,18 @@ class MainActivity : AppCompatActivity() {
         context.startActivity(intent)
     }
 
-    private fun showDefaultAppDialog() {
+    private fun showDefaultAppDialog(customMessage: String? = null) {
         if (!alreadyAlertedAboutDefaultDialer) {
             alreadyAlertedAboutDefaultDialer = true
 
             val builder = AlertDialog.Builder(binding.root.context)
             builder.setTitle(getString(R.string.set_default_phone_app))
-            builder.setMessage(getString(R.string.for_handling_calls_it_is_important_to_set_the_app_as_default_text))
+            if (customMessage != null) {
+                builder.setMessage(customMessage)
+            }
+            else {
+                builder.setMessage(getString(R.string.for_handling_calls_it_is_important_to_set_the_app_as_default_text))
+            }
 
             builder.setNegativeButton(getString(R.string.no_set_as_default_capital)) { dialog, which ->
                 requestRole(binding.root.context) // try to set as default
@@ -1150,7 +1204,18 @@ class MainActivity : AppCompatActivity() {
 
             builder.setPositiveButton(getString(R.string.yes_skip_capital)) { dialog, which ->
                 canStartCheckingForPhonePermission = true
-                if (PermissionsStatus.callPhonePermissionGranted.value != true) {
+                val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+                if (isPremiumAndAppNotDefault) {
+                    showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default))
+                    enableDistressButton(
+                        binding.root,
+                        this,
+                        this,
+                        requestPermissionLauncher,
+                        false
+                    )
+                }
+                else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
                     enableDistressButton(
                         binding.root, this, this, requestPermissionLauncher,
                         PermissionsStatus.callPhonePermissionGranted.value,

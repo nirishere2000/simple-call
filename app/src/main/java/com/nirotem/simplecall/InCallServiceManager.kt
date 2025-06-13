@@ -12,6 +12,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.media.RingtoneManager
 import android.net.Uri
@@ -46,6 +47,7 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadLastExternalCal
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallActivityLoadedTimeStamp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveLastCallError
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAllowCallWaiting
+import com.nirotem.simplecall.helpers.isSpeakerphoneOn
 import com.nirotem.simplecall.managers.DistressButtonManager.emergencyCallWasAnswered
 import com.nirotem.simplecall.managers.DistressButtonManager.emergencyIsOn
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
@@ -260,6 +262,7 @@ CALL_DIRECTION_OUTGOING = 2
     }
 
     fun handleCallAdded(call: Call) {
+        OngoingCall.callWasEndedMustClose.value = false
         CallActivity.criticalErrorEvent.value = false // no reason not to reset this event here
         CallActivity.criticalErrorEventMessage = ""
         CallActivity.callEndedShouldCloseActivityEvent.value = false // no reason not to reset this event here
@@ -394,27 +397,31 @@ CALL_DIRECTION_OUTGOING = 2
 
                                 if (isOutgoing && (!WaitingCall.replacedWithWaitingCall)) {
                                     //if  { // we don't want to close anything if the active call was just replaced to waiting call
+                                    OutgoingCall.call = null
+                                    finishCallAndRemoveActivity()
                                         activeCallDisplayManager.handleDisconnect(
                                             onCallAddedContext,
                                             isCallWaiting,
                                             true
                                         )
                                     //}
-                                    OutgoingCall.call = null
                                 } else if (!isCallWaiting && (!WaitingCall.replacedWithWaitingCall)) {
                                   //  if (!OngoingCall.replacedWithWaitingCall) { // we don't want to close anything if the active call was just replaced to waiting call
-                                        activeCallDisplayManager.handleDisconnect(
+                                    OngoingCall.call = null
+                                    finishCallAndRemoveActivity()
+                                    activeCallDisplayManager.handleDisconnect(
                                             onCallAddedContext,
                                             false,
                                             false
                                         )
                                    // }
-                                    OngoingCall.call = null
+
                                 } else { // Also for WaitingCall.replacedWithWaitingCall - meaning Ongoing or Outgoing call was replaced by the WaitingCall call and now we disconnecting WatingCall
                                     WaitingCall.replacedWithWaitingCall = false
                                     WaitingCall.startedRinging.value =
                                         false // this is enough to trigger ActiveCallFragment that is listening
                                     WaitingCall.call = null
+                                    finishCallAndRemoveActivity()
                                 }
                             } catch (error: Error) {
                                 if (isOutgoing) {
@@ -488,7 +495,8 @@ CALL_DIRECTION_OUTGOING = 2
 
             }
         } else { // We don't take this kind of call
-            call.disconnect()
+            call.reject(2)
+           // call.disconnect()
         }
     }
 
@@ -497,6 +505,14 @@ CALL_DIRECTION_OUTGOING = 2
         with(NotificationManagerCompat.from(this)) {
             cancel(NOTIFICATION_ID)
         }
+    }
+
+    private fun finishCallAndRemoveActivity() {
+        // We turn the speaker off from here - and from ActiveCall:
+        if (!OngoingCall.speakerWasAlreadyOnWhenStarted) { // only if it was off
+            toggleSpeakerphone(false, onCallAddedContext)
+        }
+        OngoingCall.callWasEndedMustClose.value = true
     }
 
     private fun handleAnsweringCall(context: Context) {
@@ -567,7 +583,7 @@ CALL_DIRECTION_OUTGOING = 2
                     .build()*/
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.goldappiconphoneblack) // Replace with your icon
+            .setSmallIcon(SettingsStatus.appLogoResourceSmall) // Replace with your icon
             .setContentTitle(getString(R.string.active_call_capital))
             .setContentText(getString(R.string.click_to_go_back_to_call))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -856,7 +872,7 @@ CALL_DIRECTION_OUTGOING = 2
     }
 
     // Shows the incoming call notification
-    fun showIncomingCallNotification(context: Context, call: Call) {
+  /*  fun showIncomingCallNotification(context: Context, call: Call) {
         val intent = Intent(context, EventScreenActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
@@ -898,7 +914,7 @@ CALL_DIRECTION_OUTGOING = 2
             val notificationManager = context.getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(channel)
         }
-    }
+    }*/
 
     //  private fun toggleSpeakerphone(enable: Boolean) {
     //   toggleSpeaker(enable)
@@ -933,7 +949,7 @@ CALL_DIRECTION_OUTGOING = 2
            }*/
     //}
 
-    fun toggleSpeakerphoneThroughCall(shouldTurnSpeakerOn: Boolean) {
+    private fun toggleSpeakerphoneThroughCall(shouldTurnSpeakerOn: Boolean) {
         try {
             val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
             //val isSpeakerOn: Boolean = false // audioManager.isSpeakerphoneOn()
@@ -954,11 +970,59 @@ CALL_DIRECTION_OUTGOING = 2
 
     }
 
-    // Checks if the call supports video
-    private fun supportsVideoCall(): Boolean {
-        val capabilities = OngoingCall.call?.details?.callCapabilities
-        return (capabilities?.and(Call.Details.CAPABILITY_SUPPORTS_VT_LOCAL_TX) != 0) &&
-                (capabilities?.and(Call.Details.CAPABILITY_SUPPORTS_VT_LOCAL_RX) != 0)
+    //
+    private fun toggleSpeakerphone(enable: Boolean, context: Context): Boolean {
+        val tag = "SimplyCall - toggleSpeakerphone"
+        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            //audioManager.mode = AudioManager.MODE_NORMAL
+
+            if (enable) {
+                val devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+                val speakerDevice = devices.firstOrNull { it.type == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER }
+                if (speakerDevice != null) {
+                    //  audioManager.clearCommunicationDevice()
+                    // Thread.sleep(50) // Wait for state to reset
+                    val success = audioManager.setCommunicationDevice(speakerDevice)
+                    //  Thread.sleep(50)
+                    //audioManager.mode = AudioManager.MODE_IN_CALL
+                    //Thread.sleep(50)
+                    Log.d(tag, "setCommunicationDevice(speaker): success=$success")
+                    val shouldRetry = if (success) {
+                        // Check that speaker status was really changed to On
+                        !isSpeakerphoneOn(context)
+                    } else {
+                        true // failure - then retry = true
+                    }
+                    if (shouldRetry) {
+                        Log.d(tag, "Trying to turn On Speaker through IncallService")
+                        sendUpdateSpeakerphoneEvent(true) // try through IncallService
+                        return false // we did not succeed yet
+                    }
+                } else {
+                    Log.e(tag, "Speaker device not found")
+                    Log.d(tag, "Trying to turn Speaker On through IncallService")
+                    sendUpdateSpeakerphoneEvent(true) // try through IncallService
+                    return false // we did not succeed yet
+                }
+                //retrySetSpeakerphone(audioManager, speakerDevice)
+            } else { // t v urn Speaker Off:
+                audioManager.clearCommunicationDevice()
+                if ((isSpeakerphoneOn(context))) { // if Speaker is still On
+                    Log.d(tag, "Trying to turn Off Speaker through IncallService")
+                    sendUpdateSpeakerphoneEvent(false) // try through IncallService
+                    return false // we did not succeed yet
+                }
+                else {
+                    Log.d(tag, "Speaker was turned off")
+                }
+            }
+        } else {
+            audioManager.isSpeakerphoneOn = enable
+            Log.d(tag, "Speakerphone toggled: $enable (legacy API)")
+        }
+        return true
     }
 
     private val ringRunnable = object : Runnable {
@@ -1017,76 +1081,40 @@ CALL_DIRECTION_OUTGOING = 2
             context, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val largeIconBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.goldappiconphoneblack)
+        val largeIconBitmap = BitmapFactory.decodeResource(context.resources, SettingsStatus.appLogoResourceSmall)
 
 
-        val notification = Notification.Builder(context, "call_channel")
-            .setSmallIcon(R.drawable.goldappiconphoneblack)
-            .setLargeIcon(largeIconBitmap)
-            .setContentTitle( getString(R.string.incoming_call))
-            .setContentText(getString(R.string.tap_to_open_app))
-            .setStyle(
-                Notification.BigTextStyle()
-                    .bigText(getString(R.string.the_app_requires_permission_to_run_in_the_background))
-            )
-            .setContentIntent(pendingIntent)
-            .setCategory(Notification.CATEGORY_CALL)
-            .setPriority(Notification.PRIORITY_MAX)
-            .setOngoing(true)
-            .setAutoCancel(false)
-            //.setFullScreenIntent(pendingIntent, shouldShowNotificationWhenLoaded)  // <-- Crucial for bringing activity to foreground
-            .build()
+        val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Notification.Builder(context, "call_channel")
+                .setSmallIcon(SettingsStatus.appLogoResourceSmall)
+                .setLargeIcon(largeIconBitmap)
+                .setContentTitle( getString(R.string.incoming_call))
+                .setContentText(getString(R.string.tap_to_open_app))
+                .setStyle(
+                    Notification.BigTextStyle()
+                        .bigText(getString(R.string.the_app_requires_permission_to_run_in_the_background))
+                )
+                .setContentIntent(pendingIntent)
+                .setCategory(Notification.CATEGORY_CALL)
+                .setPriority(Notification.PRIORITY_MAX)
+                .setOngoing(true)
+                .setAutoCancel(false)
+                //.setFullScreenIntent(pendingIntent, shouldShowNotificationWhenLoaded)  // <-- Crucial for bringing activity to foreground
+                .build()
+        } else {
+            null
+        }
 
         //val ONGOING_CALL_NOTIFICATION_ID = 1001
         startForeground(ONGOING_CALL_NOTIFICATION_ID, notification)
     }
 
-    fun showIncomingCallNotification2(context: Context) {
-        val fullScreenIntent = Intent(context, EventScreenActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(
-            context, 0, fullScreenIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-
-        val notification = NotificationCompat.Builder(context, "incoming_call_channel")
-            .setSmallIcon(R.drawable.logotransparent)
-            .setContentTitle("שיחה נכנסת")
-            .setContentText("לחץ כדי לפתוח")
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_CALL)
-            .setFullScreenIntent(pendingIntent, true)
-            .build()
-
-        val notificationManager = NotificationManagerCompat.from(context)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            Toast.makeText(this, "NO PERMISSION", LENGTH_LONG).show()
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
-        notificationManager.notify(999, notification)
+    private fun sendUpdateSpeakerphoneEvent(enable: Boolean) {
+        OngoingCall.shouldToggleSpeakerOnOff = enable
+        OngoingCall.shouldToggleSpeaker.value = true
     }
 
-    fun createNotificationChannelForLockScreen(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                "incoming_call_channel",
-                "שיחות נכנסות",
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            val manager = context.getSystemService(NotificationManager::class.java)
-            manager.createNotificationChannel(channel)
-        }
-    }
+
 
     /*    @SuppressLint("NewApi")
         fun setSpeakerRoute(connection: Connection, enable: Boolean) {

@@ -1,45 +1,34 @@
 <resources>
     <string name="app_name">Easy Call &amp; Answer</string>
-    <string name="navigation_drawer_open">Navigatiedrawer openen</string>
-    <string name="navigation_drawer_close">Navigatiedrawer sluiten</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigatiekop</string>
     <string name="action_settings">Instellingen</string>
-    <string name="menu_dialer">Bellen</string>
+    <string name="menu_dialer">Kiezer</string>
     <string name="menu_contacts">Contacten</string>
-    <string name="menu_recent_calls">Oproepen</string>
+    <string name="menu_recent_calls">Recente</string>
     <string name="menu_settings">Instellingen</string>
-    <string name="lorem_ipsum_title">Lorem Ipsum</string>
-    <string name="lorem_ipsum">Lorem Ipsum is simpelweg een tijdelijke tekst voor de druk- en letterzetindustrie. Lorem Ipsum is sinds de jaren 1500 de standaard placeholdertekst in de branche, toen een onbekende drukker een verzameling letters door elkaar husselde om een proefexemplaar te maken</string>
-    <string name="fab_content_description">Geeft een weergave weer om een actie te activeren</string>
-    <string name="image_view_item_transform_content_description">Geeft een afbeeldingsweergave in het item weer</string>
-    <string name="elderandyoung">oud en jong</string>
-    <string name="decline_button">Weigeren</string>
-    <string name="accept_button">Accepteren</string>
-    <string name="call_capital">Bellen</string>
+    <string name="decline_button">Afwijzen</string>
+    <string name="accept_button">Opnemen</string>
+    <string name="call_capital">Oproep</string>
     <string name="back_capital">Terug</string>
-    <string name="call_type_icon">call_type_icon</string>
     <string name="contacts_capital">Contacten</string>
     <string name="unknown_caller">Onbekende beller</string>
     <string name="incoming_call">Inkomend gesprek</string>
     <string name="conference">Conferentie</string>
-    <string name="call_waiting">Gesprek in afwachting</string>
-    <string name="Details_capital">Details</string>
-    <string name="calling_capital">Bellen…</string>
-    <string name="save_gold_number">Bewaar Gouden nummer</string>
+    <string name="call_waiting">Wachtend gesprek</string>
+    <string name="calling_capital">Bezig met bellen…</string>
+    <string name="save_gold_number">Gouden nummer opslaan</string>
     <string name="enter_gold_phone_number">Voer Gouden nummer in</string>
     <string name="start_typing_contact_name">Begin met het typen van de contactnaam</string>
-    <string name="existing_contact">Bestaande contactpersoon:</string>
+    <string name="existing_contact">Bestaande contact:</string>
     <string name="save_existing_contact">Bestaande contact opslaan</string>
     <string name="save_phone_number">Telefoonnummer opslaan</string>
     <string name="phone_number">Telefoonnummer:</string>
     <string name="add_new_contact">Nieuwe contactpersoon toevoegen</string>
     <string name="call_gold_number">Gouden nummer bellen</string>
-    <string name="call_entered_number">Ingevoerd nummer bellen</string>
+    <string name="call_entered_number">Nummer bellen</string>
     <string name="contact_name">Contactnaam</string>
     <string name="enter_phone_number">Voer telefoonnummer in</string>
-    <string name="close_window">Venster sluiten</string>
+    <string name="close_window">Sluiten</string>
     <string name="birthday_capital">Verjaardag</string>
     <string name="name_capital">Naam</string>
     <string name="remind_me_capital">Herinner mij</string>
@@ -48,11 +37,11 @@
     <string name="enter_contact_name">Voer de contactnaam in</string>
     <string name="please_select_birthdate">Selecteer de geboortedatum</string>
     <string name="birthdate_capital">Geboortedatum</string>
-    <string name="approve_read_phone_calls_log">Leeslogboek oproepen goedkeuren</string>
+    <string name="approve_read_phone_calls_log">Oproeplog-toestemming verlenen</string>
     <string name="no_permissions_caption">Geen machtigingen</string>
-    <string name="approve_view_calls_permission">Bekijk oproepen toestemming goedkeuren</string>
-    <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">De app heeft toestemming nodig om oproepen te bekijken</string>
-    <string name="the_application_needs_contacts_permission_in_order_to_show_the_contacts_screen">De app heeft toestemming nodig voor contacten om het contactenoverzicht te tonen</string>
+    <string name="approve_view_calls_permission">Toestemming oproepen bekijken geven</string>
+    <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">Toestemming “Oproepen bekijken” is vereist om de historiek te tonen</string>
+    <string name="the_application_needs_contacts_permission_in_order_to_show_the_contacts_screen">Toestemming voor contacten is nodig om het overzicht te tonen</string>
     <string name="permissions_capital">Machtigingen</string>
     <string name="help_capital">Help</string>
     <string name="tour_capital">Rondleiding</string>
@@ -64,20 +53,20 @@
     <string name="no_permission_to_view_calls">Geen toestemming om oproepen te bekijken</string>
     <string name="approve_contacts_permission">Toestemming voor contacten verlenen</string>
     <string name="yes_skip_capital">Ja, overslaan</string>
-    <string name="no_set_as_default_capital">Nee, als standaard instellen</string>
+    <string name="no_set_as_default_capital">Nee, als standaard</string>
     <string name="set_default_phone_app">Stel standaard telefoonapp in</string>
     <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">Voor een optimale gespreksafhandeling is het belangrijk om de app als standaard telefoonapp in te stellen. Weet u zeker dat u deze stap wilt overslaan?</string>
     <string name="cancel_capital">Annuleren</string>
-    <string name="battery_saver">Achtergrondactiviteit</string>
+    <string name="battery_saver">Batterij-optimalisatie</string>
     <string name="for_the_app_to_run_smoothly_in_the_background_please_set_the_battery_saver">Zorg ervoor dat de app soepel op de achtergrond draait door in de Achtergrondinstellingen (via App-informatie in de Instellingen) de batterijbesparing op \'Geen beperkingen\' te zetten. De app is ontworpen voor minimaal batterijgebruik.</string>
     <string name="yes_open_app_info">Ja, app-info openen</string>
     <string name="permission_needed_capital_p">Toestemming vereist</string>
-    <string name="ask_permission_capital_a">Toestemming verlenen</string>
+    <string name="ask_permission_capital_a">Toestemming geven</string>
     <string name="close_capital">Sluiten</string>
     <string name="no_open_settings">Nee, instellingen openen</string>
     <string name="open_settings">Instellingen openen</string>
-    <string name="ok">OK</string>
-    <string name="permission_could_not_be_granted_automatically">Hoewel toestemming niet automatisch verleend kon worden, kunt u deze alsnog inschakelen via de instellingen van uw apparaat.</string>
+    <string name="ok">Oké</string>
+    <string name="permission_could_not_be_granted_automatically">Automatisch verlenen mislukt. Schakel de toestemming handmatig in via Instellingen.</string>
     <string name="app_must_have_permission_to_make_calls">Om te kunnen bellen, moet de app de juiste toestemming hebben.</string>
     <string name="to_add_a_gold_number_please_go_to_settings">Om een Gouden nummer toe te voegen, gaat u naar Instellingen.</string>
     <string name="permission_was_granted_reloading">Toestemming verleend! Herladen…</string>
@@ -86,7 +75,7 @@
     <string name="select_gold_number">Selecteer Gouden nummer</string>
     <string name="in_order_to_read_contacts_details_app_must_have_the_proper_permission">Om contactdetails te lezen, moet de app de juiste toestemming hebben.</string>
     <string name="in_order_to_view_calls_history_the_application_must_have_the_proper_permission">Om het belgeschiedenis te bekijken, moet de app de juiste toestemming hebben.</string>
-    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">De app heeft telefoonmachtigingen nodig om oproepen te kunnen maken, inclusief snelle oproepen via de knop voor snelkiezen.</string>
+    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">De app heeft Toestemming voor Telefoon nodig om oproepen te kunnen uitvoeren, inclusief Snel Bellen.</string>
     <string name="enable_application_to_show_call_screen_from_background">Sta de app toe om het belscherm op de achtergrond te tonen</string>
     <string name="enable_application_to_show_call_screen_from_background_text">Ga naar "Andere machtigingen" en geef daar toestemming voor "Pop-upvensters weergeven tijdens achtergrondgebruik".</string>
     <string name="go_to_settings">Ga naar instellingen</string>
@@ -107,15 +96,15 @@
     <string name="settings_screen_is_already_opened">Het instellingen-scherm is al geopend</string>
     <string name="permissions_screen_is_already_opened">Het machtigingsscherm is al geopend</string>
     <string name="tour_welcome">Welkom!</string>
-    <string name="tour_welcome_text">De app is speciaal ontworpen om het beheren en plaatsen van oproepen te vereenvoudigen, naast het beantwoorden van inkomende oproepen – door gebruik te maken van een grote knop in plaats van over het apparaat te vegen, een handeling die soms moeilijk kan zijn voor oudere mensen.\n\nFamilieleden kunnen de instellingen naar behoefte aanpassen, waardoor de app zowel eenvoudig als krachtig is met veel functies.\n\nBeheer uw oproepen gemakkelijk en gebruik de app als uw primaire belprogramma voor het ontvangen en beheren van oproepen.</string>
+    <string name="tour_welcome_text">De app is speciaal ontworpen om het beheren en plaatsen van oproepen te vereenvoudigen, naast het beantwoorden van inkomende oproepen – door één grote knop te gebruiken in plaats van over het scherm te vegen, wat soms lastig kan zijn voor oudere mensen. Familieleden kunnen de instellingen naar wens aanpassen, waardoor de app zowel eenvoudig als krachtig is met veel functies. Beheer uw oproepen eenvoudig en gebruik de app als uw primaire belprogramma voor het ontvangen en beheren van oproepen.</string>
     <string name="tour_powerful_features">Krachtige functies</string>
     <string name="tour_powerful_features_text">De app bevat een breed scala aan nuttige functies, speciaal afgestemd op ouderen, voor het beheren van alle soorten oproepen, zowel inkomend als uitgaand.\n\nDe app is ontworpen om zeer eenvoudig en gebruiksvriendelijk te zijn, maar u kunt altijd gemakkelijk de instellingen wijzigen door op het menu bovenaan het scherm te tikken (tik op de drie puntjes).</string>
     <string name="tour_customizable_settings">Aanpasbare instellingen</string>
     <string name="tour_customizable_settings_text">In het scherm Instellingen kun je kiezen wie je kan bellen, zoals alleen contacten, alleen favorieten of alleen geïdentificeerde nummers.\n\nJe kunt ook uitgaande oproepen beperken als dat nodig is. Het is belangrijk om te onthouden dat Snelle oproep en het Gouden nummer blijven werken, zelfs als uitgaande oproepen beperkt of geblokkeerd zijn, omdat ze alleen afhankelijk zijn van de toestemming voor uitgaande oproepen van de telefoon.\n\nDaarnaast kun je ervoor kiezen om oproepen te starten met de luidspreker aan, de app instellen om automatisch oproepen te beantwoorden en toegang krijgen tot andere opties die de app helpen optimaal en gepersonaliseerd voor jou te functioneren.</string>
     <string name="tour_auto_answer">Automatisch beantwoorden</string>
-    <string name="tour_auto_answer_text">Het is mogelijk om de app zo in te stellen dat deze automatisch inkomende oproepen beantwoordt, zonder dat u op de antwoordknop hoeft te drukken wanneer er een nieuw gesprek binnenkomt.\n\nDe app zorgt ervoor dat het apparaat enkele keren overgaat, zodat u op de hoogte wordt gesteld van de inkomende oproep.\n\nAutomatisch beantwoorden kan alleen worden ingeschakeld voor bepaalde contacten, door op deze contacten te tikken op het Contacten-scherm en vervolgens het selectievakje aan te vinken.\n\nHet gebruik van deze optie kan verwarring veroorzaken bij mensen die niet gewend zijn aan automatisch beantwoorden, en het gebruik is volledig op eigen risico.</string>
+    <string name="tour_auto_answer_text">U kunt de app zo instellen dat inkomende oproepen automatisch worden beantwoord, zonder dat u op de antwoordknop hoeft te drukken. De app laat het apparaat eerst een paar keer overgaan zodat u merkt dat er een oproep binnenkomt. Automatisch beantwoorden kunt u inschakelen voor specifieke contacten via het Contactenscherm door het selectievakje aan te vinken. Let op: automatisch beantwoorden kan verwarrend zijn voor mensen die hier niet aan gewend zijn, en gebruik is volledig op eigen risico.</string>
     <string name="tour_gold_number">Gouden nummer</string>
-    <string name="tour_gold_number_text">In het instellingenmenu kun je een Gouden nummer instellen voor snelle en gemakkelijke oproepen naar een nauwe contactpersoon en hen vervolgens bellen via het tabblad Contacten of de kiezer.\n\nJe kunt het Gouden nummer bellen, zelfs wanneer uitgaande oproepen in de app zijn beperkt, maar hiervoor is wel beltoestemming nodig.</string>
+    <string name="tour_gold_number_text">In het instellingenmenu kun je een Gouden nummer instellen voor eenvoudige en handige oproepen naar een nauwe contactpersoon en hen vervolgens bellen via het tabblad Contacten of de kiezer.\n\nJe kunt het Gouden nummer bellen, zelfs wanneer uitgaande oproepen in de app zijn beperkt, maar hiervoor is wel beltoestemming nodig.</string>
     <string name="tour_next_button">Volgende</string>
     <string name="tour_prev_button">Vorige</string>
     <string name="tour_done">Goedgekeurd</string>
@@ -125,10 +114,10 @@
     <string name="tour_app_permissions_text">Om ervoor te zorgen dat de app oproepen kan beheren en beantwoorden, zelfs wanneer deze niet actief geopend is, moet deze als de standaard app voor oproepbeheer worden ingesteld.\n\nBovendien heeft de app, om correct te functioneren, aanvullende toestemmingen nodig:\n\1. Telefoon (om oproepen te plaatsen).\n\2. Het openen van nieuwe vensters op de achtergrond (weergeven boven andere apps).\n3. Toegang tot contacten.\n4. Inzien van het belgeschiedenis.\n5. Toestemming voor weergave op het vergrendelscherm.\n\nDe app zal de ontvangen toestemmingen uitsluitend gebruiken voor een correcte oproepbeheer.</string>
     <string name="tour_permissions_screen">Machtigingsscherm</string>
     <string name="tour_permissions_screen_text">De meeste apparaatmachtigingen die voor de app nodig zijn, worden automatisch verleend tijdens de installatie van de software of wanneer de app als standaard bel-app wordt ingesteld.\n\nMachtigingen kunnen altijd worden aangevraagd via het machtigingen scherm van de app, door gebruik te maken van het menu bovenaan het scherm (het "drie puntjes"-menu).\n\nHet wordt aangeraden om, indien nodig, hulp in te roepen van familieleden en naaste mensen.</string>
-    <string name="tour_overlay_draw_permission">Overlay-teken toestemming</string>
+    <string name="tour_overlay_draw_permission_xiaomi">Overlay-teken toestemming</string>
     <string name="tour_overlay_draw_permission_text">Om ervoor te zorgen dat de app oproepen kan beantwoorden, zelfs wanneer deze niet geopend is, zorg ervoor dat de benodigde toestemming is verleend.\n\nVolg deze stappen:\n1. Open de apparaatinstellingen.\n2. Ga naar de sectie "Andere machtigingen" (of vergelijkbaar).\n3. Zoek en schakel de relevante toestemming in.\n\nOpmerking: De naam en locatie van de toestemming kunnen per apparaat verschillen. Als deze niet wordt gevonden, probeer dan in andere instellingen te zoeken.</string>
     <string name="tour_overlay_draw_permission_text_pixel">Om ervoor te zorgen dat de app oproepen kan beantwoorden, zelfs wanneer deze niet geopend is, zorg ervoor dat de benodigde toestemming is verleend.\n\nVolg deze stappen:\n1. Tik op \"Weergeven boven andere apps\".\n2. Schakel de optie \"Toestaan weergeven boven andere apps\" in.\n\nOpmerking: De naam en locatie van deze instelling kunnen variëren afhankelijk van het apparaat en de Android-versie.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">Om ervoor te zorgen dat de app oproepen kan beantwoorden, zelfs als deze niet is geopend, moet je de vereiste toestemming geven.\n\nGa als volgt te werk:\n1. Tik op "Boven andere apps weergeven" (Appear on top).\n2. Schakel de optie "Toestemming toestaan" (Allow permission) in.\n\nOpmerking: De exacte locatie en naam van deze instelling kunnen variëren afhankelijk van je apparaat en Android-versie.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">Om ervoor te zorgen dat de app oproepen kan beantwoorden, zelfs wanneer deze niet is geopend, geef de benodigde toestemming.\n\nGa verder door:\n1. Tik op "Bovenop weergeven".\n2. Schakel de optie "Toestemming toestaan" in.\n\nOpmerking: De exacte locatie en naam van deze instelling kunnen variëren afhankelijk van jouw apparaat en Android‑versie.</string>
     <string name="tour_default_app">Standaard app</string>
     <string name="tour_default_app_text">Om ervoor te zorgen dat de app correct functioneert en oproepen beheert, moet deze worden ingesteld als de standaard app voor oproepbeheer.\n\nZonder deze toestemming kan de app geen oproepen beantwoorden wanneer deze niet geopend is en actief in gebruik is.</string>
     <string name="tour_almost_done">Bijna klaar!</string>
@@ -138,14 +127,14 @@
     <string name="tour_skip_button">Overslaan</string>
     <string name="tour_start_button">Klaar</string>
     <string name="tour_finished_but_without_default_app_and_battery_saver">Alles is klaar! Neem voordat u afrondt even de tijd om de Algemene Voorwaarden van de app te lezen en te accepteren.\n\nLet op: u kunt de app starten, maar zonder deze als standaard telefoonapp in te stellen en zonder de batterijbeperkingen op te heffen, kan de app oproepen niet correct verwerken.\n\nTik op de knop "Voltooien" om de rondleiding af te ronden en het instellingenmenu te openen, waar u de app kunt aanpassen aan uw wensen en van alle mogelijkheden kunt genieten\nU kunt de rondleiding altijd opnieuw bekijken via het menu met drie puntjes bovenaan het scherm van de app.</string>
-    <string name="tour_finished_but_without_default_app">Tout est prêt! Avant de terminer, veuillez prendre un moment pour lire et accepter les Conditions Générales de l\'application.\n\nVeuillez noter : vous pouvez commencer à utiliser l\'application, mais sans la définir comme application téléphonique par défaut, elle ne pourra pas gérer les appels correctement.\n\nAppuyez sur le bouton "Terminer" pour compléter la visite guidée et ouvrir l\'écran des Paramètres, où vous pourrez personnaliser l\'application selon vos besoins et profiter de toutes ses possibilités.\nVous pouvez toujours revoir la visite guidée depuis le menu à trois points.</string>
+    <string name="tour_finished_but_without_default_app">Alles is klaar! Neem voordat u afrondt even de tijd om de Algemene Voorwaarden van de app te lezen en te accepteren. Let op: u kunt de app starten, maar zonder deze als standaard telefoonapp in te stellen, kan de app oproepen niet correct verwerken. Tik op de knop "Voltooien" om de rondleiding af te ronden en het instellingenmenu te openen, waar u de app kunt aanpassen aan uw wensen en optimaal kunt gebruiken. U kunt de rondleiding altijd opnieuw bekijken via het menu met drie puntjes bovenaan het scherm van de app.</string>
     <string name="tour_finished_but_without_battery_saver">Alles is klaar! Neem voordat u afrondt even de tijd om de Algemene Voorwaarden van de app te lezen en te accepteren.\n\nLet op: u kunt de app starten, maar zonder de batterijbeperkingen op te heffen, kan de app oproepen niet correct verwerken.\n\nTik op de knop "Voltooien" om de rondleiding af te ronden en het instellingenmenu te openen, waar u de app kunt aanpassen aan uw wensen en van alle mogelijkheden kunt genieten.\nU kunt de rondleiding altijd opnieuw bekijken via het menu met drie puntjes.</string>
     <string name="tour_finished_but_without_phone_permission">Je bent er helemaal klaar voor! Neem voordat je afsluit even de tijd om de algemene voorwaarden van de app te lezen en te accepteren.\n\nLet op: de snelkiezen-knop werkt niet goed zonder telefoonmachtiging.\n\nTik op de knop Voltooien om de rondleiding af te ronden en het scherm Instellingen te openen, waar je machtigingen kunt verlenen, de app naar wens kunt aanpassen en van alle mogelijkheden kunt genieten.\n\nJe kunt de rondleiding altijd opnieuw bekijken via het menu met drie stippen bovenaan het scherm van de app.</string>
     <string name="tour_finished_but_without_phone_permission_and_default_app">Je bent er helemaal klaar voor! Neem voordat je afsluit even de tijd om de algemene voorwaarden van de app te lezen en te accepteren.\n\nLet op: de snelkiezen-knop werkt niet goed zonder telefoonmachtiging.\nDaarnaast kan de app zonder deze als standaard telefoon-app in te stellen, gesprekken niet correct afhandelen.\n\nTik op de knop Voltooien om de rondleiding af te ronden en het scherm Instellingen te openen, waar je machtigingen kunt verlenen, de app naar wens kunt aanpassen en van alle mogelijkheden kunt genieten.\n\nJe kunt de rondleiding altijd opnieuw bekijken via het menu met drie stippen bovenaan het scherm van de app.</string>
     <string name="tour_finished_but_without_phone_permission_and_battery_saver">Je bent er helemaal klaar voor! Neem voordat je afsluit even de tijd om de algemene voorwaarden van de app te lezen en te accepteren.\n\nLet op: de snelkiezen-knop werkt niet goed zonder telefoonmachtiging.\nDaarnaast kan de app gesprekken niet correct afhandelen zonder de batterijbeperkingen uit te schakelen.\n\nTik op de knop Voltooien om de rondleiding af te ronden en het scherm Instellingen te openen, waar je machtigingen kunt verlenen, de app naar wens kunt aanpassen en van alle mogelijkheden kunt genieten.\n\nJe kunt de rondleiding altijd opnieuw bekijken via het menu met drie stippen bovenaan het scherm van de app.</string>
     <string name="tour_finished_but_without_phone_permission_and_default_app_and_battery_saver">Je bent er helemaal klaar voor! Neem voordat je afsluit even de tijd om de algemene voorwaarden van de app te lezen en te accepteren.\n\nLet op: de snelkiezen-knop werkt niet goed zonder telefoonmachtiging.\nDaarnaast kan de app gesprekken niet correct afhandelen zonder deze als standaard telefoon-app in te stellen en zonder batterijbeperkingen uit te schakelen.\n\nTik op de knop Voltooien om de rondleiding af te ronden en het scherm Instellingen te openen, waar je machtigingen kunt verlenen, de app naar wens kunt aanpassen en van alle mogelijkheden kunt genieten.\n\nJe kunt de rondleiding altijd opnieuw bekijken via het menu met drie stippen bovenaan het scherm van de app.</string>
     <string name="tour_battery_saver_skipped_but_needed_alert">Om de app soepel op de achtergrond te laten draaien, is het belangrijk dat de batterijbesparing op \'Geen beperkingen\' staat. De app is ontworpen voor minimaal batterijgebruik. Weet u zeker dat u deze stap wilt overslaan?</string>
-    <string name="no_open_app_info">Geen, app-info openen</string>
+    <string name="no_open_app_info">Nee, niet nu</string>
     <string name="tour_overlay_draw_permission_skipped_alert_title">Overlay-teken toestemming</string>
     <string name="tour_overlay_draw_permission_skipped_alert_text">Zodat de app oproepen op de achtergrond (wanneer deze niet geladen is) kan verwerken, is het belangrijk om toestemming voor overlay tekenen te verlenen. Weet u zeker dat u deze stap wilt overslaan?</string>
     <string name="request_overlay_permission_alert_title">Sta de app toe het belscherm op de achtergrond te tonen</string>
@@ -162,12 +151,12 @@
     <string name="settings_allow_outgoing_calls">Sta uitgaande oproepen toe</string>
     <string name="start_calls_with_speaker_turned_on">Start gesprekken met ingeschakelde luidspreker</string>
     <string name="settings_automatically_answer_calls">Beantwoord automatisch oproepen</string>
-    <string name="settings_show_keypad_in_active_call">Toon toetsenbord tijdens gesprekken</string>
+    <string name="settings_show_keypad_in_active_call">Toetsen tonen tijdens gesprek</string>
     <string name="allow_launching_contacts_whatsapp">Sta het openen van WhatsApp van contacten toe</string>
     <string name="settings_allow_call_waiting">Sta anroepwachter toe</string>
     <string name="permissions_approve_overlay_draw_permission_button">Geef overlay-machtiging</string>
     <string name="permissions_phone_call_permission_caption">Toestemming voor telefoonoproepen</string>
-    <string name="permissions_phone_call_permission_caption_text">Die App benötigt die Telefonanruf-Berechtigung, um als Standard-Telefon-App Anrufe tätigen zu können.</string>
+    <string name="permissions_phone_call_permission_caption_text">De app heeft telefoonmachtiging nodig om als standaard telefoonapp te bellen.</string>
     <string name="permissions_approve_phone_permission">Geef telefoonmachtiging</string>
     <string name="permissions_contacts_permission_caption">Toestemming voor contacten</string>
     <string name="permissions_contacts_permission_text">De app heeft toestemming nodig voor toegang tot contacten, zodat u bestaande contacten kunt bellen en de contacten van telefoonnummers kunt weergeven.</string>
@@ -181,47 +170,19 @@
     <string name="permissions_enable_contacts_permission_manually_title2">Contacten</string>
     <string name="permissions_enable_calls_log_permission_manually_title1">om oproepen te bekijken</string>
     <string name="permissions_enable_calls_log_permission_manually_title2">Oproeplogboeken</string>
-    <string name="how_to_enable_standard_permission_manually_text">
-        📞 ** Hoe schakel je handmatig toestemming in voor %1$s in de app **
-
-        Het lijkt erop dat de toestemming voor %1$s voor deze app is geweigerd.
-        Om deze functie opnieuw in te schakelen, volgt u deze eenvoudige stappen:
-
-        1️⃣ **Open de instellingen**
-           Tik op de **Instellingen**-app op uw telefoon (⚙️).
-
-        2️⃣ **Zoek naar \'Toestemmingen\' of \'Apps\'**
-           Scroll naar beneden en zoek naar **Apps** of **App-toestemmingen** (de naam kan variëren).
-
-        3️⃣ **Ga naar de \'Toestemmingsbeheerder\'**
-           Binnen de app-instellingen, zoek naar de optie **Toestemmingen** of **Toestemmingsbeheerder**.
-
-        4️⃣ **Selecteer de toestemming «%2$s»**
-           Tik op **Telefoon**, zoek vervolgens deze app in de lijst.
-
-        5️⃣ **Schakel de toestemming in**
-           Tik op de naam van de app en kies **Toestaan** om de toestemming te verlenen.
-
-        🔄 **Herstart de app**
-           Na het inschakelen van de toestemming zou de app deze automatisch moeten detecteren. Mocht u problemen ondervinden, sluit de app dan en open deze opnieuw om zeker te zijn dat alles soepel werkt.
-
-        Als u hulp nodig heeft, vraag dan iemand om u te begeleiden of neem contact op met de ondersteuning.
-     </string>
     <string name="enable_permission_manually_caption">Toestemming activeren</string>
     <string name="enable_permission_manually_ok_button">Begrepen!</string>
     <string name="navigation_fragment_info_label">Info</string>
-    <string name="from_no_one_captial_f">Van niemand</string>
+    <string name="from_no_one_capital_f">Van niemand</string>
     <string name="from_favorites_only_captial_f">Alleen van favorieten</string>
     <string name="from_contacts_only_captial_f">Alleen van contacten</string>
-    <string name="from_identified_only_captial_f">Alleen van geïdentificeerden</string>
+    <string name="from_identified_only_captial_f">Alleen van bekende nummers</string>
     <string name="from_everyone_capital_f">Van iedereen</string>
     <string name="to_no_one_captial_t">Aan niemand</string>
     <string name="to_favorites_only_captial_t">Alleen aan favorieten</string>
     <string name="to_contacts_only_captial_t">Alleen aan contacten</string>
     <string name="to_everyone_capital_t">Aan iedereen</string>
-    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">
-        De app kan geen contacten toevoegen aan de Gouden nummer lijst omdat de toestemming voor contacten niet is verleend.
-    </string>
+    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">De app kan geen contacten toevoegen aan de keuzelijst voor het Gouden nummer omdat deze geen toestemming heeft voor toegang tot contacten. Je kunt dit toestaan via het machtigingenscherm van de app.</string>
     <string name="make_call_permission_granted_try_again">
         De toestemming om te bellen is verleend! Probeer het opnieuw.
     </string>
@@ -241,15 +202,15 @@
     <string name="default_dialer_permission_granted_try_again">
         De app is ingesteld als standaard telefoonapp! Probeer het opnieuw.
     </string>
-    <string name="auto_answer_capital_auto">Automatische\nbeantwoording</string>
+    <string name="auto_answer_capital_auto">Auto-antwoord</string>
     <string name="incoming_capital">Inkomend</string>
     <string name="outgoing_capital">Uitgaand</string>
     <string name="missed_capital">Gemist</string>
     <string name="rejected_capital">Afgewezen</string>
     <string name="blocked_capital">Geblokkeerd</string>
-    <string name="end_captial">Beëindigen</string>
+    <string name="end_captial">Ophangen</string>
     <string name="speaker_capital">Luidspreker</string>
-    <string name="keypad_capital">Toetsenbord</string>
+    <string name="keypad_capital">Toetsen</string>
     <string name="to_view_calls_history_application_must_have_permission">
         Om het belgeschiedenis te bekijken, moet de app de juiste toestemming hebben.
     </string>
@@ -305,7 +266,7 @@
     <string name="speaker_capital_for_voice">Luidspreker</string>
     <string name="end_capital_for_voice">Ophangen</string>
     <string name="keypad_capital_for_voice">Toetsenbord</string>
-    <string name="tap_to_open_app">Tik om app te openen</string>
+    <string name="tap_to_open_app">Tik om de app te openen</string>
     <string name="the_app_requires_permission_to_run_in_the_background">De app heeft toestemming nodig om op de achtergrond te draaien, zodat deze oproepen kan beantwoorden wanneer deze niet actief is. U kunt deze toestemming verlenen via het machtigingen-scherm van de app of door de app-instellingen in het instellingenmenu van uw apparaat aan te passen.</string>
     <string name="no_contacts_are_displayed_because_outgoing_calls_are_disabled">Contacten worden niet weergegeven omdat uitgaande oproepen zijn uitgeschakeld. U kunt deze optie wijzigen via de instellingen van de app (menu met drie puntjes).</string>
     <string name="terms_and_conditions">Welkom bij de %1$s applicatie. De applicatie is ontwikkeld als hulpmiddel voor volwassen gebruikers en is bedoeld om het beheer van oproepen op Android-apparaten te vereenvoudigen en snelle toegang tot vooraf ingestelde contacten mogelijk te maken. De applicatie en de diensten die via de applicatie worden geleverd, worden hierna \"het Systeem\" genoemd. 1. Acceptatie van de Voorwaarden: Gebruik van het Systeem is onderworpen aan de volgende voorwaarden (\"de Voorwaarden\"). Lees deze voorwaarden zorgvuldig voordat u het Systeem gebruikt. Door het Systeem te gebruiken, aanvaardt u deze voorwaarden volledig en onherroepelijk. Als u niet akkoord gaat met deze voorwaarden, geheel of gedeeltelijk, gebruik het Systeem dan niet en verwijder het onmiddellijk van uw apparaat. 2. Samenvatting van het Doel van het Systeem: Eenvoudiger beheer van oproepen met grote knoppen en tekst, geoptimaliseerd voor oudere gebruikers. 3. Belangrijke Uitleg over Snelle oproep en Automatisch Oproep Beantwoorden: * Het wordt aanbevolen om de Snelle oproep-functie vooraf te testen met vooraf ingestelde contacten om een correcte werking te waarborgen. * Het Systeem bevat een Snelle oproep-functie voor snel bellen naar een vooraf ingesteld telefoonnummer en kan ook automatisch oproepen beantwoorden en een \"gouden nummer\" functie bieden. * Houd er rekening mee dat de applicatie niet is ontworpen voor gebruik in noodgevallen en geen directe communicatie met officiële hulpcentra vervangt. * Volledige afhankelijkheid van Snelle oproep of automatisch beantwoorden wordt niet aanbevolen, aangezien technische problemen kunnen optreden (zoals signaalproblemen, netwerkstoringen, toestemmingsblokkades, beperkingen van het besturingssysteem of energiebesparende beperkingen). * Het wordt aanbevolen om extra back-up communicatiemiddelen beschikbaar te hebben. 4. Privacy, Bescherming van Persoonsgegevens en Oproepopnames: Het Systeem stelt gebruikers in staat om verschillende gegevens die op de smartphone zijn opgeslagen, zoals contacten en oproeplogboeken, te bekijken. Deze informatie wordt niet opgeslagen binnen de applicatie en wordt niet gedeeld met derden. De applicatie neemt geen telefoongesprekken op die via haar worden gevoerd en het Systeem slaat geen gesprekken op en logt ze ook niet. 5. Gebruiksbeperkingen: Het is strikt verboden om het Systeem te gebruiken voor andere doeleinden dan persoonlijk of privégebruik, inclusief het verspreiden van valse informatie via de Snelle oproep-functie. 6. Aansprakelijkheid en Beperking van Aansprakelijkheid: De applicatie en de geleverde diensten worden aangeboden \"zoals ze zijn\" (\"AS-IS\"). De ontwikkelaars zijn niet verantwoordelijk voor het aanpassen van het Systeem aan de behoeften van de gebruiker, voor fouten, onnauwkeurigheden of wijzigingen in de weergegeven informatie of voor wijzigingen die door de gebruiker of derden zijn aangebracht. De ontwikkelaars zijn niet aansprakelijk voor directe of indirecte schade als gevolg van het gebruik van het Systeem, inclusief schade veroorzaakt door oproepbeantwoording, automatisch beantwoorden, het gouden nummer, de Snelle oproep-functie of andere onderdelen van de applicatie. Gebruikers dragen alle risico\'s die verbonden zijn aan het gebruik van het Systeem en de ontwikkelaars aanvaarden geen aansprakelijkheid voor storingen, operationele fouten of schade als gevolg van onjuist gebruik of overmatige afhankelijkheid van het Systeem. 7. Wijzigingen, Updates en Beëindiging van de Dienst: De exploitanten van de applicatie behouden zich het recht voor om het Systeem op elk moment zonder voorafgaande kennisgeving te wijzigen, bij te werken of stop te zetten. 8. Contact voor Vragen of Klachten: Voor vragen, klachten of opmerkingen kunt u contact opnemen met %3$s. 9. Verklaring en Instemming van de Gebruiker: Let op: dit venster wordt alleen weergegeven om de voorwaarden te lezen en te bekijken en vormt geen aanvaarding. De aanvaarding van de voorwaarden gebeurt op het vorige scherm door \"Ik ga akkoord met de gebruiksvoorwaarden\" te selecteren. Door \"Ik ga akkoord met de gebruiksvoorwaarden\" te selecteren, verklaart u dat u deze voorwaarden hebt gelezen, begrepen en volledig accepteert. 10. Intellectuele Eigendomsrechten: Alle inhoud, functies en functionaliteiten binnen het Systeem, inclusief maar niet beperkt tot software, tekst, grafieken, logo\'s en ontwerpen, zijn exclusief eigendom van de ontwikkelaars en worden beschermd door intellectuele eigendomswetten. Alle rechten voorbehouden © %1$s 2025.</string>
@@ -346,7 +307,7 @@
     <string name="change_capital">Wijzigen</string>
     <string name="answering_capital">Antwoord</string>
     <string name="premium_capital">Premium</string>
-    <string name="send_alert_via_sms_to_gold_number">Waarschuwing via sms naar Gouden Nummer sturen</string>
+    <string name="send_alert_via_sms_to_gold_number">Extra SMS verzenden naar %1$s</string>
     <string name="play_voice_call_for_help_if_call_unanswered">Spraak afspelen als oproep niet wordt beantwoord</string>
     <string name="sos">Hulp</string>
     <string name="lock_capital">Vergrendelen</string>
@@ -362,7 +323,7 @@
     <string name="mark_call_as_exceptional_if_it_is_not_between">Oproep wordt als uitzonderlijk beschouwd als deze niet binnen de opgegeven tijden valt</string>
     <string name="a_number_is_considered_exceptional_if_it_appears_more_than">Een nummer wordt als uitzonderlijk beschouwd als het meer dan</string>
     <string name="call">Oproep</string>
-    <string name="time_allowed_to_cancel_seconds">Tijd om te annuleren (seconden)</string>
+    <string name="time_allowed_to_cancel_seconds">Annuleertijd (seconden)</string>
     <string name="call_settings">Oproepinstellingen</string>
     <string name="other_capital">Overig</string>
     <string name="to">tot</string>
@@ -374,7 +335,7 @@
     <string name="premium_tour_page_lock_title">Slim vergrendelscherm</string>
     <string name="premium_tour_page_lock_text">Ons slimme vergrendelscherm biedt een nieuwe en moeiteloze ervaring.\n\nIn plaats van te worstelen met onhandige veeggebaren of uit te zoeken hoe je je apparaat moet ontgrendelen, brengt één tik je direct terug naar de app. Het is eenvoudig, snel en altijd beschikbaar wanneer je het nodig hebt.\n\nAls spraakopdrachten beschikbaar zijn, kun je het apparaat ook ontgrendelen met een spraakopdracht. Je hoeft het apparaat niet aan te raken – zeg gewoon het toverwoord en het scherm reageert. Perfect wanneer je handen vol zijn of je snel toegang nodig hebt.\n\nIndien beschikbaar, toont het scherm slimme meldingen van SMS- en WhatsApp-berichten. De inhoud wordt weergegeven in alleen-lezenmodus, dus zelfs als je per ongeluk tikt, wordt de chat niet geopend. Dit is vooral handig voor oudere gebruikers die per ongeluk iets kunnen indrukken.\n\nMet een strak ontwerp, intuïtieve bediening en spraakondersteuning is het een echte upgrade van je mobiele ervaring.</string>
     <string name="premium_tour_page_voice_title">Handsfree spraakbesturing</string>
-    <string name="premium_tour_page_voice_text_not_updated_must_fix">Stel je voor dat je volledige controle over je app hebt — zonder je telefoon aan te raken. Spreek gewoon, en het systeem doet de rest.\n\nBeantwoord oproepen, stuur noodmeldingen, neem contact op met geliefden of ontgrendel je scherm — allemaal alleen met je stem.\n\nWanneer je handen vol zijn of aanraken niet praktisch is, maakt spraakbesturing alles eenvoudig, snel en natuurlijk.\n\nZelfs onderweg of vanaf de andere kant van de kamer reageert het systeem — zolang het maar stil genoeg is.\n\nHet gaat niet alleen om gemak. Het gaat om toegankelijkheid, veiligheid en krachtige technologie die jou de controle geeft.</string>
+    <string name="premium_tour_page_voice_text_not_updated_must_fix">Stel u voor: volledige controle over uw app — zonder uw telefoon aan te raken. Spreek gewoon, en het systeem doet de rest. Beantwoord oproepen, stuur noodmeldingen, neem contact op met geliefden of ontgrendel uw scherm — allemaal met uw stem. Wanneer uw handen vol zijn of aanraken lastig is, maakt spraakbesturing alles eenvoudiger, sneller en natuurlijker. Zelfs als u onderweg bent of aan de andere kant van de kamer staat, blijft het systeem reageren — zolang het rustig genoeg is. Het gaat niet alleen om gemak, maar ook om toegankelijkheid, veiligheid en krachtige technologie die u volledige controle geeft.</string>
     <string name="premium_tour_page_call_report_title">Oproeprapport</string>
     <string name="premium_tour_page_call_report_text">Blijf op de hoogte van de belactiviteit van je dierbaren. Het rapport toont de inkomende en uitgaande oproepen — zodat je weet dat ze niet per ongeluk bellen of worden gebeld door onbekende of verdachte nummers.</string>
     <string name="premium_tour_page_quick_call_title">Verbeterde Snelle oproep</string>
@@ -391,14 +352,31 @@
     <string name="initial_voice_command_call_gold_number">Gouden nummer bellen</string>
     <string name="initial_voice_command_quick_call">Snelle oproep</string>
     <string name="initial_voice_command_unlock_screen">Apparaat ontgrendelen</string>
-    <string name="lock_service_was_activated_msg">De service is geactiveerd! Je kunt de instellingen nog steeds wijzigen zonder deze te stoppen (wijzigingen worden binnenkort van kracht).\nJe kunt de app op elk moment sluiten — het slimme vergrendelscherm verschijnt automatisch na een periode van inactiviteit.\nTik op deze melding om deze te sluiten.\nDoor op het vergrendelscherm te tikken, ga je direct terug naar de app — zodat je eenvoudig een oproep kunt plaatsen zonder deze op het startscherm te hoeven zoeken.</string>
+    <string name="lock_service_was_activated_msg">De service is actief! Het slimme vergrendelingsscherm verschijnt wanneer de apparaatvergrendeling wordt geactiveerd. U kunt de instellingen op elk moment aanpassen.</string>
     <string name="welcome_text_speech_short">De Premium-versie biedt verbeterde functies voor de Snelle oproep, samen met een slim vergrendelscherm dat automatisch verschijnt na inactiviteit. Door op het scherm te tikken ga je direct terug naar de app om eenvoudig een oproep te plaatsen zonder op het startscherm te hoeven zoeken.</string>
     <string name="quick_call_activated_voice_message_speech">Snelle oproep geactiveerd — let alstublieft op</string>
     <string name="voice">Stem</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">Deze app gebruikt de SMS-machtiging uitsluitend om berichten te sturen naar het geselecteerde Gouden nummer.\nHet verzenden van SMS-berichten is afhankelijk van de netwerkverbinding en kan in sommige regio\'s kosten met zich meebrengen.\nDe app probeert maximaal 3 berichten te verzenden.\nDe gebruiker is zelf volledig verantwoordelijk voor eventuele kosten of leveringsproblemen.\n</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">De app gebruikt SMS-toestemming om een sms-bericht te sturen naar de geselecteerde %1$s.\nHet verzenden van berichten hangt af van de netwerkomstandigheden en kan kosten met zich meebrengen.\nEr wordt slechts één bericht verzonden.\nDe gebruiker is verantwoordelijk voor eventuele kosten of bezorgproblemen.</string>
     <string name="settings_when_lock_screen_is_unlocked">Bij het ontgrendelen van het scherm</string>
     <string name="select_app_to_launch">Selecteer app om te starten</string>
     <string name="premium_screen_lock_text">Ons slimme vergrendelscherm biedt een nieuwe en moeiteloze ervaring.\n\nIn plaats van te worstelen met onhandige veeggebaren of uit te zoeken hoe je je apparaat ontgrendelt, brengt één tik je direct terug naar de app, waar je eenvoudig telefoongesprekken kunt beheren en voeren.\n\nMet een strak ontwerp en intuïtieve bediening is het een echte upgrade van je mobiele ervaring.</string>
-    <string name="screen_lock_missing_permissions_text">Het slimme vergrendelscherm kan niet functioneren zonder de vereiste machtigingen.\n\nZorg ervoor dat machtigingen voor achtergrondwerking en weergave op het vergrendelscherm zijn verleend om ervoor te zorgen dat de app correct werkt.</string>
+    <plurals name="screen_lock_missing_permissions_text_dynamic_plural">
+        <item quantity="one">Het slimme vergrendelscherm kan niet functioneren zonder de volgende toestemming: %1$s. Gelieve deze toestemming te verlenen zodat de app correct kan functioneren.</item>
+        <item quantity="other">Het slimme vergrendelscherm kan niet functioneren zonder de volgende toestemmingen: %1$s. Gelieve deze toestemmingen te verlenen zodat de app correct kan functioneren.</item>
+    </plurals>
+    <string name="lock_screen_leads_to_this_app">Tik op het vergrendelscherm om deze app te openen.</string>
+    <string name="lock_screen_leads_to_selected_app">Tik op het vergrendelscherm om de geselecteerde app te openen.</string>
+    <string name="lock_screen_leads_to_home_screen">Tik op het vergrendelscherm om naar het startscherm van het mobiele apparaat te gaan.</string>
+    <string name="overlay_permission_display_name">Weergeven boven andere apps</string>
+    <string name="overlay_permission_display_name_samsung">Bovenaan verschijnen</string>
+    <string name="lock_screen_permission_display_name">Weergeven op het vergrendelscherm</string>
+    <string name="overlay_permission_display_name_xiaomi">Nieuwe vensters openen terwijl het op de achtergrond uitgevoerd wordt</string>
+    <string name="allow_pop_permission_display_name_xiaomi">Pop-upvensters weergeven</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Om Snelle oproep correct te laten werken, moet de app worden ingesteld als de standaardapp voor het beheren van oproepen.</string>
+    <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Om een SMS te verzenden tijdens een %2$s, moet een %1$s worden ingesteld.</string>
+    <string name="this_feature_only_available_on_premium">Deze functie is alleen beschikbaar in de Premium-versie. Upgrade nu om hiervan en van vele andere geweldige functies te genieten!</string>
+    <string name="unlock_more_with_premium_title">Ontvang meer met Premium</string>
+    <string name="try_the_premium_button">Gratis proefperiode starten</string>
+    <string name="no_contacts_available_for_selection">Geen contacten beschikbaar voor selectie</string>
 
 </resources>

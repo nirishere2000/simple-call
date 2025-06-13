@@ -1,48 +1,29 @@
 <resources>
     <string name="app_name">Easy Call &amp; Answer</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_dialer">Dialer</string>
     <string name="menu_contacts">Contacts</string>
     <string name="menu_recent_calls">Calls</string>
     <string name="menu_settings">Settings</string>
-
-    <string name="lorem_ipsum_title">Lorem Ipsum"</string>
-    <string name="lorem_ipsum">Lorem Ipsum is simply placeholder text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry\'s standard placeholder text ever
-        since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-        type specimen book"
-    </string>
-    <string name="fab_content_description">Represents a view to invoke an action</string>
-    <string name="image_view_item_transform_content_description">Represents an image view in the
-        item
-    </string>
-    <string name="elderandyoung">elderandyoung</string>
     <string name="decline_button">Decline</string>
     <string name="accept_button">Accept</string>
     <string name="call_capital">Call</string>
     <string name="back_capital">Back</string>
-    <string name="call_type_icon">call_type_icon</string>
     <string name="contacts_capital">Contacts</string>
     <string name="unknown_caller">Unknown Caller</string>
     <string name="incoming_call">Incoming Call</string>
     <string name="conference">Conference</string>
     <string name="call_waiting">Call Waiting</string>
-    <string name="Details_capital">Details</string>
     <string name="calling_capital">Calling…</string>
     <string name="save_gold_number">Save Gold Number</string>
     <string name="enter_gold_phone_number">Enter Gold phone number</string>
-    <string name="start_typing_contact_name">Start typing Contact name</string>
+    <string name="start_typing_contact_name">Start typing contact name</string>
     <string name="existing_contact">Existing contact:</string>
     <string name="save_existing_contact">Save existing contact</string>
     <string name="save_phone_number">Save phone number</string>
     <string name="phone_number">Phone number:</string>
-    <string name="add_new_contact">Add new Contact</string>
+    <string name="add_new_contact">Add new contact</string>
     <string name="call_gold_number">Call Gold Number</string>
     <string name="call_entered_number">Call entered number</string>
     <string name="contact_name">Contact name</string>
@@ -56,10 +37,10 @@
     <string name="enter_contact_name">Enter Contact name</string>
     <string name="please_select_birthdate">Please select birthdate</string>
     <string name="birthdate_capital">Birthdate</string>
-    <string name="approve_read_phone_calls_log">Approve Read Phone Calls Log</string>
+    <string name="approve_read_phone_calls_log">Grant Call Log permission</string>
     <string name="no_permissions_caption">No Permissions</string>
-    <string name="approve_view_calls_permission">Approve View Calls Permission</string>
-    <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">The app needs View Calls permission in order to show the calls</string>
+    <string name="approve_view_calls_permission">Grant View Call History permission</string>
+    <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">The app needs View Calls permission in order to show calls history</string>
     <string name="the_application_needs_contacts_permission_in_order_to_show_the_contacts_screen">The app needs Contacts permission in order to show the Contacts screen</string>
     <string name="permissions_capital">Permissions</string>
     <string name="help_capital">Help</string>
@@ -70,31 +51,31 @@
     <string name="outgoing_calls_are_currently_turned_off">Outgoing calls are currently turned off. To enable this feature, please go to Settings. You can still call your Gold Number, if set.</string>
     <string name="no_permission_to_view_contacts_caption">No permission to view Contacts</string>
     <string name="no_permission_to_view_calls">No permission to view Calls</string>
-    <string name="approve_contacts_permission">APPROVE CONTACTS PERMISSION</string>
+    <string name="approve_contacts_permission">Grant Contacts permission</string>
     <string name="yes_skip_capital">Yes, Skip</string>
     <string name="no_set_as_default_capital">No, Set as Default</string>
     <string name="set_default_phone_app">Set Default Phone App</string>
     <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">For optimal call handling, it is important to set the app as your default phone app. Are you sure you want to skip this step?</string>
     <string name="cancel_capital">Cancel</string>
-    <string name="battery_saver">Running In The Background</string>
+    <string name="battery_saver">Battery Optimization</string>
     <string name="for_the_app_to_run_smoothly_in_the_background_please_set_the_battery_saver">For the app to run smoothly in the background, please set the Battery saver to \'No restrictions\', in the Background Settings, through \'App info\' in Settings. The app is designed for minimum battery use.</string>
-    <string name="yes_open_app_info">Yes, Open App info</string>
+    <string name="yes_open_app_info">Yes, open App Info</string>
     <string name="permission_needed_capital_p">Permission Required</string>
     <string name="ask_permission_capital_a">Grant permission</string>
     <string name="close_capital">Close</string>
     <string name="no_open_settings">No, Open Settings</string>
     <string name="open_settings">Open Settings</string>
     <string name="ok">OK</string>
-    <string name="permission_could_not_be_granted_automatically">Although permission could not be granted automatically, you can still enable it by visiting your device\'s settings.</string>
-    <string name="app_must_have_permission_to_make_calls">"In order to make calls, the app must have the proper permission"</string>
+    <string name="permission_could_not_be_granted_automatically">Permission couldn’t be granted automatically. You can enable it in Settings.</string>
+    <string name="app_must_have_permission_to_make_calls">In order to make calls, the app must have the proper permission</string>
     <string name="to_add_a_gold_number_please_go_to_settings">To add a Gold Number, please go to Settings by tapping the three-dot menu.</string>
-    <string name="permission_was_granted_reloading">Permission was granted! Reloading..</string>
-    <string name="view_contacts_permission_was_granted_reloading">View Contacts permission was granted! Reloading..</string>
+    <string name="permission_was_granted_reloading">Permission was granted! Reloading…</string>
+    <string name="view_contacts_permission_was_granted_reloading">View Contacts permission was granted! Reloading…</string>
     <string name="gold_number">Gold Number</string>
     <string name="select_gold_number">Select Gold Number"</string>
     <string name="in_order_to_read_contacts_details_app_must_have_the_proper_permission">In order to read Contacts details, the app must have the proper permission</string>
     <string name="in_order_to_view_calls_history_the_application_must_have_the_proper_permission">In order to view calls history, the app must have the proper permission</string>
-    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">The app needs Phone permission to make calls, including quick calls via the Quick Call button.</string>
+    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">The app needs Phone permission to make calls, including Quick Call.</string>
     <string name="enable_application_to_show_call_screen_from_background">Enable app to show Call screen from background</string>
     <string name="enable_application_to_show_call_screen_from_background_text">Please enter \'Other Permissions\' and there grant access to \'Display pop-up windows while running in the background\'.</string>
     <string name="go_to_settings">Go to Settings</string>
@@ -106,14 +87,14 @@
     <string name="read_contacts_permission_was_denied_but_needed">Read Contacts permission was denied but needed in order view Contacts.</string>
     <string name="calls_log_permission_was_granted">Calls Log permission was granted!</string>
     <string name="calls_log_permission_was_denied_but_needed">Calls Log permission was denied but needed in order view calls.</string>
-    <string name="overlay_draw_permission_was_granted">Overlay Draw permission was granted!</string>
+    <string name="overlay_draw_permission_was_granted">Overlay permission granted!</string>
     <string name="to_filter_blocked_contacts_please_set_the_app_as_default">To filter blocked contacts, please set the app as the default app.</string>
     <string name="unknown_blocked">Unknown (Blocked)</string>
     <string name="unknown_because_of_error">Unknown (error)</string>
     <string name="unknown_capital">Unknown</string>
     <string name="it_is_important_to_set_the_app_as_default">It is important to set the app as your default phone app to allow it to handle outgoing calls for you.</string>
-    <string name="settings_screen_is_already_opened">Settings screen is already opened</string>
-    <string name="permissions_screen_is_already_opened">Permissions screen is already opened</string>
+    <string name="settings_screen_is_already_opened">Settings screen is already open</string>
+    <string name="permissions_screen_is_already_opened">Permissions screen is already open</string>
     <string name="tour_welcome">Welcome!</string>
     <string name="tour_welcome_text">The app was designed specifically to simplify managing and placing calls, in addition to answering incoming calls – by using a large button instead of swiping on the device, an action that can sometimes be challenging for older people.\n\nFamily members can change the settings as needed, making the app both simple and powerful with many features.\n\nManage your calls easily and use the app as your primary dialer for receiving and managing calls.</string>
     <string name="tour_powerful_features">Powerful Features</string>
@@ -123,17 +104,17 @@
     <string name="tour_auto_answer">Auto Answer</string>
     <string name="tour_auto_answer_text">It is possible to enable the app to automatically answer incoming calls, without the need to press the answer button when a new call is received.\n\nThe app allows the device to ring a few times, so that you will be alerted to the incoming call.\n\nAuto answering can be enabled only for certain contacts, by tapping on them in the Contacts screen and then checking the checkbox.\n\nUsing this option may cause confusion for those who are not accustomed to auto answering, and its use is solely the responsibility of the user.</string>
     <string name="tour_gold_number">Gold Number</string>
-    <string name="tour_gold_number_text">You can set up a Gold Number for quick and easy calls to a close contact using the settings screen, and then call them via the Contacts tab or the dialer.\n\nYou can call the Gold Number even when outgoing calls are restricted in the app, but it does require call permission.</string>
+    <string name="tour_gold_number_text">You can set up a Gold Number for simple and easy calls to a close contact using the settings screen, and then call them via the Contacts tab or the dialer.\n\nYou can call the Gold Number even when outgoing calls are restricted in the app, but it does require call permission.</string>
     <string name="tour_next_button">Next</string>
     <string name="tour_prev_button">Prev</string>
     <string name="tour_done">APPROVED</string>
-    <string name="tour_open_app_info_button">Open App info</string>
+    <string name="tour_open_app_info_button">Open App Info</string>
     <string name="tour_set_as_default_app_button">Set As Default App</string>
     <string name="tour_app_permissions">App Permissions</string>
     <string name="tour_app_permissions_text">For the app to be able to manage calls and answer them even when it is not running, it must be set as the default call management app.\n\nAdditionally, for the app to function properly, it requires additional permissions:\n\1. Phone (for making calls).\n\2. Opening new windows in the background (display above other apps).\n3. Access to contacts.\n4. Viewing the call log.\n5. Permission to display on the lock screen.\n\nThe app will only use the permissions it has received solely for proper call management.</string>
     <string name="tour_permissions_screen">Permissions Screen</string>
     <string name="tour_permissions_screen_text">Most of the device permissions required for the app are automatically granted during installation or when setting the app as the default for calls.\n\nPermissions can always be requested through the app\'s permissions screen, using the menu at the top of the screen (the \'three dots\' menu).\n\nIt is recommended to seek help from family members and close contacts, if needed.</string>
-    <string name="tour_overlay_draw_permission">Overlay Draw Permission</string>
+    <string name="tour_overlay_draw_permission_xiaomi">Overlay Draw Permission</string>
     <string name="tour_overlay_draw_permission_text">To ensure the app can answer phone calls even when it is not open, make sure to grant the necessary permission.\n\nTo proceed:\n1. Open the device settings.\n2. Navigate to the "Other permissions" section (or similar).\n3. Find and enable the relevant permission.\n\nNote: The name and location of the permission may vary depending on the device. If it cannot be found, try looking in other settings sections.</string>
     <string name="tour_overlay_draw_permission_text_pixel">To ensure the app can answer phone calls even when it is not open, make sure to grant the necessary permission.\n\nTo proceed:\n1. Tap "Display over other apps."\n2. Enable the "Allow display over other apps" option.\n\nNote: The exact location and name of this setting may vary depending on your device and Android version.</string>
     <string name="tour_overlay_draw_permission_text_samsung">To ensure the app can answer phone calls even when it is not open, make sure to grant the necessary permission.\n\nTo proceed:\n1. Tap "Appear on top."\n2. Enable the "Allow permission" option.\n\nNote: The exact location and name of this setting may vary depending on your device and Android version.</string>
@@ -153,14 +134,14 @@
     <string name="tour_finished_but_without_phone_permission_and_battery_saver">You\'re all set! Before finishing, please take a moment to read and accept the app\'s Terms and Conditions.\n\nPlease note: the Quick Call button will not work properly without Phone permission.\nAdditionally, without disabling battery restrictions, the app will not be able to handle calls properly.\n\nTap the Finish button to complete the tour and open the Settings screen, where you can grant permissions, customize the app to your needs, and start enjoying all its capabilities.\nYou can always view the tour again from the three-dot menu at the top of the app\'s screen.</string>
     <string name="tour_finished_but_without_phone_permission_and_default_app_and_battery_saver">You\'re all set! Before finishing, please take a moment to read and accept the app\'s Terms and Conditions.\n\nPlease note: the Quick Call button will not function properly without Phone permission.\nAdditionally, if the app is not set as the default phone app and battery restrictions are not disabled, it will not be able to handle calls properly.\n\nTap the Finish button to complete the tour and open the Settings screen, where you can grant permissions, customize the app to your needs, and start enjoying all its features.\nYou can always view the tour again from the three-dot menu at the top of the app\'s screen.</string>
     <string name="tour_battery_saver_skipped_but_needed_alert">To keep the app running smoothly in the background, it is important to set the Battery saver to have no restrictions. The app is designed for minimum battery use. Are you sure you want to skip this step?</string>
-    <string name="no_open_app_info">No, Open App info</string>
+    <string name="no_open_app_info">No, Open App Info</string>
     <string name="tour_overlay_draw_permission_skipped_alert_title">Overlay Draw Permission</string>
     <string name="tour_overlay_draw_permission_skipped_alert_text">In order for the app to handle calls from the background (while it\'s not loaded), it is important to grant Overlay Draw permission. Are you sure you want to skip this step?</string>
     <string name="request_overlay_permission_alert_title">Enable app to show Call screen from background</string>
     <string name="request_overlay_permission_alert_text">Please enter \'Other Permissions\' and there grant access to \'Display pop-up windows while running in the background\'</string>
     <string name="permissions_screen_title_text">The app needs a few permissions in order to manage your calls in a clear and friendly way.</string>
     <string name="permissions_screen_default_phone_app_caption">Default Phone App</string>
-    <string name="permissions_screen_default_phone_app_text">The app must become the default Calls handler (Default App/Dialer) in order to receive and make phone calls. Granting this permission usually trigger Contacts, Phone and Calls view permissions.</string>
+    <string name="permissions_screen_default_phone_app_text">The app must become the default Calls handler (Default App/Dialer) in order to receive and make phone calls. Granting this permission usually trigger the Contacts, Phone and Calls view permissions.</string>
     <string name="permissions_screen_default_phone_app_button">Set As Default Phone App</string>
     <string name="permission_granted_capital_p">Permission granted</string>
     <string name="permissions_screen_overlay_draw_permission_caption">Overlay Draw permission</string>
@@ -189,35 +170,10 @@
     <string name="permissions_enable_contacts_permission_manually_title2">Contacts</string>
     <string name="permissions_enable_calls_log_permission_manually_title1">to view calls</string>
     <string name="permissions_enable_calls_log_permission_manually_title2">Call logs</string>
-    <string name="how_to_enable_standard_permission_manually_text">
-        📞 ** How to Enable Phone Permission Manually **
-
-        It seems the app’s permission %1$s has been denied. To enable this feature again, follow these simple steps:
-
-        1️⃣ ** Open Settings **
-           Tap the **Settings** app on your phone (⚙️).
-
-        2️⃣ ** Find Permissions or Apps **
-           Scroll down and look for **Apps** or **App Permissions** (name may vary).
-
-        3️⃣ ** Go to Permission Manager **
-           Inside the app settings, look for the option called **Permissions** or **Permission Manager**.
-
-        4️⃣ ** Select \"%2$s\" Permission **
-           Tap on **Phone**, then find this app in the list.
-
-        5️⃣ ** Enable Permission **
-           Tap the app’s name and select **Allow** to grant the permission.
-
-        🔄 ** Restart the App **
-           After enabling the permission, the app should adjust automatically. In case you experience some issue, please close the app and open it again to ensure everything works smoothly.
-
-        If you need help, please ask someone to guide you, or contact support.
-     </string>
     <string name="enable_permission_manually_caption">Enable Permission</string>
     <string name="enable_permission_manually_ok_button">Got it!</string>
     <string name="navigation_fragment_info_label">Info</string>
-    <string name="from_no_one_captial_f">From no one</string>
+    <string name="from_no_one_capital_f">From no one</string>
     <string name="from_favorites_only_captial_f">From Favorites only</string>
     <string name="from_contacts_only_captial_f">From Contacts only</string>
     <string name="from_identified_only_captial_f">From Identified only</string>
@@ -226,13 +182,13 @@
     <string name="to_favorites_only_captial_t">To Favorites only</string>
     <string name="to_contacts_only_captial_t">To Contacts only</string>
     <string name="to_everyone_capital_t">To everyone</string>
-    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">The app cannot add Contacts to the Gold Number list since Contacts permission was not granted.</string>
-    <string name="make_call_permission_granted_try_again">Phone (Make calls) permission was granted! Please try again</string>
-    <string name="read_contacts_permission_granted_try_again">Read Contacts permission was granted! Please try again</string>
+    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">The app cannot add contacts to the Gold Number selection list because it does not have Contacts permission. You can grant it in the app\'s permissions screen.</string>
+    <string name="make_call_permission_granted_try_again">Phone (Make calls) permission granted! Please try again</string>
+    <string name="read_contacts_permission_granted_try_again">Read Contacts permission granted! Please try again</string>
     <string name="grant_capital">Grant</string>
     <string name="app_is_not_default_dialer_when_make_call_alert">The app is not the default phone app (dialer). Please select it as the default or make the call anyway through another phone app</string>
-    <string name="view_calls_permission_was_granted_reloading">View Calls permission was granted! Reloading..</string>
-    <string name="read_contacts_permission_was_granted_reloading">Read Contacts permission was granted! Reloading..</string>
+    <string name="view_calls_permission_was_granted_reloading">View Calls permission granted! Reloading…</string>
+    <string name="read_contacts_permission_was_granted_reloading">Read Contacts permission granted! Reloading…</string>
     <string name="default_dialer_permission_granted_try_again">App was selected as default phone app (dialer)! Please try again.</string>
     <string name="auto_answer_capital_auto">Auto\nanswer</string>
     <string name="incoming_capital">Incoming</string>
@@ -246,14 +202,14 @@
     <string name="to_view_calls_history_application_must_have_permission">In order to view calls history, the app must have the proper permission.</string>
     <string name="contacts_permission_was_not_granted_showing_calls_list_with_phone_numbers_only">Contacts permission was not granted. Showing Calls list with phone numbers only.</string>
     <string name="to_display_the_calls_contacts_application_must_have_permission">In order to display the calls\' Contacts, the app must have the proper permission.</string>
-    <string name="permission_was_granted">Permission was granted!</string>
+    <string name="permission_was_granted">Permission granted!</string>
     <string name="contacts_permission_was_not_granted_cannot_show_contact_details">Cannot show contact name because the contacts permission is not granted. Please enable this permission in the app or device Settings.</string>
     <string name="cannot_continue_since_permission_was_not_approved">Cannot continue since permission was not approved.</string>
     <string name="no_contacts_found_to_display">No Contacts found.</string>
     <string name="no_favorites_contacts_found_to_display">Your outgoing call setting is set to “Favorites Only”, but no favorite contacts are defined on your device. To view the rest of the contacts, you can either add them to favorites or change the settings in the app (open the app\’s settings menu via the three dots menu and change the outgoing call option to “Contacts” or everyone).</string>
     <string name="no_calls_found">No calls found.</string>
     <string name="a_serious_error_has_occurred_call_cannot_continue">A serious error has occurred, call cannot continue.</string>
-    <string name="error_is_capital">Error is: (%1$s).</string>
+    <string name="error_is_capital">Error: (%1$s).</string>
     <string name="serious_error_capital">Serious Error In Call</string>
     <string name="active_call_capital">Active Call</string>
     <string name="click_to_go_back_to_call">Tap to return to the call</string>
@@ -310,18 +266,18 @@
     <string name="permission_missing">Permission Missing!</string>
     <string name="settings_choose_quick_call_number">Select Quick Call Number</string>
     <string name="cannot_choose_gold_number_without_contacts_permission">Cannot add Contacts to the Gold Number selection list. Please enable Contacts access via the app\'s permissions screen or your device settings.</string>
-    <string name="make_call_permission_was_granted_please_try_again">Phone (Make calls) permission was granted! Please try again</string>
-    <string name="permission_was_granted_please_try_again">Permission was granted! Please try again</string>
-    <string name="read_contacts_permission_was_granted_please_try_again">Contacts permission was granted! Please try again</string>
+    <string name="make_call_permission_was_granted_please_try_again">Phone (Make calls) permission granted! Please try again</string>
+    <string name="permission_was_granted_please_try_again">Permission granted! Please try again</string>
+    <string name="read_contacts_permission_was_granted_please_try_again">Contacts permission granted! Please try again</string>
     <string name="missed_call_from">Missed call from: %1$s</string>
     <string name="tour_call_report_title">Send Call Report</string>
     <string name="tour_call_report_description">Send a call report to a close contact.\n\nMonitor call activity to help ensure everything is okay. You\'ll receive a clear summary of incoming and outgoing calls.\n\nThe report includes patterns like:\n\n• Frequent calls to the same number\n• Unknown or unsaved callers\n• Outgoing calls made at unusual hours\n\nIt\'s a simple way to stay connected and aware, especially when caring for an aging parent.\n\nYou can always change the call report settings via the three-dots menu at the top of the screen.\n\nPlease note: You are solely responsible for how this information is used and shared. Make sure to respect privacy and comply with local laws regarding data use.</string>
     <string name="call_report">Call Report</string>
-    <string name="call_report_screen_is_already_opened">Call Report screen is already opened</string>
+    <string name="call_report_screen_is_already_opened">Call Report screen is already open</string>
     <string name="change_capital">Change</string>
     <string name="answering_capital">Answering</string>
     <string name="premium_capital">Premium</string>
-    <string name="send_alert_via_sms_to_gold_number">Send alert via SMS to Gold Number</string>
+    <string name="send_alert_via_sms_to_gold_number">Additionally, send SMS to %1$s</string>
     <string name="play_voice_call_for_help_if_call_unanswered">Play voice if call is not answered</string>
     <string name="sos">Aid</string>
     <string name="lock_capital">Lock</string>
@@ -337,13 +293,13 @@
     <string name="mark_call_as_exceptional_if_it_is_not_between">A call is considered exceptional if it is NOT between</string>
     <string name="a_number_is_considered_exceptional_if_it_appears_more_than">A number is considered exceptional if it appears more than</string>
     <string name="call">Call</string>
-    <string name="time_allowed_to_cancel_seconds">Time allowed to cancel (seconds)</string>
+    <string name="time_allowed_to_cancel_seconds">Time to cancel (seconds)</string>
     <string name="call_settings">Call Settings</string>
     <string name="other_capital">Other</string>
     <string name="to">to</string>
     <string name="number_is_considered_exceptional_if_it_s_not_in_contacts">Number is considered exceptional if it\'s not in Contacts</string>
     <string name="welcome_to_easy_call_and_answer_premium">Welcome to Easy Call And Answer!</string>
-    <string name="premium_tour_page_welcome_text_not_updated_must_fix">The premium version of the app unlocks powerful features designed to significantly enhance your user experience — especially for Android users who need accessibility, ease of use, and remote control.\\n\\nFull voice control lets you answer calls and perform actions — all without touching the device. Just make sure there\\\'s no background noise interfering with voice recognition.\\n\\nYou\\’ll also benefit from a smart lock screen that allows you to quickly return to the app with a single tap.\\n\\nA newly added feature is the call report — a useful tool that helps identify whether unwanted calls were received or accidental calls were made. The report is sent only to a number you choose, and the app does not store or use the data otherwise.\\n\\nResponsibility for using these features — and the app in general — rests entirely with you, the user.</string>
+    <string name="premium_tour_page_welcome_text_not_updated_must_fix">The premium version of the app unlocks powerful features designed to significantly enhance your user experience — especially for Android users who need accessibility, ease of use, and remote control.\n\nFull voice control lets you answer calls and perform actions — all without touching the device. Just make sure there\'s no background noise interfering with voice recognition.\n\nYou\’ll also benefit from a smart lock screen that allows you to quickly return to the app with a single tap.\n\nA newly added feature is the call report — a useful tool that helps identify whether unwanted calls were received or accidental calls were made. The report is sent only to a number you choose, and the app does not store or use the data otherwise.\n\nResponsibility for using these features — and the app in general — rests entirely with you, the user.</string>
     <string name="premium_tour_page_welcome_title">Premium Version</string>
     <string name="premium_tour_swipe_hint">Swipe left to continue\nto the next step</string>
     <string name="premium_tour_page_lock_title">Smart Lock Screen</string>
@@ -355,8 +311,8 @@
     <string name="premium_tour_page_quick_call_title">Upgraded Quick Call</string>
     <string name="premium_tour_page_quick_call_text">The premium Quick Call makes it easier to stay connected. It places a call and sends an SMS with your location and time. If there\'s no answer or the call doesn\'t go through, a loud alert will sound to notify people nearby.</string>
     <string name="premium_tour_page_voice_commands_title">Voice Commands</string>
-    <string name="premium_tour_page_voice_commands_text">You can make your experience even smoother by setting up voice commands that work best for you.\\n\\n\nIt is advisable to choose commands that are easy to say, clear, and unique — this helps the app understand you better</string>
-    <string name="premium_screen_is_already_opened">Premium screen is already opened</string>
+    <string name="premium_tour_page_voice_commands_text">You can make your experience even smoother by setting up voice commands that work best for you.\n\n\nIt is advisable to choose commands that are easy to say, clear, and unique — this helps the app understand you better</string>
+    <string name="premium_screen_is_already_opened">Premium screen is already open</string>
     <string name="voice_command_answer_calls">Answer incoming calls hands-free.</string>
     <string name="voice_command_call_gold_number">Call your Gold Number contact hands-free.</string>
     <string name="voice_command_quick_call">Activate Quick Call hands-free.</string>
@@ -368,14 +324,30 @@
     <string name="initial_voice_command_quick_call">Quick call</string>
     <string name="initial_voice_command_unlock_screen">Unlock device</string>
     <!-- End Voice Commands-->
-    <string name="lock_service_was_activated_msg">The service has been activated! You can still change the settings without stopping it (changes will take effect shortly).\nYou can close the app at any time — the smart lock screen will appear automatically after a period of inactivity.\nTap this notification to dismiss it.\nTapping the lock screen takes you right back to the app — so you can make a call easily without having to search for it on the home screen.</string>
+    <string name="lock_service_was_activated_msg">The service is active! The Smart Lock Screen will appear when your device locks. You can adjust the settings anytime.</string>
     <string name="welcome_text_speech_short">The Premium version offers enhanced features for Quick Call, along with a smart lock screen that appears automatically after inactivity. Tapping the screen takes you straight back into the app, so you can make a call easily without searching for it on the home screen.</string>
     <string name="quick_call_activated_voice_message_speech">Quick Call activated — please pay attention</string>
     <string name="voice">Voice</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">This app uses the SMS permission only to send messages to the selected Gold Number.\nSending SMS depends on network conditions and may incur charges in some regions.\nThe app will attempt to send up to 3 messages.\nThe user is solely responsible for any costs or delivery issues.\n</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">The app uses SMS permission to send a text message to the selected %1$s.\nMessage sending depends on network availability and may involve charges.\nOnly one message will be sent.\nNote: The user is responsible for any costs or delivery issues.</string>
     <string name="settings_when_lock_screen_is_unlocked">When screen is unlocked</string>
     <string name="select_app_to_launch">Select app to launch</string>
     <string name="premium_screen_lock_text">Our smart lock screen offers a new and effortless experience.\n\nInstead of struggling with awkward swipe gestures or figuring out how to unlock your device, a single tap takes you right back to the app, where you can manage and make phone calls with ease.\n\nWith a clean design and intuitive control, it\'s a true upgrade to your mobile experience.</string>
-    <string name="screen_lock_missing_permissions_text">The smart lock screen cannot function without the required permissions.\n\nPlease ensure that background operation and lock screen permissions are granted to allow the app to work properly.</string>
-
+    <plurals name="screen_lock_missing_permissions_text_dynamic_plural">
+        <item quantity="one">The smart lock screen cannot function without the following permission: %1$s. Please grant it to allow the app to work properly.</item>
+        <item quantity="other">The smart lock screen cannot function without the following permissions: %1$s. Please grant them to allow the app to work properly.</item>
+    </plurals>
+    <string name="lock_screen_leads_to_this_app">Tapping the lock screen will lead to this app.</string>
+    <string name="lock_screen_leads_to_selected_app">Tapping the lock screen will lead to the selected app.</string>
+    <string name="lock_screen_leads_to_home_screen">Tapping the lock screen will lead to the home screen of the mobile device.</string>
+    <string name="overlay_permission_display_name">Display over other apps</string>
+    <string name="overlay_permission_display_name_samsung">Appear on top</string>
+    <string name="lock_screen_permission_display_name">Show on Lock screen</string>
+    <string name="allow_pop_permission_display_name_xiaomi">Display pop-up windows</string>
+    <string name="overlay_permission_display_name_xiaomi">Open new windows while running in the background</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">In order for Quick Call to work properly, the app must be set as the default app for handling calls.</string>
+    <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">%1$s contact could not be found. It must be set to send SMS during a %2$s.</string>
+    <string name="this_feature_only_available_on_premium">This feature is only available in the Premium version. Upgrade now to enjoy this and many other great features!</string>
+    <string name="unlock_more_with_premium_title">Unlock More with Premium</string>
+    <string name="try_the_premium_button">Start Free Trial</string>
+    <string name="no_contacts_available_for_selection">No contacts available for selection</string>
 </resources>

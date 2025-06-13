@@ -186,7 +186,7 @@
                         android:id="@+id/goldNumberBarGoldButton"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:srcCompat="@drawable/gold_circle"
+                        app:srcCompat="@drawable/app_premium_icon_circular"
 
                         />
 
@@ -320,7 +320,7 @@
                 android:layout_width="125dp"
                 android:layout_height="115dp"
 
-                android:src="@drawable/callbutton"
+                android:src="@drawable/call_button_green_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -357,12 +357,11 @@
                     android:id="@+id/goldNumberButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
-                    app:srcCompat="@drawable/gold_circle"
+                    app:srcCompat="@drawable/app_premium_icon_circular"
 
                     />
 
-                <ImageView
+              <!--  <ImageView
                     android:id="@+id/goldNumberButtonCircle"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -373,7 +372,7 @@
                     android:background="@drawable/blackphonedialer"
 
 
-                     />
+                     />-->
 
 
             </FrameLayout>

@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
@@ -24,6 +25,7 @@ import com.nirotem.simplecall.WaitingCall
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallActivityLoadedTimeStamp
 //import com.nirotem.simplecall.databinding.FragmentWaitingCallBinding
 import com.nirotem.simplecall.managers.SoundPoolManager
+import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.ui.components.StandaloneDialerDialogFragment
 
 class WaitingCallFragment : DialogFragment() {
@@ -66,6 +68,11 @@ class WaitingCallFragment : DialogFragment() {
        val textViewPhoneNumber = view.findViewById<TextView>(R.id.text_incoming_call_contact)
        // val textViewContactName = view.findViewById(R.id.text_incoming_call_label)
         textViewPhoneNumber.text = phoneNumber
+
+        val waitingCallAppIcon = view.findViewById<ImageView>(R.id.waiting_call_app_icon)
+        if (SettingsStatus.isPremium) {
+            waitingCallAppIcon.setImageResource(SettingsStatus.appLogoResourceSmall)
+        }
 
         //textViewPhoneNumber = binding.textIncomingCallContact
         //textViewContactName = binding.textIncomingCallLabel

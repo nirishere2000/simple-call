@@ -11,7 +11,7 @@ import interfaces.DescriptiveEnum
 
 
 enum class AllowAnswerCallsEnum(@StringRes override val descriptionRes: Int): DescriptiveEnum {
-    NO_ONE(R.string.from_no_one_captial_f),
+    NO_ONE(R.string.from_no_one_capital_f),
     FAVOURITES_ONLY(R.string.from_favorites_only_captial_f),
     CONTACTS_ONLY(R.string.from_contacts_only_captial_f),
     IDENTIFIED_ONLY(R.string.from_identified_only_captial_f),
@@ -79,7 +79,16 @@ object SettingsStatus {
     var allowOpeningWhatsApp = MutableLiveData(false)
     var currLanguage = MutableLiveData<LanguagesEnum>(LanguagesEnum.ENGLISH)
     var isRightToLeft = MutableLiveData(false)
-    var sendCallsReportNumber =
+    var distressNumberOfSecsToCancel = 5L
+    var isPremium = false
+    var alreadyShowedBlockedMsg = false
+    var alreadyShownPermissionGoldNumberMsg = false
+    var alreadyShownQuickCallButWithoutPermissionMsg = false
+    var appLogoResourceSmall = R.drawable.goldappiconphoneblack
+}
+
+
+/*    var sendCallsReportNumber =
         MutableLiveData(false) // Needed for Contacts screen and Add New Contact and Gold Number and Call Details/History
     var sendCallsReportContact = MutableLiveData(false) // Needed to add new Contact
     var sendCallsReportHoursInterval =
@@ -88,7 +97,4 @@ object SettingsStatus {
         MutableLiveData(false) // For Loading Activity when app is not loaded (Incoming call)
     var callsReportIsGoldNumber = MutableLiveData(false)
     var callsReportPhoneNumber = MutableLiveData<String?>(null)
-    var callsReportContact = MutableLiveData<String?>(null)
-    var distressNumberOfSecsToCancel = 5L
-    var isPremium = true
-}
+    var callsReportContact = MutableLiveData<String?>(null)*/

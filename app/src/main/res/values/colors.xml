@@ -14,4 +14,6 @@
     <color name="navigation_item_text_color">#FFFFFF</color> <!-- Text color -->
     <color name="navigation_item_icon_tint">#FFFFFF</color> <!-- Icon tint -->
     <color name="premiumArrowColor">#4A6FA5</color> <!-- כחול אפרפר פרימיום -->
+    <color name="lock_text_active">#FFFFFF</color> <!-- ירוק -->
+    <color name="lock_text_inactive">#9E9E9E</color> <!-- אפור -->
 </resources>

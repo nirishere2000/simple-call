@@ -34,6 +34,7 @@ import com.nirotem.simplecall.R
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus.requestRole
+import com.nirotem.simplecall.statuses.SettingsStatus
 
 
 class CallPermissionMissingDialog : DialogFragment() {
@@ -50,6 +51,12 @@ class CallPermissionMissingDialog : DialogFragment() {
         phoneNumberToCall = arguments?.getString("PHONE_NUMBER", "")
         isVideoCall = arguments?.getBoolean("IS_VIDEO", false) == true
         callingFragment = arguments?.getString("CALLING_FRAGMENT", "info")
+
+        // we init the dialog app logo here since it's not common dialog
+        val missingCallPermissionAppIcon = view.findViewById<ImageView>(R.id.missingCallPermissionAppIcon)
+        if (SettingsStatus.isPremium) {
+            missingCallPermissionAppIcon.setImageResource(SettingsStatus.appLogoResourceSmall)
+        }
 
         roleLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {

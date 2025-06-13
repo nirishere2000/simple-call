@@ -174,7 +174,7 @@ class SimpleDialerFragment : Fragment(R.layout.fragment_simple_dialer) {
         //val deleteAllButton = view.findViewById<ConstraintLayout>(R.id.deleteAllKeyPadButton)
         //val deleteAllKeyPadImage = view.findViewById<ImageView>(R.id.deleteAllKeyPadImage)
         val goldNumberButton = view.findViewById<ImageView>(R.id.goldNumberButton)
-        val goldNumberButtonCircle = view.findViewById<ImageView>(R.id.goldNumberButtonCircle)
+        //val goldNumberButtonCircle = view.findViewById<ImageView>(R.id.goldNumberButtonCircle)
         val goldNumberBar = view.findViewById<LinearLayout>(R.id.goldNumberBar)
         val goldNumberBarGoldButtonBack = view.findViewById<FrameLayout>(R.id.goldNumberBarGoldButtonBack)
         val goldNumberBarContactName = view.findViewById<TextView>(R.id.goldNumberBarContactName)
@@ -193,16 +193,16 @@ class SimpleDialerFragment : Fragment(R.layout.fragment_simple_dialer) {
         goldNumberBar.visibility = if (SettingsStatus.goldNumberContact.value.isNullOrEmpty()) GONE else VISIBLE
         SettingsStatus.goldNumberContact.observe(viewLifecycleOwner) { newGoldNumber ->
             goldNumberButton.visibility = if (SettingsStatus.goldNumberContact.value.isNullOrEmpty()) GONE else VISIBLE
-            goldNumberButtonCircle.visibility = if (SettingsStatus.goldNumberContact.value.isNullOrEmpty()) GONE else VISIBLE
+           // goldNumberButtonCircle.visibility = if (SettingsStatus.goldNumberContact.value.isNullOrEmpty()) GONE else VISIBLE
         }
 
         goldNumberButton.setOnClickListener {
             goldNumberClicked(currContext, view)
         }
 
-        goldNumberButtonCircle.setOnClickListener {
+/*        goldNumberButtonCircle.setOnClickListener {
             goldNumberClicked(currContext, view)
-        }
+        }*/
 
         goldNumberBarGoldButtonBack.setOnClickListener {
             goldNumberClicked(currContext, view)

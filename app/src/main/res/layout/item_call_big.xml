@@ -68,8 +68,6 @@
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:layout_marginTop="5dp"
-
-                    android:contentDescription="@string/call_type_icon"
                     tools:srcCompat="@android:drawable/sym_call_missed" />
             </LinearLayout>
 

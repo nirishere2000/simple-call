@@ -26,9 +26,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.nirotem.simplecall.OngoingCall
 import com.nirotem.simplecall.OutgoingCall
 import com.nirotem.simplecall.R
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressButtonShouldAlsoSendSmsToGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberOfSecsToCancel
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberShouldAlsoTalk
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadQuickCallNumber
+import com.nirotem.simplecall.helpers.sendSms
+import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
 import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
@@ -50,6 +54,7 @@ object DistressButtonManager {
     private var displayedEmergencyMsg: Snackbar? = null
     private var shouldAlsoCallForHelp = true
     private var emergencyJob: Job? = null
+    private var alreadySentSms = false
 
     private fun startRepeatingEmergencyMessage(context: Context) {
         emergencyJob = CoroutineScope(Dispatchers.Main).launch {
@@ -110,20 +115,28 @@ object DistressButtonManager {
 
         val emergencyButton = activity.findViewById<ImageView>(R.id.emergency_button_small)
 
-        enableDistressButton(view, context, activity, requestPermissionLauncher, PermissionsStatus.callPhonePermissionGranted.value)
+        val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+        enableDistressButton(view, context, activity, requestPermissionLauncher, (PermissionsStatus.callPhonePermissionGranted.value == true && (!isPremiumAndAppNotDefault)))
         PermissionsStatus.callPhonePermissionGranted.observe(lifecycleOwner) { isGranted ->
             if (!OpenScreensStatus.isHelpScreenOpened) {
-                enableDistressButton(view, context, activity, requestPermissionLauncher, isGranted, true)
+                val premiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+                enableDistressButton(view, context, activity, requestPermissionLauncher, isGranted, premiumAndAppNotDefault)
             }
         }
 
         emergencyButton?.setOnClickListener {
-            handleDistressButtonClick(view, context, supportFragmentManager, requestPermissionLauncher, activity)
+            val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+            if (PermissionsStatus.callPhonePermissionGranted.value == true && (!isPremiumAndAppNotDefault)) {
+                handleDistressButtonClick(view, context, supportFragmentManager, requestPermissionLauncher, activity)
+            }
         }
 
         val emergencyIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
         emergencyIcon.setOnClickListener {
-            handleDistressButtonClick(view, context, supportFragmentManager, requestPermissionLauncher, activity)
+            val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+            if (PermissionsStatus.callPhonePermissionGranted.value == true && (!isPremiumAndAppNotDefault)) {
+                handleDistressButtonClick(view, context, supportFragmentManager, requestPermissionLauncher, activity)
+            }
         }
     }
 
@@ -139,8 +152,26 @@ object DistressButtonManager {
             SettingsStatus.quickCallNumber.value = loadQuickCallNumber(context)
             distressNumberOfSecsToCancel = loadDistressNumberOfSecsToCancel(context)
             shouldAlsoCallForHelp = if (isPremium) loadDistressNumberShouldAlsoTalk(context) else false
-            if (shouldAlsoCallForHelp) {
-                startRepeatingEmergencyMessage(context)
+
+            // One time speak on the beginning even if user did not select the option:
+            if (isPremium) {
+                TextToSpeechManager.speak(context.getString(R.string.quick_call_activated_voice_message_speech))
+            }
+
+            val shouldAlsoSendSms = loadDistressButtonShouldAlsoSendSmsToGoldNumber(context)
+            if (shouldAlsoSendSms && !alreadySentSms) {
+                alreadySentSms = true
+                val goldPhoneNumber = loadGoldNumber(context)
+                if (goldPhoneNumber != null) { // Sending first SMS
+                    sendSms(goldPhoneNumber, context.getString(R.string.quick_call_activated_voice_message_speech))
+                }
+                else {
+                    val goldNumberName = context.getString(R.string.gold_number)
+                    val quickCallName = context.getString(R.string.quick_call_button_caption)
+                    val toastMsg = context.getString(R.string.gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call, goldNumberName, quickCallName)
+
+                    showCustomToastDialog(context, toastMsg)
+                }
             }
 
             if (PermissionsStatus.callPhonePermissionGranted.value == true) {
@@ -173,6 +204,7 @@ object DistressButtonManager {
         stopEmergencyTimer()
         displayedEmergencyMsg?.dismiss()
         emergencyDelayTimeAnimationIsRunning = false
+        alreadySentSms = false
         emergencyDelayTimeAnimationSecondsPassed = 0
         val emergencyButton = activity.findViewById<ImageView>(R.id.emergency_button)
         emergencyButton.clearAnimation()
@@ -244,8 +276,10 @@ object DistressButtonManager {
             }
             emergencyIconDisabledText.setTextSize(TypedValue.COMPLEX_UNIT_SP, newTextSizeSp)
 
-            if (shouldShowDialog && !askingForMakingMakingCallPermission) {
-                alertAboutNoPhonePermission(view, context, activity, requestPermissionLauncher)
+            if (shouldShowDialog) {
+                if (!askingForMakingMakingCallPermission) {
+                    alertAboutNoPhonePermission(view, context, activity, requestPermissionLauncher)
+                }
             }
         }
     }
@@ -256,7 +290,7 @@ object DistressButtonManager {
         activity: Activity,
         requestPermissionLauncher: ActivityResultLauncher<String>
     ) {
-        if (!ActivityCompat.shouldShowRequestPermissionRationale(activity, CALL_PHONE)) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, CALL_PHONE)) {
             val rootView: View = activity.findViewById(android.R.id.content)
             val snackBar = Snackbar.make(
                 rootView,

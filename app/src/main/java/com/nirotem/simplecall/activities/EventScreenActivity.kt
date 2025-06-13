@@ -37,6 +37,7 @@ import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
 import com.nirotem.simplecall.managers.VoiceApi
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
+import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.ui.activeCall.ActiveCallFragment
 import com.nirotem.simplecall.ui.conferenceCall.ConferenceCallFragment
 import com.nirotem.simplecall.ui.goldNumber.GoldNumberFragment
@@ -46,13 +47,9 @@ import java.time.format.DateTimeFormatter
 
 
 class EventScreenActivity : AppCompatActivity() {
-
     private var currFragmentView: View? = null
-    private var isSpeakerOn = false
     private var activeCallFragment: ActiveCallFragment? = null
     private val voiceApi: VoiceApi = VoiceApiImpl()
-    //  private lateinit var mediaPlayer: MediaPlayer
-    private lateinit var callerNumberTextView: TextView
     private lateinit var activeFragment: androidx.fragment.app.Fragment
 
     val receiver = object : BroadcastReceiver() {
@@ -100,7 +97,7 @@ class EventScreenActivity : AppCompatActivity() {
             AlertDialog.Builder(context)
                 .setTitle(getString(R.string.serious_error_capital))
                 .setMessage(message)
-                .setIcon(R.drawable.goldappiconphoneblack)
+                .setIcon(SettingsStatus.appLogoResourceSmall)
                 .setPositiveButton(getString(R.string.close_capital)) { dialog, _ ->
                     dialog.dismiss() // Close the dialog
                     finish() // This will close the current activity
@@ -130,14 +127,31 @@ class EventScreenActivity : AppCompatActivity() {
 
         try {
             // Close the activity when call (all calls, including waiting-calls) is ended)
+            OngoingCall.callWasEndedMustClose.value = false
             CallActivity.callEndedShouldCloseActivityEvent.value =
                 false // no reason not to reset this event here
             CallActivity.callEndedShouldCloseActivityEvent.observe(this) { shouldCloseActivity ->
                 if (shouldCloseActivity) {
                     CallActivity.callEndedShouldCloseActivityEvent.value = false
+                    OngoingCall.callWasEndedMustClose.value = false
                     finish()
                 }
             }
+
+            OngoingCall.callWasEndedMustClose.observe(this) { shouldCloseActivity ->
+
+                Log.e(
+                    "SimplyCall - EventScreenActivity",
+                    "OngoingCall.callWasEndedMustClose received"
+                )
+
+                if (shouldCloseActivity) {
+                    CallActivity.callEndedShouldCloseActivityEvent.value = false
+                    OngoingCall.callWasEndedMustClose.value = false
+                    finish()
+                }
+            }
+
         } catch (e: Exception) {
             Log.e(
                 "SimplyCall - EventScreenActivity",
@@ -560,13 +574,40 @@ class EventScreenActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        //  mediaPlayer.release()
+
+        Log.d("SimplyCall - EventScreenActivity", "onDestroy")
+
         OpenScreensStatus.eventScreenActivityIsOpen.value = false
         CallActivity.callEndedShouldCloseActivityEvent.value = false
         // Ensure the view is removed when the Activity is destroyed
         if (currFragmentView !== null && currFragmentView!!.isAttachedToWindow) {
             windowManager.removeView(currFragmentView)
             currFragmentView = null
+        }
+    }
+
+    // Close ActiveCall by force:
+    override fun finish() {
+        // מנקה Overlay אם יש
+        currFragmentView?.let { v ->
+            try { if (v.isAttachedToWindow) windowManager.removeViewImmediate(v) }
+            catch (_: Exception) {}
+            currFragmentView = null
+        }
+
+        // מנקה פרגמנט מה-FragmentManager (לא חובה אבל tidy)
+        activeCallFragment?.let {
+            supportFragmentManager.beginTransaction()
+                .remove(it)
+                .commitNowAllowingStateLoss()
+        }
+        activeCallFragment = null
+
+        // סגור והסר מה-Recents
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAndRemoveTask()
+        } else {
+            super.finish()              // למכשירים ישנים מאוד
         }
     }
 }

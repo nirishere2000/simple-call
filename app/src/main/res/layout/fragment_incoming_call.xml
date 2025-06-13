@@ -57,17 +57,13 @@
         app:layout_constraintTop_toBottomOf="@id/text_incoming_call_label">
 
         <ImageView
-            android:id="@+id/activeCallAppImage"
+            android:id="@+id/incomingCallAppImage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="gone"
-
             android:contentDescription="Contact or app photo"
             android:src="@drawable/goldappiconphoneblack"
-
             app:layout_constraintEnd_toEndOf="parent"
-
-
             app:layout_constraintStart_toStartOf="parent"
 
             />

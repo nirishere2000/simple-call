@@ -23,6 +23,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.nirotem.simplecall.R
 import com.google.android.material.snackbar.Snackbar
+import com.nirotem.simplecall.statuses.SettingsStatus
 import java.util.PriorityQueue
 
 
@@ -141,7 +142,7 @@ object MessageBoxManager {
             val isRTL = context.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
 // השגת האייקון מהמשאבים והגדרת גודל קבוע (24dp)
-            val iconDrawable = ContextCompat.getDrawable(context, R.drawable.goldappiconphoneblack)
+            val iconDrawable = ContextCompat.getDrawable(context, SettingsStatus.appLogoResourceSmall)
             val sizeInPx = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 24f,
@@ -229,10 +230,12 @@ object MessageBoxManager {
         val layout = inflater.inflate(R.layout.custom_toast, null)
 
         val textView = layout.findViewById<TextView>(R.id.toast_text)
-        val iconView = layout.findViewById<ImageView>(R.id.toast_icon)
-
         textView.text = message
-        iconView.setImageResource(R.drawable.goldappiconphoneblack)
+
+        val toastIconView = layout.findViewById<ImageView>(R.id.toast_icon)
+        if (SettingsStatus.isPremium) {
+            toastIconView.setImageResource(SettingsStatus.appLogoResourceSmall)
+        }
 
         Toast(context).apply {
             setGravity(Gravity.CENTER, 0, 0)

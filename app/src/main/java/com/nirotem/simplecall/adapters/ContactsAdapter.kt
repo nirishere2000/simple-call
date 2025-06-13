@@ -162,7 +162,7 @@ class ContactsAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
         private val nameText: TextView = itemView.findViewById(R.id.contactsContactName)
         private val dialButton: ImageView = itemView.findViewById(R.id.dialButton)
-        private val dialButtonBorder: ImageView = itemView.findViewById(R.id.dialButtonBorder)
+        //private val dialButtonBorder: ImageView = itemView.findViewById(R.id.dialButtonBorder)
         private val goldNumberDialButton: ImageView = itemView.findViewById(R.id.goldNumberDialButton)
         private val contactsCallButton: FrameLayout = itemView.findViewById(R.id.contactsCallButton)
         private val contactsCallButtonContainer: LinearLayout = itemView.findViewById(R.id.contactsCallButtonContainer)
@@ -257,9 +257,9 @@ class ContactsAdapter(
                     dialButton.setOnClickListener({
                         handlePhoneDialClick(contact.phoneNumber)
                     })
-                    dialButtonBorder.setOnClickListener({
+/*                    dialButtonBorder.setOnClickListener({
                         handlePhoneDialClick(contact.phoneNumber)
-                    })
+                    })*/
                 }
             }
             else {
@@ -269,6 +269,9 @@ class ContactsAdapter(
             if (isUserGoldNumber) {
                 //callButton.setImageResource(R.drawable.goldappiconphoneblack)
                 contactsCallButton.visibility = GONE
+                if (SettingsStatus.isPremium) {
+                    goldNumberDialButton.setImageResource(SettingsStatus.appLogoResourceSmall) // otherwise it has the default already from design-time
+                }
                 goldNumberDialButton.visibility = VISIBLE
 /*                val paddingInDp = 10
                 val density = callButton.context.resources.displayMetrics.density

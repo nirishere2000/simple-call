@@ -118,12 +118,8 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/circle_background"
                     android:clipToOutline="true"
-
-
                     android:outlineProvider="background"
-
                     app:layout_constraintTop_toTopOf="@id/topRightBar"
 
                     >
@@ -132,11 +128,11 @@
                         android:id="@+id/dialButton"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/rounded_corners"
+                        android:background="@drawable/call_button_green_white"
 
                         android:scaleType="centerCrop" />
 
-                    <ImageView
+<!--                    <ImageView
                         android:id="@+id/dialButtonBorder"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
@@ -146,18 +142,15 @@
                         app:srcCompat="@drawable/blackphonedialer"
                         tools:ignore="RtlHardcoded"
 
-                        />
+                        />-->
                 </FrameLayout>
 
                 <ImageView
                     android:id="@+id/goldNumberDialButton"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-
                     android:contentDescription="Contact Call button"
-
-
-                    app:srcCompat="@drawable/goldappiconphoneblack" />
+                    app:srcCompat="@drawable/app_premium_icon_circular" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

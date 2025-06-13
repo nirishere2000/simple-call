@@ -47,6 +47,25 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
 
+private fun View.fadeIn(durationMillis: Long = 300) {
+    this.visibility = View.VISIBLE
+    this.alpha = 0f
+    this.animate()
+        .alpha(1f)
+        .setDuration(durationMillis)
+        .start()
+}
+
+private fun View.fadeOut(durationMillis: Long = 300, endVisibility: Int = View.GONE) {
+    this.animate()
+        .alpha(0f)
+        .setDuration(durationMillis)
+        .withEndAction {
+            this.visibility = endVisibility
+        }
+        .start()
+}
+
 class ContactsFragment : Fragment(R.layout.fragment_contacts) {
 
     private lateinit var recyclerView: RecyclerView
@@ -78,12 +97,15 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                     askingReadContactsPermission = false
                     PermissionsStatus.readContactsPermissionGranted.value = true
                     loadFragment(fragmentRoot)
-/*                    Toast.makeText(
-                        this.requireContext(),
-                        getString(R.string.permission_was_granted_reloading),
-                        Toast.LENGTH_LONG
-                    ).show()*/
-                    showCustomToastDialog(context, getString(R.string.permission_was_granted_reloading))
+                    /*                    Toast.makeText(
+                                            this.requireContext(),
+                                            getString(R.string.permission_was_granted_reloading),
+                                            Toast.LENGTH_LONG
+                                        ).show()*/
+                    showCustomToastDialog(
+                        context,
+                        getString(R.string.permission_was_granted_reloading)
+                    )
                 }
             } else {
                 suggestManualPermissionGrant(context)
@@ -108,6 +130,8 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
     override fun onResume() {
         super.onResume()
 
+        var shouldReloadForm = false
+
         try {
             if (OpenScreensStatus.shouldCloseSettingsScreens.value != null) {
                 OpenScreensStatus.shouldCloseSettingsScreens.value =
@@ -118,7 +142,8 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                     OpenScreensStatus.shouldClosePermissionsScreens.value!! + 1
             }
             if (OpenScreensStatus.shouldClosePremiumTourScreens.value != null) {
-                OpenScreensStatus.shouldClosePremiumTourScreens.value = OpenScreensStatus.shouldClosePremiumTourScreens.value!! + 1
+                OpenScreensStatus.shouldClosePremiumTourScreens.value =
+                    OpenScreensStatus.shouldClosePremiumTourScreens.value!! + 1
             }
             /*            val threeDotsMenuNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main)
 
@@ -146,16 +171,19 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
             ) {
                 // Permission is granted
                 PermissionsStatus.readContactsPermissionGranted.value = true
+                shouldReloadForm = true
                 if (askingReadContactsPermission) { // otherwise it could jump when granting default dialer and could confuse
-/*                    Toast.makeText(
+                    /*                    Toast.makeText(
+                                            context,
+                                            getString(R.string.view_contacts_permission_was_granted_reloading),
+                                            Toast.LENGTH_LONG
+                                        ).show()*/
+                    showCustomToastDialog(
                         context,
-                        getString(R.string.view_contacts_permission_was_granted_reloading),
-                        Toast.LENGTH_LONG
-                    ).show()*/
-                    showCustomToastDialog(context, getString(R.string.view_contacts_permission_was_granted_reloading))
+                        getString(R.string.view_contacts_permission_was_granted_reloading)
+                    )
                 }
                 askingReadContactsPermission = false
-
                 // loadFragment(fragmentRoot)
             } //else {
             // Permission is still denied
@@ -167,11 +195,73 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                 context,
                 android.Manifest.permission.CALL_PHONE
             ) == PackageManager.PERMISSION_GRANTED
+
+            if (PermissionsStatus.callPhonePermissionGranted.value == true) {
+                shouldReloadForm = true
+            }
         }
 
-        // We always refresh on resume because maybe Contacts were added/changed/removed/favorites
-        initView(fragmentRoot)
+        // We may refresh on resume (only if there as a change) because maybe Contacts were added/changed/removed/favorites
+        if (shouldReloadForm) {
+            initView(fragmentRoot)
+        } else if (PermissionsStatus.readContactsPermissionGranted.value == true) {
+            lifecycleScope.launch {
+                if (checkForChangeAndReloadFormIfNeeded()) {
+                    initView(fragmentRoot, true) // contact list already updated
+                }
+            }
+        }
     }
+
+    /**
+     * בודקת אם רשימת אנשי הקשר השתנתה:
+     *
+     * - אם זו קריאה ראשונה (contactsList ריק/נאלי) — ייחשב שינוי.
+     * - אם מספר הפריטים שונה — ייחשב שינוי.
+     * - אם התוכן שונה (בהשוואה של Equals על כל אובייקט) — ייחשב שינוי.
+     *
+     * @return true אם יש שינוי, אחרת false.
+     */
+    private suspend fun checkForChangeAndReloadFormIfNeeded(): Boolean =
+        withContext(Dispatchers.Default) {
+            val newContactsList = loadContactsAsync()
+
+            if (contactsList == null) {
+                // פעם ראשונה
+                contactsList = newContactsList
+                return@withContext false // עם ראשונה נטען לבד
+            }
+
+            if (contactsList!!.isEmpty()) { // ריק אבל לא null
+                if (newContactsList.isEmpty()) {
+                    // כבר יש רשימה ריקה, וגם החדשה ריקה — אין שינוי
+                    return@withContext false
+                }
+                // הרשימה הישנה ריקה, החדשה לא — נעדכן
+                contactsList = newContactsList
+                return@withContext true
+            }
+
+            // אם הגודל שונה — שינוי
+            if (contactsList!!.size != newContactsList.size) {
+                contactsList = newContactsList
+                return@withContext true
+            }
+
+            // אם יש שוני בפריטים עצמם (שימוש ב-zip להשוואה מהירה)
+            val isDifferent = contactsList!!.zip(newContactsList).any { (oldItem, newItem) ->
+                oldItem != newItem
+            }
+
+            if (isDifferent) {
+                contactsList = newContactsList
+                return@withContext true
+            }
+
+            // אם לא נמצא שינוי — לא מעדכן את הרשימה
+            return@withContext false
+        }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -186,7 +276,8 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                     OpenScreensStatus.shouldClosePermissionsScreens.value!! + 1
             }
             if (OpenScreensStatus.shouldClosePremiumTourScreens.value != null) {
-                OpenScreensStatus.shouldClosePremiumTourScreens.value = OpenScreensStatus.shouldClosePremiumTourScreens.value!! + 1
+                OpenScreensStatus.shouldClosePremiumTourScreens.value =
+                    OpenScreensStatus.shouldClosePremiumTourScreens.value!! + 1
             }
             fragmentRoot = view
             progressBar = view.findViewById(R.id.progressBar)
@@ -234,10 +325,10 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
 
     }
 
-    private fun initView(view: View) {
+    private fun initView(view: View, contactsListAlreadyUpdated: Boolean = false) {
         // Maybe we can just ask for Write Contacts for this also and not needing Read Contacts
         if (PermissionsStatus.readContactsPermissionGranted.value !== null && PermissionsStatus.readContactsPermissionGranted.value!!) {
-            loadFragment(view)
+            loadFragment(view, contactsListAlreadyUpdated)
         } else {
             progressBar.visibility = GONE
             //topBar.visibility = GONE // should start gone
@@ -264,7 +355,7 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                         ::requestReadContactPermission
                     )
                 } catch (e: Exception) {
-                   // showReadContactsPermissionsExplanationDialog(fragmentRoot.context)
+                    // showReadContactsPermissionsExplanationDialog(fragmentRoot.context)
                     suggestManualPermissionGrant(fragmentRoot.context)
                 }
 
@@ -285,7 +376,7 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         }
     }
 
-    private fun loadFragment(view: View) {
+    private fun loadFragment(view: View, contactsListAlreadyUpdated: Boolean = false) {
         val searchButton = view.findViewById<ImageView>(R.id.searchButton)
         searchText = view.findViewById(R.id.searchText)
         addNewButtonSmall = view.findViewById(R.id.addNewButtonSmall)
@@ -294,23 +385,34 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         contactsNoPermissionsContainer = view.findViewById(R.id.contactsNoPermissionsContainer)
         contactsNoPermissionsContainer.visibility = View.GONE
         progressBar = view.findViewById(R.id.progressBar)
-        progressBar.visibility = View.VISIBLE
+        if (!contactsListAlreadyUpdated) {
+            progressBar.visibility = View.VISIBLE
+        }
         noContactsAvailableMsg = view.findViewById(R.id.noContactsAvailableMsg)
         //topBar = view.findViewById(R.id.topBar)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Load data asynchronously
-        lifecycleScope.launch {
-            showLoading() // Show ProgressBar
-            contactsList = loadCallHistoryAsync()
-            setupRecyclerView(contactsList!!)
-            hideLoading() // Hide ProgressBar
-            //val lastTimeGoldNumberAnimated = loadLastTimeAnimateGoldNumberInContacts(view.context)
-            //if (lastTimeGoldNumberAnimated != null && lastTimeGoldNumberAnimated.isEmpty()) {
-            //    saveLastTimeAnimateGoldNumberInContacts(view.context) // so we'll animate only once per app loaded
-            //    animateGoldNumber()
+        if (contactsListAlreadyUpdated) {
+            //if (progressBar.visibility != VISIBLE) {
+                progressBar.fadeIn()
             //}
+            setupRecyclerView(contactsList!!)
+            hideLoading(true) // Hide ProgressBar
+        }
+        else {
+            // Load data asynchronously
+            lifecycleScope.launch {
+                showLoading() // Show ProgressBar
+                contactsList = loadContactsAsync()
+                setupRecyclerView(contactsList!!)
+                hideLoading() // Hide ProgressBar
+                //val lastTimeGoldNumberAnimated = loadLastTimeAnimateGoldNumberInContacts(view.context)
+                //if (lastTimeGoldNumberAnimated != null && lastTimeGoldNumberAnimated.isEmpty()) {
+                //    saveLastTimeAnimateGoldNumberInContacts(view.context) // so we'll animate only once per app loaded
+                //    animateGoldNumber()
+                //}
+            }
         }
 
         searchButton.setOnClickListener {
@@ -340,16 +442,16 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         })
     }
 
-    private fun setupRecyclerView(contactsList: List<ContactsInLetterListItem.Contact>) {
+    private fun setupRecyclerView(newContactsList: List<ContactsInLetterListItem.Contact>) {
         var filteredContactsList: List<ContactsInLetterListItem.Contact>
         var filter = ""
         if (isSearchMode) {
             filter = searchText.text.toString().lowercase(Locale.getDefault())
-            filteredContactsList = contactsList.partition {
+            filteredContactsList = newContactsList.partition {
                 it.contactOrPhoneNumber.lowercase(Locale.getDefault()).startsWith(filter)
             }.first
         } else { // no filter - take as it is
-            filteredContactsList = contactsList
+            filteredContactsList = newContactsList
         }
 
         //val filteredContactsList = contactsList.partition { it.contactOrPhoneNumber.contains(filter) }
@@ -368,7 +470,7 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         val sharedPreferences =
             this.context?.getSharedPreferences("SimpleCallPreferences", Context.MODE_PRIVATE)
 
-        val goldPhoneContactName = sharedPreferences?.getString("gold_phone_contactName", null)
+        val goldPhoneContactName = SettingsStatus.goldNumberContact.value
         val goldPhoneNumber =
             if (SettingsStatus.goldNumber.value != null) SettingsStatus.goldNumber.value.toString() else ""
         val contactID = getContactIdFromPhoneNumber(context, goldPhoneNumber)
@@ -517,7 +619,8 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
             noContactsAvailableMsg.text =
                 fragmentRoot.context.getString(R.string.no_favorites_contacts_found_to_display) // don't let the user think there's no Contacts at all
         } else if (SettingsStatus.userAllowOutgoingCallsEnum.value == AllowOutgoingCallsEnum.NO_ONE) {
-            noContactsAvailableMsg.text = getString(R.string.no_contacts_are_displayed_because_outgoing_calls_are_disabled)
+            noContactsAvailableMsg.text =
+                getString(R.string.no_contacts_are_displayed_because_outgoing_calls_are_disabled)
         } else {
             noContactsAvailableMsg.text =
                 fragmentRoot.context.getString(R.string.no_contacts_found_to_display) // Could not find Contacts
@@ -531,13 +634,16 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         // We don't want to show the message while Tour is opened
         if (anyContactsAvailable && !OpenScreensStatus.isHelpScreenOpened && !OpenScreensStatus.alreadyShownContactsClickOnRowForMore) {
             OpenScreensStatus.alreadyShownContactsClickOnRowForMore = true
-/*            Toast.makeText(
-                this.requireContext(),
-                getString(R.string.tap_on_contact_row_for_more),
-                Toast.LENGTH_LONG
-            ).show()*/
+            /*            Toast.makeText(
+                            this.requireContext(),
+                            getString(R.string.tap_on_contact_row_for_more),
+                            Toast.LENGTH_LONG
+                        ).show()*/
 
-            showCustomToastDialog(this.requireContext(), getString(R.string.tap_on_contact_row_for_more))
+            showCustomToastDialog(
+                this.requireContext(),
+                getString(R.string.tap_on_contact_row_for_more)
+            )
         }
     }
 
@@ -570,7 +676,7 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
             recyclerView.adapter = contactsAdapter
         }*/
 
-    private suspend fun loadCallHistoryAsync(): List<ContactsInLetterListItem.Contact> {
+    private suspend fun loadContactsAsync(): List<ContactsInLetterListItem.Contact> {
         val context = this.context
         return withContext(Dispatchers.IO) {
             // Simulate data loading (e.g., from Call Log)
@@ -589,16 +695,24 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         noContactsAvailableMsg.visibility = View.GONE
     }
 
-    private fun hideLoading() {
-        progressBar.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
+    private fun hideLoading(withFade: Boolean = false) {
+        if (withFade) {
+            progressBar.postDelayed({
+                progressBar.fadeOut()
+                recyclerView.fadeIn()
+            }, 300)
+        }
+        else {
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+        }
         noContactsAvailableMsg.visibility =
             if (recyclerView.adapter != null && recyclerView.adapter!!.itemCount > 0) GONE else VISIBLE
         //topBar.visibility = View.VISIBLE
     }
 
     private fun loadContacts(): List<ContactsInLetterListItem.Contact> {
-        val contactsList = mutableListOf<ContactsInLetterListItem.Contact>()
+        val newContactsList = mutableListOf<ContactsInLetterListItem.Contact>()
 
         try {
             val uniqueContacts = mutableSetOf<String>()  // Set to store unique phone numbers
@@ -643,7 +757,7 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                     val shortPhoneNumber = phoneNumber.filter { it.isDigit() }
 
                     if (uniqueContacts.add(contactName + shortPhoneNumber)) {  // Adds only unique Contact + phone number
-                        contactsList.add(contact)
+                        newContactsList.add(contact)
                     }
 
 
@@ -655,11 +769,11 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         }
 
 
-        return contactsList
+        return newContactsList
     }
 
     private fun loadContactsOptimized(context: Context): List<ContactsInLetterListItem.Contact> {
-        val contactsList = mutableListOf<ContactsInLetterListItem.Contact>()
+        val newContactsList = mutableListOf<ContactsInLetterListItem.Contact>()
 
         try {
             // Step 1: Fetch all blocked numbers into a Set for efficient lookup
@@ -729,7 +843,7 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
 
                     if (!isBlocked) {
                         if (uniqueContacts.add(contactName + shortPhoneNumber)) {  // Adds only unique Contact + phone number
-                            contactsList.add(contact)
+                            newContactsList.add(contact)
                         }
                     }
                     // println("Contact: $name, Phone: $phoneNumber, Photo: $photoUri, Starred: $isStarred")
@@ -739,8 +853,7 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
             Log.e("SimplyCall - ContactsFragment", "ContactsFragment loadContacts Error ($error)")
         }
 
-
-        return contactsList
+        return newContactsList
     }
 
     /**

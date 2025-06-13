@@ -21,6 +21,7 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveQuickCallNumber
 import com.nirotem.simplecall.helpers.SpinnersHelper.loadContactsAndEmergencyIntoList
 import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
 import com.nirotem.simplecall.statuses.PermissionsStatus
+import com.nirotem.simplecall.statuses.SettingsStatus
 import kotlinx.coroutines.coroutineScope
 
 object GeneralUtils {
@@ -241,7 +242,8 @@ object GeneralUtils {
         }
 
         val existsDistressNumberForDistressButtonButWithoutPermission = (selectedPhoneItem != null) && (PermissionsStatus.callPhonePermissionGranted.value != true)
-        if (existsDistressNumberForDistressButtonButWithoutPermission) {
+        if (existsDistressNumberForDistressButtonButWithoutPermission && !SettingsStatus.alreadyShownQuickCallButWithoutPermissionMsg) {
+            SettingsStatus.alreadyShownQuickCallButWithoutPermissionMsg = true
             var toastMsg =
                 context.getString(R.string.phone_permission_required_for_quick_call)
             //Snackbar.make(fragmentView, toastMsg, 8000).show()

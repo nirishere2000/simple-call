@@ -35,9 +35,11 @@ object OngoingCall {
     // These are to convey message to InCallService, because sometimes it doesn't take
     // the Broadcast event so it doesn't toggle the speaker
     // This is "static" and always through OngoingCall only, even if it's out going or waiting call
+    var speakerWasAlreadyOnWhenStarted = false
     var shouldToggleSpeaker = MutableLiveData(false)
     var shouldToggleSpeakerOnOff = false
     var shouldUpdateSpeakerState = MutableLiveData(false)
+    var callWasEndedMustClose = MutableLiveData(false)
     // End SpeakerPhone Toggle events
 
 /*    var call: Call? = null

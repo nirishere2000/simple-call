@@ -12,6 +12,7 @@ import android.content.pm.PackageManager
 import android.util.TypedValue
 import android.content.res.Configuration
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -66,6 +67,7 @@ import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.OpenScreensStatus.shouldUpdateSettingsScreens
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus.checkForPermissionsChangesAndShowToastIfChanged
+import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -90,6 +92,8 @@ class TourFragment : Fragment() {
     // Initialize your views here
     private lateinit var fragmentView: View
     private lateinit var tourImage: ImageView
+    private lateinit var tourImageWithBorder: ImageView
+    private lateinit var tourImageContainerWithBorder: FrameLayout
     private lateinit var tourTitle: TextView
     private lateinit var tourDescription: TextView
     private lateinit var stepAcceptAppTermsContainer: LinearLayout
@@ -226,7 +230,7 @@ class TourFragment : Fragment() {
                 key = "welcome",
                 title = getString(R.string.tour_welcome),
                 description = getString(R.string.tour_welcome_text),
-                imageRes = R.drawable.goldappiconphoneblack, // Ensure you have an appropriate image in your drawable resources
+                imageRes = SettingsStatus.appLogoResourceSmall,
                 secondImageRes = null,
                 isXiaomiOnly = false,
                 isPremium = false
@@ -314,9 +318,9 @@ class TourFragment : Fragment() {
             ),*/
             TourPage( // special page - only for Xiaomi
                 key = "overlayDrawPermission",
-                title = getString(R.string.tour_overlay_draw_permission),
+                title = getString(R.string.tour_overlay_draw_permission_xiaomi),
                 description = getString(R.string.tour_overlay_draw_permission_text),
-                imageRes = R.drawable.other_permissions_samsung,
+                imageRes = null,
                 secondImageRes = null,
                 isXiaomiOnly = true,
                 isPremium = false
@@ -389,6 +393,8 @@ class TourFragment : Fragment() {
             checkScroll(view.context)
         }
         tourImage = view.findViewById(R.id.tour_image)
+        tourImageContainerWithBorder = view.findViewById<FrameLayout>(R.id.tour_image_container_with_border)
+        tourImageWithBorder = view.findViewById<ImageView>(R.id.tour_image_with_white_background)
         tourTitle = view.findViewById(R.id.tour_title)
         descriptionTextArea = view.findViewById(R.id.descriptionTextArea)
         stepAcceptAppTermsContainer = view.findViewById(R.id.stepAcceptAppTermsContainer)
@@ -577,6 +583,10 @@ class TourFragment : Fragment() {
             tourImage.visibility = GONE
         }
 
+        // border for Samsung and Pixel white pictures:
+        // should be only for Samsung and Pixel
+        tourImageWithBorder.visibility = if (page.key == "overlayDrawPermission") VISIBLE else GONE
+        tourImageContainerWithBorder.visibility = if (page.key == "overlayDrawPermission") VISIBLE else GONE
 
         val layoutParams = tourTitle.layoutParams as ConstraintLayout.LayoutParams
         val marginTopDp = if (page.key == "allDone") 30f else 210f
@@ -649,25 +659,23 @@ class TourFragment : Fragment() {
             lastPageButtons.visibility = View.VISIBLE
 
             if (OemDetector.current() == OemDetector.Oem.SAMSUNG || OemDetector.current() == OemDetector.Oem.OTHER) {
-                tourImage.setImageResource(R.drawable.other_permissions_samsung)
+                tourImageWithBorder.setImageResource(R.drawable.other_permissions_samsung)
                 tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_samsung)
             }
             else if (OemDetector.current() == OemDetector.Oem.GOOGLE) {
-                tourImage.setImageResource(R.drawable.other_permissions_pixel)
+                tourImageWithBorder.setImageResource(R.drawable.other_permissions_pixel)
                 tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_pixel)
             }
-            else {
+            else { // Xioami
                 tourImage.setImageResource(R.drawable.other_permissions_xioami)
+                tourImage.visibility = VISIBLE
+                tourImageContainerWithBorder.visibility = GONE
                 tourDescription.text = getString(R.string.tour_overlay_draw_permission_text)
             }
 
             if (!isPortrait) {
                 prevAndNextButtonsGap?.visibility = GONE
             }
-
-            //lockedScreen
-
-
         } else if (page.key == "lockedScreen") { // xiaomi Overlay Draw
             buttonNext.text = getString(R.string.tour_next_button)
 /*            if (PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value == true) getString(R.string.tour_next_button) else getString(
@@ -700,6 +708,7 @@ class TourFragment : Fragment() {
                 // This should be shown only on premium. IF not premium this step should not be shown at all if device is not Xiaomi
                 stepDoneBack.visibility = GONE
                 lastPageButtons.visibility = View.GONE
+                tourImage.setImageResource(R.drawable.lock_screen_all_languages)
                 tourDescription.text = getString(R.string.premium_screen_lock_text)
             }
             buttonOpenTermsAndUse.visibility = GONE

@@ -22,14 +22,13 @@
         >
 
         <ImageView
-            android:id="@+id/appLogo"
+            android:id="@+id/msgBoxAppLogo"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="2dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="@string/elderandyoung"
             android:src="@drawable/goldappiconphoneblack"
             />
 
@@ -41,7 +40,7 @@
             android:paddingHorizontal="12dp"
             android:gravity="center_vertical|start"
             android:text=""
-            app:layout_constraintStart_toEndOf="@+id/appLogo"
+            app:layout_constraintStart_toEndOf="@+id/msgBoxAppLogo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"

@@ -57,12 +57,13 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsInMiddleOfCal
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldCallsStartWithSpeakerOn
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldShowKeypadInActiveCall
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
+import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.ui.waitingCall.WaitingCallFragment
 
 class ActiveCallFragment : Fragment() {
     private lateinit var textViewPhoneNumber: TextView
     private var activeCallUIContext: Context? = null
-    private var speakerWasAlreadyOnWhenStarted = false
+    //private var speakerWasAlreadyOnWhenStarted = false
     private var isSpeakerOn: Boolean = false
     private var _binding: FragmentActiveCallBinding? = null
     private var isOutgoingCall = false
@@ -103,6 +104,7 @@ class ActiveCallFragment : Fragment() {
         )
     }
 
+/*
     override fun onStop() {
         super.onStop()
         try {
@@ -112,6 +114,7 @@ class ActiveCallFragment : Fragment() {
         }
 
     }
+*/
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -307,7 +310,8 @@ class ActiveCallFragment : Fragment() {
         }
 
         isSpeakerOn = isSpeakerphoneOn(this.requireContext()) // first get the real is speaker on
-        speakerWasAlreadyOnWhenStarted =
+
+        OngoingCall.speakerWasAlreadyOnWhenStarted =
             isSpeakerOn // we did not start it ourself yet even if shouldStartWithSpeakerOn=true
         if (isSpeakerOn) {
             speakerButtonImage.setImageResource(R.drawable.speakeron)
@@ -471,6 +475,10 @@ class ActiveCallFragment : Fragment() {
         ) else null
 
         val contactOrAppIcon = binding.activeCallAppImage
+        if (SettingsStatus.isPremium) {
+            contactOrAppIcon.setImageResource(SettingsStatus.appLogoResourceSmall)
+        }
+
         val contactExistingPhotoBack = binding.contactExistingPhotoBack
         if (contactId != null) {
             val photoImageView = binding.photoImageView
@@ -499,7 +507,7 @@ class ActiveCallFragment : Fragment() {
             AlertDialog.Builder(context)
                 .setTitle(getString(R.string.serious_error_capital))
                 .setMessage(message)
-                .setIcon(R.drawable.goldappiconphoneblack)
+                .setIcon(SettingsStatus.appLogoResourceSmall)
                 .setPositiveButton(getString(R.string.close_capital)) { dialog, _ ->
                     dialog.dismiss() // Close the dialog
                     //finish() // This will close the current activity
@@ -515,8 +523,8 @@ class ActiveCallFragment : Fragment() {
                 "SimplyCall - ActiveCallFragment",
                 "Speaker status updated by InCallService: $isSpeakerOn"
             )
-            val speakerWasTurnedOn =
-                context?.let { isSpeakerphoneOn(it) } // first get the real is speaker on
+            val speakerWasTurnedOn = isSpeakerphoneOn(context)  // first get the real is speaker on
+//                context?.let { isSpeakerphoneOn(it) }
             val speakerButton =
                 binding.root.findViewById<ImageView>(R.id.speakerButtonImage)
             if (speakerWasTurnedOn == true) {
@@ -566,7 +574,7 @@ class ActiveCallFragment : Fragment() {
         }
     }
 
-    // So we can come back
+   /* // So we can come back
     private fun createNotificationForActiveCall(context: Context) {
         // In your Fragment:
 
@@ -609,7 +617,7 @@ class ActiveCallFragment : Fragment() {
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(1, builder.build())
 
-    }
+    }*/
 
     private fun clickSpeakerButton(context: Context?) {
         if (context !== null) {
@@ -740,6 +748,7 @@ class ActiveCallFragment : Fragment() {
         super.onDestroyView()
 
        // SpeakCommandsManager.stopListen()
+        Log.d("SimplyCall - ActiveCallFragment", "onDestroyView")
 
         OngoingCall.shouldToggleSpeaker.value = false
         OngoingCall.shouldUpdateSpeakerState.value = false
@@ -747,9 +756,9 @@ class ActiveCallFragment : Fragment() {
         // val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         // notificationManager.cancel(1) // 1 הוא ה-ID ששימש בעת קריאה ל-notify
 
-        if (activeCallUIContext != null && !speakerWasAlreadyOnWhenStarted) {
-            handleSpeakerOnOff(activeCallUIContext!!, false) // Turn off speaker when finished
-        }
+        //if (activeCallUIContext != null && !speakerWasAlreadyOnWhenStarted) {
+            //handleSpeakerOnOff(activeCallUIContext!!, false) // Turn off speaker when finished
+        //}
 
         /*if (!userReacted) { // if we are closed and user did not click any button
             // Not disconnecting for now - but leaving a notification
@@ -762,6 +771,12 @@ class ActiveCallFragment : Fragment() {
         } */
 
         try {
+            try {
+                requireContext().unregisterReceiver(speakerStatusReceiver)
+            } catch (_: Exception) {
+
+            }
+
             OngoingCall.call?.unregisterCallback(callCallback)
             OutgoingCall.call?.unregisterCallback(callCallback)
         } catch (e: Exception) {

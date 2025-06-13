@@ -24,6 +24,7 @@ import com.nirotem.simplecall.helpers.DBHelper.getContactIdFromPhoneNumber
 import com.nirotem.simplecall.helpers.DBHelper.getContactPhoto
 import com.nirotem.simplecall.managers.SoundPoolManager
 import com.nirotem.simplecall.managers.VoiceApi
+import com.nirotem.simplecall.statuses.SettingsStatus
 
 class IncomingCallFragment : Fragment() {
     private lateinit var textViewPhoneNumber: TextView
@@ -118,7 +119,10 @@ class IncomingCallFragment : Fragment() {
                 CallActivity.originalPhoneNumber!!
             ) else null
 
-            val contactOrAppIcon = binding.activeCallAppImage
+            val contactOrAppIcon = binding.incomingCallAppImage
+            if (SettingsStatus.isPremium) {
+                contactOrAppIcon.setImageResource(SettingsStatus.appLogoResourceSmall)
+            }
             val contactExistingPhotoBack = binding.contactExistingPhotoBack
 
             if (contactId != null) {

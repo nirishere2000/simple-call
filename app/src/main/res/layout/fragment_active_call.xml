@@ -63,9 +63,7 @@
             android:id="@+id/activeCallAppImage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-
             android:contentDescription="Contact or app photo"
-
             android:src="@drawable/goldappiconphoneblack"
             android:visibility="gone"
 

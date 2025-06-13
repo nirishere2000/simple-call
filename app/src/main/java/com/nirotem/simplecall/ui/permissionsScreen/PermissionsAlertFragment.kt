@@ -28,6 +28,7 @@ import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus.askForCallPhonePermission
 import com.nirotem.simplecall.statuses.PermissionsStatus.requestRole
+import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.ui.components.CallPermissionMissingDialog
 
 class PermissionsAlertFragment : DialogFragment() {
@@ -38,15 +39,9 @@ class PermissionsAlertFragment : DialogFragment() {
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     private lateinit var roleLauncher: ActivityResultLauncher<Intent> // for default dialer
     private lateinit var fragmentRoot: View
-   // private lateinit var roleRequestLauncher: ActivityResultLauncher<Intent>
-
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    private var askingDefaultDialerPermission = false
-    private var askingForMakingMakingCallPermission = false
-    private var askingViewCallsPermission = false
     private var isMakeCallPermission = false
     private var isDefaultDialerPermission = false
 
@@ -86,6 +81,11 @@ class PermissionsAlertFragment : DialogFragment() {
                 //permissionsViewModel.setDefaultDialerPermission(false)
             }
             closeForm()
+        }
+
+        val permissionsAlertAppIcon = root.findViewById<ImageView>(R.id.permissions_alert_app_icon)
+        if (SettingsStatus.isPremium) {
+            permissionsAlertAppIcon.setImageResource(SettingsStatus.appLogoResourceSmall)
         }
 
         val isMakeCallPermissionAutomatically = arguments?.getBoolean("IS_MAKE_CALL_PERMISSION", false)

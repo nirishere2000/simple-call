@@ -27,12 +27,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/appIcon"
+                android:id="@+id/permissions_alert_app_icon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="1dp"
-                android:layout_marginRight="5dp"
-                android:contentDescription="@string/elderandyoung"
+                android:layout_marginEnd="5dp"
                 android:src="@drawable/goldappiconphoneblack" />
 
             <TextView

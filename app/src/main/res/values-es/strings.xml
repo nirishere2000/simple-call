@@ -1,34 +1,23 @@
 <resources>
     <string name="app_name">Easy Call &amp; Answer</string>
-    <string name="navigation_drawer_open">Abrir el menú de navegación</string>
-    <string name="navigation_drawer_close">Cerrar el menú de navegación</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Encabezado de navegación</string>
     <string name="action_settings">Ajustes</string>
     <string name="menu_dialer">Marcador</string>
     <string name="menu_contacts">Contactos</string>
-    <string name="menu_recent_calls">Llamadas</string>
+    <string name="menu_recent_calls">Recientes</string>
     <string name="menu_settings">Ajustes</string>
-    <string name="lorem_ipsum_title">Lorem Ipsum</string>
-    <string name="lorem_ipsum">Lorem Ipsum es simplemente un texto de marcador de posición de la industria de la impresión y la composición. Lorem Ipsum ha sido el texto de marcador de posición estándar de la industria desde el siglo XVI, cuando un impresor desconocido tomó un conjunto de tipos y los mezcló para crear un libro de muestras</string>
-    <string name="fab_content_description">Representa una vista para invocar una acción</string>
-    <string name="image_view_item_transform_content_description">Representa una vista de imagen en el elemento</string>
-    <string name="elderandyoung">mayores y jóvenes</string>
     <string name="decline_button">Rechazar</string>
     <string name="accept_button">Aceptar</string>
     <string name="call_capital">Llamar</string>
     <string name="back_capital">Volver</string>
-    <string name="call_type_icon">call_type_icon</string>
     <string name="contacts_capital">Contactos</string>
-    <string name="unknown_caller">Llamante desconocido</string>
+    <string name="unknown_caller">Número desconocido</string>
     <string name="incoming_call">Llamada entrante</string>
     <string name="conference">Conferencia</string>
     <string name="call_waiting">Llamada en espera</string>
-    <string name="Details_capital">Detalles</string>
     <string name="calling_capital">Llamando…</string>
-    <string name="save_gold_number">Guardar número dorado</string>
-    <string name="enter_gold_phone_number">Ingrese el número dorado</string>
+    <string name="save_gold_number">Guardar Número Dorado</string>
+    <string name="enter_gold_phone_number">Ingrese el Número Dorado</string>
     <string name="start_typing_contact_name">Empiece a escribir el nombre del contacto</string>
     <string name="existing_contact">Contacto existente:</string>
     <string name="save_existing_contact">Guardar contacto existente</string>
@@ -48,10 +37,10 @@
     <string name="enter_contact_name">Ingrese el nombre del contacto</string>
     <string name="please_select_birthdate">Por favor, seleccione la fecha de nacimiento</string>
     <string name="birthdate_capital">Fecha de nacimiento</string>
-    <string name="approve_read_phone_calls_log">Aprobar lectura del registro de llamadas</string>
+    <string name="approve_read_phone_calls_log">Conceder permiso para registro de llamadas</string>
     <string name="no_permissions_caption">Sin permisos</string>
     <string name="approve_view_calls_permission">Aprobar permiso para ver llamadas</string>
-    <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">La aplicación necesita permiso para ver las llamadas para poder mostrarlas</string>
+    <string name="the_app_needs_view_calls_permission_in_order_to_show_the_call">La aplicación necesita el permiso «Ver registro de llamadas» para mostrar el historial</string>
     <string name="the_application_needs_contacts_permission_in_order_to_show_the_contacts_screen">La aplicación necesita permiso para acceder a los contactos para mostrar la pantalla de contactos</string>
     <string name="permissions_capital">Permisos</string>
     <string name="help_capital">Ayuda</string>
@@ -66,9 +55,9 @@
     <string name="yes_skip_capital">Sí, omitir</string>
     <string name="no_set_as_default_capital">No, establecer como predeterminado</string>
     <string name="set_default_phone_app">Establecer la aplicación telefónica predeterminada</string>
-    <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">Para una gestión óptima de llamadas, es importante configurar la app como la aplicación de teléfono predeterminada. ¿Están seguros de que quieren omitir este paso?</string>
+    <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">Para gestionar las llamadas de forma óptima, es importante establecer la app como teléfono predeterminado. ¿Está seguro de que desea omitir este paso?</string>
     <string name="cancel_capital">Cancelar</string>
-    <string name="battery_saver">Ejecutándose en segundo plano</string>
+    <string name="battery_saver">Ahorro de batería</string>
     <string name="for_the_app_to_run_smoothly_in_the_background_please_set_the_battery_saver">Para que la aplicación funcione sin problemas en segundo plano, configure el ahorro de batería en «Sin restricciones» en la Configuración de fondo, a través de «Información de la aplicación» en Ajustes. La aplicación está diseñada para un uso mínimo de la batería.</string>
     <string name="yes_open_app_info">Sí, abrir información de la aplicación</string>
     <string name="permission_needed_capital_p">Permiso requerido</string>
@@ -77,7 +66,7 @@
     <string name="no_open_settings">No, abrir Ajustes</string>
     <string name="open_settings">Abrir Ajustes</string>
     <string name="ok">Aceptar</string>
-    <string name="permission_could_not_be_granted_automatically">Aunque el permiso no se pudo otorgar automáticamente, aún puede activarlo visitando la configuración de su dispositivo.</string>
+    <string name="permission_could_not_be_granted_automatically">El permiso no se pudo otorgar automáticamente. Puede activarlo desde los ajustes de su dispositivo.</string>
     <string name="app_must_have_permission_to_make_calls">Para realizar llamadas, la aplicación debe disponer del permiso adecuado.</string>
     <string name="to_add_a_gold_number_please_go_to_settings">Para agregar un Número Dorado, por favor vaya a Ajustes tocando el menú de tres puntos.</string>
     <string name="permission_was_granted_reloading">¡Permiso concedido! Recargando…</string>
@@ -86,7 +75,7 @@
     <string name="select_gold_number">Seleccione el número dorado</string>
     <string name="in_order_to_read_contacts_details_app_must_have_the_proper_permission">Para leer los detalles de los contactos, la aplicación debe disponer del permiso adecuado.</string>
     <string name="in_order_to_view_calls_history_the_application_must_have_the_proper_permission">Para ver el historial de llamadas, la aplicación debe disponer del permiso adecuado.</string>
-    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">La aplicación necesita permiso de teléfono para realizar llamadas, incluidas las llamadas rápidas a través del botón de llamada rápida.</string>
+    <string name="in_order_to_make_calls_the_application_must_have_the_proper_permission">La aplicación necesita permiso de Teléfono para realizar llamadas, incluida la Llamada rápida.</string>
     <string name="enable_application_to_show_call_screen_from_background">Permitir que la aplicación muestre la pantalla de llamada en segundo plano</string>
     <string name="enable_application_to_show_call_screen_from_background_text">Ingrese a "Otros permisos" y allí conceda acceso a "Mostrar ventanas emergentes mientras se ejecuta en segundo plano".</string>
     <string name="go_to_settings">Ir a Ajustes</string>
@@ -103,19 +92,19 @@
     <string name="unknown_blocked">Desconocido (bloqueado)</string>
     <string name="unknown_because_of_error">Desconocido (error)</string>
     <string name="unknown_capital">Desconocido</string>
-    <string name="it_is_important_to_set_the_app_as_default">Es importante configurar la aplicación como tu aplicación de teléfono predeterminada para que pueda gestionar las llamadas salientes por ti.</string>
+    <string name="it_is_important_to_set_the_app_as_default">Es importante configurar la aplicación como su teléfono predeterminado para que pueda gestionar las llamadas salientes por usted.</string>
     <string name="settings_screen_is_already_opened">La pantalla de Ajustes ya está abierta</string>
     <string name="permissions_screen_is_already_opened">La pantalla de Permisos ya está abierta</string>
     <string name="tour_welcome">¡Bienvenido!</string>
     <string name="tour_welcome_text">La aplicación fue diseñada específicamente para facilitar la gestión y realización de llamadas, además de responder a las llamadas entrantes, utilizando un botón grande en lugar de deslizar sobre el dispositivo, una acción que a veces resulta difícil para las personas mayores.\n\nLos familiares pueden cambiar la configuración según sea necesario, lo que hace que la aplicación sea a la vez simple y potente con muchas funciones.\n\nAdministre sus llamadas fácilmente y use la aplicación como su marcador principal para recibir y gestionar llamadas.</string>
-    <string name="tour_powerful_features">Funciones potentes</string>
+    <string name="tour_powerful_features">Funciones avanzadas</string>
     <string name="tour_powerful_features_text">La aplicación incluye una amplia gama de funciones útiles, especialmente adaptadas para personas mayores, para gestionar todo tipo de llamadas, tanto entrantes como salientes.\n\nLa aplicación está diseñada para ser muy simple y fácil de usar, pero siempre puedes cambiar la configuración fácilmente tocando el menú en la parte superior de la pantalla (toca los tres puntos).</string>
     <string name="tour_customizable_settings">Ajustes personalizables</string>
     <string name="tour_customizable_settings_text">En la pantalla de configuración, puedes elegir quién puede llamarte, como solo contactos, solo favoritos o solo números identificados.\n\nTambién puedes restringir las llamadas salientes si es necesario. Es importante recordar que Llamada rápida y el Número Dorado seguirán funcionando incluso si las llamadas salientes están restringidas o bloqueadas, ya que dependen únicamente del permiso de llamadas salientes del teléfono.\n\nAdemás, puedes elegir iniciar las llamadas con el altavoz activado, configurar la app para contestar llamadas automáticamente y acceder a otras opciones que ayudan a que la app funcione de la manera más personalizada y óptima para ti.</string>
     <string name="tour_auto_answer">Respuesta automática</string>
     <string name="tour_auto_answer_text">Es posible habilitar la función de contestación automática en la aplicación para responder a las llamadas entrantes, sin necesidad de pulsar el botón de respuesta cuando se recibe una nueva llamada.\n\nLa aplicación permite que el dispositivo suene varias veces, para que usted reciba la notificación de la llamada entrante.\n\nLa contestación automática se puede habilitar únicamente para ciertos contactos, tocándolos en la pantalla de contactos y luego marcando la casilla correspondiente.\n\nEl uso de esta opción puede causar confusión en aquellos que no están acostumbrados a la respuesta automática, y su uso es responsabilidad exclusiva del usuario.</string>
     <string name="tour_gold_number">Número Dorado</string>
-    <string name="tour_gold_number_text">Puedes configurar un Número Dorado para llamadas rápidas y sencillas a un contacto cercano usando la pantalla de configuración, y luego llamarlo a través de la pestaña de Contactos o el marcador.\n\nPuedes llamar al Número Dorado incluso cuando las llamadas salientes están restringidas en la aplicación, pero requiere permiso para llamadas.</string>
+    <string name="tour_gold_number_text">Puedes configurar un Número Dorado para llamadas sencillas y accesibles a un contacto cercano usando la pantalla de configuración, y luego llamarlo a través de la pestaña de Contactos o el marcador.\n\nPuedes llamar al Número Dorado incluso cuando las llamadas salientes están restringidas en la aplicación, pero requiere permiso para llamadas.</string>
     <string name="tour_next_button">Siguiente</string>
     <string name="tour_prev_button">Anterior</string>
     <string name="tour_done">Aprobado</string>
@@ -125,10 +114,10 @@
     <string name="tour_app_permissions_text">Para que la aplicación pueda gestionar las llamadas y contestarlas incluso cuando no esté abierta, debe configurarse como la aplicación predeterminada para la gestión de llamadas.\n\nAdemás, para que la aplicación funcione correctamente, necesita permisos adicionales:\n\1. Teléfono (para realizar llamadas).\n\2. Abrir nuevas ventanas en segundo plano (mostrar sobre otras aplicaciones).\n3. Acceso a contactos.\n4. Visualización del registro de llamadas.\n5. Permiso para mostrarse en la pantalla de bloqueo.\n\nLa aplicación utilizará los permisos recibidos únicamente para gestionar adecuadamente las llamadas.</string>
     <string name="tour_permissions_screen">Pantalla de permisos</string>
     <string name="tour_permissions_screen_text">La mayoría de los permisos del dispositivo requeridos para la aplicación se otorgan automáticamente durante la instalación del software o cuando se configura la aplicación como la predeterminada para las llamadas.\n\nSiempre se pueden solicitar los permisos a través de la pantalla de permisos de la aplicación, utilizando el menú en la parte superior de la pantalla (el menú de "tres puntos").\n\nSe recomienda pedir ayuda a familiares y personas cercanas, si es necesario.</string>
-    <string name="tour_overlay_draw_permission">Permiso para superponer</string>
+    <string name="tour_overlay_draw_permission_xiaomi">Permiso de superposición</string>
     <string name="tour_overlay_draw_permission_text">Para garantizar que la aplicación pueda responder llamadas telefónicas incluso cuando no esté abierta, asegúrate de otorgar el permiso necesario.\n\nPara continuar:\n1. Abre la configuración del dispositivo.\n2. Navega a la sección "Otros permisos" (o similar).\n3. Busca y habilita el permiso correspondiente.\n\nNota: El nombre y la ubicación del permiso pueden variar según el dispositivo. Si no puedes encontrarlo, intenta buscar en otras secciones de configuración.</string>
     <string name="tour_overlay_draw_permission_text_pixel">Para garantizar que la aplicación pueda responder llamadas telefónicas incluso cuando no esté abierta, asegúrate de otorgar el permiso necesario.\n\nPara continuar:\n1. Toca "Mostrar sobre otras aplicaciones".\n2. Activa la opción "Permitir mostrar sobre otras aplicaciones".\n\nNota: El nombre y la ubicación exactos de esta configuración pueden variar según el dispositivo y la versión de Android.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">Para garantizar que la aplicación pueda contestar llamadas incluso cuando no esté abierta, asegúrate de otorgar el permiso necesario.\n\nPara continuar:\n1. Toca "Aparecer encima" (Appear on top).\n2. Activa la opción "Permitir permiso" (Allow permission).\n\nNota: El nombre y la ubicación exactos de esta configuración pueden variar según el dispositivo y la versión de Android.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">Para asegurarse de que la aplicación pueda responder llamadas telefónicas incluso cuando no esté abierta, concede el permiso necesario.\n\nPara continuar:\n1. Toca "Aparecer encima".\n2. Activa la opción "Permitir permiso".\n\nNota: La ubicación y el nombre exactos de esta configuración pueden variar según tu dispositivo y versión de Android.</string>
     <string name="tour_default_app">Aplicación predeterminada</string>
     <string name="tour_default_app_text">Para garantizar que la aplicación funcione correctamente y gestione las llamadas, debe configurarse como la aplicación predeterminada para la gestión de llamadas.\n\nSin este permiso, la aplicación no podrá contestar las llamadas cuando no esté abierta y en primer plano.</string>
     <string name="tour_almost_done">¡Casi listo!</string>
@@ -138,7 +127,7 @@
     <string name="tour_skip_button">Omitir</string>
     <string name="tour_start_button">Finalizar</string>
     <string name="tour_finished_but_without_default_app_and_battery_saver">¡Todo está listo! Antes de finalizar, por favor, tómate un momento para leer y aceptar los Términos y Condiciones de la aplicación.\n\nTen en cuenta: puedes comenzar a usar la aplicación, pero sin establecerla como la aplicación de teléfono predeterminada y sin eliminar las restricciones de batería, no podrá gestionar las llamadas correctamente.\n\nPulsa el botón "Finalizar" para completar la visita guiada y abrir la pantalla de Configuración, donde podrás personalizar la aplicación según tus necesidades y disfrutar de todas sus capacidades\nSiempre puedes volver a ver la visita guiada desde el menú de tres puntos en la parte superior de la pantalla de la aplicación.</string>
-    <string name="tour_finished_but_without_default_app">Alles ist bereit! Bevor Sie abschließen, nehmen Sie sich bitte einen Moment Zeit, um die Allgemeinen Geschäftsbedingungen der App zu lesen und zu akzeptieren.\n\nBitte beachten Sie: Sie können die App verwenden, aber ohne sie als Standard-Telefon-App festzulegen, kann sie Anrufe nicht richtig verarbeiten.\n\nTippen Sie auf "Fertig", um die Tour abzuschließen und den Einstellungsbildschirm zu öffnen, in dem Sie die App an Ihre Bedürfnisse anpassen und alle ihre Möglichkeiten nutzen können.\nSie können die Tour jederzeit über das Drei-Punkte-Menü erneut ansehen.</string>
+    <string name="tour_finished_but_without_default_app">¡Todo está listo! Antes de finalizar, tómate un momento para leer y aceptar los Términos y Condiciones de la aplicación. \n\nTen en cuenta: puedes usar la app, pero si no la estableces como teléfono predeterminado no podrá gestionar las llamadas correctamente. \n\nPulsa “Finalizar” para cerrar el recorrido y abrir Ajustes, donde podrás personalizar la app a tu gusto.</string>
     <string name="tour_finished_but_without_battery_saver">¡Todo está listo! Antes de finalizar, por favor, tómate un momento para leer y aceptar los Términos y Condiciones de la aplicación.\n\nTen en cuenta: puedes comenzar a usar la aplicación, pero sin eliminar las restricciones de batería, no podrá gestionar las llamadas correctamente.\n\nPulsa el botón "Finalizar" para completar la visita guiada y abrir la pantalla de Configuración, donde podrás personalizar la aplicación según tus necesidades y disfrutar de todas sus capacidades.\nSiempre puedes volver a ver la visita guiada desde el menú de tres puntos.</string>
     <string name="tour_finished_but_without_phone_permission">¡Todo listo! Antes de finalizar, tómate un momento para leer y aceptar los Términos y Condiciones de la aplicación.\n\nNota: El botón de llamada rápida no funcionará correctamente sin el permiso de Teléfono.\n\nToca el botón Finalizar para completar el recorrido y abrir la pantalla de Configuración, donde puedes otorgar permisos, personalizar la aplicación a tus necesidades y comenzar a disfrutar de todas sus capacidades.\n\nSiempre puedes volver a ver el recorrido desde el menú de tres puntos en la parte superior de la pantalla de la aplicación.</string>
     <string name="tour_finished_but_without_phone_permission_and_default_app">¡Todo listo! Antes de finalizar, tómate un momento para leer y aceptar los Términos y Condiciones de la aplicación.\n\nNota: El botón de llamada rápida no funcionará correctamente sin el permiso de Teléfono.\nAdemás, sin configurar la aplicación como la aplicación de teléfono predeterminada, no podrá gestionar las llamadas correctamente.\n\nToca el botón Finalizar para completar el recorrido y abrir la pantalla de Configuración, donde puedes otorgar permisos, personalizar la aplicación a tus necesidades y comenzar a disfrutar de todas sus capacidades.\n\nSiempre puedes volver a ver el recorrido desde el menú de tres puntos en la parte superior de la pantalla de la aplicación.</string>
@@ -155,7 +144,7 @@
     <string name="permissions_screen_default_phone_app_text">La aplicación debe convertirse en el gestor de llamadas predeterminado para poder recibir y realizar llamadas. Conceder este permiso suele activar también el acceso a contactos, teléfono y visualización de llamadas.</string>
     <string name="permissions_screen_default_phone_app_button">Establecer como aplicación telefónica predeterminada</string>
     <string name="permission_granted_capital_p">Permiso concedido</string>
-    <string name="permissions_screen_overlay_draw_permission_caption">Permiso para superponer</string>
+    <string name="permissions_screen_overlay_draw_permission_caption">Permiso de superposición</string>
     <string name="permissions_screen_overlay_draw_permission_text">El permiso para superponer es necesario para mostrar la pantalla de llamada en segundo plano, cuando la aplicación no está cargada, tanto para llamadas entrantes como activas.</string>
     <string name="favorites">Favoritos</string>
     <string name="settings_allow_incoming_calls">Permitir llamadas entrantes</string>
@@ -181,36 +170,10 @@
     <string name="permissions_enable_contacts_permission_manually_title2">Contactos</string>
     <string name="permissions_enable_calls_log_permission_manually_title1">para ver llamadas</string>
     <string name="permissions_enable_calls_log_permission_manually_title2">Registros de llamadas</string>
-    <string name="how_to_enable_standard_permission_manually_text">
-        📞 ** Cómo activar manualmente el permiso para %1$s en la aplicación **
-
-        Parece que el permiso para %1$s ha sido denegado para esta aplicación.
-        Para volver a habilitar esta función, siga estos sencillos pasos:
-
-        1️⃣ **Abra Ajustes**
-           Toque la aplicación **Ajustes** en su teléfono (⚙️).
-
-        2️⃣ **Busque \'Permisos\' o \'Aplicaciones\'**
-           Desplácese hacia abajo y busque **Aplicaciones** o **Permisos de aplicaciones** (el nombre puede variar).
-
-        3️⃣ **Acceda al \'Administrador de permisos\'**
-           Dentro de los ajustes de la aplicación, busque la opción **Permisos** o **Administrador de permisos**.
-
-        4️⃣ **Seleccione el permiso “%2$s”**
-           Toque en **Teléfono**, luego encuentre esta aplicación en la lista.
-
-        5️⃣ **Active el permiso**
-           Toque el nombre de la aplicación y seleccione **Permitir** para conceder el permiso.
-
-        🔄 **Reinicie la aplicación**
-           Después de activar el permiso, la aplicación debería detectarlo automáticamente. Si surge algún problema, cierre y abra la aplicación nuevamente para asegurarse de que todo funciona correctamente.
-
-        Si necesita ayuda, pida a alguien que lo guíe o contacte con el soporte.
-     </string>
     <string name="enable_permission_manually_caption">Activar el permiso</string>
     <string name="enable_permission_manually_ok_button">¡Entendido!</string>
     <string name="navigation_fragment_info_label">Información</string>
-    <string name="from_no_one_captial_f">De nadie</string>
+    <string name="from_no_one_capital_f">De nadie</string>
     <string name="from_favorites_only_captial_f">Solo de Favoritos</string>
     <string name="from_contacts_only_captial_f">Solo de Contactos</string>
     <string name="from_identified_only_captial_f">Solo de Identificados</string>
@@ -219,9 +182,7 @@
     <string name="to_favorites_only_captial_t">Solo a Favoritos</string>
     <string name="to_contacts_only_captial_t">Solo a Contactos</string>
     <string name="to_everyone_capital_t">A todos</string>
-    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">
-        La aplicación no puede añadir contactos a la lista del Número Dorado, ya que no se concedió el permiso para acceder a los contactos.
-    </string>
+    <string name="the_app_cannot_add_contacts_to_the_gold_number_list_since_contacts_permission">La aplicación no puede agregar contactos a la lista de selección de Número Dorado porque no tiene permiso para acceder a los contactos. Puede otorgarlo desde la pantalla de permisos de la aplicación.</string>
     <string name="make_call_permission_granted_try_again">
         ¡Se concedió el permiso para realizar llamadas! Por favor, inténtelo de nuevo.
     </string>
@@ -291,7 +252,7 @@
         La aplicación carece del permiso para superponer.
     </string>
     <string name="gold_capital">Oro</string>
-    <string name="missing_call_phone_permission">Falta el permiso Telefono</string>
+    <string name="missing_call_phone_permission">Falta el permiso de Teléfono</string>
     <string name="app_selected_as_default_phone_app">¡La aplicación se ha seleccionado como la aplicación de teléfono predeterminada!</string>
     <string name="error_capital">Error</string>
     <string name="invalid_phone_number_capital">Número de teléfono inválido.</string>
@@ -348,7 +309,7 @@
     <string name="change_capital">Cambiar</string>
     <string name="answering_capital">Responder</string>
     <string name="premium_capital">Premium</string>
-    <string name="send_alert_via_sms_to_gold_number">Enviar alerta por SMS al número dorado</string>
+    <string name="send_alert_via_sms_to_gold_number">Enviar SMS adicional a %1$s</string>
     <string name="play_voice_call_for_help_if_call_unanswered">Reproducir voz si no se responde la llamada</string>
     <string name="sos">Ayuda</string>
     <string name="lock_capital">Bloquear</string>
@@ -364,7 +325,7 @@
     <string name="mark_call_as_exceptional_if_it_is_not_between">La llamada se considerará excepcional si no está dentro del horario definido</string>
     <string name="a_number_is_considered_exceptional_if_it_appears_more_than">Un número se considerará excepcional si aparece más de</string>
     <string name="call">Llamada</string>
-    <string name="time_allowed_to_cancel_seconds">Tiempo permitido para cancelar (segundos)</string>
+    <string name="time_allowed_to_cancel_seconds">Tiempo para cancelar (segundos)</string>
     <string name="call_settings">Configuración de llamadas</string>
     <string name="other_capital">Otro</string>
     <string name="to">a</string>
@@ -393,14 +354,31 @@
     <string name="initial_voice_command_call_gold_number">Llamar al Número Dorado</string>
     <string name="initial_voice_command_quick_call">Llamada rápida</string>
     <string name="initial_voice_command_unlock_screen">Desbloquear dispositivo</string>
-    <string name="lock_service_was_activated_msg">¡El servicio ha sido activado! Aún puedes cambiar la configuración sin detenerlo (los cambios se aplicarán en breve).\nPuedes cerrar la aplicación en cualquier momento — la pantalla de bloqueo inteligente aparecerá automáticamente después de un período de inactividad.\nToca esta notificación para descartarla.\nAl tocar la pantalla de bloqueo, regresarás directamente a la aplicación — para que puedas hacer una llamada fácilmente sin tener que buscarla en la pantalla de inicio.</string>
+    <string name="lock_service_was_activated_msg">El servicio está activo! La pantalla de bloqueo inteligente aparecerá cuando se active el bloqueo del dispositivo. Puede cambiar la configuración en cualquier momento.</string>
     <string name="welcome_text_speech_short">La versión Premium ofrece funciones mejoradas para la llamada rápida, junto con una pantalla de bloqueo inteligente que aparece automáticamente tras la inactividad. Al tocar la pantalla regresarás directamente a la app para hacer una llamada fácilmente sin buscarla en la pantalla de inicio.</string>
     <string name="quick_call_activated_voice_message_speech">Llamada rápida activada — por favor, preste atención</string>
     <string name="voice">Voz</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">Esta aplicación utiliza el permiso de SMS únicamente para enviar mensajes al Número Dorado seleccionado.\nEl envío de SMS depende de la conexión de red y puede generar costos en algunas regiones.\nLa aplicación intentará enviar hasta 3 mensajes.\nEl usuario es el único responsable de cualquier costo o problema de envío.\n</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">La aplicación utiliza el permiso de SMS para enviar un mensaje de texto al %1$s seleccionado.\nEl envío de mensajes depende de la disponibilidad de la red y puede generar cargos.\nSolo se enviará un mensaje.\nEl usuario es responsable de cualquier costo o problema de entrega.</string>
     <string name="settings_when_lock_screen_is_unlocked">Al desbloquear la pantalla</string>
     <string name="select_app_to_launch">Seleccionar aplicación para abrir</string>
     <string name="premium_screen_lock_text">Nuestra pantalla de bloqueo inteligente ofrece una experiencia nueva y sin esfuerzo.\n\nEn lugar de luchar con gestos de deslizamiento complicados o tratar de averiguar cómo desbloquear el dispositivo, un solo toque te lleva directamente de regreso a la aplicación, donde puedes gestionar y realizar llamadas telefónicas con facilidad.\n\nCon un diseño limpio y un control intuitivo, es una verdadera mejora para tu experiencia móvil.</string>
-    <string name="screen_lock_missing_permissions_text">La pantalla de bloqueo inteligente no puede funcionar sin los permisos requeridos.\n\nAsegúrate de que se hayan otorgado los permisos para la operación en segundo plano y la aparición en la pantalla de bloqueo para que la aplicación funcione correctamente.</string>
-
+    <plurals name="screen_lock_missing_permissions_text_dynamic_plural">
+        <item quantity="one">La pantalla de bloqueo inteligente no puede funcionar sin el siguiente permiso: %1$s. Por favor, concédelo para permitir que la aplicación funcione correctamente.</item>
+        <item quantity="many">La pantalla de bloqueo inteligente no puede funcionar sin los siguientes permisos: %1$s. Por favor, concédelos para permitir que la aplicación funcione correctamente.</item>
+        <item quantity="other">La pantalla de bloqueo inteligente no puede funcionar sin los siguientes permisos: %1$s. Por favor, concédelos para permitir que la aplicación funcione correctamente.</item>
+    </plurals>
+    <string name="lock_screen_leads_to_this_app">Al tocar la pantalla de bloqueo se abrirá esta aplicación.</string>
+    <string name="lock_screen_leads_to_selected_app">Al tocar la pantalla de bloqueo se abrirá la aplicación seleccionada.</string>
+    <string name="lock_screen_leads_to_home_screen">Al tocar la pantalla de bloqueo se dirigirá a la pantalla de inicio del dispositivo móvil.</string>
+    <string name="overlay_permission_display_name">Mostrar sobre otras aplicaciones</string>
+    <string name="overlay_permission_display_name_samsung">Aparecer encima</string>
+    <string name="lock_screen_permission_display_name">Mostrar en la pantalla de bloqueo</string>
+    <string name="overlay_permission_display_name_xiaomi">Abrir nuevas ventanas mientras se ejecuta en segundo plano</string>
+    <string name="allow_pop_permission_display_name_xiaomi">Mostrar ventanas emergentes</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Para que la Llamada rápida funcione correctamente, la aplicación debe establecerse como predeterminada para gestionar las llamadas.</string>
+    <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Para enviar un SMS durante una %2$s, debes configurar un %1$s.</string>
+    <string name="this_feature_only_available_on_premium">Esta función está disponible solo en la versión Premium. Actualiza ahora para disfrutar de esta y muchas otras funciones excelentes.</string>
+    <string name="unlock_more_with_premium_title">Accede a más con Premium</string>
+    <string name="try_the_premium_button">Comenzar prueba gratuita</string>
+    <string name="no_contacts_available_for_selection">No hay contactos disponibles para seleccionar</string>
 </resources>
