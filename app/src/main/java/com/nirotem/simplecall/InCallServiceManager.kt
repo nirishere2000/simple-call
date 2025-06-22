@@ -36,8 +36,6 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAutoAnswerPho
 import com.nirotem.simplecall.managers.SoundPoolManager
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
 
 import androidx.lifecycle.Observer
 import com.nirotem.simplecall.OngoingCall.formatPhoneNumberWithLib
@@ -48,8 +46,8 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallActivityLoa
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveLastCallError
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAllowCallWaiting
 import com.nirotem.simplecall.helpers.isSpeakerphoneOn
-import com.nirotem.simplecall.managers.DistressButtonManager.emergencyCallWasAnswered
-import com.nirotem.simplecall.managers.DistressButtonManager.emergencyIsOn
+import com.nirotem.simplecall.managers.QuickCallButtonManager.quickCallWasAnswered
+import com.nirotem.simplecall.managers.QuickCallButtonManager.quickCallIsOn
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
 import com.nirotem.simplecall.statuses.AllowAnswerCallsEnum
 import com.nirotem.simplecall.statuses.LanguagesEnum
@@ -352,8 +350,8 @@ CALL_DIRECTION_OUTGOING = 2
                                 OutgoingCall.isCalling = false
                                 createNotificationChannel()
                                 createCallNotificationForTray()
-                                if (emergencyIsOn && OutgoingCall.phoneNumberOrContact == SettingsStatus.quickCallNumber.value) {
-                                    emergencyCallWasAnswered = true
+                                if (quickCallIsOn && OutgoingCall.phoneNumberOrContact == SettingsStatus.quickCallNumber.value) {
+                                    quickCallWasAnswered = true
                                 }
                             } else if (isCallWaiting) {
                                 WaitingCall.replacedWithWaitingCall = false // important before WaitingCall.startedRinging.value = false
@@ -379,6 +377,7 @@ CALL_DIRECTION_OUTGOING = 2
                         Call.STATE_DISCONNECTED -> {
 
                             //stopRingTimer()
+
 
                             // You can perform actions here when the call ends or is disconnected
                             // Unregister the callback

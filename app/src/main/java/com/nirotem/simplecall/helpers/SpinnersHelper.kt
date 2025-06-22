@@ -2,6 +2,7 @@ package com.nirotem.simplecall.helpers
 
 import android.Manifest.permission.READ_PHONE_STATE
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 
 import android.view.View
@@ -46,6 +47,8 @@ object SpinnersHelper {
             }
         }
 
+        Log.d("SimplyCall - SpinnerHelper", "loadContactsAndEmergencyIntoList - ${contactsList?.count()}")
+
         // אם אין הרשאה לקריאת אנשי קשר – מציגים הודעת Snackbar
         if (PermissionsStatus.readContactsPermissionGranted.value != true) {
             val toastMsg =
@@ -67,6 +70,8 @@ object SpinnersHelper {
 
         // Add not now item at position 0:
         contactsWithEmergencyNumbers.add(0, "") // context.getString(R.string.not_now_capital))
+
+        Log.d("SimplyCall - SpinnerHelper", "loadContactsAndEmergencyIntoList - ${contactsWithEmergencyNumbers.count()}")
 
 
         return contactsWithEmergencyNumbers

@@ -107,7 +107,7 @@
     <string name="tour_gold_number_text">يمكنك إعداد الرقم الذهبي لإجراء مكالمات بسيطة وسهلة مع جهة اتصال قريبة من خلال شاشة الإعدادات، ثم الاتصال بها عبر علامة تبويب جهات الاتصال أو لوحة الاتصال.\n\nيمكنك أيضًا الاتصال بالرقم الذهبي حتى عندما تكون المكالمات الصادرة مقيدة في التطبيق، بشرط منح إذن الاتصال.</string>
     <string name="tour_next_button">التالي</string>
     <string name="tour_prev_button">السابق</string>
-    <string name="tour_done">إنهاء الجولة</string>
+    <string name="tour_granted_already_granted">مؤكد</string>
     <string name="tour_open_app_info_button">افتح معلومات التطبيق</string>
     <string name="tour_set_as_default_app_button">تعيين كتطبيق افتراضي</string>
     <string name="tour_app_permissions">أذونات التطبيق</string>
@@ -313,8 +313,8 @@
     <string name="change_capital">تغيير</string>
     <string name="answering_capital">الرد</string>
     <string name="premium_capital">بريميوم</string>
-    <string name="send_alert_via_sms_to_gold_number">بالإضافة إلى ذلك، إرسال رسالة نصية إلى %1$s</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">تشغيل دِردشة صوتية إذا لم يتم الرد على المكالمة</string>
+    <string name="send_alert_via_sms_to_gold_number">أيضًا إرسال رسالة نصية إلى %1$s</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">أيضًا نطق رسالة</string>
     <string name="sos">مساعدة</string>
     <string name="lock_capital">قفل</string>
     <string name="report_capital">تقرير</string>
@@ -382,10 +382,11 @@
     <string name="lock_screen_permission_display_name">العرض على شاشة القفل</string>
     <string name="allow_pop_permission_display_name_xiaomi">عرض النوافذ المنبثقة</string>
     <string name="overlay_permission_display_name_xiaomi">فتح نوافذ جديدة أثناء التشغيل في الخلفية</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">لكي تعمل المكالمة السريعة بشكل صحيح، يجب تعيين التطبيق كالتطبيق الافتراضي لإدارة المكالمات.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">لكي يعمل %1$s بشكل صحيح، يجب ضبط التطبيق كتطبيق افتراضي لإجراء المكالمات.</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">لإرسال رسالة نصية أثناء %2$s، يجب تعيين %1$s.</string>
     <string name="this_feature_only_available_on_premium">هذه الميزة متاحة فقط في الإصدار المميز. قم بالترقية الآن للاستمتاع بها وبالعديد من الميزات الرائعة الأخرى!</string>
     <string name="unlock_more_with_premium_title">استمتع بالمزيد مع النسخة المميزة</string>
     <string name="try_the_premium_button">ابدأ الفترة التجريبية المجانية</string>
     <string name="no_contacts_available_for_selection">لا توجد جهات اتصال متاحة للاختيار</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">لكي يعمل %1$s بشكل صحيح، يجب منح التطبيق إذن الوصول إلى جهات الاتصال.</string>
 </resources>

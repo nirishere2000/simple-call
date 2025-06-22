@@ -107,7 +107,7 @@
     <string name="tour_gold_number_text">In het instellingenmenu kun je een Gouden nummer instellen voor eenvoudige en handige oproepen naar een nauwe contactpersoon en hen vervolgens bellen via het tabblad Contacten of de kiezer.\n\nJe kunt het Gouden nummer bellen, zelfs wanneer uitgaande oproepen in de app zijn beperkt, maar hiervoor is wel beltoestemming nodig.</string>
     <string name="tour_next_button">Volgende</string>
     <string name="tour_prev_button">Vorige</string>
-    <string name="tour_done">Goedgekeurd</string>
+    <string name="tour_granted_already_granted">Bevestigd</string>
     <string name="tour_open_app_info_button">App-info openen</string>
     <string name="tour_set_as_default_app_button">Stel in als standaard app</string>
     <string name="tour_app_permissions">App-machtigingen</string>
@@ -307,8 +307,8 @@
     <string name="change_capital">Wijzigen</string>
     <string name="answering_capital">Antwoord</string>
     <string name="premium_capital">Premium</string>
-    <string name="send_alert_via_sms_to_gold_number">Extra SMS verzenden naar %1$s</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">Spraak afspelen als oproep niet wordt beantwoord</string>
+    <string name="send_alert_via_sms_to_gold_number">Ook een sms sturen naar %1$s</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">Ook een gesproken bericht afspelen</string>
     <string name="sos">Hulp</string>
     <string name="lock_capital">Vergrendelen</string>
     <string name="report_capital">Rapport</string>
@@ -372,11 +372,12 @@
     <string name="lock_screen_permission_display_name">Weergeven op het vergrendelscherm</string>
     <string name="overlay_permission_display_name_xiaomi">Nieuwe vensters openen terwijl het op de achtergrond uitgevoerd wordt</string>
     <string name="allow_pop_permission_display_name_xiaomi">Pop-upvensters weergeven</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Om Snelle oproep correct te laten werken, moet de app worden ingesteld als de standaardapp voor het beheren van oproepen.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Om %1$s correct te laten werken, moet de app worden ingesteld als de standaardapp voor het afhandelen van oproepen.</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Om een SMS te verzenden tijdens een %2$s, moet een %1$s worden ingesteld.</string>
     <string name="this_feature_only_available_on_premium">Deze functie is alleen beschikbaar in de Premium-versie. Upgrade nu om hiervan en van vele andere geweldige functies te genieten!</string>
     <string name="unlock_more_with_premium_title">Ontvang meer met Premium</string>
     <string name="try_the_premium_button">Gratis proefperiode starten</string>
     <string name="no_contacts_available_for_selection">Geen contacten beschikbaar voor selectie</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Om %1$s correct te laten werken, moet de app toestemming krijgen voor toegang tot contacten.</string>
 
 </resources>

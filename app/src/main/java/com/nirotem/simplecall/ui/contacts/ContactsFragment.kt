@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.BlockedNumberContract
 import android.provider.ContactsContract
+import android.telephony.PhoneNumberUtils
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -31,6 +32,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.nirotem.simplecall.OngoingCall
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.adapters.ContactsAdapter
@@ -481,11 +483,12 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
             contactsByLetterListItems.add(ContactsInLetterListItem.GoldNumberHeader(true))
             contactsByLetterListItems.add(
                 ContactsInLetterListItem.Contact(
-                    phoneNumber = goldPhoneNumber,
+                    contactId = id.toString(),
+                    phoneNumbers = listOf(goldPhoneNumber),
                     contactOrPhoneNumber = goldPhoneContactName,
                     isFavourite = false,
-                    photoUri = photoUri.toString(),
-                    contactBirthday = null
+                    photoUri = photoUri.toString()//  ,
+                    //contactBirthday = null
                 )
             )
         }
@@ -496,14 +499,15 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         if (sortedFavouritesContacts.isNotEmpty()) {
             contactsByLetterListItems.add(ContactsInLetterListItem.FavouritesHeader(true))
             for (contact in sortedFavouritesContacts) {
-                if (goldPhoneContactName != contact.contactOrPhoneNumber && goldPhoneNumber != contact.phoneNumber) {
+                if (goldPhoneContactName != contact.contactOrPhoneNumber && goldPhoneNumber != contact.phoneNumbers.first()) {
                     contactsByLetterListItems.add(
                         ContactsInLetterListItem.Contact(
-                            phoneNumber = contact.phoneNumber,
+                            contactId = id.toString(),
+                            phoneNumbers = contact.phoneNumbers,
                             contactOrPhoneNumber = contact.contactOrPhoneNumber,
                             isFavourite = contact.isFavourite,
                             photoUri = contact.photoUri,
-                            contactBirthday = contact.contactBirthday
+                            //contactBirthday = contact.contactBirthday
                         )
                     )
                 }
@@ -528,7 +532,7 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
             }.sortedBy { it.contactOrPhoneNumber }
 
             for (contact in localeList) {
-                if (goldPhoneContactName != contact.contactOrPhoneNumber && goldPhoneNumber != contact.phoneNumber) {
+                if (goldPhoneContactName != contact.contactOrPhoneNumber && goldPhoneNumber != contact.phoneNumbers.first()) {
                     val firstLetter = contact.contactOrPhoneNumber.first().toUpperCase().toString()
 
                     if (firstLetter != lastHeader) {
@@ -540,18 +544,19 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                     // הוספת איש קשר לרשימה עם כל הפרמטרים
                     contactsByLetterListItems.add(
                         ContactsInLetterListItem.Contact(
-                            phoneNumber = contact.phoneNumber,
+                            contactId = id.toString(),
+                            phoneNumbers = contact.phoneNumbers,
                             contactOrPhoneNumber = contact.contactOrPhoneNumber,
                             isFavourite = contact.isFavourite,
-                            photoUri = contact.photoUri,
-                            contactBirthday = contact.contactBirthday
+                            photoUri = contact.photoUri //,
+                            //contactBirthday = contact.contactBirthday
                         )
                     )
                 }
             }
 
             for (contact in englishList) {
-                if (goldPhoneContactName != contact.contactOrPhoneNumber && goldPhoneNumber != contact.phoneNumber) {
+                if (goldPhoneContactName != contact.contactOrPhoneNumber && goldPhoneNumber != contact.phoneNumbers.first()) {
                     val firstLetter = contact.contactOrPhoneNumber.first().toUpperCase().toString()
 
                     if (firstLetter != lastHeader) {
@@ -563,18 +568,19 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                     // הוספת איש קשר לרשימה עם כל הפרמטרים
                     contactsByLetterListItems.add(
                         ContactsInLetterListItem.Contact(
-                            phoneNumber = contact.phoneNumber,
+                            contactId = id.toString(),
+                            phoneNumbers = contact.phoneNumbers,
                             contactOrPhoneNumber = contact.contactOrPhoneNumber,
                             isFavourite = contact.isFavourite,
-                            photoUri = contact.photoUri,
-                            contactBirthday = contact.contactBirthday
+                            photoUri = contact.photoUri//,
+                            //contactBirthday = contact.contactBirthday
                         )
                     )
                 }
             }
 
             for (contact in numbersList) {
-                if (goldPhoneContactName != contact.contactOrPhoneNumber && goldPhoneNumber != contact.phoneNumber) {
+                if (goldPhoneContactName != contact.contactOrPhoneNumber && goldPhoneNumber != contact.phoneNumbers.first()) {
                     val firstLetter = contact.contactOrPhoneNumber.first().toUpperCase().toString()
 
                     if (firstLetter != lastHeader) {
@@ -586,11 +592,12 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                     // הוספת איש קשר לרשימה עם כל הפרמטרים
                     contactsByLetterListItems.add(
                         ContactsInLetterListItem.Contact(
-                            phoneNumber = contact.phoneNumber,
+                            contactId = id.toString(),
+                            phoneNumbers = contact.phoneNumbers,
                             contactOrPhoneNumber = contact.contactOrPhoneNumber,
                             isFavourite = contact.isFavourite,
-                            photoUri = contact.photoUri,
-                            contactBirthday = contact.contactBirthday
+                            photoUri = contact.photoUri//,
+                            //contactBirthday = contact.contactBirthday
                         )
                     )
                 }
@@ -711,149 +718,172 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
         //topBar.visibility = View.VISIBLE
     }
 
+    /*───────────────────────────────────────────*\
+     | 1)  loadContacts – ללא סינון חסומים        |
+    \*───────────────────────────────────────────*/
     private fun loadContacts(): List<ContactsInLetterListItem.Contact> {
-        val newContactsList = mutableListOf<ContactsInLetterListItem.Contact>()
 
-        try {
-            val uniqueContacts = mutableSetOf<String>()  // Set to store unique phone numbers
-            val cursor = requireContext().contentResolver.query(
-                ContactsContract.Data.CONTENT_URI,
-                arrayOf(
-                    ContactsContract.Contacts.DISPLAY_NAME, // Name
-                    ContactsContract.CommonDataKinds.Phone.NUMBER, // Phone number
-                    // ContactsContract.CommonDataKinds.Event.START_DATE, // יום ההולדת נמצא כאן
-                    ContactsContract.Contacts.PHOTO_URI, // Photo URI
-                    ContactsContract.Contacts.STARRED, // Starred status (1 or 0)
-                ),
-                "${ContactsContract.Data.MIMETYPE} = ? AND ${ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER} = 1",
-                arrayOf(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE),
-                "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME} ASC" // Sort by name
-            )
+        val cr = requireContext().contentResolver
 
-            cursor?.use {
-                while (it.moveToNext()) {
-                    val contactName =
-                        it.getString(it.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
-                    val phoneNumber =
-                        it.getString(it.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                    val photoUri =
-                        it.getString(it.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI))
-                    val photoUriStr = if (photoUri !== null) photoUri else ""
-                    val isStarred =
-                        it.getInt(it.getColumnIndexOrThrow(ContactsContract.Contacts.STARRED)) == 1
-                    // val birthdayLong =
-                    //  it.getLong(it.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.START_DATE))
-                    //val birthday = formatTimestamp(birthdayLong)
+        // contactId  ->  (normalizedDigits -> formattedNumber)
+        val contactsMap = mutableMapOf<String, LinkedHashMap<String, String>>()
+        val namesMap   = mutableMapOf<String, String>()
+        val photoMap   = mutableMapOf<String, String>()
+        val starredMap = mutableMapOf<String, Boolean>()
 
-                    val contact =
-                        ContactsInLetterListItem.Contact(
-                            phoneNumber,
-                            contactName,
-                            null,
-                            isStarred,
-                            photoUriStr
-                        )
+        val projection = arrayOf(
+            ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
+            ContactsContract.Contacts.DISPLAY_NAME,
+            ContactsContract.CommonDataKinds.Phone.NUMBER,
+            ContactsContract.Contacts.PHOTO_URI,
+            ContactsContract.Contacts.STARRED
+        )
 
-                    val shortPhoneNumber = phoneNumber.filter { it.isDigit() }
+        val selection     = "${ContactsContract.Data.MIMETYPE} = ? " +
+                "AND ${ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER} = 1"
+        val selectionArgs = arrayOf(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+        val sortOrder     = "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME} ASC"
 
-                    if (uniqueContacts.add(contactName + shortPhoneNumber)) {  // Adds only unique Contact + phone number
-                        newContactsList.add(contact)
-                    }
+        cr.query(
+            ContactsContract.Data.CONTENT_URI,
+            projection,
+            selection,
+            selectionArgs,
+            sortOrder
+        )?.use { cursor ->
 
+            val idIdx   = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.CONTACT_ID)
+            val nameIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME)
+            val numIdx  = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER)
+            val phoIdx  = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI)
+            val favIdx  = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.STARRED)
 
-                    // println("Contact: $name, Phone: $phoneNumber, Photo: $photoUri, Starred: $isStarred")
-                }
+            while (cursor.moveToNext()) {
+
+                val contactId  = cursor.getString(idIdx)
+                val name       = cursor.getString(nameIdx)
+                val rawNumber  = cursor.getString(numIdx) ?: continue
+
+                // ── 1) מפתח אחיד לכפילויות
+                val normalized = PhoneNumberUtils.normalizeNumber(rawNumber)
+                    ?: rawNumber.filter { it.isDigit() }
+                if (normalized.isEmpty()) continue
+
+                // ── 2) עיצוב אחיד
+                val formatted  = OngoingCall.formatPhoneNumberWithLib(
+                    normalized, Locale.getDefault().country
+                )
+
+                // ── 3) הוספה רק אם טרם קיים
+                contactsMap
+                    .getOrPut(contactId) { LinkedHashMap() }
+                    .putIfAbsent(normalized, formatted)
+
+                namesMap  [contactId] = name
+                photoMap  [contactId] = cursor.getString(phoIdx) ?: ""
+                starredMap[contactId] = cursor.getInt(favIdx) == 1
             }
-        } catch (error: Error) {
-            Log.e("SimplyCall - ContactsFragment", "ContactsFragment loadContacts Error ($error)")
         }
 
-
-        return newContactsList
+        return contactsMap.map { (contactId, numbersMap) ->
+            ContactsInLetterListItem.Contact(
+                contactId            = contactId,
+                contactOrPhoneNumber = namesMap[contactId] ?: "",
+                phoneNumbers         = numbersMap.values.toList(),   // ייחודיים ומסודרים
+                isFavourite          = starredMap[contactId] == true,
+                photoUri             = photoMap[contactId] ?: ""
+            )
+        }.sortedBy { it.contactOrPhoneNumber }                      // מיון סופי
     }
 
+    /*───────────────────────────────────────────*\
+     | 2)  loadContactsOptimized – עם סינון חסומים |
+    \*───────────────────────────────────────────*/
     private fun loadContactsOptimized(context: Context): List<ContactsInLetterListItem.Contact> {
-        val newContactsList = mutableListOf<ContactsInLetterListItem.Contact>()
 
-        try {
-            // Step 1: Fetch all blocked numbers into a Set for efficient lookup
-            val blockedNumbers = mutableSetOf<String>()
-            context.contentResolver.query(
-                BlockedNumberContract.BlockedNumbers.CONTENT_URI,
-                arrayOf(BlockedNumberContract.BlockedNumbers.COLUMN_ORIGINAL_NUMBER),
-                null,
-                null,
-                null
-            )?.use { cursor ->
-                val numberIndex =
-                    cursor.getColumnIndex(BlockedNumberContract.BlockedNumbers.COLUMN_ORIGINAL_NUMBER)
-                if (numberIndex != -1) {
-                    while (cursor.moveToNext()) {
-                        val blockedNumber = cursor.getString(numberIndex)
-                        if (!blockedNumber.isNullOrEmpty()) {
-                            blockedNumbers.add(normalizePhoneNumber(blockedNumber))
-                        }
-                    }
-                }
-            }
-
-
-            val uniqueContacts = mutableSetOf<String>()  // Set to store unique phone numbers
-            val cursor = context.contentResolver.query(
-                ContactsContract.Data.CONTENT_URI,
-                arrayOf(
-                    ContactsContract.Contacts.DISPLAY_NAME, // Name
-                    ContactsContract.CommonDataKinds.Phone.NUMBER, // Phone number
-                    // ContactsContract.CommonDataKinds.Event.START_DATE, // יום ההולדת נמצא כאן
-                    ContactsContract.Contacts.PHOTO_URI, // Photo URI
-                    ContactsContract.Contacts.STARRED, // Starred status (1 or 0)
-                ),
-                "${ContactsContract.Data.MIMETYPE} = ? AND ${ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER} = 1",
-                arrayOf(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE),
-                "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME} ASC" // Sort by name
+        /*–– אוסף מספרים חסומים –––––––––––––––––*/
+        val blockedNumbers = mutableSetOf<String>()
+        context.contentResolver.query(
+            BlockedNumberContract.BlockedNumbers.CONTENT_URI,
+            arrayOf(BlockedNumberContract.BlockedNumbers.COLUMN_ORIGINAL_NUMBER),
+            null, null, null
+        )?.use { cursor ->
+            val nIdx = cursor.getColumnIndexOrThrow(
+                BlockedNumberContract.BlockedNumbers.COLUMN_ORIGINAL_NUMBER
             )
-
-            cursor?.use {
-                while (it.moveToNext()) {
-                    val contactName =
-                        it.getString(it.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
-                    val phoneNumber =
-                        it.getString(it.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                    val photoUri =
-                        it.getString(it.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI))
-                    val photoUriStr = if (photoUri !== null) photoUri else ""
-                    val isStarred =
-                        it.getInt(it.getColumnIndexOrThrow(ContactsContract.Contacts.STARRED)) == 1
-                    // val birthdayLong =
-                    //  it.getLong(it.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.START_DATE))
-                    //val birthday = formatTimestamp(birthdayLong)
-
-                    val contact =
-                        ContactsInLetterListItem.Contact(
-                            phoneNumber,
-                            contactName,
-                            null,
-                            isStarred,
-                            photoUriStr
-                        )
-
-                    val shortPhoneNumber = phoneNumber.filter { it.isDigit() }
-
-                    val isBlocked = blockedNumbers.contains(shortPhoneNumber)
-
-                    if (!isBlocked) {
-                        if (uniqueContacts.add(contactName + shortPhoneNumber)) {  // Adds only unique Contact + phone number
-                            newContactsList.add(contact)
-                        }
-                    }
-                    // println("Contact: $name, Phone: $phoneNumber, Photo: $photoUri, Starred: $isStarred")
-                }
+            while (cursor.moveToNext()) {
+                val raw = cursor.getString(nIdx) ?: continue
+                val key = PhoneNumberUtils.normalizeNumber(raw) ?: raw.filter { it.isDigit() }
+                if (key.isNotEmpty()) blockedNumbers.add(key)
             }
-        } catch (error: Error) {
-            Log.e("SimplyCall - ContactsFragment", "ContactsFragment loadContacts Error ($error)")
         }
 
-        return newContactsList
+        /*–– מילונים לאגירת אנשי קשר –––––––––––*/
+        val contactsMap = mutableMapOf<String, LinkedHashMap<String, String>>()
+        val namesMap    = mutableMapOf<String, String>()
+        val photoMap    = mutableMapOf<String, String>()
+        val starredMap  = mutableMapOf<String, Boolean>()
+
+        val projection = arrayOf(
+            ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
+            ContactsContract.Contacts.DISPLAY_NAME,
+            ContactsContract.CommonDataKinds.Phone.NUMBER,
+            ContactsContract.Contacts.PHOTO_URI,
+            ContactsContract.Contacts.STARRED
+        )
+
+        val selection     = "${ContactsContract.Data.MIMETYPE} = ? " +
+                "AND ${ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER} = 1"
+        val selectionArgs = arrayOf(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+        val sortOrder     = "${ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME} ASC"
+
+        context.contentResolver.query(
+            ContactsContract.Data.CONTENT_URI,
+            projection,
+            selection,
+            selectionArgs,
+            sortOrder
+        )?.use { cursor ->
+
+            val idIdx   = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.CONTACT_ID)
+            val nameIdx = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME)
+            val numIdx  = cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER)
+            val phoIdx  = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.PHOTO_URI)
+            val favIdx  = cursor.getColumnIndexOrThrow(ContactsContract.Contacts.STARRED)
+
+            while (cursor.moveToNext()) {
+
+                val contactId  = cursor.getString(idIdx)
+                val name       = cursor.getString(nameIdx)
+                val rawNumber  = cursor.getString(numIdx) ?: continue
+
+                val normalized = PhoneNumberUtils.normalizeNumber(rawNumber)
+                    ?: rawNumber.filter { it.isDigit() }
+                if (normalized.isEmpty() || blockedNumbers.contains(normalized)) continue
+
+                val formatted  = OngoingCall.formatPhoneNumberWithLib(
+                    normalized, Locale.getDefault().country
+                )
+
+                contactsMap
+                    .getOrPut(contactId) { LinkedHashMap() }
+                    .putIfAbsent(normalized, formatted)
+
+                namesMap  [contactId] = name
+                photoMap  [contactId] = cursor.getString(phoIdx) ?: ""
+                starredMap[contactId] = cursor.getInt(favIdx) == 1
+            }
+        }
+
+        return contactsMap.map { (contactId, numbersMap) ->
+            ContactsInLetterListItem.Contact(
+                contactId            = contactId,
+                contactOrPhoneNumber = namesMap[contactId] ?: "",
+                phoneNumbers         = numbersMap.values.toList(),
+                isFavourite          = starredMap[contactId] == true,
+                photoUri             = photoMap[contactId] ?: ""
+            )
+        }.sortedBy { it.contactOrPhoneNumber }
     }
 
     /**
@@ -958,9 +988,9 @@ sealed class ContactsInLetterListItem {
     data class FavouritesHeader(val isShown: Boolean) : ContactsInLetterListItem()
     data class GoldNumberHeader(val isShown: Boolean) : ContactsInLetterListItem()
     data class Contact(
-        val phoneNumber: String,
+        val contactId: String,
         val contactOrPhoneNumber: String,
-        val contactBirthday: String?,
+        val phoneNumbers: List<String>,
         val isFavourite: Boolean,
         val photoUri: String
     ) : ContactsInLetterListItem()

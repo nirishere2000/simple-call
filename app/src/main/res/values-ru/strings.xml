@@ -107,7 +107,7 @@
     <string name="tour_gold_number_text">Вы можете настроить Золотой номер для простых и удобных звонков близкому контакту через экран настроек, а затем звонить через вкладку «Контакты» или номеронабиратель.\n\nВы можете позвонить на Золотой номер даже в случае ограничения исходящих вызовов в приложении, но для этого требуется разрешение на звонки.</string>
     <string name="tour_next_button">Далее</string>
     <string name="tour_prev_button">Назад</string>
-    <string name="tour_done">Одобрено</string>
+    <string name="tour_granted_already_granted">Подтверждено</string>
     <string name="tour_open_app_info_button">Открыть информацию о приложении</string>
     <string name="tour_set_as_default_app_button">Установить как приложение по умолчанию</string>
     <string name="tour_app_permissions">Разрешения приложения</string>
@@ -299,8 +299,8 @@
     <string name="change_capital">Изменить</string>
     <string name="answering_capital">Ответ</string>
     <string name="premium_capital">Премиум</string>
-    <string name="send_alert_via_sms_to_gold_number">Отправить дополнительное SMS на %1$s</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">Воспроизвести голос, если на звонок не ответили</string>
+    <string name="send_alert_via_sms_to_gold_number">Также отправить SMS на %1$s</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">Также воспроизвести голосовое сообщение</string>
     <string name="sos">Помощь</string>
     <string name="lock_capital">Блокировка</string>
     <string name="report_capital">Отчёт</string>
@@ -366,10 +366,11 @@
     <string name="lock_screen_permission_display_name">Показ на экране блокировки</string>
     <string name="overlay_permission_display_name_xiaomi">Открывать новые окна, когда запущено в фоновом режиме</string>
     <string name="allow_pop_permission_display_name_xiaomi">Отображение всплывающих окон</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Чтобы функция "Быстрый звонок" работала корректно, необходимо установить это приложение приложением по умолчанию для управления звонками.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Чтобы %1$s работал корректно, необходимо назначить приложение приложением по умолчанию для обработки вызовов.</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Чтобы отправить SMS во время %2$s, необходимо настроить %1$s.</string>
     <string name="this_feature_only_available_on_premium">Эта функция доступна только в версии Premium. Обновитесь сейчас, чтобы пользоваться этой и другими замечательными функциями!</string>
     <string name="unlock_more_with_premium_title">Получите больше с Premium</string>
     <string name="try_the_premium_button">Начать бесплатную пробную версию</string>
     <string name="no_contacts_available_for_selection">Нет доступных контактов для выбора</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Чтобы %1$s работал корректно, приложению необходимо предоставить разрешение на доступ к контактам.</string>
 </resources>

@@ -107,7 +107,7 @@
     <string name="tour_gold_number_text">באמצעות מסך ההגדרות ניתן להגדיר מספר זהב לחיוג מקוצר ונוח עם איש קשר קרוב, ולאחר מכן להתקשר אליו או אליה דרך לשונית אנשי הקשר או החיוג.\n\nניתן להתקשר למספר זהב גם כאשר שיחות יוצאות מוגבלות באפליקציה, אך נדרשת הרשאת שיחות.</string>
     <string name="tour_next_button">הבא</string>
     <string name="tour_prev_button">הקודם</string>
-    <string name="tour_done">מאושר</string>
+    <string name="tour_granted_already_granted">אושר</string>
     <string name="tour_open_app_info_button">לפתוח את פרטי היישום</string>
     <string name="tour_set_as_default_app_button">הגדר כאפליקציית ברירת המחדל</string>
     <string name="tour_app_permissions">הרשאות נדרשות</string>
@@ -277,8 +277,8 @@
     <string name="change_capital">שינוי</string>
     <string name="answering_capital">מענה</string>
     <string name="premium_capital">פרימיום</string>
-    <string name="send_alert_via_sms_to_gold_number">בנוסף, שליחת הודעת טקסט ל%1$s</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">השמעת דיבור אם השיחה לא נענתה</string>
+    <string name="send_alert_via_sms_to_gold_number">בנוסף שליחת הודעת טקסט ל%1$s</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">בנוסף השמעת דיבור</string>
     <string name="sos">סיוע</string>
     <string name="lock_capital">נעילה</string>
     <string name="report_capital">דוח</string>
@@ -343,11 +343,12 @@
     <string name="lock_screen_permission_display_name">הצגה במסך הנעילה</string>
     <string name="allow_pop_permission_display_name_xiaomi">הצגת חלונות קופצים</string>
     <string name="overlay_permission_display_name_xiaomi">פתיחת חלונות חדשים בזמן שהיישום רץ ברקע</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">על מנת שהשיחה המהירה תעבוד כראוי, יש להגדיר את האפליקציה כברירת במחדל לניהול שיחות.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">כדי ש-%1$s תעבוד כראוי, יש להגדיר את האפליקציה כברירת מחדל לניהול שיחות.</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">על מנת לשלוח הודעת טקסט במהלך %2$s, יש להגדיר %1$s.</string>
     <string name="this_feature_only_available_on_premium">תכונה זו זמינה רק בגרסת הפרימיום. שדרגו עכשיו כדי ליהנות ממנה וממגוון תכונות נוספות!</string>
     <string name="unlock_more_with_premium_title">קבלו עוד עם פרימיום</string>
     <string name="try_the_premium_button">התחילו ניסיון חינם</string>
     <string name="no_contacts_available_for_selection">לא נמצאו אנשי קשר זמינים לבחירה</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">כדי ש-%1$s תעבוד כראוי, יש להעניק לאפליקציה הרשאת אנשי קשר.</string>
 
 </resources>

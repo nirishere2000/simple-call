@@ -107,7 +107,7 @@
     <string name="tour_gold_number_text">您可以通过设置界面为亲密联系人设置一个黄金号码，以实现简便且顺畅的通话，然后通过联系人标签或拨号器拨打。\n\n即使应用限制了拨出电话，您仍然可以拨打黄金号码，但需要通话权限。</string>
     <string name="tour_next_button">下一步</string>
     <string name="tour_prev_button">上一步</string>
-    <string name="tour_done">已批准</string>
+    <string name="tour_granted_already_granted">已确认</string>
     <string name="tour_open_app_info_button">打开应用信息</string>
     <string name="tour_set_as_default_app_button">设为默认应用</string>
     <string name="tour_app_permissions">应用权限</string>
@@ -277,8 +277,8 @@
     <string name="change_capital">更改</string>
     <string name="answering_capital">应答</string>
     <string name="premium_capital">高级</string>
-    <string name="send_alert_via_sms_to_gold_number">向%1$s发送额外短信</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">如果未接听电话，则播放语音</string>
+    <string name="send_alert_via_sms_to_gold_number">也向%1$s发送短信</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">也播放语音消息</string>
     <string name="sos">援助</string>
     <string name="lock_capital">锁定</string>
     <string name="report_capital">报告</string>
@@ -341,10 +341,11 @@
     <string name="lock_screen_permission_display_name">在锁屏上显示</string>
     <string name="overlay_permission_display_name_xiaomi">后台弹出界面</string>
     <string name="allow_pop_permission_display_name_xiaomi">显示悬浮窗</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">为了让快速通话功能能正常工作，需要将应用设置为默认的通话管理应用。</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">若要正常使用 %1$s，必须将此应用设置为默认拨号应用。</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">要在%2$s期间发送短信，必须先设置%1$s。</string>
     <string name="this_feature_only_available_on_premium">此功能仅在高级版中提供。立即升级，享受此功能及更多精彩功能！</string>
     <string name="unlock_more_with_premium_title">解锁更多高级功能</string>
     <string name="try_the_premium_button">开始免费试用</string>
     <string name="no_contacts_available_for_selection">没有可供选择的联系人</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">若要使 %1$s 正常运行，必须授予应用访问联系人权限。</string>
 </resources>

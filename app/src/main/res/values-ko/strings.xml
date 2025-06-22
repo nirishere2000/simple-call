@@ -107,7 +107,7 @@
     <string name="tour_gold_number_text">설정 화면을 사용하여 가까운 연락처로 간편하고 쉽게 통화할 수 있도록 골드 번호를 설정하고, 연락처 탭이나 다이얼러를 통해 전화를 걸 수 있습니다.\n\n앱에서 발신 통화가 제한되어 있어도 골드 번호로 전화를 걸 수 있지만, 통화 권한이 필요합니다.</string>
     <string name="tour_next_button">다음</string>
     <string name="tour_prev_button">이전</string>
-    <string name="tour_done">승인됨</string>
+    <string name="tour_granted_already_granted">확인됨</string>
     <string name="tour_open_app_info_button">앱 정보 열기</string>
     <string name="tour_set_as_default_app_button">기본 앱으로 설정</string>
     <string name="tour_app_permissions">앱 권한</string>
@@ -277,8 +277,8 @@
     <string name="change_capital">변경</string>
     <string name="answering_capital">응답</string>
     <string name="premium_capital">프리미엄</string>
-    <string name="send_alert_via_sms_to_gold_number">%1$s에게 추가 SMS 전송</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">응답이 없으면 음성을 재생합니다</string>
+    <string name="send_alert_via_sms_to_gold_number">%1$s에게 SMS도 전송</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">음성 메시지도 재생</string>
     <string name="sos">지원</string>
     <string name="lock_capital">잠금</string>
     <string name="report_capital">보고서</string>
@@ -341,11 +341,12 @@
     <string name="lock_screen_permission_display_name">잠금 화면에 표시</string>
     <string name="overlay_permission_display_name_xiaomi">백그라운드에서 실행되는 동안 새로운 창 열기</string>
     <string name="allow_pop_permission_display_name_xiaomi">팝업 창 표시</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">빠른 전화를 정상적으로 사용하려면 앱을 통화 관리 기본 앱으로 설정해야 합니다.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s 기능을 제대로 사용하려면 앱을 기본 통화 앱으로 설정해야 합니다.</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">%2$s 중에 SMS를 보내려면 %1$s을(를) 설정해야 합니다.</string>
     <string name="this_feature_only_available_on_premium">이 기능은 프리미엄 버전에서만 사용할 수 있습니다. 지금 업그레이드하여 이 기능과 다른 유용한 기능들을 사용해 보세요!</string>
     <string name="unlock_more_with_premium_title">프리미엄으로 더 많은 기능을 이용하세요</string>
     <string name="try_the_premium_button">무료 체험 시작하기</string>
     <string name="no_contacts_available_for_selection">선택할 수 있는 연락처가 없습니다</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">%1$s 기능을 제대로 사용하려면 앱에 연락처 권한을 부여해야 합니다.</string>
 
 </resources>

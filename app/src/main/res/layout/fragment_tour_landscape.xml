@@ -186,7 +186,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="1dp"
                 android:gravity="start"
-                android:text="@string/tour_done"
+                android:text="@string/tour_granted_already_granted"
                 android:textColor="#555555"
                 android:textSize="26sp"
                 android:textStyle="bold" />

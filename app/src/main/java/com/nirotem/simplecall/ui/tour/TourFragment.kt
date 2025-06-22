@@ -12,7 +12,6 @@ import android.content.pm.PackageManager
 import android.util.TypedValue
 import android.content.res.Configuration
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -43,6 +42,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.nirotem.sharedmodules.statuses.OemDetector
+import com.nirotem.sharedmodules.statuses.OemDetector.checkIsOnePlus
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.helpers.DBHelper.fetchContactsOptimized
 import com.nirotem.simplecall.helpers.DBHelper.getContactNameFromPhoneNumber
@@ -400,7 +400,7 @@ class TourFragment : Fragment() {
         stepAcceptAppTermsContainer = view.findViewById(R.id.stepAcceptAppTermsContainer)
         distressButtonBack = view.findViewById(R.id.distressButtonBack)
         distressButtonIcon = view.findViewById(R.id.emergency_button_icon)
-        distressButtonTextDisabled = view.findViewById(R.id.emergency_button_text_disabled)
+        distressButtonTextDisabled = view.findViewById(R.id.quick_call_button_text_disabled)
         tourDescription = view.findViewById(R.id.tour_description)
         buttonNext = view.findViewById(R.id.button_next)
         buttonPrev = view.findViewById(R.id.button_prev)
@@ -658,11 +658,15 @@ class TourFragment : Fragment() {
             buttonOpenDefaultDialer.visibility = View.GONE
             lastPageButtons.visibility = View.VISIBLE
 
-            if (OemDetector.current() == OemDetector.Oem.SAMSUNG || OemDetector.current() == OemDetector.Oem.OTHER) {
+            if (checkIsOnePlus()) { // Should be like Pixel
+                tourImageWithBorder.setImageResource(R.drawable.other_permissions_pixel)
+                tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_pixel)
+            }
+            else if (OemDetector.current() == OemDetector.Oem.SAMSUNG) {
                 tourImageWithBorder.setImageResource(R.drawable.other_permissions_samsung)
                 tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_samsung)
             }
-            else if (OemDetector.current() == OemDetector.Oem.GOOGLE) {
+            else if (OemDetector.current() == OemDetector.Oem.GOOGLE || OemDetector.current() == OemDetector.Oem.OTHER) { // Also default
                 tourImageWithBorder.setImageResource(R.drawable.other_permissions_pixel)
                 tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_pixel)
             }
@@ -735,7 +739,7 @@ class TourFragment : Fragment() {
                 buttonNext.text = getString(R.string.tour_next_button)
                 buttonNext.visibility = VISIBLE // can finish now
                 stepDoneBack.visibility = VISIBLE
-                buttonOpenDefaultDialer.visibility = View.VISIBLE
+                buttonOpenDefaultDialer.visibility = View.GONE
 
             } else { // load default dialer request
                 buttonOpenDefaultDialer.visibility = View.VISIBLE
@@ -1176,7 +1180,6 @@ class TourFragment : Fragment() {
         val validNumbers = emergencyNumbersByRegion[regionCode.uppercase()] ?: emptyList()
         return validNumbers.contains(number)
     }
-
 
     private fun requestRole(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

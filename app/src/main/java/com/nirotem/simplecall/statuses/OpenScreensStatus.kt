@@ -17,6 +17,7 @@ object OpenScreensStatus {
     var registerPremiumTourInstanceValue = 0
     var shouldUpdateSettingsScreens = MutableLiveData(false)
     var shouldCloseSettingsScreens = MutableLiveData(0)
+    var shouldCloseSettingsBecauseOfLowerMenu = MutableLiveData(false)
     var shouldClosePermissionsScreens = MutableLiveData(0)
     var shouldCloseCallReportScreens = MutableLiveData(0)
     var shouldClosePremiumTourScreens = MutableLiveData(0)

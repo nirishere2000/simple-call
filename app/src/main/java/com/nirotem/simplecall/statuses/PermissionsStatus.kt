@@ -191,7 +191,7 @@ object PermissionsStatus {
         requestPermissionLauncher = permissionLauncher
         askingForMakingMakingCallPermission =
             askForPermission(
-                activity, context, CALL_PHONE,
+                activity, context, context.getString(R.string.app_must_have_permission_to_make_calls),
                 context.getString(R.string.app_must_have_permission_to_make_calls),
                 ::requestCallPhonePermission
             )

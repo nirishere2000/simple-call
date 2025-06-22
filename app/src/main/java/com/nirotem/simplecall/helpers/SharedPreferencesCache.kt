@@ -308,7 +308,7 @@ object SharedPreferencesCache {
     }
 
     // פונקציה לשמירת המיפוי (שם -> טלפון) ב-SharedPreferences בעזרת org.json
-    fun saveContactsMapping(context: Context, contactsMap: Map<String, String>) {
+    fun saveContactsMapping(context: Context, contactsMap: Map<String, List<String>>) {
         val jsonObject = JSONObject(contactsMap)
         saveVariableInMemory(context, "contacts_mapping", jsonObject.toString())
     }

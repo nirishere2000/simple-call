@@ -142,8 +142,8 @@ class SingleCallHistoryAdapter(context: Context?) :
 
         // Set call type icon
         when (call.type) {
-            "Incoming" -> holder.missedIndicator.setImageResource(android.R.drawable.sym_call_incoming)
-            "Outgoing" -> holder.missedIndicator.setImageResource(android.R.drawable.sym_call_outgoing)
+            "Incoming" -> holder.missedIndicator.setImageResource(R.drawable.incoming_call)
+            "Outgoing" -> holder.missedIndicator.setImageResource(R.drawable.outgoing_call)
             "Missed" -> holder.missedIndicator.setImageResource(android.R.drawable.sym_call_missed)
             "Rejected" -> holder.missedIndicator.setImageResource(android.R.drawable.ic_delete)
             "Blocked" -> holder.missedIndicator.setImageResource(android.R.drawable.ic_dialog_alert)

@@ -65,13 +65,9 @@
             android:layout_height="match_parent"
             android:contentDescription="Contact or app photo"
             android:src="@drawable/goldappiconphoneblack"
-            android:visibility="gone"
-
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-
-
             app:layout_constraintStart_toStartOf="parent"
-
             />
 
         <FrameLayout
@@ -82,7 +78,7 @@
             android:background="@drawable/circle_background"
             android:clipToOutline="true"
             android:outlineProvider="background"
-            android:visibility="visible"
+            android:visibility="gone"
 
 
             >

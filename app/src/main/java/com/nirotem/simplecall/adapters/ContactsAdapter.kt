@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -18,14 +20,17 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.nirotem.simplecall.OngoingCall
+import com.nirotem.simplecall.OngoingCall.formatPhoneNumberWithLib
 import com.nirotem.simplecall.OutgoingCall
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.helpers.DBHelper.getContactIdFromPhoneNumber
@@ -162,21 +167,17 @@ class ContactsAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
         private val nameText: TextView = itemView.findViewById(R.id.contactsContactName)
         private val dialButton: ImageView = itemView.findViewById(R.id.dialButton)
-        //private val dialButtonBorder: ImageView = itemView.findViewById(R.id.dialButtonBorder)
         private val goldNumberDialButton: ImageView = itemView.findViewById(R.id.goldNumberDialButton)
         private val contactsCallButton: FrameLayout = itemView.findViewById(R.id.contactsCallButton)
         private val contactsCallButtonContainer: LinearLayout = itemView.findViewById(R.id.contactsCallButtonContainer)
         private val infoButton: ImageView = itemView.findViewById(R.id.contactsInfoButton)
 
-        //private val videoCallButton: ImageView = itemView.findViewById(R.id.videoCallButton)
         private val openWhatsUpButton: ImageView = itemView.findViewById(R.id.openWhatsUpButton)
         private val fragmentViewLifecycleOwner = paramFragmentViewLifecycleOwner
         private val activity = activityUI
         private val requestPermissionLauncher = requestPermissionLauncherUI
 
-        // private val msgContactButton: ImageView = itemView.findViewById(R.id.msgContactButton)
         private val fragmentContext = fragContext
-        private var contactId: String? = null
         private val currFragmentManager = holderFragmentManager
         private val navController = navigationController
         private val singleCallViewModel = singleCallVM
@@ -192,7 +193,7 @@ class ContactsAdapter(
 
         // private val noPermissionToCall =
         //   PermissionsStatus.callPhonePermissionGranted.value === null || (!(PermissionsStatus.callPhonePermissionGranted.value!!))
-        private val phoneNumber: TextView = itemView.findViewById(R.id.phoneNumber)
+       //    private val phoneNumber: TextView = itemView.findViewById(R.id.phoneNumber)
 
         // private val favoriteIcon: ImageView = itemView.findViewById(R.id.favoriteIcon)
 
@@ -204,98 +205,63 @@ class ContactsAdapter(
         private val autoAnswerCheckBox: CheckBox = itemView.findViewById(R.id.autoAnswerCheckBox)
         private var isRowOpened = false
         private val languageEnum = LanguagesEnum.fromCode(Locale.getDefault().language)
+        private val phoneNumbersContainer = itemView.findViewById<LinearLayout>(R.id.phoneNumbersContainer)
+        private val simpleLineBack: View = itemView.findViewById(R.id.simpleLineBack)
+
 
         fun bind(contact: ContactsInLetterListItem.Contact) {
-            nameText.text = contact.contactOrPhoneNumber
-            val phoneNumberToCall = contact.phoneNumber
-            phoneNumber.text =
-                OngoingCall.formatPhoneNumberWithLib(
-                    contact.phoneNumber,
-                    languageEnum.region
-                )
+            simpleLineBack.setOnClickListener {
+                isRowOpened = !isRowOpened
+                phoneNumberBack.visibility = if (isRowOpened) View.VISIBLE else View.GONE
+                buttonsBack.visibility = if (isRowOpened) View.VISIBLE else View.GONE
+            }
 
-            // Try to get photo:
-            contactId = if (fragmentContext != null) getContactIdFromPhoneNumber(
-                fragmentContext,
-                phoneNumberToCall
-            ) else null
+            nameText.text = contact.contactOrPhoneNumber
 
             contactExistingPhotoBackContainer.visibility = GONE
-            if (contactId != null) {
-                val userProfilePicture = getContactPhoto(
-                    fragmentContext!!,
-                    contactId!!
-                ) // if contactId is not null then we know fragmentContext isn't null
-                if (userProfilePicture != null) {
-                    photoImageView.setImageBitmap(userProfilePicture)
-                    contactExistingPhotoBackContainer.visibility = VISIBLE
-                    //contactExistingPhotoBack.visibility = VISIBLE
-                } else {
-                    contactExistingPhotoBackContainer.visibility = GONE
-                    // Handle case where no profile picture exists
-                    //contactExistingPhotoBack.visibility = GONE
-                }
+            if (contact.photoUri.isNotEmpty() && contact.photoUri != "null") {
+                val uri = contact.photoUri.toUri()
+                photoImageView.setImageURI(uri)
+                contactExistingPhotoBackContainer.visibility = VISIBLE
             }
 
             val isUserGoldNumber =
-                (SettingsStatus.goldNumber.value != null && contact.phoneNumber == SettingsStatus.goldNumber.value)
-                        && (SettingsStatus.goldNumberContact.value != null && contact.contactOrPhoneNumber == SettingsStatus.goldNumberContact.value)
+                (SettingsStatus.goldNumber.value != null && contact.phoneNumbers.contains(SettingsStatus.goldNumber.value)) &&
+                        (SettingsStatus.goldNumberContact.value != null && contact.contactOrPhoneNumber == SettingsStatus.goldNumberContact.value)
+
             val userAllowsCalls = selectedOutgoingCallsEnum != AllowOutgoingCallsEnum.NO_ONE
-/*            contactsCallButton.visibility =
-                if (contact.phoneNumber === "" || (!userAllowsCalls && !isUserGoldNumber)) INVISIBLE else VISIBLE*/
-            if (contact.phoneNumber !== "" && (userAllowsCalls || isUserGoldNumber)) {
+
+            if (contact.phoneNumbers.isNotEmpty() && (userAllowsCalls || isUserGoldNumber)) {
                 contactsCallButtonContainer.visibility = VISIBLE
                 if (isUserGoldNumber) {
-                    goldNumberDialButton.setOnClickListener({
-                        handlePhoneDialClick(contact.phoneNumber)
-                    })
+                    goldNumberDialButton.setOnClickListener {
+                        handlePhoneDialClick(contact.phoneNumbers.first())
+                    }
+                } else {
+                    dialButton.setOnClickListener {
+                        handlePhoneDialClick(contact.phoneNumbers.first())
+                    }
                 }
-                else {
-/*                    contactsCallButton.setOnClickListener({
-                        handlePhoneDialClick(contact.phoneNumber)
-                    })*/
-                    dialButton.setOnClickListener({
-                        handlePhoneDialClick(contact.phoneNumber)
-                    })
-/*                    dialButtonBorder.setOnClickListener({
-                        handlePhoneDialClick(contact.phoneNumber)
-                    })*/
-                }
-            }
-            else {
+            } else {
                 contactsCallButtonContainer.visibility = GONE
             }
 
             if (isUserGoldNumber) {
-                //callButton.setImageResource(R.drawable.goldappiconphoneblack)
                 contactsCallButton.visibility = GONE
-                if (SettingsStatus.isPremium) {
-                    goldNumberDialButton.setImageResource(SettingsStatus.appLogoResourceSmall) // otherwise it has the default already from design-time
-                }
                 goldNumberDialButton.visibility = VISIBLE
-/*                val paddingInDp = 10
-                val density = callButton.context.resources.displayMetrics.density
-                val paddingInPx = (paddingInDp * density + 0.5f).toInt()
-                callButton.setPadding(paddingInPx, paddingInPx, paddingInPx, paddingInPx)*/
-            }
-            else {
-/*                val paddingInDp = 0
-                val density = callButton.context.resources.displayMetrics.density
-                val paddingInPx = (paddingInDp * density + 0.5f).toInt()
-                callButton.setPadding(paddingInPx, paddingInPx, paddingInPx, paddingInPx)*/
-               // callButton.setImageResource(R.drawable.goldappiconphoneblack)
+            } else {
                 contactsCallButton.visibility = VISIBLE
                 goldNumberDialButton.visibility = GONE
             }
 
             infoButton.setOnClickListener {
                 val bundle = Bundle().apply {
-                    putString("phone_number", contact.phoneNumber)
+                    putString("phone_number", contact.phoneNumbers.firstOrNull())
                     putString("contact", contact.contactOrPhoneNumber)
                 }
                 singleCallViewModel.setSharedData(
                     SingleCallHistoryViewModel.ContactData(
-                        contact.phoneNumber,
+                        contact.phoneNumbers.firstOrNull() ?: "",
                         contact.contactOrPhoneNumber
                     )
                 )
@@ -303,77 +269,126 @@ class ContactsAdapter(
             }
 
             openWhatsUpButton.setOnClickListener {
-                if (fragmentContext != null) {
-                    openWhatsAppContact(contact.phoneNumber, fragmentContext)
+                if (fragmentContext != null && contact.phoneNumbers.isNotEmpty()) {
+                    openWhatsAppContact(contact.phoneNumbers.first(), fragmentContext)
                 }
             }
+
             val allowOpeningWhatsApp = SettingsStatus.allowOpeningWhatsApp.value
             openWhatsUpButton.visibility = if (allowOpeningWhatsApp == true) VISIBLE else GONE
             SettingsStatus.allowOpeningWhatsApp.observe(fragmentViewLifecycleOwner) { allowOpening ->
-                val allowOpeningWhatsApp = SettingsStatus.allowOpeningWhatsApp.value
-                openWhatsUpButton.visibility =
-                    if (allowOpeningWhatsApp == true) VISIBLE else GONE
-            }
-
-            if (fragmentContext != null) {
-                loadAndShowSettings(
-                    contact.phoneNumber,
-                    fragmentContext
-                ) // better be before listener register
-            }
-
-            autoAnswerCheckBox.setOnCheckedChangeListener { _, isChecked ->
-/*                if (isChecked) {
-                    // Handle the case when the user just checked the box
-                } else {
-                    // Handle the case when the user just unchecked the box
-                }*/
-                if (fragmentContext != null) {
-                    saveAutoAnswer(contact.phoneNumber, isChecked, fragmentContext)
-                }
-            }
-
-            /*            msgContactButton.setOnClickListener {
-                            if (fragmentContext != null) {
-                                openSMSApp(contact.phoneNumber, fragmentContext)
-                            }
-                        }*/
-
-
-            /*            videoCallButton.setOnClickListener {
-                            if (fragmentContext != null) {
-                                OutgoingCall.makeCall(phoneNumberToCall, true, fragmentContext, currFragmentManager)
-                            }
-                        }*/
-
-            // phoneText.text = contact.phoneNumber
-            // favoriteIcon.visibility = if (contact.isFavourite) View.VISIBLE else View.GONE
-
-            // טעינת התמונה מ-URI (ניתן להשתמש בספרייה כמו Glide או Picasso)
-            /*            if (contact.photoUri.isNotEmpty()) {
-                            Glide.with(itemView.context)
-                                .load(contact.photoUri)
-                                .placeholder(R.drawable.default_contact)
-                                .into(photoImageView)
-                        } else {
-                            photoImageView.setImageResource(R.drawable.default_contact)
-                        }*/
-
-            // ניתן להוסיף OnClickListener לפי הצורך
-            // פעולה בעת לחיצה על איש קשר
-            itemView.setOnClickListener {
-                isRowOpened = !isRowOpened
-                if (isRowOpened) {
-                    phoneNumberBack.visibility = VISIBLE
-                    buttonsBack.visibility = VISIBLE
-                } else {
-                    phoneNumberBack.visibility = GONE
-                    buttonsBack.visibility = GONE
-                }
+                openWhatsUpButton.visibility = if (allowOpening == true) VISIBLE else GONE
             }
 
             phoneNumberBack.visibility = GONE
             buttonsBack.visibility = GONE
+
+/*
+            phoneNumbersContainer.removeAllViews() // לניקוי קודמים אם יש
+            for (number in contact.phoneNumbers) {
+                val textView = TextView(itemView.context).apply {
+                    text = number
+                    textSize = 28f
+                    textDirection = View.TEXT_DIRECTION_LTR
+                    textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                    gravity = Gravity.START
+                    setTextColor(ContextCompat.getColor(context, R.color.white))
+                    typeface = ResourcesCompat.getFont(context, R.font.inter_bold)
+                    setPadding(0, 10, 0, 10)
+                }
+                if (userAllowsCalls) {
+                    textView.setOnClickListener {
+                        handlePhoneDialClick(number)
+                    }
+                }
+                textView.isClickable = userAllowsCalls
+                textView.isFocusable = userAllowsCalls
+                phoneNumbersContainer.addView(textView)
+            }
+*/
+
+            autoAnswerCheckBox.setOnCheckedChangeListener { _, isChecked ->
+                if (fragmentContext != null && contact.phoneNumbers.isNotEmpty()) {
+                    saveAutoAnswer(contact.phoneNumbers.first(), isChecked, fragmentContext)
+                }
+            }
+
+            if (fragmentContext != null && contact.phoneNumbers.isNotEmpty()) {
+                loadAndShowSettings(contact.phoneNumbers.first(), fragmentContext)
+            }
+
+            phoneNumbersContainer.removeAllViews()
+
+            val showIcon = contact.phoneNumbers.size > 1
+            contact.phoneNumbers.forEach { number ->
+                val row = ConstraintLayout(itemView.context).apply {
+                    layoutParams = LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        topMargin = dpToPx(6)
+                    }
+                    layoutDirection = View.LAYOUT_DIRECTION_LTR
+                }
+
+                val tvId = View.generateViewId()
+                val tv = TextView(itemView.context).apply {
+                    id = tvId
+                    text = formatPhoneNumberWithLib(number, languageEnum.region)
+                    setTextColor(ContextCompat.getColor(context, R.color.white))
+                    textSize = 28f
+                    typeface = ResourcesCompat.getFont(context, R.font.inter_bold)
+                    isSingleLine = true
+                    ellipsize = TextUtils.TruncateAt.END
+                    textDirection = View.TEXT_DIRECTION_LTR
+                    textAlignment = View.TEXT_ALIGNMENT_CENTER
+                    gravity = Gravity.CENTER
+
+                    layoutParams = ConstraintLayout.LayoutParams(
+                        ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                        ConstraintLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+                        bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+                        startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+                        endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+                    }
+
+                    if (userAllowsCalls) {
+                        setOnClickListener { handlePhoneDialClick(number) }
+                        isClickable = true
+                        isFocusable = true
+                    }
+                }
+                row.addView(tv)
+
+                if (showIcon) {
+                    val ivId = View.generateViewId()
+                    val iv = ImageView(itemView.context).apply {
+                        id = ivId
+                        setImageResource(R.drawable.call_phone_green_small)
+                        layoutParams = ConstraintLayout.LayoutParams(
+                            dpToPx(56),
+                            dpToPx(56)
+                        ).apply {
+                            topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+                            bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+                            startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+                            marginStart = dpToPx(12)
+                        }
+                        scaleType = ImageView.ScaleType.FIT_CENTER
+
+                        if (userAllowsCalls) {
+                            setOnClickListener { handlePhoneDialClick(number) }
+                            isClickable = true
+                            isFocusable = true
+                        }
+                    }
+                    row.addView(iv)
+                }
+
+                phoneNumbersContainer.addView(row)
+            }
         }
 
         private fun loadAndShowSettings(phoneNumber: String?, context: Context) {
@@ -398,5 +413,10 @@ class ContactsAdapter(
                 )
             }
         }
+
+        private fun dpToPx(dp: Int): Int {
+            return (dp * itemView.context.resources.displayMetrics.density).toInt()
+        }
+
     }
 }

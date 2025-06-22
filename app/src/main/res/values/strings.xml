@@ -107,7 +107,7 @@
     <string name="tour_gold_number_text">You can set up a Gold Number for simple and easy calls to a close contact using the settings screen, and then call them via the Contacts tab or the dialer.\n\nYou can call the Gold Number even when outgoing calls are restricted in the app, but it does require call permission.</string>
     <string name="tour_next_button">Next</string>
     <string name="tour_prev_button">Prev</string>
-    <string name="tour_done">APPROVED</string>
+    <string name="tour_granted_already_granted">Confirmed</string>
     <string name="tour_open_app_info_button">Open App Info</string>
     <string name="tour_set_as_default_app_button">Set As Default App</string>
     <string name="tour_app_permissions">App Permissions</string>
@@ -277,8 +277,8 @@
     <string name="change_capital">Change</string>
     <string name="answering_capital">Answering</string>
     <string name="premium_capital">Premium</string>
-    <string name="send_alert_via_sms_to_gold_number">Additionally, send SMS to %1$s</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">Play voice if call is not answered</string>
+    <string name="send_alert_via_sms_to_gold_number">Also send SMS to %1$s</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">Also speak message</string>
     <string name="sos">Aid</string>
     <string name="lock_capital">Lock</string>
     <string name="report_capital">Report</string>
@@ -344,10 +344,11 @@
     <string name="lock_screen_permission_display_name">Show on Lock screen</string>
     <string name="allow_pop_permission_display_name_xiaomi">Display pop-up windows</string>
     <string name="overlay_permission_display_name_xiaomi">Open new windows while running in the background</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">In order for Quick Call to work properly, the app must be set as the default app for handling calls.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">For %1$s to work properly, the app must be set as the default app for handling calls.</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">%1$s contact could not be found. It must be set to send SMS during a %2$s.</string>
     <string name="this_feature_only_available_on_premium">This feature is only available in the Premium version. Upgrade now to enjoy this and many other great features!</string>
     <string name="unlock_more_with_premium_title">Unlock More with Premium</string>
     <string name="try_the_premium_button">Start Free Trial</string>
     <string name="no_contacts_available_for_selection">No contacts available for selection</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">For %1$s to work properly, the app must be granted the Contacts permission.</string>
 </resources>

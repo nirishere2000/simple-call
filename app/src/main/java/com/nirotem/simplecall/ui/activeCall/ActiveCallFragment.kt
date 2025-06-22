@@ -468,18 +468,20 @@ class ActiveCallFragment : Fragment() {
     }
 
     private fun setContactPhoto(phoneNumber: String?) {
+        val contactExistingPhotoBack = binding.contactExistingPhotoBack
+        val contactOrAppIcon = binding.activeCallAppImage
+        contactExistingPhotoBack.visibility = GONE // In case we are missing permission it should not be visible
+        contactOrAppIcon.visibility = VISIBLE // In case we are missing permission it should not be visible
         val context = binding.root.context
         val contactId = if (phoneNumber != null) getContactIdFromPhoneNumber(
             context,
             CallActivity.originalPhoneNumber!!
         ) else null
 
-        val contactOrAppIcon = binding.activeCallAppImage
         if (SettingsStatus.isPremium) {
             contactOrAppIcon.setImageResource(SettingsStatus.appLogoResourceSmall)
         }
 
-        val contactExistingPhotoBack = binding.contactExistingPhotoBack
         if (contactId != null) {
             val photoImageView = binding.photoImageView
             val userProfilePicture = getContactPhoto(

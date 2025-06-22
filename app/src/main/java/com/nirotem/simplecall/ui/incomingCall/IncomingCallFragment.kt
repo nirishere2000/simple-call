@@ -114,16 +114,19 @@ class IncomingCallFragment : Fragment() {
 
         try { // try to set Contact's image, if exists. Otherwise, put App logo.
             val context = binding.root.context
+            val contactOrAppIcon = binding.incomingCallAppImage
+            val contactExistingPhotoBack = binding.contactExistingPhotoBack
+            contactExistingPhotoBack.visibility = GONE // In case we are missing permission
+            contactOrAppIcon.visibility = VISIBLE // In case we are missing permission
+
             val contactId = if (CallActivity.originalPhoneNumber != null) getContactIdFromPhoneNumber(
                 context,
                 CallActivity.originalPhoneNumber!!
             ) else null
 
-            val contactOrAppIcon = binding.incomingCallAppImage
             if (SettingsStatus.isPremium) {
                 contactOrAppIcon.setImageResource(SettingsStatus.appLogoResourceSmall)
             }
-            val contactExistingPhotoBack = binding.contactExistingPhotoBack
 
             if (contactId != null) {
                 val photoImageView = binding.photoImageView

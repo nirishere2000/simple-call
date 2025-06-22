@@ -105,7 +105,7 @@ class SettingsFragment : Fragment() {
     private lateinit var contactsList: MutableList<String>
     private lateinit var goldNumberSpinner: Spinner
     private lateinit var goldNumberEnabledToggle: SwitchMaterial
-    private lateinit var distressButtonNumberToggle: SwitchMaterial
+    private lateinit var quickCallButtonNumberToggle: SwitchMaterial
     private lateinit var quickCallAlsoSendSmsToGoldToggle: SwitchMaterial
     private lateinit var fragmentRoot: View
     private lateinit var scrollView: ScrollView
@@ -307,6 +307,7 @@ class SettingsFragment : Fragment() {
                     saveDistressNumberShouldAlsoTalk(view.context, isChecked)
                 }
                 else if (isChecked) {
+                    distressNumberShouldAlsoTalkToggle.isChecked = false
                     featureOnlyAvailableOnPremiumAlert(viewContext)
                 }
             }
@@ -476,11 +477,20 @@ class SettingsFragment : Fragment() {
 
             loadView(view)
 
-            OpenScreensStatus.shouldCloseSettingsScreens.observe(viewLifecycleOwner) { currInstance ->
+            // Not good:
+/*            OpenScreensStatus.shouldCloseSettingsScreens.observe(viewLifecycleOwner) { currInstance ->
                 if (currInstance != null && currInstance > OpenScreensStatus.registerSettingsInstanceValue) {
                     parentFragmentManager.popBackStack()
                 }
+            }*/
+
+            OpenScreensStatus.shouldCloseSettingsBecauseOfLowerMenu.observe(viewLifecycleOwner) { shouldClose ->
+                if (shouldClose) {
+                    parentFragmentManager.popBackStack()
+                    OpenScreensStatus.shouldCloseSettingsBecauseOfLowerMenu.value = false
+                }
             }
+            OpenScreensStatus.shouldCloseSettingsBecauseOfLowerMenu.value = false
 
             shouldUpdateSettingsScreens.observe(viewLifecycleOwner) { shouldUpdate ->
                 if (shouldUpdate) {
@@ -1368,9 +1378,9 @@ class SettingsFragment : Fragment() {
 
     private fun initQuickCallButton(view: View) {
         val context = requireContext()
-        val distressButtonSpinner: Spinner =
+        val quickCallButtonSpinner: Spinner =
             view.findViewById(R.id.distress_button_number_contacts_spinner)
-        distressButtonNumberToggle = view.findViewById(R.id.distress_button_number_enabled_toggle)
+        quickCallButtonNumberToggle = view.findViewById(R.id.distress_button_number_enabled_toggle)
         /*  val telephonyManager =
               context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val countryCode = telephonyManager.simCountryIso?.uppercase() ?: "US"
@@ -1397,35 +1407,54 @@ class SettingsFragment : Fragment() {
         coroutineScope.launch {
             try {
                 loadContactsIntoEmergencySpinnerAsync(
-                    spinner = distressButtonSpinner,
+                    spinner = quickCallButtonSpinner,
                     emergencyNumbersList = emptyList(), // not emergency. not aidNumbersList,
                     context = requireContext(), // seems better to require the context here for this
                     anchorView = requireView()
                 )
-                distressButtonNumberToggle.isChecked =
-                    distressButtonSpinner.selectedItemPosition > 0
-                distressButtonSpinner.isEnabled = distressButtonSpinner.selectedItemPosition > 0
-                handleSpinnerEnabledDisabled(distressButtonSpinner)
+                quickCallButtonNumberToggle.isChecked =
+                    quickCallButtonSpinner.selectedItemPosition > 0
 
-                val adapter = distressButtonSpinner.adapter
+                quickCallButtonSpinner.isEnabled = quickCallButtonSpinner.selectedItemPosition > 0
+                handleSpinnerEnabledDisabled(quickCallButtonSpinner)
+
+                val adapter = quickCallButtonSpinner.adapter
                 if (adapter == null || adapter.count <= 1) {
-                    distressButtonNumberToggle.isEnabled = false
+                    quickCallButtonNumberToggle.isEnabled = true // always true
                 } else {
-                    distressButtonNumberToggle.isEnabled = true
+                    quickCallButtonNumberToggle.isEnabled = true
                 }
 
-                distressButtonNumberToggle.setOnCheckedChangeListener { buttonView, isChecked ->
+                quickCallButtonNumberToggle.setOnCheckedChangeListener { buttonView, isChecked ->
                     try {
                         if (isChecked) {
+                            if (PermissionsStatus.readContactsPermissionGranted.value != true) {
+                                quickCallButtonNumberToggle.isChecked = false
+                                quickCallButtonSpinner.isEnabled = false
+                                handleSpinnerEnabledDisabled(quickCallButtonSpinner)
+                                val toastMsg = context.getString(R.string.cannot_display_selection_contacts_permission_required)
+                                showLongSnackBar(context, toastMsg, null, requireView())
+                            }
+                            else if (quickCallButtonSpinner.adapter.count <= 1) { // generic no contacts msg
+                                quickCallButtonNumberToggle.isChecked = false
+                                quickCallButtonSpinner.isEnabled = false
+                                handleSpinnerEnabledDisabled(quickCallButtonSpinner)
+                                val toastMsg = getString(R.string.no_contacts_available_for_selection)
+                                showLongSnackBar(context, toastMsg, anchorView = requireView())
+                            }
+                            else {
+                                quickCallButtonSpinner.isEnabled = true
+                                handleSpinnerEnabledDisabled(quickCallButtonSpinner)
+                            }
                             /*  saveEmergencyNumberContact(null, context)
                               saveEmergencyNumber(null, context)*/
                         } else {
-                            distressButtonSpinner.setSelection(0)
+                            quickCallButtonSpinner.setSelection(0)
                             saveQuickCallNumberContact(null, context)
                             saveQuickCallNumber(null, context)
+                            quickCallButtonSpinner.isEnabled = false
+                            handleSpinnerEnabledDisabled(quickCallButtonSpinner)
                         }
-                        distressButtonSpinner.isEnabled = isChecked
-                        handleSpinnerEnabledDisabled(distressButtonSpinner)
                     } catch (e: Exception) {
 
                     }
@@ -1434,11 +1463,11 @@ class SettingsFragment : Fragment() {
                 // Observe Spinner click:
                 distressButtonSpinnerClickEvent.observe(viewLifecycleOwner) { isEvent ->
                     if (isEvent) {
-                        distressButtonNumberToggle.isChecked =
-                            distressButtonSpinner.selectedItemPosition > 0
-                        distressButtonSpinner.isEnabled =
-                            distressButtonSpinner.selectedItemPosition > 0
-                        handleSpinnerEnabledDisabled(distressButtonSpinner)
+                        quickCallButtonNumberToggle.isChecked =
+                            quickCallButtonSpinner.selectedItemPosition > 0
+                        quickCallButtonSpinner.isEnabled =
+                            quickCallButtonSpinner.selectedItemPosition > 0
+                        handleSpinnerEnabledDisabled(quickCallButtonSpinner)
                         distressButtonSpinnerClickEvent.value = false
                     }
                 }
@@ -1448,8 +1477,8 @@ class SettingsFragment : Fragment() {
             }
 
             // Otherwise the user sees a jump that the Toggle is turned on
-            if (distressButtonNumberToggle.isChecked) {
-                distressButtonNumberToggle.apply {
+            if (quickCallButtonNumberToggle.isChecked) {
+                quickCallButtonNumberToggle.apply {
                     visibility = View.INVISIBLE   // מוסתר ברגע האינפלייט
                     isChecked = true             // מציב ON עוד לפני הציור
                     // גרסת Material-Switch לפעמים עדיין מציירת אנימציה קצרה.
@@ -1461,9 +1490,9 @@ class SettingsFragment : Fragment() {
                     }
                 }
             } else {
-                distressButtonNumberToggle.visibility = View.VISIBLE
+                quickCallButtonNumberToggle.visibility = View.VISIBLE
             }
-            distressButtonSpinner.visibility = VISIBLE
+            quickCallButtonSpinner.visibility = VISIBLE
             // After the function completes, show a Toast
             //  Toast.makeText(requireContext(), "Operation completed", Toast.LENGTH_SHORT).show()
         }
@@ -1893,13 +1922,11 @@ class SettingsFragment : Fragment() {
 
         titleView.text = context.getString(R.string.permission_denied_capital)
 
-        // קביעת שמות ההרשאות לפי סוג מכשיר
         val oem = OemDetector.current()
-
         val overlayPermissionName = when (oem) {
             OemDetector.Oem.XIAOMI -> context.getString(R.string.allow_pop_permission_display_name_xiaomi)
             OemDetector.Oem.SAMSUNG -> context.getString(R.string.overlay_permission_display_name_samsung)
-            else -> context.getString(R.string.overlay_permission_display_name)
+            else -> context.getString(R.string.overlay_permission_display_name) // Pixel and others (One Plus should also be like Pixel)
         }
 
         val lockScreenPermissionName =

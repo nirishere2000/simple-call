@@ -84,12 +84,12 @@ object GeneralUtils {
         context: Context,
         anchorView: View
     ) {
-        val contactsWithEmergencyNumbers =
-            loadContactsAndEmergencyIntoList(emergencyNumbersList, context, anchorView, true)
-
         // טוענים מספרי חירום שמורים (פונקציות אלו מניחות שקיימות במערכת)
         val emergencyPhoneNumber = loadQuickCallNumber(context)
         val emergencyPhoneNumberContact = loadQuickCallNumberContact(context)
+
+        val contactsWithEmergencyNumbers =
+            loadContactsAndEmergencyIntoList(emergencyNumbersList, context, anchorView, true)
 
         if (contactsWithEmergencyNumbers.isNotEmpty()) {
             // יוצרים ArrayAdapter מותאם אישית להצגת הנתונים
@@ -141,8 +141,8 @@ object GeneralUtils {
                         val toastMsg = if (emergencyPhoneNumberContact != null) {
                             if (PermissionsStatus.readContactsPermissionGranted.value == true)
                                 context.getString(R.string.unable_to_display_selection_unexpected_error)
-                            else
-                                context.getString(R.string.cannot_display_selection_contacts_permission_required)
+                            else // giving the msg only if user toggles the option
+                                "" //context.getString(R.string.cannot_display_selection_contacts_permission_required)
                         } else {
                             if (ContextCompat.checkSelfPermission(
                                     context,
@@ -154,7 +154,10 @@ object GeneralUtils {
                             else
                                 context.getString(R.string.unable_to_display_selection_unexpected_error)
                         }
-                        showLongSnackBar(context, toastMsg, null, anchorView)
+                        if (toastMsg.isNotEmpty()) {
+                            showLongSnackBar(context, toastMsg, null, anchorView)
+                        }
+
                         spinner.setSelection(0)
                     }
                 } else {

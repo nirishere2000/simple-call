@@ -107,7 +107,7 @@
     <string name="tour_gold_number_text">Anda dapat mengatur Nomor Emas untuk panggilan yang sederhana dan nyaman ke kontak dekat menggunakan layar Pengaturan, lalu menelepon mereka melalui tab Kontak atau dialer.\n\nAnda dapat menelepon Nomor Emas bahkan ketika panggilan keluar dibatasi di aplikasi, tetapi itu memerlukan izin panggilan.</string>
     <string name="tour_next_button">LANJUT</string>
     <string name="tour_prev_button">KEMBALI</string>
-    <string name="tour_done">Disetujui</string>
+    <string name="tour_granted_already_granted">Terkonfirmasi</string>
     <string name="tour_open_app_info_button">Buka Info Aplikasi</string>
     <string name="tour_set_as_default_app_button">Atur sebagai Default</string>
     <string name="tour_app_permissions">Izin Aplikasi</string>
@@ -278,8 +278,8 @@
     <string name="change_capital">Ubah</string>
     <string name="answering_capital">Menjawab</string>
     <string name="premium_capital">Premium</string>
-    <string name="send_alert_via_sms_to_gold_number">Kirim SMS tambahan ke %1$s</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">Putar suara jika panggilan tidak dijawab</string>
+    <string name="send_alert_via_sms_to_gold_number">Juga kirim SMS ke %1$s</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">Juga putar pesan suara</string>
     <string name="sos">Bantuan</string>
     <string name="lock_capital">Kunci</string>
     <string name="report_capital">Laporan</string>
@@ -342,10 +342,11 @@
     <string name="lock_screen_permission_display_name">Tampilkan di layar kunci</string>
     <string name="overlay_permission_display_name_xiaomi">Buka jendela baru sambil berjalan di latar belakang</string>
     <string name="allow_pop_permission_display_name_xiaomi">Tampilkan jendela pop-up</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Agar Panggilan Cepat dapat berfungsi dengan baik, aplikasi harus disetel sebagai aplikasi default untuk mengelola panggilan.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Agar %1$s berfungsi dengan baik, aplikasi harus diatur sebagai aplikasi default untuk menangani panggilan.</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Untuk mengirim SMS selama %2$s, Anda harus mengatur %1$s terlebih dahulu.</string>
     <string name="this_feature_only_available_on_premium">Fitur ini hanya tersedia di versi Premium. Tingkatkan sekarang untuk menikmati fitur ini dan banyak fitur hebat lainnya!</string>
     <string name="unlock_more_with_premium_title">Dapatkan lebih banyak dengan Premium</string>
     <string name="try_the_premium_button">Mulai uji coba gratis</string>
     <string name="no_contacts_available_for_selection">Tidak ada kontak yang tersedia untuk dipilih</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Agar %1$s berfungsi dengan baik, aplikasi harus diberi izin Kontak.</string>
 </resources>

@@ -107,7 +107,7 @@
     <string name="tour_gold_number_text">Vous pouvez configurer un Numéro d\'or pour des appels simples et pratiques vers un contact proche via l\'écran des paramètres, puis l\'appeler via l\'onglet Contacts ou le clavier.\n\nVous pouvez appeler le Numéro d\'or même lorsque les appels sortants sont restreints dans l\'application, mais cela nécessite une autorisation d\'appel.</string>
     <string name="tour_next_button">Suivant</string>
     <string name="tour_prev_button">Précédent</string>
-    <string name="tour_done">Approuvé</string>
+    <string name="tour_granted_already_granted">Confirmé</string>
     <string name="tour_open_app_info_button">Ouvrir les informations de l\'application</string>
     <string name="tour_set_as_default_app_button">Définir comme application par défaut</string>
     <string name="tour_app_permissions">Autorisations de l\'application</string>
@@ -307,8 +307,8 @@
     <string name="change_capital">Modifier</string>
     <string name="answering_capital">Réponse</string>
     <string name="premium_capital">Premium</string>
-    <string name="send_alert_via_sms_to_gold_number">Envoyer un SMS supplémentaire à %1$s</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">Lire une voix si l\'appel n\'est pas répondu</string>
+    <string name="send_alert_via_sms_to_gold_number">Envoyer aussi un SMS à %1$s</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">Aussi lire un message vocal</string>
     <string name="sos">Aide</string>
     <string name="lock_capital">Verrouiller</string>
     <string name="report_capital">Rapport</string>
@@ -373,10 +373,11 @@
     <string name="lock_screen_permission_display_name">Afficher sur l\'écran de verrouillage</string>
     <string name="overlay_permission_display_name_xiaomi">Ouvrir de nouvelles fenêtres contextuelles pendant l\'exécution en arrière-plan</string>
     <string name="allow_pop_permission_display_name_xiaomi">Afficher les fenêtres contextuelles</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Pour que l\'Appel rapide fonctionne correctement, l\'application doit être définie comme application par défaut pour la gestion des appels.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Pour que %1$s fonctionne correctement, l\'application doit être définie comme application d\'appel par défaut.</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Pour envoyer un SMS pendant un %2$s, un %1$s doit être configuré.</string>
     <string name="this_feature_only_available_on_premium">Cette fonctionnalité est disponible uniquement dans la version Premium. Mettez à niveau maintenant pour profiter de celle-ci et de nombreuses autres fonctionnalités utiles !</string>
     <string name="unlock_more_with_premium_title">Profitez de plus avec Premium</string>
     <string name="try_the_premium_button">Démarrer l\'essai gratuit</string>
     <string name="no_contacts_available_for_selection">Aucun contact disponible à sélectionner</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Pour que %1$s fonctionne correctement, l\'application doit disposer de l\'autorisation Contacts.</string>
 </resources>

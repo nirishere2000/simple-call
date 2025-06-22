@@ -71,8 +71,8 @@
     <string name="change_capital">बदलें</string>
     <string name="answering_capital">उत्तर दे रहे हैं</string>
     <string name="premium_capital">प्रीमियम</string>
-    <string name="send_alert_via_sms_to_gold_number">%1$s के लिए अतिरिक्त टेक्स्ट संदेश भेजना</string>
-    <string name="play_voice_call_for_help_if_call_unanswered">आवाज़ चलाएं अगर कॉल का उत्तर नहीं दिया गया</string>
+    <string name="send_alert_via_sms_to_gold_number">%1$s को SMS भी भेजें</string>
+    <string name="play_voice_call_for_help_if_call_unanswered">वॉइस संदेश भी चलाएं</string>
     <string name="sos">सहायता</string>
     <string name="lock_capital">लॉक</string>
     <string name="report_capital">रिपोर्ट</string>
@@ -162,7 +162,7 @@
     <string name="tour_gold_number_text">सेटिंग्स स्क्रीन का उपयोग करके आप किसी करीबी संपर्क के लिए सरल और सुविधाजनक कॉल के लिए गोल्ड नंबर सेट कर सकते हैं, और फिर संपर्क टैब या डायलर के माध्यम से उन्हें कॉल कर सकते हैं।\n\nआप ऐप में आउटगोइंग कॉल प्रतिबंधित होने पर भी गोल्ड नंबर पर कॉल कर सकते हैं, लेकिन इसके लिए कॉल अनुमति की आवश्यकता होती है।</string>
     <string name="tour_next_button">अगला</string>
     <string name="tour_prev_button">पिछला</string>
-    <string name="tour_done">स्वीकृत</string>
+    <string name="tour_granted_already_granted">पुष्टि की गई</string>
     <string name="tour_open_app_info_button">ऐप जानकारी खोलें</string>
     <string name="tour_set_as_default_app_button">डिफ़ॉल्ट ऐप के रूप में सेट करें</string>
     <string name="tour_app_permissions">ऐप अनुमतियाँ</string>
@@ -342,10 +342,11 @@
     <string name="lock_screen_permission_display_name">लॉक स्क्रीन पर दिखाएं</string>
     <string name="overlay_permission_display_name_xiaomi">बैकग्राउंड में पॉप-अप विंडो दिखाएँ</string>
     <string name="allow_pop_permission_display_name_xiaomi">पॉप-अप विंडो दिखाएँ</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">त्वरित कॉल को सही तरीके से काम करने के लिए, ऐप को कॉल प्रबंधन के लिए डिफ़ॉल्ट ऐप के रूप में सेट करना आवश्यक है।</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s को सही ढंग से काम करने के लिए, ऐप को कॉल संभालने के लिए डिफ़ॉल्ट ऐप के रूप में सेट करना होगा।</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">%2$s के दौरान टेक्स्ट संदेश भेजने के लिए, %1$s सेट करना आवश्यक है।</string>
     <string name="this_feature_only_available_on_premium">यह सुविधा केवल प्रीमियम संस्करण में उपलब्ध है। अभी अपग्रेड करें और इस सुविधा सहित कई बेहतरीन फ़ीचर्स का लाभ उठाएँ।</string>
     <string name="unlock_more_with_premium_title">प्रीमियम के साथ और पाएं</string>
     <string name="try_the_premium_button">नि:शुल्क परीक्षण शुरू करें</string>
     <string name="no_contacts_available_for_selection">चयन के लिए कोई संपर्क उपलब्ध नहीं है</string>
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">%1$s को सही ढंग से काम करने के लिए, ऐप को कॉन्टैक्ट्स अनुमति देना आवश्यक है।</string>
 </resources>

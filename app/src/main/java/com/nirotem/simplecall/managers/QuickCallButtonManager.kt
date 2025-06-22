@@ -7,6 +7,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.util.TypedValue
 import android.view.View
@@ -23,7 +25,6 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.snackbar.Snackbar
-import com.nirotem.simplecall.OngoingCall
 import com.nirotem.simplecall.OutgoingCall
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressButtonShouldAlsoSendSmsToGoldNumber
@@ -42,36 +43,25 @@ import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
 import kotlinx.coroutines.*
 import java.util.*
 
-object DistressButtonManager {
-    var emergencyIsOn = false
-    var emergencyCallWasAnswered = false
-    private var timer: CountDownTimer? = null
-    private var emergencyDelayTimeAnimationIsRunning = false
-    private var emergencyDelayTimeAnimationSecondsPassed: Long = 0
+object QuickCallButtonManager {
+    var quickCallIsOn = false
+    var quickCallWasAnswered = false
+    private var quickCallDelayTimeAnimationIsRunning = false
+    private var quickCallDelayTimeAnimationSecondsPassed: Long = 0
    // private const val EMERGENCY_DELAY_TIME_ANIMATION_SECONDS: Long = 6 // actually it's 1 second less than that (if this equals 6 then it's 5 secs)
     private var countDownTimer: CountDownTimer? = null
     private var askingForMakingMakingCallPermission = false
     private var displayedEmergencyMsg: Snackbar? = null
     private var shouldAlsoCallForHelp = true
-    private var emergencyJob: Job? = null
-    private var alreadySentSms = false
-
-    private fun startRepeatingEmergencyMessage(context: Context) {
-        emergencyJob = CoroutineScope(Dispatchers.Main).launch {
-            while (shouldAlsoCallForHelp) {
-                if (!emergencyCallWasAnswered && OngoingCall.call == null && OutgoingCall.call == null) {
-                    TextToSpeechManager.speak(context.getString(R.string.quick_call_activated_voice_message_speech))
-                }
-                if (emergencyIsOn) {
-                    delay(20_000) // 20 שניות
-                }
-            }
-        }
-    }
+    private var quickCallJob: Job? = null
+    private var quickCallNumberOfTries = 0
+    private var quickCallShouldAlsoTalk = false
+    private var shouldAlsoSendSms = false
+    private var numOfTimesSpeakAndSentSms = 0
 
     private fun stopRepeatingEmergencyMessage() {
-        emergencyJob?.cancel()
-        emergencyJob = null
+        quickCallJob?.cancel()
+        quickCallJob = null
     }
 
     fun checkForDistressButton(
@@ -82,13 +72,13 @@ object DistressButtonManager {
         activity: Activity,
         lifecycleOwner: LifecycleOwner
     ) {
-        val emergencyButtonSmall = activity.findViewById<FrameLayout>(R.id.emergencyButtonSmall)
+        val quickCallButtonSmall = activity.findViewById<FrameLayout>(R.id.emergencyButtonSmall)
         val toolbar: Toolbar = activity.findViewById(R.id.toolbar)
         if (SettingsStatus.quickCallNumber.value != null) {
-            emergencyButtonSmall?.visibility = VISIBLE
+            quickCallButtonSmall?.visibility = VISIBLE
             handleDistressButton(view, context, supportFragmentManager, requestPermissionLauncher, activity, lifecycleOwner)
         } else {
-            emergencyButtonSmall?.visibility = GONE
+            quickCallButtonSmall?.visibility = GONE
             val params = toolbar.layoutParams as? ViewGroup.MarginLayoutParams
             params?.let {
                 it.topMargin = 0
@@ -108,33 +98,38 @@ object DistressButtonManager {
     ) {
         val emergencyButtonCancel = activity.findViewById<ImageView>(R.id.emergency_button_cancel)
         emergencyButtonCancel?.setOnClickListener {
-            if (emergencyDelayTimeAnimationIsRunning) {
-                resetEmergencyButton(activity, context)
+            if (quickCallDelayTimeAnimationIsRunning) {
+                resetQuickCallButton(activity, context)
             }
         }
 
-        val emergencyButton = activity.findViewById<ImageView>(R.id.emergency_button_small)
+        quickCallShouldAlsoTalk = if (isPremium) loadDistressNumberShouldAlsoTalk(view.context) else false
+        shouldAlsoSendSms = loadDistressButtonShouldAlsoSendSmsToGoldNumber(context)
+        quickCallNumberOfTries = 0 // this should be done only once in the beginning
+        numOfTimesSpeakAndSentSms = 0 // this should be done only once in the beginning
 
-        val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-        enableDistressButton(view, context, activity, requestPermissionLauncher, (PermissionsStatus.callPhonePermissionGranted.value == true && (!isPremiumAndAppNotDefault)))
+        val quickCallButton = activity.findViewById<ImageView>(R.id.quick_call_button_small)
+
+        val isAppNotDefault = (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+        enableDistressButton(view, context, activity, requestPermissionLauncher, (PermissionsStatus.readContactsPermissionGranted.value == true && PermissionsStatus.callPhonePermissionGranted.value == true && (!isAppNotDefault)))
         PermissionsStatus.callPhonePermissionGranted.observe(lifecycleOwner) { isGranted ->
             if (!OpenScreensStatus.isHelpScreenOpened) {
                 val premiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-                enableDistressButton(view, context, activity, requestPermissionLauncher, isGranted, premiumAndAppNotDefault)
+                enableDistressButton(view, context, activity, requestPermissionLauncher, isGranted && PermissionsStatus.readContactsPermissionGranted.value == true && premiumAndAppNotDefault, false)
             }
         }
 
-        emergencyButton?.setOnClickListener {
-            val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-            if (PermissionsStatus.callPhonePermissionGranted.value == true && (!isPremiumAndAppNotDefault)) {
+        quickCallButton?.setOnClickListener {
+            val isAppNotDefault = (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+            if (PermissionsStatus.callPhonePermissionGranted.value == true && PermissionsStatus.readContactsPermissionGranted.value == true && (!isAppNotDefault)) {
                 handleDistressButtonClick(view, context, supportFragmentManager, requestPermissionLauncher, activity)
             }
         }
 
-        val emergencyIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
-        emergencyIcon.setOnClickListener {
-            val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-            if (PermissionsStatus.callPhonePermissionGranted.value == true && (!isPremiumAndAppNotDefault)) {
+        val quickCallIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
+        quickCallIcon.setOnClickListener {
+            val isAppNotDefault = (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+            if (PermissionsStatus.callPhonePermissionGranted.value == true && (!isAppNotDefault)) {
                 handleDistressButtonClick(view, context, supportFragmentManager, requestPermissionLauncher, activity)
             }
         }
@@ -147,20 +142,47 @@ object DistressButtonManager {
         requestPermissionLauncher: ActivityResultLauncher<String>,
         activity: Activity
     ) {
-        if (!emergencyDelayTimeAnimationIsRunning) {
-            emergencyIsOn = true
+        if (!quickCallDelayTimeAnimationIsRunning) {
+            quickCallIsOn = true
             SettingsStatus.quickCallNumber.value = loadQuickCallNumber(context)
             distressNumberOfSecsToCancel = loadDistressNumberOfSecsToCancel(context)
             shouldAlsoCallForHelp = if (isPremium) loadDistressNumberShouldAlsoTalk(context) else false
 
-            // One time speak on the beginning even if user did not select the option:
-            if (isPremium) {
+            if (PermissionsStatus.callPhonePermissionGranted.value == true) {
+                quickCallDelayTimeAnimationIsRunning = true
+
+                val quickCallButtonCancelBack = activity.findViewById<FrameLayout>(R.id.emergencyMessage)
+                quickCallButtonCancelBack?.visibility = VISIBLE
+                val distressCircle = activity.findViewById<FrameLayout>(R.id.distress_circle)
+                distressCircle?.visibility = VISIBLE
+                val toastMsg = context.getString(R.string.calling_quick_call_number_tap_cancel_to_stop)
+                displayedEmergencyMsg = showLongSnackBar(context, toastMsg, (((distressNumberOfSecsToCancel + 1) * 1000).toInt()))
+
+                val quickCallButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
+                quickCallButtonText.text = "(${(distressNumberOfSecsToCancel + 1)})"
+
+                val quickCallButton = activity.findViewById<ImageView>(R.id.quick_call_button)
+                val pulsateAnim = AnimationUtils.loadAnimation(context, R.anim.pulsate)
+                quickCallButton.startAnimation(pulsateAnim)
+                quickCallDelayTimeAnimationSecondsPassed = 0
+                startQuickCallTimer(view, context, supportFragmentManager, requestPermissionLauncher, activity)
+            } else { // handle permissions as fast as can
+                // Also try speak and send SMS
+                speakAndSendSms(context)
+                callQuickCallNumber(context, view, supportFragmentManager, requestPermissionLauncher, activity)
+            }
+        }
+    }
+
+    private fun speakAndSendSms(context: Context) {
+        if (numOfTimesSpeakAndSentSms <= 3) {
+            numOfTimesSpeakAndSentSms++
+            // Speak if user chose option:
+            if (quickCallShouldAlsoTalk) {
                 TextToSpeechManager.speak(context.getString(R.string.quick_call_activated_voice_message_speech))
             }
 
-            val shouldAlsoSendSms = loadDistressButtonShouldAlsoSendSmsToGoldNumber(context)
-            if (shouldAlsoSendSms && !alreadySentSms) {
-                alreadySentSms = true
+            if (shouldAlsoSendSms) {
                 val goldPhoneNumber = loadGoldNumber(context)
                 if (goldPhoneNumber != null) { // Sending first SMS
                     sendSms(goldPhoneNumber, context.getString(R.string.quick_call_activated_voice_message_speech))
@@ -173,42 +195,19 @@ object DistressButtonManager {
                     showCustomToastDialog(context, toastMsg)
                 }
             }
-
-            if (PermissionsStatus.callPhonePermissionGranted.value == true) {
-                emergencyDelayTimeAnimationIsRunning = true
-
-                val emergencyButtonCancelBack = activity.findViewById<FrameLayout>(R.id.emergencyMessage)
-                emergencyButtonCancelBack?.visibility = VISIBLE
-                val distressCircle = activity.findViewById<FrameLayout>(R.id.distress_circle)
-                distressCircle?.visibility = VISIBLE
-                val toastMsg = context.getString(R.string.calling_quick_call_number_tap_cancel_to_stop)
-                displayedEmergencyMsg = showLongSnackBar(context, toastMsg, (((distressNumberOfSecsToCancel + 1) * 1000).toInt()))
-
-                val emergencyButtonText = activity.findViewById<TextView>(R.id.emergency_button_text)
-                emergencyButtonText.text = "(${(distressNumberOfSecsToCancel + 1)})"
-
-                val emergencyButton = activity.findViewById<ImageView>(R.id.emergency_button)
-                val pulsateAnim = AnimationUtils.loadAnimation(context, R.anim.pulsate)
-                emergencyButton.startAnimation(pulsateAnim)
-                emergencyDelayTimeAnimationSecondsPassed = 0
-                startEmergencyTimer(view, context, supportFragmentManager, requestPermissionLauncher, activity)
-            } else { // handle permissions as fast as can
-                callEmergencyNumber(context, view, supportFragmentManager, requestPermissionLauncher, activity)
-            }
         }
     }
 
-    private fun resetEmergencyButton(activity: Activity, context: Context) {
-        emergencyIsOn = false
-        emergencyCallWasAnswered = false
-        stopEmergencyTimer()
+    private fun resetQuickCallButton(activity: Activity, context: Context) {
+        quickCallIsOn = false
+        quickCallWasAnswered = false
+        stopQuickCallTimer()
         displayedEmergencyMsg?.dismiss()
-        emergencyDelayTimeAnimationIsRunning = false
-        alreadySentSms = false
-        emergencyDelayTimeAnimationSecondsPassed = 0
-        val emergencyButton = activity.findViewById<ImageView>(R.id.emergency_button)
+        quickCallDelayTimeAnimationIsRunning = false
+        quickCallDelayTimeAnimationSecondsPassed = 0
+        val emergencyButton = activity.findViewById<ImageView>(R.id.quick_call_button)
         emergencyButton.clearAnimation()
-        val emergencyButtonText = activity.findViewById<TextView>(R.id.emergency_button_text)
+        val emergencyButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
         emergencyButtonText.text = context.getString(R.string.quick_call_button_caption)
         val emergencyButtonCancelBack = activity.findViewById<FrameLayout>(R.id.emergencyMessage)
         emergencyButtonCancelBack?.visibility = GONE
@@ -216,7 +215,7 @@ object DistressButtonManager {
         distressCircle?.visibility = GONE
     }
 
-    private fun callEmergencyNumber(
+    private fun callQuickCallNumber(
         context: Context,
         view: View,
         supportFragmentManager: FragmentManager,
@@ -248,9 +247,9 @@ object DistressButtonManager {
         shouldEnable: Boolean?,
         shouldShowDialog: Boolean = false
     ) {
-        val emergencyButton = activity.findViewById<ImageView>(R.id.emergency_button_small)
+        val emergencyButton = activity.findViewById<ImageView>(R.id.quick_call_button_small)
         val emergencyIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
-        val emergencyIconDisabledText: TextView = activity.findViewById(R.id.emergency_button_text_disabled)
+        val emergencyIconDisabledText: TextView = activity.findViewById(R.id.quick_call_button_text_disabled)
 
         if (shouldEnable == true) {
             emergencyIcon.visibility = VISIBLE
@@ -340,35 +339,68 @@ object DistressButtonManager {
         builder.create().show()
     }
 
-    fun startEmergencyTimer(
+    fun startQuickCallTimer(
         view: View,
         context: Context,
         supportFragmentManager: FragmentManager,
         requestPermissionLauncher: ActivityResultLauncher<String>,
         activity: Activity
     ) {
-        val emergencyButtonText = activity.findViewById<TextView>(R.id.emergency_button_text)
+        val quickCallButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
+
         countDownTimer = object : CountDownTimer(((distressNumberOfSecsToCancel + 1) * 1000), 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                if (emergencyDelayTimeAnimationIsRunning) {
-                    emergencyDelayTimeAnimationSecondsPassed++
-                    val secondsDiff = (distressNumberOfSecsToCancel + 1) - emergencyDelayTimeAnimationSecondsPassed
-                    emergencyButtonText.text = "($secondsDiff)"
+                if (quickCallDelayTimeAnimationIsRunning) {
+                    quickCallDelayTimeAnimationSecondsPassed++
+                    val secondsDiff = (distressNumberOfSecsToCancel + 1) - quickCallDelayTimeAnimationSecondsPassed
+                    quickCallButtonText.text = "($secondsDiff)"
                 }
             }
 
             override fun onFinish() {
-                if (emergencyDelayTimeAnimationIsRunning &&
-                    emergencyDelayTimeAnimationSecondsPassed >= (distressNumberOfSecsToCancel + 1)
+                if (quickCallDelayTimeAnimationIsRunning &&
+                    quickCallDelayTimeAnimationSecondsPassed >= (distressNumberOfSecsToCancel + 1)
                 ) {
-                    resetEmergencyButton(activity, context)
-                    callEmergencyNumber(context, view, supportFragmentManager, requestPermissionLauncher, activity)
+                    resetQuickCallButton(activity, context)
+                    speakAndSendSms(context) // first speak and send sms
+                    callQuickCallNumber(context, view, supportFragmentManager, requestPermissionLauncher, activity)
+                    waitAndThenStartTimerAgain(view, context, supportFragmentManager, requestPermissionLauncher, activity) // Wait and start all over again (if call was not answered
                 }
             }
         }.start()
     }
 
-    private fun stopEmergencyTimer() {
+    // Show Quick call is on - without timer,but with the cancel button
+    // After a while - if call was not answer and cancel button was not pressed restart time
+    private fun waitAndThenStartTimerAgain(view: View,
+                                           context: Context,
+                                           supportFragmentManager: FragmentManager,
+                                           requestPermissionLauncher: ActivityResultLauncher<String>,
+                                           activity: Activity) {
+        val quickCallButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
+        quickCallButtonText.text = "Waiting for Quick Call..."
+        val emergencyButtonCancelBack = activity.findViewById<FrameLayout>(R.id.emergencyMessage)
+        emergencyButtonCancelBack?.visibility = View.VISIBLE
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            startQuickCallAgain(view, context, supportFragmentManager, requestPermissionLauncher, activity)
+        }, 30_000)
+    }
+
+    private fun startQuickCallAgain(view: View,
+                                    context: Context,
+                                    supportFragmentManager: FragmentManager,
+                                    requestPermissionLauncher: ActivityResultLauncher<String>,
+                                    activity: Activity) {
+        if (!quickCallWasAnswered && quickCallNumberOfTries < 3) {
+            quickCallNumberOfTries++
+            startQuickCallTimer(view, context, supportFragmentManager, requestPermissionLauncher, activity)
+        } else { // Finished
+            resetQuickCallButton(activity, context)
+        }
+    }
+
+    private fun stopQuickCallTimer() {
         stopRepeatingEmergencyMessage()
         countDownTimer?.cancel()
         countDownTimer = null

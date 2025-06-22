@@ -60,8 +60,8 @@
             android:id="@+id/incomingCallAppImage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            android:contentDescription="Contact or app photo"
+            android:visibility="visible"
+            android:contentDescription="App Logo"
             android:src="@drawable/goldappiconphoneblack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
 
 
             android:outlineProvider="background"
-            android:visibility="visible"
+            android:visibility="gone"
 
 
             >
