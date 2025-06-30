@@ -132,7 +132,13 @@ object TextToSpeechManager : TextToSpeech.OnInitListener {
         return result == TextToSpeech.LANG_AVAILABLE || result == TextToSpeech.LANG_COUNTRY_AVAILABLE
     }
 
+    fun stopSpeaking() {
+        speechQueue.clear()
+        textToSpeech?.stop()
+    }
+
     fun shutdown() {
+        speechQueue.clear()
         textToSpeech?.stop()
         textToSpeech?.shutdown()
         textToSpeech = null

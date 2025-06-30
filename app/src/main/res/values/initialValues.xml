@@ -19,6 +19,7 @@
     <string name="supportEmail" translatable="false">support@easycallandanswer.com</string>
     <bool name="distressNumberShouldAlsoTalk">false</bool>
     <bool name="allowVoiceCommands">false</bool>
+    <bool name="shouldSpeakWhenRing">false</bool>
     <!-- Voice Commands-->
     <bool name="isAnswerCallsVoiceCommandEnabled">false</bool>
     <bool name="isGoldNumberVoiceCommandEnabled">false</bool>

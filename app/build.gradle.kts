@@ -3,6 +3,8 @@ import org.gradle.kotlin.dsl.libs
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 android {
@@ -10,7 +12,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.nirotem.simplecall"
+        applicationId = "com.nirotem.easycallandanswer"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -100,13 +102,14 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.libphonenumber)
     implementation(libs.simpleJson)
-/*    implementation(project(":callsreportslibrary"))*/
-
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.googlePlayCore)
+    implementation(libs.firebase.firestore)
 
 /*   if (gradle.startParameter.taskNames.any { it.contains("Premium") || it.contains("premium") }) {
         implementation("com.github.bumptech.glide:glide:4.15.1")
         implementation("jp.wasabeef:glide-transformations:4.3.0")
     }*/
-
-
 }

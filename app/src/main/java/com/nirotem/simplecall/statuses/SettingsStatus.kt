@@ -82,7 +82,6 @@ object SettingsStatus {
     var distressNumberOfSecsToCancel = 5L
     var isPremium = false
     var alreadyShowedBlockedMsg = false
-    var alreadyShownPermissionGoldNumberMsg = false
     var alreadyShownQuickCallButWithoutPermissionMsg = false
     var appLogoResourceSmall = R.drawable.goldappiconphoneblack
 }

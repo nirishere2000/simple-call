@@ -31,6 +31,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.nirotem.lockscreen.IdleMonitorService
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.CustomAppInfo
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEasyAppEnum
@@ -59,10 +60,15 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberO
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberShouldAlsoTalk
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadQuickCallNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadGoldNumber
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadLastDateAskedToRateApp
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadLastUserAnswerToRateApp
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadNumOfAskingUserToRateApp
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadShouldSpeakWhenRing
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowAnswerCallsEnum
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowCallWaiting
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowMakingCallsEnum
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowOpeningWhatsApp
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCurrentDateAskedToRateApp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveQuickCallShouldAlsoSendSmsToGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveDistressNumberOfSecsToCancel
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveDistressNumberShouldAlsoTalk
@@ -71,8 +77,11 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveQuickCallNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumberContact
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsGlobalAutoAnswer
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveLastUserAnswerToRateApp
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveNumOfAskingUserToRateApp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveShouldCallsStartWithSpeakerOn
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveShouldShowKeypadInActiveCall
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveShouldSpeakWhenRing
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAllowCallWaiting
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAllowOpeningWhatsApp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldCallsStartWithSpeakerOn
@@ -88,6 +97,7 @@ import com.nirotem.simplecall.statuses.OpenScreensStatus.shouldUpdateSettingsScr
 import com.nirotem.simplecall.statuses.PermissionsStatus.askForRecordPermission
 import com.nirotem.simplecall.statuses.PermissionsStatus.checkForPermissionsChangesAndShowToastIfChanged
 import com.nirotem.simplecall.statuses.PermissionsStatus.featureOnlyAvailableOnPremiumAlert
+import com.nirotem.simplecall.statuses.PermissionsStatus.loadOtherPermissionsIssueDialog
 import com.nirotem.simplecall.statuses.PermissionsStatus.suggestManualPermissionGrant
 import com.nirotem.simplecall.statuses.SettingsStatus
 import interfaces.DescriptiveEnum
@@ -412,6 +422,24 @@ class SettingsFragment : Fragment() {
             handleWhenScreenUnlocked(selectedWhenScreenUnlockedBehaviourEnum, view)
             setAppToLaunch(view, view.context)
 
+            val shouldSpeakWhenRing =
+                view.findViewById<SwitchMaterial>(R.id.should_speak_when_ring_toggle)
+
+            shouldSpeakWhenRing.isChecked = loadShouldSpeakWhenRing(view.context)
+            shouldSpeakWhenRing.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    if (SettingsStatus.isPremium) {
+                        saveShouldSpeakWhenRing(view.context, true)
+                    }
+                    else {
+                        shouldSpeakWhenRing.isChecked = false
+                        featureOnlyAvailableOnPremiumAlert(view.context)
+                    }
+                } else {
+                    saveShouldSpeakWhenRing(view.context, false)
+                }
+            }
+
             if (voiceApi.isEnabled()) {
                 tabVoice.setOnClickListener {
                     groupDistressButton.visibility = GONE
@@ -522,7 +550,32 @@ class SettingsFragment : Fragment() {
                 showLongSnackBar(context, toastMsg, anchorView = requireView())
             }*/
 
-
+            // Rate the app:
+            var numOfAskingUserToRateApp = loadNumOfAskingUserToRateApp(context)
+            if (numOfAskingUserToRateApp < 3) {
+                val daysBetweenPrompts: Int = 7 // only if at least 7 days from last asking to rate
+                val lastDateDialogShown = loadLastDateAskedToRateApp(context)
+                val now = System.currentTimeMillis()
+                val daysInMillis = daysBetweenPrompts * 24 * 60 * 60 * 1000L
+                if ((now - lastDateDialogShown) > daysInMillis) { // if at least x days from last ask for rate
+                    if (numOfAskingUserToRateApp == 0) { // never showed it - show dialog to rate
+                        showRateAppDialog(numOfAskingUserToRateApp) // showing it for the first time
+                    }
+                    else {
+                        val lastUserAnswerToRateApp = loadLastUserAnswerToRateApp(context)
+                        // 0 = agreed to rate don't show again (only if num of tries = 0)
+                        // 1 = maybe later - show if num of tries = 0, 1, 2
+                        // 2 = No, thanks - show if num of tries = 0, 1
+                        if (lastUserAnswerToRateApp == 1) { // since num-of-tries = 1 or 2 - show dialog
+                            showRateAppDialog(numOfAskingUserToRateApp)
+                        }
+                        else if (lastUserAnswerToRateApp == 2 && numOfAskingUserToRateApp == 1) {
+                            showRateAppDialog(numOfAskingUserToRateApp) // show only if it's the 2nd time
+                        }
+                    }
+                }
+            }
+            // End rate the app
         } catch (e: Exception) {
             Log.e("SimplyCall - Settings", "Settings Error (${e.message})")
         }
@@ -1560,15 +1613,6 @@ class SettingsFragment : Fragment() {
 
     }
 
-    private fun openAppSettings(context: Context) {
-        val intent = Intent(
-            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-            Uri.fromParts("package", context.packageName, null)
-        )
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        context.startActivity(intent)
-    }
-
     private fun handleGoldNumberSelectContact(context: Context, selectedContactName: Any) {
         /*        val selectedGoldPhoneNumber = if (PermissionsStatus.defaultDialerPermissionGranted.value == true)
                     getPhoneNumberFromContactNameAndFilterBlocked(context, selectedContactName.toString()) else
@@ -1907,111 +1951,9 @@ class SettingsFragment : Fragment() {
             val lockScreenToggle =
                 requireView().findViewById<SwitchMaterial>(R.id.show_custom_lock_screen_toggle)
             lockScreenToggle.isChecked = false
-            loadLockScreenPermissionsIssueDialog()
+            loadOtherPermissionsIssueDialog(R.plurals.screen_lock_missing_permissions_text_dynamic_plural, context)
         }
     }
-
-    private fun loadLockScreenPermissionsIssueDialog() {
-        val context = requireContext()
-
-        val dialogView =
-            LayoutInflater.from(context).inflate(R.layout.lock_screen_dialog_permission, null)
-        val imageView = dialogView.findViewById<ImageView>(R.id.permission_image)
-        val messageView = dialogView.findViewById<TextView>(R.id.permission_message)
-        val titleView = dialogView.findViewById<TextView>(R.id.lock_permission_dialog_title)
-
-        titleView.text = context.getString(R.string.permission_denied_capital)
-
-        val oem = OemDetector.current()
-        val overlayPermissionName = when (oem) {
-            OemDetector.Oem.XIAOMI -> context.getString(R.string.allow_pop_permission_display_name_xiaomi)
-            OemDetector.Oem.SAMSUNG -> context.getString(R.string.overlay_permission_display_name_samsung)
-            else -> context.getString(R.string.overlay_permission_display_name) // Pixel and others (One Plus should also be like Pixel)
-        }
-
-        val lockScreenPermissionName =
-            context.getString(R.string.lock_screen_permission_display_name)
-
-        val backgroundWindowsPermissionNameXiaomi =
-            context.getString(R.string.overlay_permission_display_name_xiaomi)
-
-        // בדיקת הרשאות חסרות
-        val isOverlayMissing = !(PermissionsStatus.canDrawOverlaysPermissionGranted.value ?: false)
-        val isLockScreenMissing =
-            !(PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value ?: false)
-        val isBackgroundWindowsMissing =
-            !(PermissionsStatus.backgroundWindowsAllowed.value ?: false)
-
-        val missingPermissionsList = mutableListOf<String>()
-
-        if (isOverlayMissing) {
-            missingPermissionsList.add(overlayPermissionName)
-        }
-        if (isLockScreenMissing) {
-            missingPermissionsList.add(lockScreenPermissionName)
-        }
-        if (isBackgroundWindowsMissing) {
-            missingPermissionsList.add(backgroundWindowsPermissionNameXiaomi)
-        }
-
-        val permissionsText = missingPermissionsList.joinToString(separator = ", ")
-
-        // עכשיו הודעה דינמית
-        val quantity = if (missingPermissionsList.size == 1) 1 else 2
-
-        messageView.text = context.resources.getQuantityString(
-            R.plurals.screen_lock_missing_permissions_text_dynamic_plural,
-            quantity,
-            permissionsText
-        )
-        // בחירת תמונה מתאימה
-        val imageResId = when (oem) {
-            OemDetector.Oem.SAMSUNG, OemDetector.Oem.OTHER -> R.drawable.other_permissions_samsung
-            OemDetector.Oem.GOOGLE -> R.drawable.other_permissions_pixel
-            OemDetector.Oem.XIAOMI -> {
-                when {
-                    (isOverlayMissing || isBackgroundWindowsMissing) && isLockScreenMissing -> R.drawable.other_permissions_xioami
-                    (isOverlayMissing || isBackgroundWindowsMissing) -> R.drawable.other_permissions_xioami
-                    isLockScreenMissing -> R.drawable.showonlockscreenpermission
-                    else -> R.drawable.other_permissions_xioami
-                }
-            }
-
-            else -> R.drawable.other_permissions_samsung
-        }
-
-        imageView.setImageResource(imageResId)
-
-        val alertDialog = AlertDialog.Builder(context, R.style.LockScreenPermissionDialogBackground)
-            .setView(dialogView)
-            .setPositiveButton(context.getString(R.string.open_settings)) { dialog, _ ->
-                openAppSettings(context)
-            }
-            .setNegativeButton(context.getString(R.string.ok)) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .setCancelable(false)
-            .show()
-
-        // שינוי צבע כפתורי הדיאלוג
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            ?.setTextColor(ContextCompat.getColor(context, R.color.blue_500))
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-            ?.setTextColor(ContextCompat.getColor(context, R.color.blue_500))
-
-        // שינוי גודל הדיאלוג — רווח 15dp מכל צד
-        val marginDp = 15
-        val marginPx = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            marginDp.toFloat(),
-            resources.displayMetrics
-        ).toInt()
-        val screenWidth = resources.displayMetrics.widthPixels
-        val desiredWidth = screenWidth - (marginPx * 2)
-        val window = alertDialog.window
-        window?.setLayout(desiredWidth, WindowManager.LayoutParams.WRAP_CONTENT)
-    }
-
 
     private fun stopUnlockServiceClick() {
         val context = requireContext()
@@ -2032,6 +1974,66 @@ class SettingsFragment : Fragment() {
         handleWhenScreenUnlocked(selectedWhenScreenUnlockedBehaviourEnum, requireView())
         val intent = Intent(context, IdleMonitorService::class.java)
         context.stopService(intent)
+    }
+
+    // 0 = agreed to rate don't show again (only if num of tries = 0)
+    // 1 = maybe later - show if num of tries = 0, 1, 2
+    // 2 = No, thanks - show if num of tries = 0, 1
+    fun showRateAppDialog(numOfAskingUserToRateApp: Int) {
+        val context = requireContext()
+
+        // Show dialog
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(getString(R.string.rate_the_app_dialog_title))
+        builder.setMessage(getString(R.string.rate_the_app_dialog_text))
+
+        builder.setPositiveButton(getString(R.string.rate_the_app_dialog_answer_rate_now)) { _, _ ->
+            saveLastUserAnswerToRateApp(context, 0) // 0 = agreed to rate don't show again
+            saveNumOfAskingUserToRateApp(context, (numOfAskingUserToRateApp + 1))
+            saveCurrentDateAskedToRateApp(context)
+            launchInAppReview()
+        }
+
+        builder.setNeutralButton(getString(R.string.rate_the_app_dialog_answer_maybe_later)) { dialog, _ ->
+            saveLastUserAnswerToRateApp(context, 1) // 1 = maybe later
+            saveNumOfAskingUserToRateApp(context, (numOfAskingUserToRateApp + 1))
+            saveCurrentDateAskedToRateApp(context)
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton(getString(R.string.rate_the_app_dialog_answer_no_thanks)) { dialog, _ ->
+            saveLastUserAnswerToRateApp(context, 2) // 2 = No, thanks
+            saveNumOfAskingUserToRateApp(context, (numOfAskingUserToRateApp + 1))
+            saveCurrentDateAskedToRateApp(context)
+            dialog.dismiss()
+        }
+
+        builder.setOnCancelListener {
+            // לא נלחץ שום כפתור - לא סופרים כניסיון
+        }
+
+        builder.create().show()
+    }
+
+    fun launchInAppReview() {
+        var activity = requireActivity()
+        val manager = ReviewManagerFactory.create(activity)
+        val request = manager.requestReviewFlow()
+
+        request.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val reviewInfo = task.result
+                val flow = manager.launchReviewFlow(activity, reviewInfo)
+                flow.addOnCompleteListener {
+                    // הדיאלוג הוצג – אין צורך לעשות כלום
+                }
+            } else {
+                // שגיאה – אפשר להפנות ידנית ל־Google Play:
+                val packageName = activity.packageName
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName"))
+                activity.startActivity(intent)
+            }
+        }
     }
 
     override fun onDestroy() {

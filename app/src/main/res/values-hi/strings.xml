@@ -326,7 +326,7 @@
     <string name="welcome_text_speech_short">प्रीमियम संस्करण त्वरित कॉल के लिए उन्नत सुविधाएँ प्रदान करता है, साथ ही निष्क्रियता के बाद स्वचालित रूप से दिखाई देने वाली एक स्मार्ट लॉक स्क्रीन भी है। स्क्रीन पर टैप करने से आप सीधे ऐप में वापस आ जाएंगे और होम स्क्रीन पर खोजे बिना आसानी से कॉल कर सकते हैं।</string>
     <string name="quick_call_activated_voice_message_speech">त्वरित कॉल सक्रिय हो गई है — कृपया ध्यान दें</string>
     <string name="voice">आवाज़</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">ऐप SMS अनुमति का उपयोग करके चयनित %1$s को पाठ संदेश भेजता है।\nसंदेश भेजना नेटवर्क उपलब्धता पर निर्भर करता है और इसमें शुल्क लग सकते हैं।\nकेवल एक संदेश भेजा जाएगा।\nकिसी भी लागत या डिलीवरी समस्या के लिए उपयोगकर्ता जिम्मेदार है।</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">ऐप SMS अनुमति का उपयोग करके चयनित %1$s को पाठ संदेश भेजता है।\nसंदेश भेजना नेटवर्क उपलब्धता पर निर्भर करता है और इसमें शुल्क लग सकते हैं।\nअधिकतम 3 संदेश भेजे जाएंगे।\nकिसी भी लागत या डिलीवरी समस्या के लिए उपयोगकर्ता जिम्मेदार है।</string>
     <string name="settings_when_lock_screen_is_unlocked">स्क्रीन अनलॉक होने पर</string>
     <string name="select_app_to_launch">लॉन्च करने के लिए ऐप चुनें</string>
     <string name="premium_screen_lock_text">हमारी स्मार्ट लॉक स्क्रीन एक नई और आसान अनुभव प्रदान करती है।\n\nअजीब स्वाइप जेस्चर के साथ संघर्ष करने या यह पता लगाने के बजाय कि अपने डिवाइस को कैसे अनलॉक करें, एक ही टैप आपको सीधे ऐप में वापस ले जाता है, जहाँ आप आसानी से फोन कॉल प्रबंधित और कर सकते हैं।\n\nस्वच्छ डिज़ाइन और सहज नियंत्रण के साथ, यह आपके मोबाइल अनुभव के लिए एक सच्चा अपग्रेड है।</string>
@@ -342,11 +342,26 @@
     <string name="lock_screen_permission_display_name">लॉक स्क्रीन पर दिखाएं</string>
     <string name="overlay_permission_display_name_xiaomi">बैकग्राउंड में पॉप-अप विंडो दिखाएँ</string>
     <string name="allow_pop_permission_display_name_xiaomi">पॉप-अप विंडो दिखाएँ</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s को सही ढंग से काम करने के लिए, ऐप को कॉल संभालने के लिए डिफ़ॉल्ट ऐप के रूप में सेट करना होगा।</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s को सही ढंग से काम करने के लिए, ऐप को कॉल संभालने के लिए डिफ़ॉल्ट ऐप के रूप में सेट करना होगा। क्या आप इस चरण को छोड़ना चाहते हैं?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">%2$s के दौरान टेक्स्ट संदेश भेजने के लिए, %1$s सेट करना आवश्यक है।</string>
     <string name="this_feature_only_available_on_premium">यह सुविधा केवल प्रीमियम संस्करण में उपलब्ध है। अभी अपग्रेड करें और इस सुविधा सहित कई बेहतरीन फ़ीचर्स का लाभ उठाएँ।</string>
     <string name="unlock_more_with_premium_title">प्रीमियम के साथ और पाएं</string>
     <string name="try_the_premium_button">नि:शुल्क परीक्षण शुरू करें</string>
     <string name="no_contacts_available_for_selection">चयन के लिए कोई संपर्क उपलब्ध नहीं है</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">%1$s को सही ढंग से काम करने के लिए, ऐप को कॉन्टैक्ट्स अनुमति देना आवश्यक है।</string>
+    <string name="announce_caller_instead_of_ringtone">रिंगटोन की जगह कॉलर का नाम बोलें</string>
+    <string name="incoming_call_speech">नमस्ते! %1$s की कॉल आई है</string>
+    <string name="quick_call_in_progress">%1$s अगली कोशिश के इंतज़ार में – पिछली कॉल का कोई जवाब नहीं मिला</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">%1$s को 3 बार आज़माया गया – लेकिन सफलता नहीं मिली</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s का उत्तर दिया गया और यह सफलतापूर्वक समाप्त हुई</string>
+    <string name="rate_the_app_dialog_title">क्या आप ऐप से संतुष्ट हैं?</string>
+    <string name="rate_the_app_dialog_text">इस ऐप को बनाने में हमने दिल और मेहनत लगाई है ताकि वरिष्ठ नागरिकों और दिव्यांगों को कॉल प्रबंधन में आसानी और आत्मनिर्भरता मिल सके।\nअगर यह ऐप आपके लिए उपयोगी है, तो कृपया Google Play पर हमें रेट करें। आपकी राय हमारे लिए बहुत महत्वपूर्ण है और सुधार में मदद करती है!</string>
+    <string name="rate_the_app_dialog_answer_rate_now">अभी रेट करें</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">शायद बाद में</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">नहीं, धन्यवाद</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="one">कॉल का सही तरीके से उत्तर देने के लिए ऐप को निम्न अनुमति की आवश्यकता है: %1$s.</item>
+        <item quantity="other">कॉल का सही तरीके से उत्तर देने के लिए ऐप को निम्न अनुमतियों की आवश्यकता है: %1$s.</item>
+    </plurals>
+
 </resources>

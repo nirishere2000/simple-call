@@ -356,7 +356,7 @@
     <string name="welcome_text_speech_short">De Premium-versie biedt verbeterde functies voor de Snelle oproep, samen met een slim vergrendelscherm dat automatisch verschijnt na inactiviteit. Door op het scherm te tikken ga je direct terug naar de app om eenvoudig een oproep te plaatsen zonder op het startscherm te hoeven zoeken.</string>
     <string name="quick_call_activated_voice_message_speech">Snelle oproep geactiveerd — let alstublieft op</string>
     <string name="voice">Stem</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">De app gebruikt SMS-toestemming om een sms-bericht te sturen naar de geselecteerde %1$s.\nHet verzenden van berichten hangt af van de netwerkomstandigheden en kan kosten met zich meebrengen.\nEr wordt slechts één bericht verzonden.\nDe gebruiker is verantwoordelijk voor eventuele kosten of bezorgproblemen.</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">De app gebruikt SMS-toestemming om een sms-bericht te sturen naar de geselecteerde %1$s.\nHet verzenden van berichten hangt af van de netwerkomstandigheden en kan kosten met zich meebrengen.\nEr worden maximaal 3 berichten verzonden.\nDe gebruiker is verantwoordelijk voor eventuele kosten of bezorgproblemen.</string>
     <string name="settings_when_lock_screen_is_unlocked">Bij het ontgrendelen van het scherm</string>
     <string name="select_app_to_launch">Selecteer app om te starten</string>
     <string name="premium_screen_lock_text">Ons slimme vergrendelscherm biedt een nieuwe en moeiteloze ervaring.\n\nIn plaats van te worstelen met onhandige veeggebaren of uit te zoeken hoe je je apparaat ontgrendelt, brengt één tik je direct terug naar de app, waar je eenvoudig telefoongesprekken kunt beheren en voeren.\n\nMet een strak ontwerp en intuïtieve bediening is het een echte upgrade van je mobiele ervaring.</string>
@@ -372,12 +372,26 @@
     <string name="lock_screen_permission_display_name">Weergeven op het vergrendelscherm</string>
     <string name="overlay_permission_display_name_xiaomi">Nieuwe vensters openen terwijl het op de achtergrond uitgevoerd wordt</string>
     <string name="allow_pop_permission_display_name_xiaomi">Pop-upvensters weergeven</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Om %1$s correct te laten werken, moet de app worden ingesteld als de standaardapp voor het afhandelen van oproepen.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Om %1$s correct te laten werken, moet de app worden ingesteld als de standaardapp voor het afhandelen van oproepen. Weet u zeker dat u deze stap wilt overslaan?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Om een SMS te verzenden tijdens een %2$s, moet een %1$s worden ingesteld.</string>
     <string name="this_feature_only_available_on_premium">Deze functie is alleen beschikbaar in de Premium-versie. Upgrade nu om hiervan en van vele andere geweldige functies te genieten!</string>
     <string name="unlock_more_with_premium_title">Ontvang meer met Premium</string>
     <string name="try_the_premium_button">Gratis proefperiode starten</string>
     <string name="no_contacts_available_for_selection">Geen contacten beschikbaar voor selectie</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Om %1$s correct te laten werken, moet de app toestemming krijgen voor toegang tot contacten.</string>
+    <string name="announce_caller_instead_of_ringtone">Naam van beller aankondigen in plaats van ringtone</string>
+    <string name="incoming_call_speech">Hallo! Je hebt een oproep van %1$s</string>
+    <string name="quick_call_in_progress">%1$s wacht op de volgende poging – de vorige oproep werd niet beantwoord</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">%1$s is 3 keer geprobeerd – maar zonder succes</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s werd beantwoord en succesvol afgerond</string>
+    <string name="rate_the_app_dialog_title">Tevreden over de app?</string>
+    <string name="rate_the_app_dialog_text">We hebben veel tijd en toewijding gestoken in het maken van deze app om senioren en mensen met een beperking te helpen hun telefoongesprekken makkelijker en zelfstandiger te beheren.\nAls je de app nuttig vindt, zouden we het enorm waarderen als je ons een beoordeling geeft in de Google Play Store. Jouw feedback helpt ons om te blijven verbeteren!</string>
+    <string name="rate_the_app_dialog_answer_rate_now">Nu beoordelen</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">Misschien later</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">Nee, bedankt</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="one">Om oproepen correct te beantwoorden, heeft de app de volgende machtiging nodig: %1$s.</item>
+        <item quantity="other">Om oproepen correct te beantwoorden, heeft de app de volgende machtigingen nodig: %1$s.</item>
+    </plurals>
 
 </resources>

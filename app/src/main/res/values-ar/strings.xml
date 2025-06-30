@@ -362,7 +362,7 @@
     <string name="welcome_text_speech_short">توفر النسخة المميزة ميزات محسنة لمكالمة سريعة، بالإضافة إلى شاشة قفل ذكية تظهر تلقائيًا بعد فترة من عدم النشاط. يؤدي النقر على الشاشة إلى إعادتك مباشرة إلى التطبيق، حتى تتمكن من إجراء مكالمة بسهولة دون البحث عنها في الشاشة الرئيسية.</string>
     <string name="quick_call_activated_voice_message_speech">تم تفعيل المكالمة السريعة — الرجاء الانتباه</string>
     <string name="voice">صوت</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">يستخدم التطبيق إذن الرسائل القصيرة لإرسال رسالة نصية إلى %1$s المحدَّد.\nتعتمد عملية الإرسال على توفر الشبكة وقد تترتب عليها رسوم.\nسيتم إرسال رسالة واحدة فقط.\nملاحظة: يتحمل المستخدم أي تكاليف أو مشكلات في التسليم.</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">يستخدم التطبيق إذن الرسائل القصيرة لإرسال رسالة نصية إلى %1$s المحدَّد. تعتمد عملية الإرسال على توفر الشبكة وقد تترتب عليها رسوم. سيتم إرسال حتى 3 رسائل فقط. ملاحظة: يتحمل المستخدم أي تكاليف أو مشكلات في التسليم.</string>
     <string name="settings_when_lock_screen_is_unlocked">عند فتح قفل الشاشة</string>
     <string name="select_app_to_launch">اختر تطبيقًا للتشغيل</string>
     <string name="premium_screen_lock_text">شاشة القفل الذكية الخاصة بنا تقدم تجربة جديدة وسهلة للغاية.\n\nبدلاً من المعاناة مع حركات التمرير المربكة أو محاولة معرفة كيفية فتح جهازك، نقرة واحدة فقط تعيدك مباشرة إلى التطبيق، حيث يمكنك إدارة المكالمات الهاتفية وإجراؤها بسهولة.\n\nبفضل التصميم النظيف والتحكم السلس، إنها ترقية حقيقية لتجربة استخدام الهاتف المحمول.</string>
@@ -382,11 +382,29 @@
     <string name="lock_screen_permission_display_name">العرض على شاشة القفل</string>
     <string name="allow_pop_permission_display_name_xiaomi">عرض النوافذ المنبثقة</string>
     <string name="overlay_permission_display_name_xiaomi">فتح نوافذ جديدة أثناء التشغيل في الخلفية</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">لكي يعمل %1$s بشكل صحيح، يجب ضبط التطبيق كتطبيق افتراضي لإجراء المكالمات.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">لكي يعمل %1$s بشكل صحيح، يجب تحديد التطبيق كتطبيق افتراضي لإجراء المكالمات. هل تريد تخطي هذه الخطوة؟</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">لإرسال رسالة نصية أثناء %2$s، يجب تعيين %1$s.</string>
     <string name="this_feature_only_available_on_premium">هذه الميزة متاحة فقط في الإصدار المميز. قم بالترقية الآن للاستمتاع بها وبالعديد من الميزات الرائعة الأخرى!</string>
     <string name="unlock_more_with_premium_title">استمتع بالمزيد مع النسخة المميزة</string>
     <string name="try_the_premium_button">ابدأ الفترة التجريبية المجانية</string>
     <string name="no_contacts_available_for_selection">لا توجد جهات اتصال متاحة للاختيار</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">لكي يعمل %1$s بشكل صحيح، يجب منح التطبيق إذن الوصول إلى جهات الاتصال.</string>
+    <string name="announce_caller_instead_of_ringtone">نطق اسم المتصل بدلاً من نغمة الرنين</string>
+    <string name="incoming_call_speech">مرحبًا! لديك مكالمة من %1$s</string>
+    <string name="quick_call_in_progress">%1$s في انتظار المحاولة التالية – لم يتم الرد على المكالمة السابقة</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">%1$s تم المحاولة 3 مرات – لكن دون نجاح</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s تم الرد عليها وانتهت بنجاح</string>
+    <string name="rate_the_app_dialog_title">هل أنت راضٍ عن التطبيق؟</string>
+    <string name="rate_the_app_dialog_text">لقد بذلنا الكثير من الجهد والاهتمام لإنشاء هذا التطبيق لمساعدة كبار السن وذوي الاحتياجات الخاصة في إدارة مكالماتهم الهاتفية بسهولة واستقلالية أكبر.\nإذا وجدت التطبيق مفيدًا، فنحن نُقدِّر كثيرًا تقييمك لنا على جوجل بلاي. ملاحظاتك تهمنا وتساعدنا على التحسن!</string>
+    <string name="rate_the_app_dialog_answer_rate_now">قيّم الآن</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">ربما لاحقًا</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">لا، شكرًا</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="zero">لكي يتمكن التطبيق من الرد على المكالمات بشكل صحيح، يجب السماح بالأذونات التالية: %1$s.</item>
+        <item quantity="one">لكي يتمكن التطبيق من الرد على المكالمات بشكل صحيح، يجب السماح بالإذن التالي: %1$s.</item>
+        <item quantity="two">لكي يتمكن التطبيق من الرد على المكالمات بشكل صحيح، يجب السماح بالإذنين التاليين: %1$s.</item>
+        <item quantity="few">لكي يتمكن التطبيق من الرد على المكالمات بشكل صحيح، يجب السماح ببعض الأذونات التالية: %1$s.</item>
+        <item quantity="many">لكي يتمكن التطبيق من الرد على المكالمات بشكل صحيح، يجب السماح بالعديد من الأذونات التالية: %1$s.</item>
+        <item quantity="other">لكي يتمكن التطبيق من الرد على المكالمات بشكل صحيح، يجب السماح بالأذونات التالية: %1$s.</item>
+    </plurals>
 </resources>

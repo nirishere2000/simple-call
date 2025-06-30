@@ -2,6 +2,7 @@ package com.nirotem.simplecall
 
 import android.Manifest
 import android.Manifest.permission.READ_CONTACTS
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -36,12 +37,14 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAutoAnswerPho
 import com.nirotem.simplecall.managers.SoundPoolManager
 import android.os.Handler
 import android.os.Looper
+import android.telecom.TelecomManager
 
 import androidx.lifecycle.Observer
 import com.nirotem.simplecall.OngoingCall.formatPhoneNumberWithLib
 import com.nirotem.simplecall.helpers.DBHelper.isNumberBlocked
 import com.nirotem.simplecall.helpers.SharedPreferencesCache
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadLastExternalCallDate
+import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadShouldSpeakWhenRing
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCallActivityLoadedTimeStamp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveLastCallError
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.shouldAllowCallWaiting
@@ -49,6 +52,9 @@ import com.nirotem.simplecall.helpers.isSpeakerphoneOn
 import com.nirotem.simplecall.managers.QuickCallButtonManager.quickCallWasAnswered
 import com.nirotem.simplecall.managers.QuickCallButtonManager.quickCallIsOn
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
+import com.nirotem.simplecall.managers.QuickCallButtonManager.cancelQuickCall
+import com.nirotem.simplecall.managers.TextToSpeechManager.speak
+import com.nirotem.simplecall.managers.TextToSpeechManager.stopSpeaking
 import com.nirotem.simplecall.statuses.AllowAnswerCallsEnum
 import com.nirotem.simplecall.statuses.LanguagesEnum
 import com.nirotem.simplecall.statuses.OpenScreensStatus
@@ -259,7 +265,9 @@ CALL_DIRECTION_OUTGOING = 2
         }
     }
 
+    @SuppressLint("MissingPermission")
     fun handleCallAdded(call: Call) {
+        val shouldSpeakCallNameInsteadOfRing = loadShouldSpeakWhenRing(this)
         OngoingCall.callWasEndedMustClose.value = false
         CallActivity.criticalErrorEvent.value = false // no reason not to reset this event here
         CallActivity.criticalErrorEventMessage = ""
@@ -350,7 +358,7 @@ CALL_DIRECTION_OUTGOING = 2
                                 OutgoingCall.isCalling = false
                                 createNotificationChannel()
                                 createCallNotificationForTray()
-                                if (quickCallIsOn && OutgoingCall.phoneNumberOrContact == SettingsStatus.quickCallNumber.value) {
+                                if (quickCallIsOn && CallActivity.originalPhoneNumber == SettingsStatus.quickCallNumber.value) {
                                     quickCallWasAnswered = true
                                 }
                             } else if (isCallWaiting) {
@@ -478,11 +486,12 @@ CALL_DIRECTION_OUTGOING = 2
 
             call.registerCallback(callCallback)
 
-
-
             handleAddedCall(call, isCallWaiting, onCallAddedContext, isOutgoing, shouldAutoAnswer)
 
             if (shouldAutoAnswer && !isCallWaiting && !isOutgoing && !OngoingCall.wasAnswered) {
+                if (shouldSpeakCallNameInsteadOfRing) { // Speak only once
+                    speak(getString(R.string.incoming_call_speech,  OutgoingCall.phoneNumberOrContact))
+                }
                 startRingTimer()
                 // AutoAnswer:
                 //val videoState = if (supportsVideoCall()) {
@@ -493,9 +502,26 @@ CALL_DIRECTION_OUTGOING = 2
                 //stopRingtone(false)
 
             }
+            else if (shouldSpeakCallNameInsteadOfRing && !isCallWaiting && !isOutgoing && !OngoingCall.wasAnswered) {
+                if (PermissionsStatus.defaultDialerPermissionGranted.value == true) {
+                    // this works without permission since application must be default app for manging calls
+                    // in order to answer the call and get to here
+                    val tm = getSystemService(Context.TELECOM_SERVICE) as TelecomManager
+                    tm.silenceRinger()
+                }
+
+                startSpeakInsteadOfRingTimer()
+            }
+
+
         } else { // We don't take this kind of call
-            call.reject(2)
-           // call.disconnect()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                call.reject(Call.REJECT_REASON_UNWANTED)
+            }
+            else {
+                call.disconnect()
+            }
+            // call.disconnect()
         }
     }
 
@@ -683,6 +709,9 @@ CALL_DIRECTION_OUTGOING = 2
         isOutgoing: Boolean,
         isAutoAnswer: Boolean
     ) {
+        if (SettingsStatus.isPremium) {
+            stopSpeaking() // if in middle of speech - stop it
+        }
         val numberOrContact = call.details.handle?.schemeSpecificPart
         Log.d(
             "SimplyCall - InCallServiceManager",
@@ -795,7 +824,7 @@ CALL_DIRECTION_OUTGOING = 2
             WaitingCall.startedRinging.value = false // resting just in case
             activeCallDisplayManager.handleIncomingCall(context, false, isAutoAnswer)
 
-            // Start timer - beucase this is the only way to know if the activity was really loaded or we need to popup notification instead
+            // Start timer - because this is the only way to know if the activity was really loaded or we need to popup notification instead
             try {
                 Handler(Looper.getMainLooper()).postDelayed({
                     if (OpenScreensStatus.eventScreenActivityIsOpen.value != true) {
@@ -1040,6 +1069,26 @@ CALL_DIRECTION_OUTGOING = 2
                 handler.postDelayed(this, ringDuration)
             }
         }
+    }
+
+    private val speakContactInsteadOfRingRunnable = object : Runnable {
+        override fun run() {
+            val currentTime = System.currentTimeMillis()
+            val elapsed = currentTime - ringingStartTime
+            ringCount = (elapsed / ringDuration).toInt()
+            Log.d(TAG, "Number of rings: $ringCount")
+            if (OngoingCall.call != null && !OngoingCall.wasAnswered) { // not answered and not disconnected
+                speak(getString(R.string.incoming_call_speech,  OngoingCall.phoneNumberOrContact))
+                handler.postDelayed(this, ringDuration)
+            }
+        }
+    }
+
+    private fun startSpeakInsteadOfRingTimer() {
+        ringingStartTime = System.currentTimeMillis()
+
+        handler.post(speakContactInsteadOfRingRunnable)
+        Log.d(TAG, "startSpeakInsteadOfRingTimer()")
     }
 
     private fun startRingTimer() {

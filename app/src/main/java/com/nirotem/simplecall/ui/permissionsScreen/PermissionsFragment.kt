@@ -14,12 +14,14 @@ import android.os.Bundle
 import android.provider.Settings
 import android.telecom.TelecomManager
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -41,6 +43,7 @@ import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus.isBackgroundWindowsAllowed
 import java.util.Locale
 import androidx.lifecycle.lifecycleScope
+import com.nirotem.sharedmodules.statuses.OemDetector
 import com.nirotem.simplecall.helpers.DBHelper.saveContactsForCallWithoutPermissions
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
 import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar

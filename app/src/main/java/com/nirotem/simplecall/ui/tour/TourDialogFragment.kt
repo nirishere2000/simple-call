@@ -18,6 +18,7 @@ class TourDialogFragment : DialogFragment(), TourFragment.TourListener {
         super.onCreate(savedInstanceState)
         // Remove the default title for the dialog
         setStyle(STYLE_NO_TITLE, android.R.style.Theme_Translucent_NoTitleBar)
+        isCancelable = false  // מונע סגירה דרך back או לחיצה מחוץ לדיאלוג
     }
 
     override fun onCreateView(

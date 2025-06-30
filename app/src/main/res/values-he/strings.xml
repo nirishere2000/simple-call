@@ -55,7 +55,7 @@
     <string name="yes_skip_capital">כן, לדלג</string>
     <string name="no_set_as_default_capital">לא, הגדרת ברירת המחדל</string>
     <string name="set_default_phone_app">הגדרת האפליקציה כברירת המחדל לשיחות</string>
-    <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">כדי לנהל שיחות בצורה מיטבית, חשוב להגדיר את האפליקציה כאפליקציית הטלפון המוגדרת כברירת מחדל. האם אתם בטוחים שברצונכם לדלג על שלב זה?</string>
+    <string name="for_handling_calls_it_is_important_to_set_the_app_as_default_text">כדי לנהל שיחות בצורה מיטבית, חשוב להגדיר את האפליקציה כאפליקציית הטלפון המוגדרת כברירת מחדל. האם ברצונך לדלג על שלב זה?</string>
     <string name="cancel_capital">ביטול</string>
     <string name="battery_saver">חיסכון בסוללה</string>
     <string name="for_the_app_to_run_smoothly_in_the_background_please_set_the_battery_saver">על מנת שהאפליקציה תוכל לרוץ בצורה רציפה ברקע, כך שתוכל לנהל שיחות, יש להסיר את הגבלות ניהול החיסכון בסוללה, עבור האפליקציה. על מנת לעשות זאת, יש לפתוח את \'חיסכון בסוללה\' מתוך \'פרטי היישום\', ושם לבחור ב - \'אין הגבלות\'. האפליקציה תוכננה תוך התחשבות בחיסכון בסוללה.</string>
@@ -133,10 +133,10 @@
     <string name="tour_finished_but_without_phone_permission_and_default_app">הכל מוכן! לפני שתסיים, קח רגע לקרוא ולאשר את תנאי השימוש של האפליקציה.\n\nלתשומת לבך: לחצן השיחה המהירה לא יעבוד כראוי ללא הרשאת טלפון.\nבנוסף, ללא הגדרת האפליקציה כברירת מחדל לשיחות, היא לא תוכל לטפל בשיחות בצורה תקינה.\n\nלחץ על כפתור סיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכל להעניק הרשאות, להתאים אישית את האפליקציה לצרכים שלך, ולהתחיל ליהנות מכל היכולות שלה.\n\nתמיד תוכל לצפות שוב בסיור מתפריט שלוש הנקודות שבחלק העליון של המסך.</string>
     <string name="tour_finished_but_without_phone_permission_and_battery_saver">הכל מוכן! לפני שתסיימו, אנא הקדישו רגע לקרוא ולאשר את התקנון ותנאי השימוש של האפליקציה.\n\nשימו לב: לחצן המצוקה לא יוכל לפעול כראוי ללא הרשאת גישה לטלפון.\nבנוסף, ללא ביטול הגבלות הסוללה, האפליקציה לא תוכל לטפל בשיחות כראוי.\n\nלחצו על כפתור הסיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכלו להעניק הרשאות, להתאים אישית את האפליקציה לצרכיכם, ולהתחיל להנות מכל יכולותיה.\nניתן תמיד לשוב ולצפות בסיור דרך תפריט שלוש הנקודות.</string>
     <string name="tour_finished_but_without_phone_permission_and_default_app_and_battery_saver">הכול מוכן! לפני שתסיים, קח רגע לקרוא ולאשר את תנאי השימוש של האפליקציה.\n\nלתשומת לבך: לחצן השיחה המהירה לא יעבוד כראוי ללא הרשאת טלפון.\nבנוסף, ללא הגדרת האפליקציה כברירת מחדל לניהול שיחות וללא ביטול מגבלות חיסכון בסוללה, האפליקציה לא תוכל לטפל בשיחות בצורה תקינה.\n\nלחץ על כפתור סיום כדי להשלים את הסיור ולפתוח את מסך ההגדרות, בו תוכל להעניק הרשאות, להתאים אישית את האפליקציה לצרכים שלך, ולהתחיל ליהנות מכל הפונקציות שלה.\n\nתמיד תוכל לצפות שוב בסיור דרך תפריט שלוש הנקודות בראש המסך.</string>
-    <string name="tour_battery_saver_skipped_but_needed_alert">על מנת שהאפליקציה תפעל בצורה חלקה ברקע, חשוב להסיר את ההגבלות של האפליקציה ממצב החיסכון בסוללה. האפליקציה תוכננה לצריכת סוללה מינימלית. האם אתם בטוחים שברצונכם לדלג על שלב זה?</string>
+    <string name="tour_battery_saver_skipped_but_needed_alert">על מנת שהאפליקציה תפעל בצורה חלקה ברקע, חשוב להסיר את ההגבלות של האפליקציה ממצב החיסכון בסוללה. האפליקציה תוכננה לצריכת סוללה מינימלית. האם ברצונך לדלג על שלב זה?</string>
     <string name="no_open_app_info">לא, לפתוח את פרטי היישום</string>
     <string name="tour_overlay_draw_permission_skipped_alert_title">הרשאת ריצה ברקע</string>
-    <string name="tour_overlay_draw_permission_skipped_alert_text">"על מנת שהאפליקציה תוכל לנהל שיחות ברקע (כאשר היא אינה פתוחה מראש), חשוב לאפשר את הרשאת פתיחת חלונות חדשים ברקע (ריצה ברקע). האם אתם בטוחים שברצונכם לדלג על שלב זה?"</string>
+    <string name="tour_overlay_draw_permission_skipped_alert_text">"על מנת שהאפליקציה תוכל לנהל שיחות ברקע (כאשר היא אינה פתוחה מראש), חשוב לאפשר את הרשאת פתיחת חלונות חדשים ברקע (ריצה ברקע). האם ברצונך לדלג על שלב זה?"</string>
     <string name="request_overlay_permission_alert_title">אישור לאפליקציה להציג את מסך השיחות גם כאשר אינה פתוחה</string>
     <string name="request_overlay_permission_alert_text">אנא פתחו את \'הרשאות אחרות\' והעניקו הרשאה ל - \'לאפשר פתיחת חלונות חדשים בזמן שהיישום רץ ברקע\'.</string>
     <string name="permissions_screen_title_text">האפליקציה זקוקה למספר הרשאות על מנת לנהל את השיחות כיאות.</string>
@@ -323,10 +323,10 @@
     <string name="initial_voice_command_quick_call">שיחה מהירה</string>
     <string name="initial_voice_command_unlock_screen">פתיחת מכשיר</string>
     <string name="lock_service_was_activated_msg">השירות פעיל! מסך הנעילה החכם יופיע כשנעילת המכשיר תופעל. ניתן לשנות את ההגדרות בכל עת.</string>
-    <string name="welcome_text_speech_short">גרסת הפרימיום מציעה תכונות משודרגות עבור שיחה מהירה, יחד עם מסך נעילה חכם שמופיע אוטומטית לאחר חוסר פעילות. הקשה על המסך תחזיר אותך ישירות לאפליקציה, כך שתוכל לבצע שיחה בקלות מבלי לחפש אותה במסך הבית.</string>
+    <string name="welcome_text_speech_short">גרסת הפרימיום מציעה תכונות משודרגות עבור שיחה מהירה, יחד עם מסך נעילה חכם שמופיע אוטומטית לאחר חוסר פעילות. הקשה על המסך תחזיר אתכם ישירות לאפליקציה, כך שתוכלו לבצע שיחה בקלות מבלי לחפש אותה במסך הבית.</string>
     <string name="quick_call_activated_voice_message_speech">שיחה מהירה הופעלה - נא לשים לב</string>
     <string name="voice">דיבור</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">האפליקציה משתמשת בהרשאת שליחת הודעת טקסט כדי לשלוח הודעה ל%1$s שנבחר.\nשליחת ההודעה תלויה בזמינות רשת ועלולה להיות כרוכה בעלויות.\nהאפליקציה תשלח הודעה אחת בלבד.\nשימו לב: כל עלות או בעיה בשליחה היא באחריות המשתמש.</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">האפליקציה משתמשת בהרשאת שליחת הודעת טקסט כדי לשלוח הודעה ל%1$s שנבחר.\nשליחת ההודעה תלויה בזמינות רשת ועלולה להיות כרוכה בעלויות.\nהאפליקציה תשלח עד 3 הודעות בלבד.\nשימו לב: כל עלות או בעיה בשליחה היא באחריות המשתמש.</string>
     <string name="settings_when_lock_screen_is_unlocked">בעת פתיחת נעילת המסך</string>
     <string name="select_app_to_launch">בחרו אפליקציה להפעלה</string>
     <string name="premium_screen_lock_text">מסך הנעילה החכם שלנו מציע חוויית שימוש חדשה ונוחה במיוחד.\n\nבמקום להיאבק בתנועות החלקה מסורבלות או לנסות להבין כיצד לפתוח את המכשיר, לחיצה אחת בלבד מחזירה ישירות אל האפליקציה, שם ניתן לנהל ולהוציא שיחות טלפון בקלות.\n\nעם עיצוב נקי ושליטה אינטואיטיבית, זוהי שדרוג אמיתי לחוויית השימוש במכשיר הנייד.</string>
@@ -343,12 +343,26 @@
     <string name="lock_screen_permission_display_name">הצגה במסך הנעילה</string>
     <string name="allow_pop_permission_display_name_xiaomi">הצגת חלונות קופצים</string>
     <string name="overlay_permission_display_name_xiaomi">פתיחת חלונות חדשים בזמן שהיישום רץ ברקע</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">כדי ש-%1$s תעבוד כראוי, יש להגדיר את האפליקציה כברירת מחדל לניהול שיחות.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">כדי ש%1$s תעבוד כראוי, יש להגדיר את האפליקציה כברירת מחדל לניהול שיחות. האם ברצונך לדלג על שלב זה?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">על מנת לשלוח הודעת טקסט במהלך %2$s, יש להגדיר %1$s.</string>
     <string name="this_feature_only_available_on_premium">תכונה זו זמינה רק בגרסת הפרימיום. שדרגו עכשיו כדי ליהנות ממנה וממגוון תכונות נוספות!</string>
     <string name="unlock_more_with_premium_title">קבלו עוד עם פרימיום</string>
     <string name="try_the_premium_button">התחילו ניסיון חינם</string>
     <string name="no_contacts_available_for_selection">לא נמצאו אנשי קשר זמינים לבחירה</string>
-    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">כדי ש-%1$s תעבוד כראוי, יש להעניק לאפליקציה הרשאת אנשי קשר.</string>
-
+    <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">כדי ש%1$s תעבוד כראוי, יש להעניק לאפליקציה הרשאת אנשי קשר.</string>
+    <string name="announce_caller_instead_of_ringtone">אמירת שם המתקשר במקום צלצול</string>
+    <string name="incoming_call_speech">היי! מתקבלת שיחה מ־%1$s</string>
+    <string name="quick_call_in_progress">%1$s בהמתנה לניסיון הבא – השיחה הקודמת לא נענתה</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">בוצע ניסיון לבצע את %1$s שלוש פעמים – ללא הצלחה</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s נענתה והסתיימה בהצלחה</string>
+    <string name="rate_the_app_dialog_title">מרוצה מהאפליקציה?</string>
+    <string name="rate_the_app_dialog_text">השקענו הרבה מאוד מחשבה ומאמץ כדי ליצור אפליקציה שתעזור למבוגרים ולאנשים עם מוגבלויות לנהל את שיחות הטלפון שלהם בצורה קלה ועצמאית יותר.\nאם האפליקציה עוזרת לך, נשמח מאוד אם תדרג/י אותנו בחנות. המשוב שלך חשוב לנו ועוזר לנו להשתפר!</string>
+    <string name="rate_the_app_dialog_answer_rate_now">כן, אשמח לדרג</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">אולי אחר כך</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">לא, תודה</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="one">כדי שהאפליקציה תוכל לענות לשיחות כראוי, יש לאפשר את ההרשאה הבאה: %1$s.</item>
+        <item quantity="two">כדי שהאפליקציה תוכל לענות לשיחות כראוי, יש לאפשר את ההרשאות הבאות: %1$s.</item>
+        <item quantity="other">כדי שהאפליקציה תוכל לענות לשיחות כראוי, יש לאפשר את ההרשאות הבאות: %1$s.</item>
+    </plurals>
 </resources>

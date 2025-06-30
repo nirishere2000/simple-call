@@ -51,15 +51,21 @@ object QuickCallButtonManager {
    // private const val EMERGENCY_DELAY_TIME_ANIMATION_SECONDS: Long = 6 // actually it's 1 second less than that (if this equals 6 then it's 5 secs)
     private var countDownTimer: CountDownTimer? = null
     private var askingForMakingMakingCallPermission = false
-    private var displayedEmergencyMsg: Snackbar? = null
+    private var displayedQuickCallMsg: Snackbar? = null
     private var shouldAlsoCallForHelp = true
     private var quickCallJob: Job? = null
     private var quickCallNumberOfTries = 0
     private var quickCallShouldAlsoTalk = false
     private var shouldAlsoSendSms = false
     private var numOfTimesSpeakAndSentSms = 0
-
-    private fun stopRepeatingEmergencyMessage() {
+    private var quickCallRunnable: Runnable? = null
+    private var quickCallIsOnWaitingDelay = false // between one call and sms to another we should wait
+    private val handler = Handler(Looper.getMainLooper())
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    private var checkJob: Job? = null // for gold-white animation of quick call icon
+    //var numberToCheck: Long = 0L // for gold-white animation of quick call icon
+    private var quickCallAnimationCounter: Int = 0
+    private fun stopRepeatingQuickCallMessage() {
         quickCallJob?.cancel()
         quickCallJob = null
     }
@@ -88,6 +94,14 @@ object QuickCallButtonManager {
         }
     }
 
+    fun cancelQuickCall(activity: Activity, context: Context) {
+        quickCallIsOn = false
+        quickCallIsOnWaitingDelay = false
+        displayedQuickCallMsg?.dismiss()
+        stopSwitchQuickCallIconColorAnimation(activity)
+        resetQuickCallButton(activity, context)
+    }
+
     private fun handleDistressButton(
         view: View,
         context: Context,
@@ -96,10 +110,10 @@ object QuickCallButtonManager {
         activity: Activity,
         lifecycleOwner: LifecycleOwner
     ) {
-        val emergencyButtonCancel = activity.findViewById<ImageView>(R.id.emergency_button_cancel)
-        emergencyButtonCancel?.setOnClickListener {
-            if (quickCallDelayTimeAnimationIsRunning) {
-                resetQuickCallButton(activity, context)
+        val cancelQuickCallButtonCancel = activity.findViewById<ImageView>(R.id.emergency_button_cancel)
+        cancelQuickCallButtonCancel?.setOnClickListener {
+            if (quickCallDelayTimeAnimationIsRunning || quickCallIsOnWaitingDelay) {
+                cancelQuickCall(activity, context)
             }
         }
 
@@ -114,25 +128,44 @@ object QuickCallButtonManager {
         enableDistressButton(view, context, activity, requestPermissionLauncher, (PermissionsStatus.readContactsPermissionGranted.value == true && PermissionsStatus.callPhonePermissionGranted.value == true && (!isAppNotDefault)))
         PermissionsStatus.callPhonePermissionGranted.observe(lifecycleOwner) { isGranted ->
             if (!OpenScreensStatus.isHelpScreenOpened) {
-                val premiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-                enableDistressButton(view, context, activity, requestPermissionLauncher, isGranted && PermissionsStatus.readContactsPermissionGranted.value == true && premiumAndAppNotDefault, false)
+                val appIsDefault = PermissionsStatus.defaultDialerPermissionGranted.value == true
+                enableDistressButton(view, context, activity, requestPermissionLauncher, isGranted && PermissionsStatus.readContactsPermissionGranted.value == true && appIsDefault, false)
             }
         }
 
         quickCallButton?.setOnClickListener {
-            val isAppNotDefault = (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-            if (PermissionsStatus.callPhonePermissionGranted.value == true && PermissionsStatus.readContactsPermissionGranted.value == true && (!isAppNotDefault)) {
+            val appIsDefault = (PermissionsStatus.defaultDialerPermissionGranted.value == true)
+            if (PermissionsStatus.callPhonePermissionGranted.value == true && PermissionsStatus.readContactsPermissionGranted.value == true && appIsDefault) {
                 handleDistressButtonClick(view, context, supportFragmentManager, requestPermissionLauncher, activity)
             }
         }
 
         val quickCallIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
         quickCallIcon.setOnClickListener {
-            val isAppNotDefault = (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-            if (PermissionsStatus.callPhonePermissionGranted.value == true && (!isAppNotDefault)) {
+            val appIsDefault = (PermissionsStatus.defaultDialerPermissionGranted.value == true)
+            if (PermissionsStatus.callPhonePermissionGranted.value == true && appIsDefault) {
                 handleDistressButtonClick(view, context, supportFragmentManager, requestPermissionLauncher, activity)
             }
         }
+    }
+
+    private fun initQuickCallParameters(context: Context, activity: Activity) {
+        quickCallDelayTimeAnimationIsRunning = true
+
+        val quickCallButtonCancelBack = activity.findViewById<FrameLayout>(R.id.quickCallMessage)
+        quickCallButtonCancelBack?.visibility = VISIBLE
+        val distressCircle = activity.findViewById<FrameLayout>(R.id.distress_circle)
+        distressCircle?.visibility = VISIBLE
+        val toastMsg = context.getString(R.string.calling_quick_call_number_tap_cancel_to_stop)
+        displayedQuickCallMsg = showLongSnackBar(context, toastMsg, (((distressNumberOfSecsToCancel + 1) * 1000).toInt()))
+
+        val quickCallButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
+        quickCallButtonText.text = "(${(distressNumberOfSecsToCancel + 1)})"
+
+        val quickCallButton = activity.findViewById<ImageView>(R.id.quick_call_button)
+        val pulsateAnim = AnimationUtils.loadAnimation(context, R.anim.pulsate)
+        quickCallButton.startAnimation(pulsateAnim)
+        quickCallDelayTimeAnimationSecondsPassed = 0
     }
 
     private fun handleDistressButtonClick(
@@ -149,38 +182,28 @@ object QuickCallButtonManager {
             shouldAlsoCallForHelp = if (isPremium) loadDistressNumberShouldAlsoTalk(context) else false
 
             if (PermissionsStatus.callPhonePermissionGranted.value == true) {
-                quickCallDelayTimeAnimationIsRunning = true
-
-                val quickCallButtonCancelBack = activity.findViewById<FrameLayout>(R.id.emergencyMessage)
-                quickCallButtonCancelBack?.visibility = VISIBLE
-                val distressCircle = activity.findViewById<FrameLayout>(R.id.distress_circle)
-                distressCircle?.visibility = VISIBLE
-                val toastMsg = context.getString(R.string.calling_quick_call_number_tap_cancel_to_stop)
-                displayedEmergencyMsg = showLongSnackBar(context, toastMsg, (((distressNumberOfSecsToCancel + 1) * 1000).toInt()))
-
-                val quickCallButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
-                quickCallButtonText.text = "(${(distressNumberOfSecsToCancel + 1)})"
-
-                val quickCallButton = activity.findViewById<ImageView>(R.id.quick_call_button)
-                val pulsateAnim = AnimationUtils.loadAnimation(context, R.anim.pulsate)
-                quickCallButton.startAnimation(pulsateAnim)
-                quickCallDelayTimeAnimationSecondsPassed = 0
+                initQuickCallParameters(context, activity)
                 startQuickCallTimer(view, context, supportFragmentManager, requestPermissionLauncher, activity)
             } else { // handle permissions as fast as can
                 // Also try speak and send SMS
-                speakAndSendSms(context)
+                sendSms(context)
+                if (quickCallShouldAlsoTalk) {
+                    TextToSpeechManager.addToQueueAndSpeak(context.getString(R.string.quick_call_activated_voice_message_speech))
+                }
                 callQuickCallNumber(context, view, supportFragmentManager, requestPermissionLauncher, activity)
             }
         }
     }
 
-    private fun speakAndSendSms(context: Context) {
+    private fun sendSms(context: Context) {
         if (numOfTimesSpeakAndSentSms <= 3) {
             numOfTimesSpeakAndSentSms++
             // Speak if user chose option:
-            if (quickCallShouldAlsoTalk) {
-                TextToSpeechManager.speak(context.getString(R.string.quick_call_activated_voice_message_speech))
-            }
+/*            if (quickCallShouldAlsoTalk) {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    TextToSpeechManager.speak(context.getString(R.string.quick_call_activated_voice_message_speech))
+                }, 500) // חצי שניה השהיה
+            }*/
 
             if (shouldAlsoSendSms) {
                 val goldPhoneNumber = loadGoldNumber(context)
@@ -199,18 +222,20 @@ object QuickCallButtonManager {
     }
 
     private fun resetQuickCallButton(activity: Activity, context: Context) {
-        quickCallIsOn = false
         quickCallWasAnswered = false
         stopQuickCallTimer()
-        displayedEmergencyMsg?.dismiss()
+        quickCallRunnable?.let { handler.removeCallbacks(it) }
+        displayedQuickCallMsg?.dismiss()
         quickCallDelayTimeAnimationIsRunning = false
         quickCallDelayTimeAnimationSecondsPassed = 0
-        val emergencyButton = activity.findViewById<ImageView>(R.id.quick_call_button)
-        emergencyButton.clearAnimation()
-        val emergencyButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
-        emergencyButtonText.text = context.getString(R.string.quick_call_button_caption)
-        val emergencyButtonCancelBack = activity.findViewById<FrameLayout>(R.id.emergencyMessage)
-        emergencyButtonCancelBack?.visibility = GONE
+        val distressButtonIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
+        distressButtonIcon.setImageResource(R.drawable.ic_bell_white)
+        val quickCallButton = activity.findViewById<ImageView>(R.id.quick_call_button)
+        quickCallButton.clearAnimation()
+        val quickCallButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
+        quickCallButtonText.text = context.getString(R.string.quick_call_button_caption)
+        val quickCallButtonCancelBack = activity.findViewById<FrameLayout>(R.id.quickCallMessage)
+        quickCallButtonCancelBack?.visibility = GONE
         val distressCircle = activity.findViewById<FrameLayout>(R.id.distress_circle)
         distressCircle?.visibility = GONE
     }
@@ -247,18 +272,18 @@ object QuickCallButtonManager {
         shouldEnable: Boolean?,
         shouldShowDialog: Boolean = false
     ) {
-        val emergencyButton = activity.findViewById<ImageView>(R.id.quick_call_button_small)
-        val emergencyIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
-        val emergencyIconDisabledText: TextView = activity.findViewById(R.id.quick_call_button_text_disabled)
+        val quickCallButton = activity.findViewById<ImageView>(R.id.quick_call_button_small)
+        val quickCallIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
+        val quickCallIconDisabledText: TextView = activity.findViewById(R.id.quick_call_button_text_disabled)
 
         if (shouldEnable == true) {
-            emergencyIcon.visibility = VISIBLE
-            emergencyButton.alpha = 1f
-            emergencyIconDisabledText.visibility = GONE
+            quickCallIcon.visibility = VISIBLE
+            quickCallButton.alpha = 1f
+            quickCallIconDisabledText.visibility = GONE
         } else {
-            emergencyIcon.visibility = GONE
-            emergencyButton.alpha = 0.4f
-            emergencyIconDisabledText.visibility = VISIBLE
+            quickCallIcon.visibility = GONE
+            quickCallButton.alpha = 0.4f
+            quickCallIconDisabledText.visibility = VISIBLE
 
             val newTextSizeSp = when (Locale.getDefault().language) {
                 "ar" -> 20f
@@ -271,9 +296,9 @@ object QuickCallButtonManager {
                 else -> 10f
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                emergencyIconDisabledText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_NONE)
+                quickCallIconDisabledText.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_NONE)
             }
-            emergencyIconDisabledText.setTextSize(TypedValue.COMPLEX_UNIT_SP, newTextSizeSp)
+            quickCallIconDisabledText.setTextSize(TypedValue.COMPLEX_UNIT_SP, newTextSizeSp)
 
             if (shouldShowDialog) {
                 if (!askingForMakingMakingCallPermission) {
@@ -346,7 +371,14 @@ object QuickCallButtonManager {
         requestPermissionLauncher: ActivityResultLauncher<String>,
         activity: Activity
     ) {
+        quickCallAnimationCounter = 0
         val quickCallButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
+        startSwitchQuickCallIconColorAnimation(activity, context)
+
+        if (quickCallShouldAlsoTalk) {
+            TextToSpeechManager.addToQueueAndSpeak(context.getString(R.string.quick_call_activated_voice_message_speech))
+            //TextToSpeechManager.speak(context.getString(R.string.quick_call_activated_voice_message_speech))
+        }
 
         countDownTimer = object : CountDownTimer(((distressNumberOfSecsToCancel + 1) * 1000), 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -362,7 +394,7 @@ object QuickCallButtonManager {
                     quickCallDelayTimeAnimationSecondsPassed >= (distressNumberOfSecsToCancel + 1)
                 ) {
                     resetQuickCallButton(activity, context)
-                    speakAndSendSms(context) // first speak and send sms
+                    sendSms(context) // first speak and send sms
                     callQuickCallNumber(context, view, supportFragmentManager, requestPermissionLauncher, activity)
                     waitAndThenStartTimerAgain(view, context, supportFragmentManager, requestPermissionLauncher, activity) // Wait and start all over again (if call was not answered
                 }
@@ -377,14 +409,46 @@ object QuickCallButtonManager {
                                            supportFragmentManager: FragmentManager,
                                            requestPermissionLauncher: ActivityResultLauncher<String>,
                                            activity: Activity) {
-        val quickCallButtonText = activity.findViewById<TextView>(R.id.quick_call_button_text)
-        quickCallButtonText.text = "Waiting for Quick Call..."
-        val emergencyButtonCancelBack = activity.findViewById<FrameLayout>(R.id.emergencyMessage)
-        emergencyButtonCancelBack?.visibility = View.VISIBLE
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            startQuickCallAgain(view, context, supportFragmentManager, requestPermissionLauncher, activity)
-        }, 30_000)
+        if (quickCallNumberOfTries < 2) { // 0, 1, 2
+            val quickCallName = context.getString(R.string.quick_call_button_caption)
+            val toastMsg = context.getString(R.string.quick_call_in_progress, quickCallName)
+            displayedQuickCallMsg = showLongSnackBar(context, toastMsg, 40000) // Until we try again
+            val quickCallButtonCancelBack = activity.findViewById<FrameLayout>(R.id.quickCallMessage)
+            quickCallButtonCancelBack?.visibility = View.VISIBLE
+            quickCallIsOnWaitingDelay = true
+
+            quickCallRunnable = Runnable {
+                displayedQuickCallMsg?.dismiss()
+                if (quickCallIsOnWaitingDelay) {
+                    quickCallIsOnWaitingDelay = false
+                    initQuickCallParameters(context, activity)
+                    startQuickCallAgain(view, context, supportFragmentManager, requestPermissionLauncher, activity)
+                }
+            }
+
+            handler.postDelayed(quickCallRunnable!!, 45_000)
+        }
+        else {
+            finishQuickCall(context, activity, false)
+        }
+    }
+
+    private fun finishQuickCall(context: Context, activity: Activity, success: Boolean) {
+        quickCallIsOn = false
+        quickCallIsOnWaitingDelay = false
+        checkJob?.cancel()
+        checkJob = null
+        resetQuickCallButton(activity, context)
+        val cancelQuickCallButtonCancel = activity.findViewById<ImageView>(R.id.emergency_button_cancel)
+        cancelQuickCallButtonCancel.visibility = GONE
+        stopSwitchQuickCallIconColorAnimation(activity) // just in case
+        val quickCallName = context.getString(R.string.quick_call_button_caption)
+        val toastMsg = if (success)
+            context.getString(R.string.quick_call_was_answered_and_completed_successfully)
+        else
+            context.getString(R.string.tried_to_activate_quick_call_for_3_times_but_no_success, quickCallName)
+        displayedQuickCallMsg = showLongSnackBar(context, toastMsg)
     }
 
     private fun startQuickCallAgain(view: View,
@@ -392,7 +456,7 @@ object QuickCallButtonManager {
                                     supportFragmentManager: FragmentManager,
                                     requestPermissionLauncher: ActivityResultLauncher<String>,
                                     activity: Activity) {
-        if (!quickCallWasAnswered && quickCallNumberOfTries < 3) {
+        if (!quickCallWasAnswered && quickCallNumberOfTries < 2) {
             quickCallNumberOfTries++
             startQuickCallTimer(view, context, supportFragmentManager, requestPermissionLauncher, activity)
         } else { // Finished
@@ -400,8 +464,40 @@ object QuickCallButtonManager {
         }
     }
 
+    fun startSwitchQuickCallIconColorAnimation(activity: Activity, context: Context, intervalMillis: Long = 700) {
+        val quickCallButtonIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
+
+        // ודא שאין טיימר פעיל
+        if (checkJob?.isActive == true) return
+
+        checkJob = scope.launch {
+            while (isActive) {
+                if (quickCallAnimationCounter % 2 == 0) {
+                    quickCallButtonIcon.setImageResource(R.drawable.ic_bell_gold)
+                } else {
+                    quickCallButtonIcon.setImageResource(R.drawable.ic_bell_white)
+                }
+                quickCallAnimationCounter++
+                if (quickCallWasAnswered) {
+                    finishQuickCall(context, activity, true)
+                }
+                else if (quickCallDelayTimeAnimationIsRunning || quickCallIsOnWaitingDelay) {
+                    delay(intervalMillis)
+                }
+            }
+        }
+    }
+
+    fun stopSwitchQuickCallIconColorAnimation(activity: Activity) {
+        checkJob?.cancel()
+        checkJob = null
+        val quickCallButtonIcon: ImageView = activity.findViewById(R.id.emergency_button_icon)
+        quickCallButtonIcon.setImageResource(R.drawable.ic_bell_white)
+    }
+
     private fun stopQuickCallTimer() {
-        stopRepeatingEmergencyMessage()
+        displayedQuickCallMsg?.dismiss()
+        stopRepeatingQuickCallMessage()
         countDownTimer?.cancel()
         countDownTimer = null
     }

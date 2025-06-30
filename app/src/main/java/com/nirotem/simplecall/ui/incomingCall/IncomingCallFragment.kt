@@ -267,16 +267,6 @@ class IncomingCallFragment : Fragment() {
         _binding = null
     }
 
-    private fun getSoundToPlayName(isCallWaiting: Boolean): String {
-        val soundToPlay = if (isCallWaiting) SoundPoolManager.incomingCallWaitingSoundName else SoundPoolManager.incomingCallSoundName
-        return soundToPlay
-    }
-
-    private fun stopRingtone(isCallWaiting: Boolean) {
-        val soundToStop = getSoundToPlayName(isCallWaiting)
-        SoundPoolManager.stopSound(soundToStop)
-    }
-
     // Checks if the call supports video
     private fun supportsVideoCall(): Boolean {
         val capabilities = OngoingCall.call?.details?.callCapabilities

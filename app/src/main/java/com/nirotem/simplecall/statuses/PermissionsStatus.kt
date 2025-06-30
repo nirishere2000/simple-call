@@ -18,6 +18,11 @@ import android.os.Build
 import android.provider.Settings
 import android.telecom.TelecomManager
 import android.util.Log
+import android.util.TypedValue
+import android.view.LayoutInflater
+import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AlertDialog
@@ -26,6 +31,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
+import com.nirotem.sharedmodules.statuses.OemDetector
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.managers.MessageBoxManager.showCustomToastDialog
 
@@ -467,4 +473,106 @@ object PermissionsStatus {
             .setCancelable(false)
             .show()
     }
+
+    fun loadOtherPermissionsIssueDialog(resourceText: Int, context: Context) {
+        val dialogView =
+            LayoutInflater.from(context).inflate(R.layout.lock_screen_dialog_permission, null)
+        val imageView = dialogView.findViewById<ImageView>(R.id.permission_image)
+        val messageView = dialogView.findViewById<TextView>(R.id.permission_message)
+        val titleView = dialogView.findViewById<TextView>(R.id.lock_permission_dialog_title)
+
+        titleView.text = context.getString(R.string.permission_missing)
+
+        val oem = OemDetector.current()
+        val overlayPermissionName = when (oem) {
+            OemDetector.Oem.XIAOMI -> context.getString(R.string.allow_pop_permission_display_name_xiaomi)
+            OemDetector.Oem.SAMSUNG -> context.getString(R.string.overlay_permission_display_name_samsung)
+            else -> context.getString(R.string.overlay_permission_display_name) // Pixel and others (One Plus should also be like Pixel)
+        }
+
+        val lockScreenPermissionName =
+            context.getString(R.string.lock_screen_permission_display_name)
+
+        val backgroundWindowsPermissionNameXiaomi =
+            context.getString(R.string.overlay_permission_display_name_xiaomi)
+
+        // בדיקת הרשאות חסרות
+        val isOverlayMissing = !(PermissionsStatus.canDrawOverlaysPermissionGranted.value ?: false)
+        val isLockScreenMissing =
+            !(PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value ?: false)
+        val isBackgroundWindowsMissing =
+            !(PermissionsStatus.backgroundWindowsAllowed.value ?: false)
+
+        val missingPermissionsList = mutableListOf<String>()
+
+        if (isOverlayMissing) {
+            missingPermissionsList.add(overlayPermissionName)
+        }
+        if (isLockScreenMissing) {
+            missingPermissionsList.add(lockScreenPermissionName)
+        }
+        if (isBackgroundWindowsMissing) {
+            missingPermissionsList.add(backgroundWindowsPermissionNameXiaomi)
+        }
+
+        val permissionsText = missingPermissionsList.joinToString(separator = ", ")
+
+        // עכשיו הודעה דינמית
+        val quantity = if (missingPermissionsList.size == 1) 1 else 2
+
+        messageView.text = context.resources.getQuantityString(
+            resourceText,
+            quantity,
+            permissionsText
+        )
+
+
+        // בחירת תמונה מתאימה
+        val imageResId = when (oem) {
+            OemDetector.Oem.SAMSUNG, OemDetector.Oem.OTHER -> R.drawable.other_permissions_samsung
+            OemDetector.Oem.GOOGLE -> R.drawable.other_permissions_pixel
+            OemDetector.Oem.XIAOMI -> {
+                when {
+                    (isOverlayMissing || isBackgroundWindowsMissing) && isLockScreenMissing -> R.drawable.all_other_permissions_xioami
+                    (isOverlayMissing || isBackgroundWindowsMissing) -> R.drawable.other_permissions_xioami
+                    isLockScreenMissing -> R.drawable.showonlockscreenpermission
+                    else -> R.drawable.other_permissions_xioami
+                }
+            }
+
+            else -> R.drawable.other_permissions_samsung
+        }
+
+        imageView.setImageResource(imageResId)
+
+        val alertDialog = AlertDialog.Builder(context, R.style.LockScreenPermissionDialogBackground)
+            .setView(dialogView)
+            .setPositiveButton(context.getString(R.string.open_settings)) { dialog, _ ->
+                openAppSettings(context)
+            }
+            .setNegativeButton(context.getString(R.string.ok)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(false)
+            .show()
+
+        // שינוי צבע כפתורי הדיאלוג
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            ?.setTextColor(ContextCompat.getColor(context, R.color.blue_500))
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            ?.setTextColor(ContextCompat.getColor(context, R.color.blue_500))
+
+        // שינוי גודל הדיאלוג — רווח 15dp מכל צד
+        val marginDp = 15
+        val marginPx = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            marginDp.toFloat(),
+            context.resources.displayMetrics
+        ).toInt()
+        val screenWidth = context.resources.displayMetrics.widthPixels
+        val desiredWidth = screenWidth - (marginPx * 2)
+        val window = alertDialog.window
+        window?.setLayout(desiredWidth, WindowManager.LayoutParams.WRAP_CONTENT)
+    }
+
 }

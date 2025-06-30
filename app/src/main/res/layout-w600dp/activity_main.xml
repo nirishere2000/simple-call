@@ -34,7 +34,7 @@ across the layout configurations
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <FrameLayout
-        android:id="@+id/emergencyMessage"
+        android:id="@+id/quickCallMessage"
         android:layout_gravity="bottom|end"
         android:layout_marginHorizontal="13dp"
         android:layout_marginBottom="210dp"

@@ -327,7 +327,7 @@
     <string name="welcome_text_speech_short">Versi Premium menawarkan fitur-fitur yang ditingkatkan untuk Panggilan Cepat, bersama dengan layar kunci pintar yang muncul secara otomatis setelah tidak aktif. Mengetuk layar tersebut akan membawa Anda langsung kembali ke aplikasi untuk melakukan panggilan dengan mudah tanpa harus mencari di layar beranda.</string>
     <string name="quick_call_activated_voice_message_speech">Panggilan Cepat diaktifkan — mohon perhatikan</string>
     <string name="voice">Suara</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">Aplikasi menggunakan izin SMS untuk mengirim pesan teks ke %1$s yang dipilih.\nPengiriman pesan bergantung pada ketersediaan jaringan dan mungkin dikenakan biaya.\nHanya satu pesan yang akan dikirim.\nPengguna bertanggung jawab atas biaya atau masalah pengiriman apa pun.</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">Aplikasi menggunakan izin SMS untuk mengirim pesan teks ke %1$s yang dipilih.\nPengiriman pesan bergantung pada ketersediaan jaringan dan mungkin dikenakan biaya.\nHingga 3 pesan akan dikirim.\nPengguna bertanggung jawab atas biaya atau masalah pengiriman apa pun.</string>
     <string name="settings_when_lock_screen_is_unlocked">Saat layar dibuka kuncinya</string>
     <string name="select_app_to_launch">Pilih aplikasi untuk dibuka</string>
     <string name="premium_screen_lock_text">Layar kunci pintar kami menawarkan pengalaman baru yang mudah.\n\nAlih-alih berjuang dengan gerakan geser yang rumit atau mencari cara untuk membuka perangkat Anda, satu ketukan membawa Anda langsung kembali ke aplikasi, di mana Anda dapat mengelola dan melakukan panggilan telepon dengan mudah.\n\nDengan desain yang bersih dan kontrol yang intuitif, ini merupakan peningkatan nyata untuk pengalaman seluler Anda.</string>
@@ -342,11 +342,25 @@
     <string name="lock_screen_permission_display_name">Tampilkan di layar kunci</string>
     <string name="overlay_permission_display_name_xiaomi">Buka jendela baru sambil berjalan di latar belakang</string>
     <string name="allow_pop_permission_display_name_xiaomi">Tampilkan jendela pop-up</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Agar %1$s berfungsi dengan baik, aplikasi harus diatur sebagai aplikasi default untuk menangani panggilan.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Agar %1$s berfungsi dengan baik, aplikasi harus diatur sebagai aplikasi default untuk menangani panggilan. Apakah Anda yakin ingin melewati langkah ini?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Untuk mengirim SMS selama %2$s, Anda harus mengatur %1$s terlebih dahulu.</string>
     <string name="this_feature_only_available_on_premium">Fitur ini hanya tersedia di versi Premium. Tingkatkan sekarang untuk menikmati fitur ini dan banyak fitur hebat lainnya!</string>
     <string name="unlock_more_with_premium_title">Dapatkan lebih banyak dengan Premium</string>
     <string name="try_the_premium_button">Mulai uji coba gratis</string>
     <string name="no_contacts_available_for_selection">Tidak ada kontak yang tersedia untuk dipilih</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Agar %1$s berfungsi dengan baik, aplikasi harus diberi izin Kontak.</string>
+    <string name="announce_caller_instead_of_ringtone">Sebut nama penelepon, bukan nada dering</string>
+    <string name="incoming_call_speech">Halo! Kamu mendapat panggilan dari %1$s</string>
+    <string name="quick_call_in_progress">%1$s menunggu percobaan berikutnya – panggilan sebelumnya tidak dijawab</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">%1$s telah dicoba 3 kali – tetapi tidak berhasil</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s telah dijawab dan diselesaikan dengan sukses</string>
+    <string name="rate_the_app_dialog_title">Apakah Anda puas dengan aplikasinya?</string>
+    <string name="rate_the_app_dialog_text">Kami telah mencurahkan banyak usaha dan hati untuk membuat aplikasi ini agar dapat membantu lansia dan penyandang disabilitas dalam mengelola panggilan telepon mereka dengan lebih mudah dan mandiri.\nJika Anda merasa aplikasi ini bermanfaat, kami sangat menghargai jika Anda bersedia memberi rating di Google Play. Masukan Anda sangat berarti dan membantu kami untuk terus berkembang!</string>
+    <string name="rate_the_app_dialog_answer_rate_now">Beri rating sekarang</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">Mungkin nanti</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">Tidak, terima kasih</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="other">Agar aplikasi dapat menjawab panggilan dengan benar, diperlukan izin berikut: %1$s.</item>
+    </plurals>
+
 </resources>

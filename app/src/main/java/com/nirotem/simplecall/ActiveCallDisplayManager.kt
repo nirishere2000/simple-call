@@ -178,7 +178,7 @@ class ActiveCallDisplayManager(context: Context) {
         // Set up decline button click listener
         customView.findViewById<ImageButton>(R.id.declineButtonImage).setOnClickListener {
             Log.d("SimplyCall - ActiveCallDisplayManager", "declineButton clicked")
-            stopRingtone(isCallWaiting)
+            //stopRingtone(isCallWaiting)
             OngoingCall.call?.disconnect()
 
             windowManager.removeView(customView)
@@ -217,7 +217,7 @@ class ActiveCallDisplayManager(context: Context) {
         // Set up decline button click listener
         callWaitingCustomView.findViewById<ImageButton>(R.id.declineButton).setOnClickListener {
             Log.d("SimplyCall - ActiveCallDisplayManager", "Call Waiting - declineButton clicked")
-            stopRingtone(true)
+            //stopRingtone(true)
             WaitingCall.call?.disconnect()
             windowManager.removeView(callWaitingCustomView)
         }
@@ -661,7 +661,7 @@ class ActiveCallDisplayManager(context: Context) {
             VideoProfile.STATE_AUDIO_ONLY
         }*/
         OngoingCall.answer(VideoProfile.STATE_AUDIO_ONLY)
-        stopRingtone(false)
+        //stopRingtone(false)
         if (!canDrawOverlays && serviceContext !== null) { // otherwise activity already loaded and will handle this
           //  windowManager.removeView(incomingCallCustomView)
 
@@ -673,7 +673,7 @@ class ActiveCallDisplayManager(context: Context) {
     private fun handleAccpetCallWaitingByUser() {
         Log.d("SimplyCall - ActiveCallDisplayManager", "callAccepted!")
         // Sound: Stop waiting call sound
-        stopRingtone(true)
+        //stopRingtone(true)
 
 /*        val videoState = if (supportsVideoCall()) {
             VideoProfile.STATE_BIDIRECTIONAL
@@ -723,7 +723,7 @@ class ActiveCallDisplayManager(context: Context) {
     }
 
     protected fun finalize() {
-        stopRingtone(false)
-        stopRingtone(true)
+       // stopRingtone(false)
+      //  stopRingtone(true)
     }
 }

@@ -358,7 +358,7 @@
     <string name="welcome_text_speech_short">La versión Premium ofrece funciones mejoradas para la llamada rápida, junto con una pantalla de bloqueo inteligente que aparece automáticamente tras la inactividad. Al tocar la pantalla regresarás directamente a la app para hacer una llamada fácilmente sin buscarla en la pantalla de inicio.</string>
     <string name="quick_call_activated_voice_message_speech">Llamada rápida activada — por favor, preste atención</string>
     <string name="voice">Voz</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">La aplicación utiliza el permiso de SMS para enviar un mensaje de texto al %1$s seleccionado.\nEl envío de mensajes depende de la disponibilidad de la red y puede generar cargos.\nSolo se enviará un mensaje.\nEl usuario es responsable de cualquier costo o problema de entrega.</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">La aplicación utiliza el permiso de SMS para enviar un mensaje de texto al %1$s seleccionado.\nEl envío de mensajes depende de la disponibilidad de la red y puede generar cargos.\nSe enviarán hasta 3 mensajes como máximo.\nEl usuario es responsable de cualquier costo o problema de entrega.</string>
     <string name="settings_when_lock_screen_is_unlocked">Al desbloquear la pantalla</string>
     <string name="select_app_to_launch">Seleccionar aplicación para abrir</string>
     <string name="premium_screen_lock_text">Nuestra pantalla de bloqueo inteligente ofrece una experiencia nueva y sin esfuerzo.\n\nEn lugar de luchar con gestos de deslizamiento complicados o tratar de averiguar cómo desbloquear el dispositivo, un solo toque te lleva directamente de regreso a la aplicación, donde puedes gestionar y realizar llamadas telefónicas con facilidad.\n\nCon un diseño limpio y un control intuitivo, es una verdadera mejora para tu experiencia móvil.</string>
@@ -375,11 +375,27 @@
     <string name="lock_screen_permission_display_name">Mostrar en la pantalla de bloqueo</string>
     <string name="overlay_permission_display_name_xiaomi">Abrir nuevas ventanas mientras se ejecuta en segundo plano</string>
     <string name="allow_pop_permission_display_name_xiaomi">Mostrar ventanas emergentes</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Para que %1$s funcione correctamente, la aplicación debe establecerse como la app predeterminada para realizar llamadas.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Para que %1$s funcione correctamente, la aplicación debe establecerse como la app predeterminada para realizar llamadas. ¿Desea omitir este paso?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Para enviar un SMS durante una %2$s, debes configurar un %1$s.</string>
     <string name="this_feature_only_available_on_premium">Esta función está disponible solo en la versión Premium. Actualiza ahora para disfrutar de esta y muchas otras funciones excelentes.</string>
     <string name="unlock_more_with_premium_title">Accede a más con Premium</string>
     <string name="try_the_premium_button">Comenzar prueba gratuita</string>
     <string name="no_contacts_available_for_selection">No hay contactos disponibles para seleccionar</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Para que %1$s funcione correctamente, se debe otorgar a la aplicación el permiso de Contactos.</string>
+    <string name="announce_caller_instead_of_ringtone">Anunciar el nombre del contacto en lugar del tono de llamada</string>
+    <string name="incoming_call_speech">¡Hola! Tienes una llamada de %1$s</string>
+    <string name="quick_call_in_progress">%1$s en espera del próximo intento – la llamada anterior no fue respondida</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">%1$s fue intentado 3 veces – sin éxito</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s fue respondida y se completó con éxito</string>
+    <string name="rate_the_app_dialog_title">¿Te gusta la app?</string>
+    <string name="rate_the_app_dialog_text">Hemos puesto mucho corazón y esfuerzo en crear esta aplicación para ayudar a personas mayores y con discapacidades a gestionar sus llamadas telefónicas de forma más sencilla e independiente.\nSi te resulta útil, te agradeceríamos mucho que nos dejaras una valoración en Google Play. ¡Tu opinión es muy valiosa y nos ayuda a mejorar!</string>
+    <string name="rate_the_app_dialog_answer_rate_now">Valorar ahora</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">Quizás más tarde</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">No, gracias</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="one">Para responder correctamente a las llamadas, la aplicación necesita el siguiente permiso: %1$s.</item>
+        <item quantity="many">Para responder correctamente a las llamadas, la aplicación necesita los siguientes permisos: %1$s.</item>
+        <item quantity="other">Para responder correctamente a las llamadas, la aplicación necesita los siguientes permisos: %1$s.</item>
+    </plurals>
+
 </resources>

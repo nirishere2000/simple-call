@@ -326,7 +326,7 @@
     <string name="welcome_text_speech_short">프리미엄 버전은 빠른 전화 기능을 향상시키고, 비활성화 후 자동으로 나타나는 스마트 잠금 화면을 제공합니다. 화면을 탭하면 앱으로 바로 돌아가 홈 화면을 검색하지 않고도 쉽게 전화를 걸 수 있습니다.</string>
     <string name="quick_call_activated_voice_message_speech">빠른 전화가 활성화되었습니다 — 주의해 주세요</string>
     <string name="voice">음성</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">앱은 선택된 %1$s에 문자 메시지를 보내기 위해 SMS 권한을 사용합니다.\n메시지 전송은 네트워크 가용성에 따라 달라지며 요금이 부과될 수 있습니다.\n메시지는 한 번만 전송됩니다.\n사용자는 모든 비용 또는 전송 문제에 대해 책임을 집니다.</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">앱은 선택된 %1$s에 문자 메시지를 보내기 위해 SMS 권한을 사용합니다.\n메시지 전송은 네트워크 가용성에 따라 달라지며 요금이 부과될 수 있습니다.\n최대 3회까지 메시지가 전송됩니다.\n사용자는 모든 비용 또는 전송 문제에 대해 책임을 집니다.</string>
     <string name="settings_when_lock_screen_is_unlocked">화면 잠금 해제 시</string>
     <string name="select_app_to_launch">실행할 앱 선택</string>
     <string name="premium_screen_lock_text">스마트 잠금 화면은 새롭고 손쉬운 경험을 제공합니다.\n\n복잡한 스와이프 제스처로 고생하거나 기기의 잠금을 해제하는 방법을 고민하는 대신, 한 번의 탭으로 앱으로 바로 돌아가 전화를 쉽게 관리하고 걸 수 있습니다.\n\n깔끔한 디자인과 직관적인 컨트롤로 모바일 경험을 진정으로 업그레이드할 수 있습니다.</string>
@@ -341,12 +341,25 @@
     <string name="lock_screen_permission_display_name">잠금 화면에 표시</string>
     <string name="overlay_permission_display_name_xiaomi">백그라운드에서 실행되는 동안 새로운 창 열기</string>
     <string name="allow_pop_permission_display_name_xiaomi">팝업 창 표시</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s 기능을 제대로 사용하려면 앱을 기본 통화 앱으로 설정해야 합니다.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s 기능을 제대로 사용하려면 앱을 기본 통화 앱으로 설정해야 합니다. 이 단계를 건너뛰시겠습니까?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">%2$s 중에 SMS를 보내려면 %1$s을(를) 설정해야 합니다.</string>
     <string name="this_feature_only_available_on_premium">이 기능은 프리미엄 버전에서만 사용할 수 있습니다. 지금 업그레이드하여 이 기능과 다른 유용한 기능들을 사용해 보세요!</string>
     <string name="unlock_more_with_premium_title">프리미엄으로 더 많은 기능을 이용하세요</string>
     <string name="try_the_premium_button">무료 체험 시작하기</string>
     <string name="no_contacts_available_for_selection">선택할 수 있는 연락처가 없습니다</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">%1$s 기능을 제대로 사용하려면 앱에 연락처 권한을 부여해야 합니다.</string>
+    <string name="announce_caller_instead_of_ringtone">벨소리 대신 발신자 이름을 말하기</string>
+    <string name="incoming_call_speech">안녕하세요! %1$s에게서 전화가 왔어요</string>
+    <string name="quick_call_in_progress">%1$s 다음 시도를 기다리는 중입니다 – 이전 통화에 응답이 없었습니다</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">%1$s 를 3번 시도했지만 – 성공하지 못했습니다</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s 이(가) 응답되었고 성공적으로 완료되었습니다</string>
+    <string name="rate_the_app_dialog_title">앱이 마음에 드시나요?</string>
+    <string name="rate_the_app_dialog_text">어르신들과 장애가 있는 분들이 전화 관리를 더 쉽고 독립적으로 할 수 있도록 많은 정성과 노력을 들여 이 앱을 만들었습니다.\n도움이 되셨다면 Google Play에서 평가해 주세요. 소중한 의견은 저희에게 큰 도움이 됩니다!</string>
+    <string name="rate_the_app_dialog_answer_rate_now">지금 평가하기</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">나중에</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">괜찮습니다</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="other">앱이 전화를 제대로 받으려면 다음 권한이 필요합니다: %1$s.</item>
+    </plurals>
 
 </resources>

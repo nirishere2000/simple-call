@@ -348,7 +348,7 @@
     <string name="welcome_text_speech_short">Премиум-версия предлагает расширенные функции для Быстрого звонка, а также умный экран блокировки, который автоматически появляется после бездействия. Нажатие на экран возвращает вас прямо в приложение, чтобы вы могли легко совершить звонок без поиска на главном экране.</string>
     <string name="quick_call_activated_voice_message_speech">Быстрый звонок активирован — пожалуйста, обратите внимание</string>
     <string name="voice">Управление голосом</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">Приложение использует разрешение на SMS для отправки текстового сообщения на выбранный %1$s.\nОтправка сообщения зависит от доступности сети и может повлечь за собой расходы.\nБудет отправлено только одно сообщение.\nПользователь несет ответственность за любые расходы или проблемы с доставкой.</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">Приложение использует разрешение на SMS для отправки текстового сообщения на выбранный %1$s.\nОтправка сообщения зависит от доступности сети и может повлечь за собой расходы.\nБудет отправлено до 3 сообщений.\nПользователь несет ответственность за любые расходы или проблемы с доставкой.</string>
     <string name="settings_when_lock_screen_is_unlocked">При разблокировке экрана</string>
     <string name="select_app_to_launch">Выберите приложение для запуска</string>
     <string name="premium_screen_lock_text">Наш умный экран блокировки предлагает новый и легкий опыт.\n\nВместо того чтобы бороться с неудобными жестами пролистывания или пытаться понять, как разблокировать устройство, одно касание мгновенно возвращает вас в приложение, где можно легко управлять звонками и совершать их.\n\nБлагодаря чистому дизайну и интуитивно понятному управлению это настоящее улучшение вашего мобильного опыта.</string>
@@ -366,11 +366,28 @@
     <string name="lock_screen_permission_display_name">Показ на экране блокировки</string>
     <string name="overlay_permission_display_name_xiaomi">Открывать новые окна, когда запущено в фоновом режиме</string>
     <string name="allow_pop_permission_display_name_xiaomi">Отображение всплывающих окон</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Чтобы %1$s работал корректно, необходимо назначить приложение приложением по умолчанию для обработки вызовов.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Чтобы %1$s работал корректно, необходимо назначить приложение приложением по умолчанию для обработки вызовов. Вы уверены, что хотите пропустить этот шаг?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Чтобы отправить SMS во время %2$s, необходимо настроить %1$s.</string>
     <string name="this_feature_only_available_on_premium">Эта функция доступна только в версии Premium. Обновитесь сейчас, чтобы пользоваться этой и другими замечательными функциями!</string>
     <string name="unlock_more_with_premium_title">Получите больше с Premium</string>
     <string name="try_the_premium_button">Начать бесплатную пробную версию</string>
     <string name="no_contacts_available_for_selection">Нет доступных контактов для выбора</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Чтобы %1$s работал корректно, приложению необходимо предоставить разрешение на доступ к контактам.</string>
+    <string name="announce_caller_instead_of_ringtone">Озвучивать имя звонящего вместо мелодии</string>
+    <string name="incoming_call_speech">Привет! Вам звонит %1$s</string>
+    <string name="quick_call_in_progress">%1$s ожидает следующей попытки – на предыдущий звонок не ответили</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">%1$s пытались активировать 3 раза – но без успеха</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s была принята и успешно завершена</string>
+    <string name="rate_the_app_dialog_title">Вам нравится приложение?</string>
+    <string name="rate_the_app_dialog_text">Мы вложили много сил и души в создание этого приложения, чтобы помочь пожилым людям и людям с ограниченными возможностями легче и самостоятельнее управлять телефонными звонками.\nЕсли приложение оказалось для вас полезным, мы будем признательны за вашу оценку в Google Play. Ваш отзыв очень важен для нас и помогает нам становиться лучше!</string>
+    <string name="rate_the_app_dialog_answer_rate_now">Оценить сейчас</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">Может быть позже</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">Нет, спасибо</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="one">Чтобы приложение могло правильно отвечать на звонки, необходимо следующее разрешение: %1$s.</item>
+        <item quantity="few">Чтобы приложение могло правильно отвечать на звонки, необходимы следующие разрешения: %1$s.</item>
+        <item quantity="many">Чтобы приложение могло правильно отвечать на звонки, необходимы следующие разрешения: %1$s.</item>
+        <item quantity="other">Чтобы приложение могло правильно отвечать на звонки, необходимы следующие разрешения: %1$s.</item>
+    </plurals>
+
 </resources>

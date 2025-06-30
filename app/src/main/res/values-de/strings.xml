@@ -358,7 +358,7 @@
     <string name="welcome_text_speech_short">Die Premium-Version bietet erweiterte Funktionen für den Schnellanruf sowie einen intelligenten Sperrbildschirm, der nach Inaktivität automatisch erscheint. Das Antippen des Bildschirms bringt dich direkt zurück zur App, sodass du einfach einen Anruf tätigen kannst, ohne auf dem Startbildschirm suchen zu müssen.</string>
     <string name="quick_call_activated_voice_message_speech">Schnellanruf aktiviert — bitte aufmerksam sein</string>
     <string name="voice">Sprache</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">Die App verwendet die SMS-Berechtigung, um eine Textnachricht an den ausgewählten %1$s zu senden.\nDas Senden hängt von der Netzwerkverfügbarkeit ab und kann Gebühren verursachen.\nEs wird nur eine Nachricht gesendet.\nDer Benutzer ist für alle Kosten oder Zustellprobleme verantwortlich.</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">Die App verwendet die SMS-Berechtigung, um eine Textnachricht an den ausgewählten %1$s zu senden.\nDas Senden hängt von der Netzwerkverfügbarkeit ab und kann Gebühren verursachen.\nEs werden bis zu 3 Nachrichten gesendet.\nDer Benutzer ist für alle Kosten oder Zustellprobleme verantwortlich.</string>
     <string name="settings_when_lock_screen_is_unlocked">Beim Entsperren des Bildschirms</string>
     <string name="select_app_to_launch">App zum Starten auswählen</string>
     <string name="premium_screen_lock_text">Unser intelligenter Sperrbildschirm bietet ein neues und müheloses Erlebnis.\n\nAnstatt sich mit umständlichen Wischgesten herumzuärgern oder herauszufinden, wie das Gerät entsperrt wird, bringt dich ein einziger Tipp direkt zurück zur App, wo du Telefonanrufe einfach verwalten und tätigen kannst.\n\nMit einem klaren Design und intuitiver Steuerung ist es ein echtes Upgrade für dein mobiles Erlebnis.</string>
@@ -374,13 +374,26 @@
     <string name="lock_screen_permission_display_name">Auf dem Sperrbildschirm anzeigen</string>
     <string name="overlay_permission_display_name_xiaomi">Neue Fenster öffnen, wenn im Hintergrund ausgeführt</string>
     <string name="allow_pop_permission_display_name_xiaomi">Popup-Fenster anzeigen</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Damit %1$s ordnungsgemäß funktioniert, muss die App als Standard-App für Anrufe festgelegt werden.</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Damit %1$s ordnungsgemäß funktioniert, muss die App als Standard-App für Anrufe festgelegt werden. Möchten Sie diesen Schritt überspringen?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Um eine SMS während eines %2$s zu senden, muss eine %1$s eingerichtet sein.</string>
     <string name="this_feature_only_available_on_premium">Diese Funktion ist nur in der Premium-Version verfügbar. Upgrade jetzt, um diese und viele weitere großartige Funktionen zu nutzen!</string>
     <string name="unlock_more_with_premium_title">Mehr entdecken mit Premium</string>
     <string name="try_the_premium_button">Kostenlose Testversion starten</string>
     <string name="no_contacts_available_for_selection">Keine Kontakte zur Auswahl vorhanden</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Damit %1$s ordnungsgemäß funktioniert, muss der App die Berechtigung für Kontakte erteilt werden.</string>
-
+    <string name="announce_caller_instead_of_ringtone">Anrufernamen statt Klingelton ansagen</string>
+    <string name="incoming_call_speech">Hallo! Du hast einen Anruf von %1$s</string>
+    <string name="quick_call_in_progress">%1$s wartet auf den nächsten Versuch – der vorherige Anruf wurde nicht entgegengenommen</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">%1$s wurde dreimal versucht – aber ohne Erfolg</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s wurde angenommen und erfolgreich beendet</string>
+    <string name="rate_the_app_dialog_title">Zufrieden mit der App?</string>
+    <string name="rate_the_app_dialog_text">Wir haben viel Herzblut und Mühe in die Entwicklung dieser App gesteckt, um Senioren und Menschen mit Einschränkungen zu helfen, ihre Telefonate einfacher und selbstständiger zu verwalten.\nWenn dir die App hilft, würden wir uns sehr über eine Bewertung im Google Play Store freuen. Dein Feedback ist uns wichtig und hilft uns, besser zu werden!</string>
+    <string name="rate_the_app_dialog_answer_rate_now">Jetzt bewerten</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">Vielleicht später</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">Nein, danke</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="one">Damit die App Anrufe richtig entgegennehmen kann, benötigt sie die folgende Berechtigung: %1$s.</item>
+        <item quantity="other">Damit die App Anrufe richtig entgegennehmen kann, benötigt sie die folgenden Berechtigungen: %1$s.</item>
+    </plurals>
 
 </resources>

@@ -16,7 +16,8 @@ import android.graphics.PixelFormat
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.telecom.TelecomManager
 import android.util.Log
@@ -102,11 +103,15 @@ import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus.isBackgroundWindowsAllowed
 import com.nirotem.simplecall.statuses.PermissionsStatus.isShowOnLockScreenAllowed
+import com.nirotem.simplecall.statuses.PermissionsStatus.loadOtherPermissionsIssueDialog
 import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
 import com.nirotem.simplecall.ui.tour.TourDialogFragment
 import java.io.File
 import java.util.Locale
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FieldValue
+import com.nirotem.simplecall.helpers.ReferralTracker
 
 
 class MainActivity : AppCompatActivity() {
@@ -125,7 +130,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        ReferralTracker.handleDeepLinkAndTrack(this, intent)
+
         Log.d("SimplyCall - MainActivity", "Main activity loading")
+        /*        if (isPremium) {
+                    saveAlreadyPlayedWelcomeSpeech(this, false)
+                }*/
         SoundPoolManager.initialize(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -194,46 +204,46 @@ class MainActivity : AppCompatActivity() {
                     canStartCheckingForPhonePermission = true
 
                     handleQuickCallEnableAndPermissions()
-/*                    val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-                    if (isPremiumAndAppNotDefault) {
-                        val quickCallName = getString(R.string.quick_call_button_caption)
-                        showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default, quickCallName))
-                        enableDistressButton(
-                            binding.root,
-                            this,
-                            this,
-                            requestPermissionLauncher,
-                            false
-                        )
-                    }
-                    else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
-                        val quickCallName =
-                            getString(R.string.quick_call_button_caption)
-                        showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_it_needs_contacts_permission, quickCallName))
-                        enableDistressButton(
-                            binding.root,
-                            this,
-                            this,
-                            requestPermissionLauncher,
-                            false
-                        )
-                    }
-                    else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
-                        enableDistressButton(
-                            binding.root, this, this, requestPermissionLauncher,
-                            PermissionsStatus.callPhonePermissionGranted.value,
-                            true
-                        ) // and show a dialog
-                    } else { // user already has Phone permission
-                        enableDistressButton(
-                            binding.root,
-                            this,
-                            this,
-                            requestPermissionLauncher,
-                            PermissionsStatus.callPhonePermissionGranted.value
-                        ) // no msg but to update button
-                        handleIfBatterySaverIgnored()
-                    }*/
+                    /*                    val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+                                        if (isPremiumAndAppNotDefault) {
+                                            val quickCallName = getString(R.string.quick_call_button_caption)
+                                            showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default, quickCallName))
+                                            enableDistressButton(
+                                                binding.root,
+                                                this,
+                                                this,
+                                                requestPermissionLauncher,
+                                                false
+                                            )
+                                        }
+                                        else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
+                                            val quickCallName =
+                                                getString(R.string.quick_call_button_caption)
+                                            showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_it_needs_contacts_permission, quickCallName))
+                                            enableDistressButton(
+                                                binding.root,
+                                                this,
+                                                this,
+                                                requestPermissionLauncher,
+                                                false
+                                            )
+                                        }
+                                        else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
+                                            enableDistressButton(
+                                                binding.root, this, this, requestPermissionLauncher,
+                                                PermissionsStatus.callPhonePermissionGranted.value,
+                                                true
+                                            ) // and show a dialog
+                                        } else { // user already has Phone permission
+                                            enableDistressButton(
+                                                binding.root,
+                                                this,
+                                                this,
+                                                requestPermissionLauncher,
+                                                PermissionsStatus.callPhonePermissionGranted.value
+                                            ) // no msg but to update button
+                                            handleIfBatterySaverIgnored()
+                                        }*/
                 } else {
                     if (!alreadyAlertedAboutDefaultDialer) {
                         showDefaultAppDialog()
@@ -247,47 +257,47 @@ class MainActivity : AppCompatActivity() {
 
                         handleQuickCallEnableAndPermissions()
 
-/*                        val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+                        /*                        val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
 
-                        if (isPremiumAndAppNotDefault) {
-                            val quickCallName = getString(R.string.quick_call_button_caption)
-                            showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default, quickCallName))
-                            enableDistressButton(
-                                binding.root,
-                                this,
-                                this,
-                                requestPermissionLauncher,
-                                false
-                            )
-                        }
-                        else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
-                            val quickCallName =
-                                getString(R.string.quick_call_button_caption)
-                            showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_it_needs_contacts_permission, quickCallName))
-                            enableDistressButton(
-                                binding.root,
-                                this,
-                                this,
-                                requestPermissionLauncher,
-                                false
-                            )
-                        }
-                        else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
-                            enableDistressButton(
-                                binding.root, this, this, requestPermissionLauncher,
-                                PermissionsStatus.callPhonePermissionGranted.value,
-                                true
-                            ) // and show a dialog
-                        } else { // user already has Phone permission
-                            enableDistressButton(
-                                binding.root,
-                                this,
-                                this,
-                                requestPermissionLauncher,
-                                PermissionsStatus.callPhonePermissionGranted.value
-                            ) // no msg but to update button
-                            handleIfBatterySaverIgnored()
-                        }*/
+                                                if (isPremiumAndAppNotDefault) {
+                                                    val quickCallName = getString(R.string.quick_call_button_caption)
+                                                    showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default, quickCallName))
+                                                    enableDistressButton(
+                                                        binding.root,
+                                                        this,
+                                                        this,
+                                                        requestPermissionLauncher,
+                                                        false
+                                                    )
+                                                }
+                                                else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
+                                                    val quickCallName =
+                                                        getString(R.string.quick_call_button_caption)
+                                                    showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_it_needs_contacts_permission, quickCallName))
+                                                    enableDistressButton(
+                                                        binding.root,
+                                                        this,
+                                                        this,
+                                                        requestPermissionLauncher,
+                                                        false
+                                                    )
+                                                }
+                                                else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
+                                                    enableDistressButton(
+                                                        binding.root, this, this, requestPermissionLauncher,
+                                                        PermissionsStatus.callPhonePermissionGranted.value,
+                                                        true
+                                                    ) // and show a dialog
+                                                } else { // user already has Phone permission
+                                                    enableDistressButton(
+                                                        binding.root,
+                                                        this,
+                                                        this,
+                                                        requestPermissionLauncher,
+                                                        PermissionsStatus.callPhonePermissionGranted.value
+                                                    ) // no msg but to update button
+                                                    handleIfBatterySaverIgnored()
+                                                }*/
                     }
 
                     // עדכון סטטוס ההרשאה במידה והפעולה נכשלה או בוטלה
@@ -307,7 +317,8 @@ class MainActivity : AppCompatActivity() {
 
         if (isPremium) {
             //speechCommandsEnabled = true also should uncomment permission in manifest
-            val voiceCommandsInitSuccess = voiceApi.initVoiceCommands(this, this)
+            val voiceCommandsInitSuccess =
+                if (voiceApi.isEnabled()) voiceApi.initVoiceCommands(this, this) else false
             val alreadyPlayedWelcomeSpeech = loadAlreadyPlayedWelcomeSpeech(this)
             val welcomeTitle = getString(R.string.welcome_to_easy_call_and_answer_premium)
             val welcomeText =
@@ -325,8 +336,13 @@ class MainActivity : AppCompatActivity() {
                         voiceApi.startListenToVoiceCommands(this)
                     }
                 }
+            } else { // playing only welcome title
+                TextToSpeechManager.initSpeech(this, welcomeTitle, "") {
+                    if (voiceApi.isEnabled() && voiceCommandsInitSuccess) {
+                        voiceApi.startListenToVoiceCommands(this)
+                    }
+                }
             }
-
         }
 
 
@@ -840,9 +856,6 @@ class MainActivity : AppCompatActivity() {
                  (supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?)!!*/
 
 
-
-
-
         binding.navView?.let {
             appBarConfiguration = if (isPremium) AppBarConfiguration(
                 setOf(
@@ -979,6 +992,7 @@ class MainActivity : AppCompatActivity() {
         appLogo?.setOnClickListener {
             openOptionsMenu()
         }
+
         checkForDistressButton(
             binding.root,
             this,
@@ -1054,8 +1068,6 @@ class MainActivity : AppCompatActivity() {
             //   || standbyBucket == 5 || standbyBucket == 10 // For Samsung - isIgnoringBatteryOptimizations takes more parameters into account so it might be false
             // so if standbyBucket == 5 or 10 meaning actively used, it's enough for us for now
 
-            // Quick Call permissions and enabling is the most important
-            handleQuickCallEnableAndPermissions()
 
             val lastCallLoadedActivityTimestamp =
                 loadCallActivityLoadedTimeStamp(binding.root.context)
@@ -1089,6 +1101,8 @@ class MainActivity : AppCompatActivity() {
                     alreadyAskedForDefaultDialer = true
                     canStartCheckingForPhonePermission = true
 
+                    // Quick Call permissions and enabling is the most important
+                    handleQuickCallEnableAndPermissions()
 
 
                     // Check for overlay permission, which is also a must.
@@ -1099,8 +1113,14 @@ class MainActivity : AppCompatActivity() {
                     alreadyAskedForDefaultDialer = true
                     saveCallActivityLoadedTimeStamp(binding.root.context) // Don't show again (Show this once per error)
                     requestOverlayPermission(binding.root.context)
+
+                    // Quick Call permissions and enabling is the most important
+                    handleQuickCallEnableAndPermissions()
                 }
             } else {
+
+                // Quick Call permissions and enabling is the most important
+                handleQuickCallEnableAndPermissions()
                 // Check for overlay permission, which is also a must.
                 // else - check for battery optimization
                 // requestIgnoreBatteryOptimizationsIfNeeded(binding.root.context)
@@ -1117,10 +1137,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleQuickCallEnableAndPermissions() {
-        val isDefault = (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-        if (isDefault) { // not only in premium - because we need to know if call was answered and if not we continue
+        val isDefault = (PermissionsStatus.defaultDialerPermissionGranted.value == true)
+        if (!isDefault) { // not only in premium - because we need to know if call was answered and if not we continue
             val quickCallName = getString(R.string.quick_call_button_caption)
-            showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default, quickCallName))
+            showDefaultAppDialog(
+                getString(
+                    R.string.in_order_for_quick_call_to_work_properly_app_must_be_default,
+                    quickCallName
+                ), true
+            )
             enableDistressButton(
                 binding.root,
                 this,
@@ -1128,11 +1153,13 @@ class MainActivity : AppCompatActivity() {
                 requestPermissionLauncher,
                 false
             )
-        }
-        else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
+        } else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
             val quickCallName =
                 getString(R.string.quick_call_button_caption)
-            val toastMsg = getString(R.string.in_order_for_quick_call_to_work_properly_it_needs_contacts_permission, quickCallName)
+            val toastMsg = getString(
+                R.string.in_order_for_quick_call_to_work_properly_it_needs_contacts_permission,
+                quickCallName
+            )
             showLongSnackBar(this, toastMsg, 8000)
             enableDistressButton(
                 binding.root,
@@ -1141,8 +1168,7 @@ class MainActivity : AppCompatActivity() {
                 requestPermissionLauncher,
                 false
             )
-        }
-        else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
+        } else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
             enableDistressButton(
                 binding.root,
                 this,
@@ -1231,16 +1257,18 @@ class MainActivity : AppCompatActivity() {
         context.startActivity(intent)
     }
 
-    private fun showDefaultAppDialog(customMessage: String? = null) {
-        if (!alreadyAlertedAboutDefaultDialer) {
+    private fun showDefaultAppDialog(
+        customMessage: String? = null,
+        isDefaultMsgForQuickCall: Boolean = false
+    ) {
+        if (!alreadyAlertedAboutDefaultDialer || isDefaultMsgForQuickCall) {
             alreadyAlertedAboutDefaultDialer = true
 
             val builder = AlertDialog.Builder(binding.root.context)
             builder.setTitle(getString(R.string.set_default_phone_app))
             if (customMessage != null) {
                 builder.setMessage(customMessage)
-            }
-            else {
+            } else {
                 builder.setMessage(getString(R.string.for_handling_calls_it_is_important_to_set_the_app_as_default_text))
             }
 
@@ -1251,47 +1279,51 @@ class MainActivity : AppCompatActivity() {
 
             builder.setPositiveButton(getString(R.string.yes_skip_capital)) { dialog, which ->
                 canStartCheckingForPhonePermission = true
-                handleQuickCallEnableAndPermissions()
-               /* val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
-                if (isPremiumAndAppNotDefault) {
-                    val quickCallName = getString(R.string.quick_call_button_caption)
-                    showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default, quickCallName))
-                    enableDistressButton(
-                        binding.root,
-                        this,
-                        this,
-                        requestPermissionLauncher,
-                        false
-                    )
+                if (!isDefaultMsgForQuickCall) {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        handleQuickCallEnableAndPermissions()
+                    }, 300) // עיכוב קטן של 300ms
                 }
-                else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
-                    val quickCallName =
-                        getString(R.string.quick_call_button_caption)
-                    showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_it_needs_contacts_permission, quickCallName))
-                    enableDistressButton(
-                        binding.root,
-                        this,
-                        this,
-                        requestPermissionLauncher,
-                        false
-                    )
-                }
-                else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
-                    enableDistressButton(
-                        binding.root, this, this, requestPermissionLauncher,
-                        PermissionsStatus.callPhonePermissionGranted.value,
-                        true
-                    ) // and show a dialog
-                } else { // user already has Phone permission
-                    enableDistressButton(
-                        binding.root,
-                        this,
-                        this,
-                        requestPermissionLauncher,
-                        PermissionsStatus.callPhonePermissionGranted.value
-                    ) // no msg but to update button
-                    handleIfBatterySaverIgnored()
-                }*/
+                /* val isPremiumAndAppNotDefault = isPremium && (PermissionsStatus.defaultDialerPermissionGranted.value != true)
+                 if (isPremiumAndAppNotDefault) {
+                     val quickCallName = getString(R.string.quick_call_button_caption)
+                     showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_app_must_be_default, quickCallName))
+                     enableDistressButton(
+                         binding.root,
+                         this,
+                         this,
+                         requestPermissionLauncher,
+                         false
+                     )
+                 }
+                 else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
+                     val quickCallName =
+                         getString(R.string.quick_call_button_caption)
+                     showDefaultAppDialog(getString(R.string.in_order_for_quick_call_to_work_properly_it_needs_contacts_permission, quickCallName))
+                     enableDistressButton(
+                         binding.root,
+                         this,
+                         this,
+                         requestPermissionLauncher,
+                         false
+                     )
+                 }
+                 else if (PermissionsStatus.callPhonePermissionGranted.value != true) {
+                     enableDistressButton(
+                         binding.root, this, this, requestPermissionLauncher,
+                         PermissionsStatus.callPhonePermissionGranted.value,
+                         true
+                     ) // and show a dialog
+                 } else { // user already has Phone permission
+                     enableDistressButton(
+                         binding.root,
+                         this,
+                         this,
+                         requestPermissionLauncher,
+                         PermissionsStatus.callPhonePermissionGranted.value
+                     ) // no msg but to update button
+                     handleIfBatterySaverIgnored()
+                 }*/
                 dialog.dismiss()
             }
 
@@ -1347,8 +1379,24 @@ class MainActivity : AppCompatActivity() {
                 )
                 // Show the Battery Saver dialog:
                 showBatterySaveIgnoreDialog(binding.root.context)
+            } else {
+                handleOverlayShowInBackgroundAndLockPermissions()
             }
             // }
+        } else {
+            handleOverlayShowInBackgroundAndLockPermissions()
+        }
+    }
+
+    private fun handleOverlayShowInBackgroundAndLockPermissions() {
+        if (PermissionsStatus.canDrawOverlaysPermissionGranted.value != true
+            || PermissionsStatus.backgroundWindowsAllowed.value != true
+            || PermissionsStatus.permissionToShowWhenDeviceLockedAllowed.value != true
+        ) {
+            loadOtherPermissionsIssueDialog(
+                R.plurals.app_missing_permissions_text_dynamic_plural,
+                this
+            )
         }
     }
 
@@ -1389,6 +1437,12 @@ class MainActivity : AppCompatActivity() {
 
         return ContextWrapper(newBase?.createConfigurationContext(config))
     }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        ReferralTracker.handleDeepLinkAndTrack(this, intent)
+    }
+
 
     override fun attachBaseContext(newBase: Context?) {
         var localeDefault = Locale.getDefault()

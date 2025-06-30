@@ -7,6 +7,10 @@ import com.nirotem.simplecall.R
 import com.nirotem.simplecall.statuses.AllowOutgoingCallsEnum
 import com.nirotem.simplecall.statuses.SettingsStatus
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 object SharedPreferencesCache {
     const val EASY_CALL_AND_ANSWER_SHARED_FILE = "SimpleCallAppSharePreferences"
@@ -76,6 +80,8 @@ object SharedPreferencesCache {
         SettingsStatus.goldNumberContact.value = goldPhoneNumberContact
         saveVariableInMemory(context, "gold_phone_contactName", goldPhoneNumberContact)
     }
+
+
 
   /*  fun loadCallsReportIsGoldNumber(context: Context): Boolean {
         var callsReportIsGoldNumber = loadCallsReportIsGoldNumberLib(context)
@@ -243,6 +249,84 @@ object SharedPreferencesCache {
 
     fun saveNumOfTimesWarnedForShowBattery(context: Context, numOfTimesWarnedForShowBattery: Int) {
         saveVariableInMemory(context, "numOfTimesWarnedForShowBattery", numOfTimesWarnedForShowBattery.toString())
+    }
+
+    fun loadNumOfAskingUserToRateApp(context: Context): Int {
+        val numOfAskingUserToRateApp = loadVariableFromMemory("num_of_asking_user_to_rate_app", context)
+        if (numOfAskingUserToRateApp.isNullOrEmpty()) {
+            return 0
+        }
+        return numOfAskingUserToRateApp.toInt()
+    }
+
+    fun saveNumOfAskingUserToRateApp(context: Context, numOfAskingUserToRateApp: Int) {
+        saveVariableInMemory(context, "num_of_asking_user_to_rate_app", numOfAskingUserToRateApp.toString())
+    }
+
+    fun loadLastUserAnswerToRateApp(context: Context): Int {
+        val lastUserAnswerToRateApp = loadVariableFromMemory("last_user_answer_to_rate_app", context)
+        if (lastUserAnswerToRateApp.isNullOrEmpty()) {
+            return 0
+        }
+        return lastUserAnswerToRateApp.toInt()
+    }
+
+    fun saveLastUserAnswerToRateApp(context: Context, lastUserAnswerToRateApp: Int) {
+        saveVariableInMemory(context, "last_user_answer_to_rate_app", lastUserAnswerToRateApp.toString())
+    }
+
+    fun loadLastDateAskedToRateApp(context: Context): Long {
+        val dateStr = loadVariableFromMemory("last_date_asked_to_rate_app", context)
+
+        if (!dateStr.isNullOrEmpty()) {
+            // נניח שהתאריך נשמר כ: "2024-06-28" או "2024-06-28T14:30:00"
+            val formats = listOf(
+                "yyyy-MM-dd'T'HH:mm:ss",
+                "yyyy-MM-dd"
+            )
+
+            for (format in formats) {
+                try {
+                    val sdf = SimpleDateFormat(format, Locale.getDefault())
+                    sdf.timeZone = TimeZone.getDefault()
+                    val date = sdf.parse(dateStr)
+                    if (date != null) return date.time
+                } catch (e: Exception) {
+                    // Ignore and try next format
+                }
+            }
+
+        }
+        return 0L // תאריך לא תקין או ריק → נחזיר 0 כדי לאפשר הצגה ראשונה
+    }
+
+    fun loadAlreadyRegisteredInStore(context: Context): Boolean {
+        val alreadyRegisteredInStore = loadVariableFromMemory("already_registered_in_store", context)
+        return alreadyRegisteredInStore == "true"
+    }
+
+    fun saveAlreadyRegisteredInStore(context: Context, alreadyRegisteredInStore: Boolean) {
+        val varToSave = if (alreadyRegisteredInStore) "true" else "false"
+        saveVariableInMemory(context, "already_registered_in_store", varToSave)
+    }
+
+    fun loadAlreadyPurchasedInStore(context: Context): Boolean {
+        val alreadyPurchasedInStore = loadVariableFromMemory("already_purchased_in_store", context)
+        return alreadyPurchasedInStore == "true"
+    }
+
+    fun saveAlreadyPurchasedInStore(context: Context, alreadyPurchasedInStore: Boolean) {
+        val varToSave = if (alreadyPurchasedInStore) "true" else "false"
+        saveVariableInMemory(context, "already_purchased_in_store", varToSave)
+    }
+
+    fun saveCurrentDateAskedToRateApp(context: Context) {
+        val now = Date()
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        sdf.timeZone = TimeZone.getDefault()
+        val dateStr = sdf.format(now)
+
+        saveVariableInMemory(context, "last_date_asked_to_rate_app", dateStr)
     }
 
     // Tour
@@ -501,6 +585,19 @@ object SharedPreferencesCache {
             return context.resources.getBoolean(R.bool.isQuickCallVoiceCommandEnabled)
         }
         return isQuickCallVoiceCommandEnabled == "true"
+    }
+
+    fun saveShouldSpeakWhenRing(context: Context, shouldSpeakWhenRing: Boolean) {
+        val varToSave = if (shouldSpeakWhenRing) "true" else "false"
+        saveVariableInMemory(context, "should_speak_when_ring", varToSave)
+    }
+
+    fun loadShouldSpeakWhenRing(context: Context): Boolean {
+        val shouldSpeakWhenRing = loadVariableFromMemory("should_speak_when_ring", context)
+        if (shouldSpeakWhenRing == null) {
+            return context.resources.getBoolean(R.bool.shouldSpeakWhenRing)
+        }
+        return shouldSpeakWhenRing == "true"
     }
 
     fun saveIsQuickCallVoiceCommandEnabled(context: Context, isQuickCallVoiceCommandEnabled: Boolean) {

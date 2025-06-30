@@ -239,7 +239,7 @@ class TourFragment : Fragment() {
                 key = "powerfulFeatures",
                 title = getString(R.string.tour_powerful_features),
                 description = getString(R.string.tour_powerful_features_text),
-                imageRes = R.drawable._dotsmenu,
+                imageRes = if (isPremium) R.drawable.dots_menu_premium else R.drawable._dotsmenu,
                 secondImageRes = null,
                 isXiaomiOnly = false,
                 isPremium = false
@@ -275,7 +275,7 @@ class TourFragment : Fragment() {
                 key = "permissionsScreen",
                 title = getString(R.string.tour_permissions_screen),
                 description = getString(R.string.tour_permissions_screen_text),
-                imageRes = R.drawable.permissionsscreen,
+                imageRes = if (isPremium) R.drawable.permissionsscreen_premium else R.drawable.permissionsscreen,
                 secondImageRes = null,
                 isXiaomiOnly = false,
                 isPremium = false
@@ -284,7 +284,7 @@ class TourFragment : Fragment() {
                 key = "defaultApp",
                 title = getString(R.string.tour_default_app),
                 description = getString(R.string.tour_default_app_text),
-                imageRes = R.drawable.defaultdialerselection,
+                imageRes = if (isPremium) R.drawable.defaultdialerselection_premium else R.drawable.defaultdialerselection,
                 secondImageRes = null,
                 isXiaomiOnly = false,
                 isPremium = false

@@ -4,6 +4,7 @@ import android.app.Application
 
 import android.util.Log
 import android.widget.Toast
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 //import com.example.callsreportslibrary.SharedPreferencesCache.CALLS_REPORT_LIB_SHARED_PREF_APP
 import com.nirotem.simplecall.CallActivity
 import com.nirotem.simplecall.R
@@ -23,6 +24,9 @@ class ApplicationManager : Application() {
             try {
                 // Log the thread information and the error message
                 Log.e("GlobalExceptionHandler", "Uncaught exception in thread ${thread.name}: ${throwable.message}", throwable)
+
+                // דיווח ל־Crashlytics
+                FirebaseCrashlytics.getInstance().recordException(throwable)
 
                 // You can also print the stack trace or handle the error further
                 throwable.printStackTrace()

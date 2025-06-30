@@ -326,7 +326,7 @@
     <string name="welcome_text_speech_short">プレミアムバージョンではクイックコールの機能が強化され、非アクティブ時に自動的に表示されるスマートロック画面が含まれています。画面をタップするとアプリに直接戻り、ホーム画面で探すことなく簡単に通話できます。</string>
     <string name="quick_call_activated_voice_message_speech">クイックコールが有効になりました — ご注意ください</string>
     <string name="voice">音声</string>
-    <string name="quick_call_send_sms_to_gold_number_settings_msg">アプリは選択した%1$sにテキストメッセージを送信するためにSMS権限を使用します。\nメッセージの送信はネットワークの利用可能性に依存し、料金が発生する場合があります。\nメッセージは1回のみ送信されます。\nユーザーはすべてのコストまたは配信の問題に責任を負います。</string>
+    <string name="quick_call_send_sms_to_gold_number_settings_msg">アプリは選択した%1$sにテキストメッセージを送信するためにSMS権限を使用します。\nメッセージの送信はネットワークの利用可能性に依存し、料金が発生する場合があります。\n最大で3回までメッセージが送信されます。\nユーザーはすべてのコストまたは配信の問題に責任を負います。</string>
     <string name="settings_when_lock_screen_is_unlocked">ロック画面の解除時</string>
     <string name="select_app_to_launch">起動するアプリを選択</string>
     <string name="premium_screen_lock_text">スマートロック画面は、新しく手間のかからない体験を提供します。\n\n煩わしいスワイプ操作に苦労したり、デバイスのロック解除方法を探したりする代わりに、ワンタップでアプリに直接戻り、簡単に電話を管理・発信できます。\n\nシンプルなデザインと直感的な操作性で、モバイル体験を真に向上させます。</string>
@@ -341,12 +341,25 @@
     <string name="lock_screen_permission_display_name">ロック画面に表示</string>
     <string name="overlay_permission_display_name_xiaomi">バックグラウンドで実行中に新しいウィンドウを開く</string>
     <string name="allow_pop_permission_display_name_xiaomi">ポップアップウィンドウの表示</string>
-    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s を正しく利用するには、アプリを通話の既定アプリに設定する必要があります。</string>
+    <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s を正しく利用するには、アプリを通話の既定アプリに設定する必要があります。この手順をスキップしてもよろしいですか？</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">%2$s中にSMSを送信するには、%1$sを設定する必要があります。</string>
     <string name="this_feature_only_available_on_premium">この機能はプレミアム版でのみご利用いただけます。今すぐアップグレードして、この機能やその他の便利な機能をお楽しみください！</string>
     <string name="unlock_more_with_premium_title">プレミアムでさらに楽しもう</string>
     <string name="try_the_premium_button">無料トライアルを開始</string>
     <string name="no_contacts_available_for_selection">選択可能な連絡先がありません</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">%1$s を正しく利用するには、アプリに連絡先の権限を付与する必要があります。</string>
+    <string name="announce_caller_instead_of_ringtone">着信音の代わりに発信者の名前を読み上げる</string>
+    <string name="incoming_call_speech">こんにちは！%1$s から着信があります</string>
+    <string name="quick_call_in_progress">%1$s は次の試行を待機中です – 前回の通話は応答がありませんでした</string>
+    <string name="tried_to_activate_quick_call_for_3_times_but_no_success">%1$s を3回試みましたが、成功しませんでした</string>
+    <string name="quick_call_was_answered_and_completed_successfully">%1$s は応答され、正常に完了しました</string>
+    <string name="rate_the_app_dialog_title">アプリに満足していますか？</string>
+    <string name="rate_the_app_dialog_text">高齢者や障がいを持つ方が、より簡単かつ自立して電話を管理できるよう、このアプリには多くの心と努力を注いで開発しました。\n役に立っていると感じたら、Google Playでの評価をぜひお願いします。あなたのフィードバックは私たちにとって非常に大切で、改善に役立ちます！</string>
+    <string name="rate_the_app_dialog_answer_rate_now">今すぐ評価する</string>
+    <string name="rate_the_app_dialog_answer_maybe_later">あとで</string>
+    <string name="rate_the_app_dialog_answer_no_thanks">結構です</string>
+    <plurals name="app_missing_permissions_text_dynamic_plural">
+        <item quantity="other">アプリが正しく通話に応答するには、次の権限が必要です: %1$s。</item>
+    </plurals>
 
 </resources>
