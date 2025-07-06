@@ -361,5 +361,26 @@
     <plurals name="app_missing_permissions_text_dynamic_plural">
         <item quantity="other">アプリが正しく通話に応答するには、次の権限が必要です: %1$s。</item>
     </plurals>
+    <string name="unlock_full_access_to_all_premium_features">すべてのプレミアム機能にフルアクセス</string>
+    <string name="choose_your_plan">プランを選択</string>
+    <string name="trial_days_left">残りの無料トライアルは %1$d 日です</string>
+    <string name="trial_finished">トライアル期間が終了しました</string>
+    <string name="premium_all_capitals">プレミアム</string>
+    <string name="basic_plan_all_capitals">ベーシック</string>
+    <string name="get_started">開始する</string>
+    <string name="per_month">月額</string>
+    <string name="per_year_price_format">年間 %1$s</string>
+    <string name="subscription_plan_feature_name_click_to_answer">タップで応答</string>
+    <string name="subscription_plan_feature_name_gold_number">ゴールド番号</string>
+    <string name="subscription_plan_feature_name_quick_call">クイックコール</string>
+    <string name="subscription_plan_feature_name_lock_screen">ロック画面</string>
+    <string name="subscription_plan_feature_name_open_whatsapp">WhatsAppを開く</string>
+    <string name="subscription_plan_feature_name_upgraded_quick_call">強化されたクイックコール</string>
+    <string name="subscription_plan_feature_name_call_management">通話管理</string>
+    <string name="subscription_plan_feature_name_big_buttons_icons">大きなボタンとアイコン</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">スピーカーで開始</string>
+    <string name="subscription_plan_feature_name_auto_answer">自動応答</string>
+    <string name="subscription_plan_feature_name_talk_instead_of_ringtone">着信音の代わりに音声で案内</string>
+    <string name="everything_in_basic_plus">ベーシックのすべての機能を含み、さらに多くの機能を追加：</string>
 
 </resources>

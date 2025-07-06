@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#1C1F2A"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- כפתור סגירה -->
+    <TextView
+        android:id="@+id/btnClose"
+        android:text="✕"
+        android:textSize="24sp"
+        android:textColor="#B0B8C9"
+        android:layout_gravity="end"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- כותרות -->
+    <TextView
+        android:id="@+id/upgradeTitle"
+        android:layout_marginTop="16dp"
+        android:text="שדרג את החשבון שלך"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:text="כדי להשתמש בכל הפיצ'רים המתקדמים, בחר תוכנית מתאימה."
+        android:textSize="16sp"
+        android:textColor="#B0B8C9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- כותרות טבלה -->
+    <LinearLayout
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text=""
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Standard"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Premium"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- אזור הפיצ'רים עם סקרול -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="12dp">
+
+        <LinearLayout
+            android:id="@+id/featuresContainer"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <!-- כפתורים -->
+    <Button
+        android:id="@+id/btnStandard"
+        android:text="בחר Standard – ₪9.90"
+        android:layout_marginTop="24dp"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#3A6EA5"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnPremium"
+        android:text="בחר Premium – ₪18.90"
+        android:layout_marginTop="12dp"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#4C8FD7"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

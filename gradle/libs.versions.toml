@@ -22,6 +22,8 @@ firebase-bom = "32.7.3"
 firebase-crashlytics-gradle = "3.0.2"
 google-services = "4.4.2"
 playcore = "1.10.3"
+billing = "6.0.1"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -57,6 +59,7 @@ firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
 googlePlayCore = { module = "com.google.android.play:core", version.ref = "playcore" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
+google-billing = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billing" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -397,5 +397,26 @@
         <item quantity="many">Para responder correctamente a las llamadas, la aplicación necesita los siguientes permisos: %1$s.</item>
         <item quantity="other">Para responder correctamente a las llamadas, la aplicación necesita los siguientes permisos: %1$s.</item>
     </plurals>
+    <string name="unlock_full_access_to_all_premium_features">Obtén acceso completo a todas las funciones Premium</string>
+    <string name="choose_your_plan">Elige tu plan</string>
+    <string name="trial_days_left">¡Te quedan %1$d días de prueba por nuestra cuenta!</string>
+    <string name="trial_finished">Tu período de prueba ha finalizado</string>
+    <string name="premium_all_capitals">Premium</string>
+    <string name="basic_plan_all_capitals">Básico</string>
+    <string name="get_started">Empezar</string>
+    <string name="per_month">al mes</string>
+    <string name="per_year_price_format">%1$s al año</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Responder con un toque</string>
+    <string name="subscription_plan_feature_name_gold_number">Número Dorado</string>
+    <string name="subscription_plan_feature_name_quick_call">Llamada rápida</string>
+    <string name="subscription_plan_feature_name_lock_screen">Pantalla de bloqueo</string>
+    <string name="subscription_plan_feature_name_open_whatsapp">Abrir WhatsApp</string>
+    <string name="subscription_plan_feature_name_upgraded_quick_call">Llamada rápida mejorada</string>
+    <string name="subscription_plan_feature_name_call_management">Gestión de llamadas</string>
+    <string name="subscription_plan_feature_name_big_buttons_icons">Botones e íconos grandes</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Iniciar con altavoz</string>
+    <string name="subscription_plan_feature_name_auto_answer">Respuesta automática</string>
+    <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Hablar en lugar del tono</string>
+    <string name="everything_in_basic_plus">Incluye todo lo de Básico – y más:</string>
 
 </resources>

@@ -362,5 +362,25 @@
     <plurals name="app_missing_permissions_text_dynamic_plural">
         <item quantity="other">Agar aplikasi dapat menjawab panggilan dengan benar, diperlukan izin berikut: %1$s.</item>
     </plurals>
-
+    <string name="unlock_full_access_to_all_premium_features">Dapatkan akses penuh ke semua fitur Premium</string>
+    <string name="choose_your_plan">Pilih paket Anda</string>
+    <string name="trial_days_left">Masa uji coba Anda tersisa %1$d hari — gratis dari kami!</string>
+    <string name="trial_finished">Masa uji coba Anda telah berakhir</string>
+    <string name="premium_all_capitals">Premium</string>
+    <string name="basic_plan_all_capitals">Dasar</string>
+    <string name="get_started">Mulai</string>
+    <string name="per_month">per bulan</string>
+    <string name="per_year_price_format">%1$s per tahun</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Jawab dengan sekali ketuk</string>
+    <string name="subscription_plan_feature_name_gold_number">Nomor Emas</string>
+    <string name="subscription_plan_feature_name_quick_call">Panggilan Cepat</string>
+    <string name="subscription_plan_feature_name_lock_screen">Layar Kunci</string>
+    <string name="subscription_plan_feature_name_open_whatsapp">Buka WhatsApp</string>
+    <string name="subscription_plan_feature_name_upgraded_quick_call">Panggilan Cepat Tingkat Lanjut</string>
+    <string name="subscription_plan_feature_name_call_management">Manajemen Panggilan</string>
+    <string name="subscription_plan_feature_name_big_buttons_icons">Tombol dan Ikon Besar</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Mulai dengan Speaker</string>
+    <string name="subscription_plan_feature_name_auto_answer">Jawab Otomatis</string>
+    <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Berbicara alih-alih nada dering</string>
+    <string name="everything_in_basic_plus">Termasuk semua fitur dari Dasar – dan lebih banyak lagi:</string>
 </resources>

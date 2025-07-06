@@ -84,6 +84,7 @@ object SettingsStatus {
     var alreadyShowedBlockedMsg = false
     var alreadyShownQuickCallButWithoutPermissionMsg = false
     var appLogoResourceSmall = R.drawable.goldappiconphoneblack
+    var lockedBecauseTrialIsOver = false
 }
 
 

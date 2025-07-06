@@ -45,6 +45,9 @@ import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.VoiceApiImpl
 import com.nirotem.simplecall.adapters.DescriptiveEnumAdapter
+import com.nirotem.simplecall.billing.BillingManager
+import com.nirotem.simplecall.billing.PurchaseStatus
+import com.nirotem.simplecall.billing.UpgradeDialogFragment
 import com.nirotem.simplecall.helpers.DBHelper.fetchContacts
 import com.nirotem.simplecall.helpers.DBHelper.fetchContactsOptimized
 import com.nirotem.simplecall.helpers.DBHelper.getContactNameFromPhoneNumber
@@ -100,6 +103,7 @@ import com.nirotem.simplecall.statuses.PermissionsStatus.featureOnlyAvailableOnP
 import com.nirotem.simplecall.statuses.PermissionsStatus.loadOtherPermissionsIssueDialog
 import com.nirotem.simplecall.statuses.PermissionsStatus.suggestManualPermissionGrant
 import com.nirotem.simplecall.statuses.SettingsStatus
+import com.nirotem.simplecall.statuses.SettingsStatus.lockedBecauseTrialIsOver
 import interfaces.DescriptiveEnum
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -130,6 +134,7 @@ class SettingsFragment : Fragment() {
     private var shouldInitQuickCall = true
     private var shouldInitGoldNumber = true
     private var goldNumberSpinnerInitDone = false
+    private lateinit var billingManager: BillingManager
 
     /*    private var distressNumberSelectedButNoCallPermissionMsgDisplayedCount = 0
         private var toFilterBlockedContactsMsgDisplayedCount = 0
@@ -154,6 +159,10 @@ class SettingsFragment : Fragment() {
 
             scrollView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
                 checkScroll(view.context)
+            }
+
+            billingManager = BillingManager(view.context) { status ->
+
             }
 
             // PREMIUM ONLY!
@@ -205,10 +214,14 @@ class SettingsFragment : Fragment() {
                 isServiceRunning(requireContext(), IdleMonitorService::class.java)
             val lockScreenToggle =
                 view.findViewById<SwitchMaterial>(R.id.show_custom_lock_screen_toggle)
-            lockScreenToggle.isChecked = serviceIsRunning
+            lockScreenToggle.isChecked = !lockedBecauseTrialIsOver && serviceIsRunning
             lockScreenToggle.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    if (SettingsStatus.isPremium) {
+                    if (SettingsStatus.lockedBecauseTrialIsOver) {
+                        lockScreenToggle.isChecked = false
+                        showTrialBanner()
+                    }
+                    else if (SettingsStatus.isPremium) {
                         startUnlockService()
                     }
                     else {
@@ -290,7 +303,11 @@ class SettingsFragment : Fragment() {
                     ) {
                         val selectedValue = intervals[position]
                         if (distressNumberOfSecsToCancelSavedValue != selectedValue.toLong()) {
-                            if (SettingsStatus.isPremium) {
+                            if (SettingsStatus.lockedBecauseTrialIsOver) {
+                                distressButtonNumOfSecsToCancelSpinner.setSelection(distressNumberOfSecsToCancelSavedIndex)
+                                showTrialBanner()
+                            }
+                            else if (SettingsStatus.isPremium) {
                                 distressNumberOfSecsToCancelSavedValue = selectedValue.toLong()
                                 saveDistressNumberOfSecsToCancel(selectedValue, viewContext)
                             } else {
@@ -310,10 +327,14 @@ class SettingsFragment : Fragment() {
 
             val distressNumberShouldAlsoTalkToggle =
                 view.findViewById<SwitchMaterial>(R.id.distress_number_should_also_talk_toggle)
-            distressNumberShouldAlsoTalkToggle.isChecked =
+            distressNumberShouldAlsoTalkToggle.isChecked = !lockedBecauseTrialIsOver &&
                 loadDistressNumberShouldAlsoTalk(view.context)
             distressNumberShouldAlsoTalkToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (SettingsStatus.isPremium) {
+                if (lockedBecauseTrialIsOver) {
+                    distressNumberShouldAlsoTalkToggle.isChecked = false
+                    showTrialBanner()
+                }
+                else if (SettingsStatus.isPremium) {
                     saveDistressNumberShouldAlsoTalk(view.context, isChecked)
                 }
                 else if (isChecked) {
@@ -353,7 +374,7 @@ class SettingsFragment : Fragment() {
                 }
 
                 // Send SMS:
-                quickCallAlsoSendSmsToGoldToggle.isChecked =
+                quickCallAlsoSendSmsToGoldToggle.isChecked = !lockedBecauseTrialIsOver &&
                     loadDistressButtonShouldAlsoSendSmsToGoldNumber(view.context)
                 // If already checked and no permission:
                 if (quickCallAlsoSendSmsToGoldToggle.isChecked && ContextCompat.checkSelfPermission(
@@ -372,7 +393,11 @@ class SettingsFragment : Fragment() {
                 // when checked:
                 quickCallAlsoSendSmsToGoldToggle.setOnCheckedChangeListener { buttonView, isChecked ->
                     if (isChecked) {
-                        if (SettingsStatus.isPremium) {
+                        if (SettingsStatus.lockedBecauseTrialIsOver) {
+                            quickCallAlsoSendSmsToGoldToggle.isChecked = false
+                            showTrialBanner()
+                        }
+                        else if (SettingsStatus.isPremium) {
                             if (ContextCompat.checkSelfPermission(view.context, SEND_SMS)
                                 != PackageManager.PERMISSION_GRANTED
                             ) { // no permission - ask
@@ -425,10 +450,14 @@ class SettingsFragment : Fragment() {
             val shouldSpeakWhenRing =
                 view.findViewById<SwitchMaterial>(R.id.should_speak_when_ring_toggle)
 
-            shouldSpeakWhenRing.isChecked = loadShouldSpeakWhenRing(view.context)
+            shouldSpeakWhenRing.isChecked = !lockedBecauseTrialIsOver && loadShouldSpeakWhenRing(view.context)
             shouldSpeakWhenRing.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    if (SettingsStatus.isPremium) {
+                    if (lockedBecauseTrialIsOver) {
+                        shouldSpeakWhenRing.isChecked = false
+                        showTrialBanner()
+                    }
+                    else if (SettingsStatus.isPremium) {
                         saveShouldSpeakWhenRing(view.context, true)
                     }
                     else {
@@ -784,19 +813,25 @@ class SettingsFragment : Fragment() {
                 (if (resourceAllowAnswerCallsMode.isNotEmpty()) AllowAnswerCallsEnum.valueOf(
                     resourceAllowAnswerCallsMode
                 ) else AllowAnswerCallsEnum.NO_ONE)
-        allowReceiveCallsEnabledToggle = view.findViewById(R.id.allow_receive_calls_enabled_toggle)
-        allowReceiveCallsEnabledToggle.isChecked =
+        //allowReceiveCallsEnabledToggle = view.findViewById(R.id.allow_receive_calls_enabled_toggle)
+        allowReceiveCallsEnabledToggle.isChecked = if (SettingsStatus.lockedBecauseTrialIsOver) false else
             selectedEnum != AllowAnswerCallsEnum.NO_ONE  // Turns the switch ON
         allowReceiveCallsEnabledToggle.setOnCheckedChangeListener { buttonView, isChecked ->
             if (!isChecked) {
                 selectedEnum = AllowAnswerCallsEnum.NO_ONE
                 saveAllowAnswerCallsEnum(currContext, AllowAnswerCallsEnum.NO_ONE.name)
             } else { // user chose to receive calls - change dropdown to initial value
-                val resourceAllowAnswerCallsMode =
-                    currContext.resources?.getString(R.string.allowAnswerCallsMode)
-                if (resourceAllowAnswerCallsMode != null) {
-                    selectedEnum = AllowAnswerCallsEnum.valueOf(resourceAllowAnswerCallsMode)
-                    saveAllowAnswerCallsEnum(currContext, AllowAnswerCallsEnum.NO_ONE.name)
+                if (SettingsStatus.lockedBecauseTrialIsOver) {
+                    allowReceiveCallsEnabledToggle.isChecked = false
+                    showTrialBanner()
+                }
+                else {
+                    val resourceAllowAnswerCallsMode =
+                        currContext.resources?.getString(R.string.allowAnswerCallsMode)
+                    if (resourceAllowAnswerCallsMode != null) {
+                        selectedEnum = AllowAnswerCallsEnum.valueOf(resourceAllowAnswerCallsMode)
+                        saveAllowAnswerCallsEnum(currContext, AllowAnswerCallsEnum.NO_ONE.name)
+                    }
                 }
             }
 
@@ -968,20 +1003,27 @@ class SettingsFragment : Fragment() {
                 (if (resourceAllowOutgoingCallsMode.isNotEmpty()) AllowOutgoingCallsEnum.valueOf(
                     resourceAllowOutgoingCallsMode
                 ) else AllowOutgoingCallsEnum.NO_ONE)
-        allowOutgoingCallsEnabledToggle = view.findViewById(R.id.allow_making_calls_enabled_toggle)
-        allowOutgoingCallsEnabledToggle.isChecked =
+
+        //allowOutgoingCallsEnabledToggle = view.findViewById(R.id.allow_making_calls_enabled_toggle)
+        allowOutgoingCallsEnabledToggle.isChecked = if (SettingsStatus.lockedBecauseTrialIsOver) false else
             selectedOutgoingCallsEnum != AllowOutgoingCallsEnum.NO_ONE  // Turns the switch ON
         allowOutgoingCallsEnabledToggle.setOnCheckedChangeListener { buttonView, isChecked ->
             if (!isChecked) {
                 selectedOutgoingCallsEnum = AllowOutgoingCallsEnum.NO_ONE
                 saveAllowMakingCallsEnum(currContext, AllowOutgoingCallsEnum.NO_ONE.name)
             } else { // user chose to receive calls - change dropdown to initial value
-                val resourceAllowMakingCallsMode =
-                    currContext.resources?.getString(R.string.allowOutgoingCallsMode)
-                if (resourceAllowMakingCallsMode != null) {
-                    selectedOutgoingCallsEnum =
-                        AllowOutgoingCallsEnum.valueOf(resourceAllowMakingCallsMode)
-                    saveAllowMakingCallsEnum(currContext, selectedOutgoingCallsEnum.name)
+                if (SettingsStatus.lockedBecauseTrialIsOver) {
+                    allowOutgoingCallsEnabledToggle.isChecked = false
+                    showTrialBanner()
+                }
+                else {
+                    val resourceAllowMakingCallsMode =
+                        currContext.resources?.getString(R.string.allowOutgoingCallsMode)
+                    if (resourceAllowMakingCallsMode != null) {
+                        selectedOutgoingCallsEnum =
+                            AllowOutgoingCallsEnum.valueOf(resourceAllowMakingCallsMode)
+                        saveAllowMakingCallsEnum(currContext, selectedOutgoingCallsEnum.name)
+                    }
                 }
             }
 
@@ -1020,9 +1062,13 @@ class SettingsFragment : Fragment() {
 
         val startWithSpeakerOnToggle =
             view.findViewById<SwitchMaterial>(R.id.starts_with_speaker_on_toggle)
-        startWithSpeakerOnToggle.isChecked = shouldCallsStartWithSpeakerOn(currContext)
+        startWithSpeakerOnToggle.isChecked = if (SettingsStatus.lockedBecauseTrialIsOver) false else shouldCallsStartWithSpeakerOn(currContext)
         startWithSpeakerOnToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (SettingsStatus.isPremium) {
+            if (SettingsStatus.lockedBecauseTrialIsOver) {
+                startWithSpeakerOnToggle.isChecked = false
+                showTrialBanner()
+            }
+            else if (SettingsStatus.isPremium) {
                 saveShouldCallsStartWithSpeakerOn(isChecked, currContext)
             }
             else if (isChecked) {
@@ -1033,9 +1079,13 @@ class SettingsFragment : Fragment() {
 
         val answerCallsAutomaticallyToggle =
             view.findViewById<SwitchMaterial>(R.id.should_answer_all_calls_auto_toggle)
-        answerCallsAutomaticallyToggle.isChecked = isGlobalAutoAnswer(currContext)
+        answerCallsAutomaticallyToggle.isChecked = if (SettingsStatus.lockedBecauseTrialIsOver) false else isGlobalAutoAnswer(currContext)
         answerCallsAutomaticallyToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (SettingsStatus.isPremium) {
+            if (isChecked && SettingsStatus.lockedBecauseTrialIsOver) {
+                answerCallsAutomaticallyToggle.isChecked = false
+                showTrialBanner()
+            }
+            else if (SettingsStatus.isPremium) {
                 saveIsGlobalAutoAnswer(isChecked, currContext)
             }
             else if (isChecked) {
@@ -1046,24 +1096,41 @@ class SettingsFragment : Fragment() {
 
         val allowCallWaitingToggle =
             view.findViewById<SwitchMaterial>(R.id.allow_call_waiting_toggle)
-        allowCallWaitingToggle.isChecked = shouldAllowCallWaiting(currContext)
+        allowCallWaitingToggle.isChecked = if (SettingsStatus.lockedBecauseTrialIsOver) false else shouldAllowCallWaiting(currContext)
         allowCallWaitingToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            saveAllowCallWaiting(isChecked, currContext)
-
+            if (isChecked && SettingsStatus.lockedBecauseTrialIsOver) {
+                allowCallWaitingToggle.isChecked = false
+                showTrialBanner()
+            }
+            else {
+                saveAllowCallWaiting(isChecked, currContext)
+            }
         }
 
         val shouldShowKeypadInActiveCallToggle =
             view.findViewById<SwitchMaterial>(R.id.show_keypad_inside_calls_toggle)
-        shouldShowKeypadInActiveCallToggle.isChecked = shouldShowKeypadInActiveCall(currContext)
+        shouldShowKeypadInActiveCallToggle.isChecked = (!lockedBecauseTrialIsOver) && shouldShowKeypadInActiveCall(currContext)
         shouldShowKeypadInActiveCallToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            saveShouldShowKeypadInActiveCall(isChecked, currContext)
+            if (isChecked && lockedBecauseTrialIsOver) {
+                shouldShowKeypadInActiveCallToggle.isChecked = false
+                showTrialBanner()
+            }
+            else {
+                saveShouldShowKeypadInActiveCall(isChecked, currContext)
+            }
         }
 
         val allowOpeningWhatsAppToggle =
             view.findViewById<SwitchMaterial>(R.id.allow_opening_whatsapp_toggle)
-        allowOpeningWhatsAppToggle.isChecked = shouldAllowOpeningWhatsApp(currContext)
+        allowOpeningWhatsAppToggle.isChecked = !lockedBecauseTrialIsOver && shouldAllowOpeningWhatsApp(currContext)
         allowOpeningWhatsAppToggle.setOnCheckedChangeListener { buttonView, isChecked ->
-            saveAllowOpeningWhatsApp(isChecked, currContext)
+            if (isChecked && lockedBecauseTrialIsOver) {
+                allowOpeningWhatsAppToggle.isChecked = false
+                showTrialBanner()
+            }
+            else {
+                saveAllowOpeningWhatsApp(isChecked, currContext)
+            }
         }
 
 
@@ -1139,7 +1206,11 @@ class SettingsFragment : Fragment() {
                     }
                 } else { // user chose to enable gold number
                     try {
-                        if (PermissionsStatus.readContactsPermissionGranted.value == true) {
+                        if (lockedBecauseTrialIsOver) {
+                            goldNumberEnabledToggle.isChecked = false
+                            showTrialBanner()
+                        }
+                        else if (PermissionsStatus.readContactsPermissionGranted.value == true) {
                             val itemCount = goldNumberSpinner.adapter?.count ?: 0
 
                             if (itemCount > 1) { // One empty item
@@ -1466,7 +1537,7 @@ class SettingsFragment : Fragment() {
                     anchorView = requireView()
                 )
                 quickCallButtonNumberToggle.isChecked =
-                    quickCallButtonSpinner.selectedItemPosition > 0
+                    !lockedBecauseTrialIsOver && quickCallButtonSpinner.selectedItemPosition > 0
 
                 quickCallButtonSpinner.isEnabled = quickCallButtonSpinner.selectedItemPosition > 0
                 handleSpinnerEnabledDisabled(quickCallButtonSpinner)
@@ -1481,7 +1552,13 @@ class SettingsFragment : Fragment() {
                 quickCallButtonNumberToggle.setOnCheckedChangeListener { buttonView, isChecked ->
                     try {
                         if (isChecked) {
-                            if (PermissionsStatus.readContactsPermissionGranted.value != true) {
+                            if (lockedBecauseTrialIsOver) {
+                                quickCallButtonNumberToggle.isChecked = false
+                                quickCallButtonSpinner.isEnabled = false
+                                handleSpinnerEnabledDisabled(quickCallButtonSpinner)
+                                showTrialBanner()
+                            }
+                            else if (PermissionsStatus.readContactsPermissionGranted.value != true) {
                                 quickCallButtonNumberToggle.isChecked = false
                                 quickCallButtonSpinner.isEnabled = false
                                 handleSpinnerEnabledDisabled(quickCallButtonSpinner)
@@ -1517,7 +1594,7 @@ class SettingsFragment : Fragment() {
                 distressButtonSpinnerClickEvent.observe(viewLifecycleOwner) { isEvent ->
                     if (isEvent) {
                         quickCallButtonNumberToggle.isChecked =
-                            quickCallButtonSpinner.selectedItemPosition > 0
+                            !lockedBecauseTrialIsOver && quickCallButtonSpinner.selectedItemPosition > 0
                         quickCallButtonSpinner.isEnabled =
                             quickCallButtonSpinner.selectedItemPosition > 0
                         handleSpinnerEnabledDisabled(quickCallButtonSpinner)
@@ -1678,6 +1755,15 @@ class SettingsFragment : Fragment() {
         handleSpinnerEnabledDisabled(toggleSpinner)
     }
 
+    private fun showTrialBanner() {
+        val dialog = UpgradeDialogFragment(
+            billingManager = billingManager,
+            isTrial = false,
+            daysLeft = 0
+        )
+        dialog.show(parentFragmentManager, "UpgradeDialog")
+    }
+
     private fun handleSpinnerEnabledDisabled(toggleSpinner: Spinner) {
         // Change spinner background color based on enabled state
         val disabledColorString = "#4F4F4F"
@@ -1745,8 +1831,8 @@ class SettingsFragment : Fragment() {
     private fun loadContactsIntoSpinnerAsync(spinner: Spinner) {
         val context = requireContext()
         val goldPhoneNumber = loadGoldNumber(context)
-        goldNumberEnabledToggle.isChecked =
-            (!goldPhoneNumber.isNullOrEmpty() && goldPhoneNumber != "Unknown" && goldPhoneNumber != context.getString(
+        goldNumberEnabledToggle.isChecked = !lockedBecauseTrialIsOver &&
+                ((!goldPhoneNumber.isNullOrEmpty()) && goldPhoneNumber != "Unknown" && goldPhoneNumber != context.getString(
                 R.string.unknown_capital
             ))
         coroutineScope.launch {
@@ -1799,8 +1885,8 @@ class SettingsFragment : Fragment() {
                 spinner.setSelection(0)
             }
 
-            goldNumberEnabledToggle.isChecked =
-                (!goldPhoneNumber.isNullOrEmpty() && goldPhoneNumber != "Unknown" && goldPhoneNumber != context.getString(
+            goldNumberEnabledToggle.isChecked = !lockedBecauseTrialIsOver &&
+                ((!goldPhoneNumber.isNullOrEmpty()) && goldPhoneNumber != "Unknown" && goldPhoneNumber != context.getString(
                     R.string.unknown_capital
                 ))
             if (!goldPhoneNumber.isNullOrEmpty() && goldPhoneNumber != "Unknown" && goldPhoneNumber != context.getString(

@@ -395,5 +395,26 @@
         <item quantity="many">Pour répondre correctement aux appels, l\'application a besoin des autorisations suivantes : %1$s.</item>
         <item quantity="other">Pour répondre correctement aux appels, l\'application a besoin des autorisations suivantes : %1$s.</item>
     </plurals>
+    <string name="unlock_full_access_to_all_premium_features">Accédez à toutes les fonctionnalités Premium</string>
+    <string name="choose_your_plan">Choisissez votre offre</string>
+    <string name="trial_days_left">Il vous reste %1$d jours d\'essai — offerts par nous !</string>
+    <string name="trial_finished">Votre période d\'essai est terminée</string>
+    <string name="premium_all_capitals">Premium</string>
+    <string name="basic_plan_all_capitals">De base</string>
+    <string name="get_started">Commencer</string>
+    <string name="per_month">par mois</string>
+    <string name="per_year_price_format">%1$s par an</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Répondre d\’un simple toucher</string>
+    <string name="subscription_plan_feature_name_gold_number">Numéro d\'or</string>
+    <string name="subscription_plan_feature_name_quick_call">Appel rapide</string>
+    <string name="subscription_plan_feature_name_lock_screen">Écran de verrouillage</string>
+    <string name="subscription_plan_feature_name_open_whatsapp">Ouvrir WhatsApp</string>
+    <string name="subscription_plan_feature_name_upgraded_quick_call">Appel rapide amélioré</string>
+    <string name="subscription_plan_feature_name_call_management">Gestion des appels</string>
+    <string name="subscription_plan_feature_name_big_buttons_icons">Grosses icônes et boutons</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Démarrer avec le haut-parleur</string>
+    <string name="subscription_plan_feature_name_auto_answer">Réponse automatique</string>
+    <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Parler au lieu de la sonnerie</string>
+    <string name="everything_in_basic_plus">Comprend toutes les fonctions du forfait De base – et plus encore :</string>
 
 </resources>

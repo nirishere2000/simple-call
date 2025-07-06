@@ -9,7 +9,7 @@
 <!-- Settings-->
     <bool name="startCallWithSpeakerOn">false</bool>
     <bool name="shouldAllowCallWaiting">true</bool>
-    <bool name="shouldShowKeypadInActiveCall">false</bool>
+    <bool name="shouldShowKeypadInActiveCall">true</bool>
     <bool name="autoAnswerAllCalls">false</bool>
     <bool name="allowOpenWhatsApp">false</bool>
     <string name="allowAnswerCallsMode" translatable="false">FROM_EVERYONE</string>

@@ -107,8 +107,8 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     implementation(libs.googlePlayCore)
     implementation(libs.firebase.firestore)
-
-/*   if (gradle.startParameter.taskNames.any { it.contains("Premium") || it.contains("premium") }) {
+    implementation(libs.google.billing)
+/*   if   (gradle.startParameter.taskNames.any { it.contains("Premium") || it.contains("premium") }) {
         implementation("com.github.bumptech.glide:glide:4.15.1")
         implementation("jp.wasabeef:glide-transformations:4.3.0")
     }*/

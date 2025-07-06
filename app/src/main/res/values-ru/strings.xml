@@ -389,5 +389,26 @@
         <item quantity="many">Чтобы приложение могло правильно отвечать на звонки, необходимы следующие разрешения: %1$s.</item>
         <item quantity="other">Чтобы приложение могло правильно отвечать на звонки, необходимы следующие разрешения: %1$s.</item>
     </plurals>
+    <string name="unlock_full_access_to_all_premium_features">Полный доступ ко всем функциям премиум</string>
+    <string name="choose_your_plan">Выберите свой план</string>
+    <string name="trial_days_left">У вас осталось %1$d дней пробного периода — за наш счёт!</string>
+    <string name="trial_finished">Пробный период завершён</string>
+    <string name="premium_all_capitals">Премиум</string>
+    <string name="basic_plan_all_capitals">Базовый</string>
+    <string name="get_started">Начать</string>
+    <string name="per_month">в месяц</string>
+    <string name="per_year_price_format">%1$s в год</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Ответ одним нажатием</string>
+    <string name="subscription_plan_feature_name_gold_number">Золотой номер</string>
+    <string name="subscription_plan_feature_name_quick_call">Быстрый звонок</string>
+    <string name="subscription_plan_feature_name_lock_screen">Экран блокировки</string>
+    <string name="subscription_plan_feature_name_open_whatsapp">Открыть WhatsApp</string>
+    <string name="subscription_plan_feature_name_upgraded_quick_call">Улучшенный быстрый звонок</string>
+    <string name="subscription_plan_feature_name_call_management">Управление звонками</string>
+    <string name="subscription_plan_feature_name_big_buttons_icons">Крупные кнопки и иконки</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Автостарт с громкой связью</string>
+    <string name="subscription_plan_feature_name_auto_answer">Автоответ</string>
+    <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Голос вместо звонка</string>
+    <string name="everything_in_basic_plus">Включает всё из Базового тарифа – и даже больше:</string>
 
 </resources>

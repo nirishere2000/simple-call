@@ -393,5 +393,26 @@
         <item quantity="one">Om oproepen correct te beantwoorden, heeft de app de volgende machtiging nodig: %1$s.</item>
         <item quantity="other">Om oproepen correct te beantwoorden, heeft de app de volgende machtigingen nodig: %1$s.</item>
     </plurals>
+    <string name="unlock_full_access_to_all_premium_features">Volledige toegang tot alle premiumfuncties</string>
+    <string name="choose_your_plan">Kies je abonnement</string>
+    <string name="trial_days_left">Je hebt nog %1$d dagen proefperiode – van ons!</string>
+    <string name="trial_finished">Je proefperiode is afgelopen</string>
+    <string name="premium_all_capitals">Premium</string>
+    <string name="basic_plan_all_capitals">Basis</string>
+    <string name="get_started">Aan de slag</string>
+    <string name="per_month">per maand</string>
+    <string name="per_year_price_format">%1$s per jaar</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Tik om te beantwoorden</string>
+    <string name="subscription_plan_feature_name_gold_number">Gouden nummer</string>
+    <string name="subscription_plan_feature_name_quick_call">Snelle oproep</string>
+    <string name="subscription_plan_feature_name_lock_screen">Vergrendelscherm</string>
+    <string name="subscription_plan_feature_name_open_whatsapp">WhatsApp openen</string>
+    <string name="subscription_plan_feature_name_upgraded_quick_call">Verbeterde snelle oproep</string>
+    <string name="subscription_plan_feature_name_call_management">Oproepbeheer</string>
+    <string name="subscription_plan_feature_name_big_buttons_icons">Grote knoppen en pictogrammen</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Starten met luidspreker</string>
+    <string name="subscription_plan_feature_name_auto_answer">Automatisch beantwoorden</string>
+    <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Spreken in plaats van ringtone</string>
+    <string name="everything_in_basic_plus">Bevat alles van het Basis-abonnement – en meer:</string>
 
 </resources>

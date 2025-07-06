@@ -44,7 +44,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEasyAppEnum
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveEasyCallAndAnswerPackageName
@@ -109,8 +108,9 @@ import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
 import com.nirotem.simplecall.ui.tour.TourDialogFragment
 import java.io.File
 import java.util.Locale
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FieldValue
+import com.nirotem.simplecall.billing.BillingManager
+import com.nirotem.simplecall.billing.PurchaseStatus
+import com.nirotem.simplecall.billing.UpgradeDialogFragment
 import com.nirotem.simplecall.helpers.ReferralTracker
 
 
@@ -124,7 +124,8 @@ class MainActivity : AppCompatActivity() {
     private var alreadyAlertedAboutDefaultDialer = false
     private var askingForMakingMakingCallPermission = false
     private var canStartCheckingForPhonePermission = false
-    val voiceApi: VoiceApi = VoiceApiImpl()
+    private val voiceApi: VoiceApi = VoiceApiImpl()
+    private lateinit var billingManager: BillingManager
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,9 +134,9 @@ class MainActivity : AppCompatActivity() {
         ReferralTracker.handleDeepLinkAndTrack(this, intent)
 
         Log.d("SimplyCall - MainActivity", "Main activity loading")
-        /*        if (isPremium) {
-                    saveAlreadyPlayedWelcomeSpeech(this, false)
-                }*/
+
+        //setContentView(R.layout.activity_main)
+
         SoundPoolManager.initialize(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -345,9 +346,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-        //    speak("Hello")
-
         Log.d("SimplyCall - MainActivity", "Main activity finished loading")
     }
 
@@ -390,6 +388,19 @@ class MainActivity : AppCompatActivity() {
         }
         return result
     }
+
+    private fun showTrialBanner(daysLeft: Int, isTrial: Boolean) {
+        val dialog = UpgradeDialogFragment(
+            billingManager = billingManager,
+            isTrial = isTrial,
+            daysLeft = daysLeft,
+            onDismissed = {
+                continueAfterTrialPurchaseDialog()
+            }
+        )
+        dialog.show(supportFragmentManager, "UpgradeDialog")
+    }
+
 
     // React to menu items click
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -1061,70 +1072,27 @@ class MainActivity : AppCompatActivity() {
                             APP_STANDBY_BUCKET_ACTIVE_FALLBACK
                         }*/
 
+            billingManager = BillingManager(this) { status ->
+                when (status) {
+                    is PurchaseStatus.NotPurchased -> { // show dialog and lock features
+                        SettingsStatus.lockedBecauseTrialIsOver = true
+                        showTrialBanner(daysLeft = 0, isTrial = false)
+                    }
+                    is PurchaseStatus.InTrial -> { // show dialog but don't lock features
+                        SettingsStatus.lockedBecauseTrialIsOver = false
+                        showTrialBanner(daysLeft = status.daysLeft, isTrial = true)
+                    }
+                    is PurchaseStatus.Purchased -> { // don't show dialog and don't lock features
+                        SettingsStatus.lockedBecauseTrialIsOver = false
+                        continueAfterTrialPurchaseDialog()
+                    }
+                }
+            }
+            billingManager.startConnection() // רק זה חוזר כשחוזרים למסך
+
             /* val powerManager: PowerManager =
                  binding.root.context.getSystemService(Context.POWER_SERVICE) as PowerManager*/
-            val isIgnoringBatteryOptimization = isAppBatteryOptimizationIgnored(this, packageName)
-            //powerManager.isIgnoringBatteryOptimizations(packageName)
-            //   || standbyBucket == 5 || standbyBucket == 10 // For Samsung - isIgnoringBatteryOptimizations takes more parameters into account so it might be false
-            // so if standbyBucket == 5 or 10 meaning actively used, it's enough for us for now
 
-
-            val lastCallLoadedActivityTimestamp =
-                loadCallActivityLoadedTimeStamp(binding.root.context)
-
-            val appCouldNotLoadActivityLastCall =
-                (lastCallLoadedActivityTimestamp != null && lastCallLoadedActivityTimestamp.isEmpty())
-
-            val notIsDefaultDialer =
-                PermissionsStatus.defaultDialerPermissionGranted.value == null || (!(PermissionsStatus.defaultDialerPermissionGranted.value!!))
-            val missingCriticalPermissions =
-                notIsDefaultDialer || (!isIgnoringBatteryOptimization) || appCouldNotLoadActivityLastCall
-            // || PermissionsStatus.canDrawOverlaysPermissionGranted.value === null || (!(PermissionsStatus.canDrawOverlaysPermissionGranted.value!!))
-
-            if (missingCriticalPermissions) { // These can be achived through the Tour, but if Your already shown then
-                //navController.navigate(R.id.nav_permissions)
-                if (notIsDefaultDialer && !alreadyAskedForDefaultDialer) { // also pop up default dialer permission ask once
-                    alreadyAskedForDefaultDialer = true
-                    requestRole(binding.root.context) // Default Dialer
-
-                    // custom dialog that explains default dialer should be granted.
-                    /*                alreadyAskedForDefualtDialer = true
-                                    val overlayFragment = PermissionsAlertFragment()
-                                    val args = Bundle().apply {
-                                        putBoolean("IS_MAKE_CALL_PERMISSION", false)
-                                        putBoolean("IS_DEFAULT_DIALER_PERMISSION", true)
-                                    }
-                                    overlayFragment.arguments = args
-                                    overlayFragment.show(supportFragmentManager, "PermissionMissingAlertDialogTag")*/
-
-                } else if (!alreadyAskedForDefaultDialer && (!isIgnoringBatteryOptimization || PermissionsStatus.callPhonePermissionGranted.value != true)) {
-                    alreadyAskedForDefaultDialer = true
-                    canStartCheckingForPhonePermission = true
-
-                    // Quick Call permissions and enabling is the most important
-                    handleQuickCallEnableAndPermissions()
-
-
-                    // Check for overlay permission, which is also a must.
-                    // else - check for battery optimization
-
-                    //requestIgnoreBatteryOptimizationsIfNeeded(binding.root.context)
-                } else if (appCouldNotLoadActivityLastCall && !alreadyAskedForDefaultDialer) {
-                    alreadyAskedForDefaultDialer = true
-                    saveCallActivityLoadedTimeStamp(binding.root.context) // Don't show again (Show this once per error)
-                    requestOverlayPermission(binding.root.context)
-
-                    // Quick Call permissions and enabling is the most important
-                    handleQuickCallEnableAndPermissions()
-                }
-            } else {
-
-                // Quick Call permissions and enabling is the most important
-                handleQuickCallEnableAndPermissions()
-                // Check for overlay permission, which is also a must.
-                // else - check for battery optimization
-                // requestIgnoreBatteryOptimizationsIfNeeded(binding.root.context)
-            }
         }
 
 
@@ -1134,6 +1102,71 @@ class MainActivity : AppCompatActivity() {
         // showTourDialog()
         // setTourShown()
         //  }
+    }
+
+    private fun continueAfterTrialPurchaseDialog() {
+        val isIgnoringBatteryOptimization = isAppBatteryOptimizationIgnored(this, packageName)
+        //powerManager.isIgnoringBatteryOptimizations(packageName)
+        //   || standbyBucket == 5 || standbyBucket == 10 // For Samsung - isIgnoringBatteryOptimizations takes more parameters into account so it might be false
+        // so if standbyBucket == 5 or 10 meaning actively used, it's enough for us for now
+
+
+        val lastCallLoadedActivityTimestamp =
+            loadCallActivityLoadedTimeStamp(binding.root.context)
+
+        val appCouldNotLoadActivityLastCall =
+            (lastCallLoadedActivityTimestamp != null && lastCallLoadedActivityTimestamp.isEmpty())
+
+        val notIsDefaultDialer =
+            PermissionsStatus.defaultDialerPermissionGranted.value == null || (!(PermissionsStatus.defaultDialerPermissionGranted.value!!))
+        val missingCriticalPermissions =
+            notIsDefaultDialer || (!isIgnoringBatteryOptimization) || appCouldNotLoadActivityLastCall
+        // || PermissionsStatus.canDrawOverlaysPermissionGranted.value === null || (!(PermissionsStatus.canDrawOverlaysPermissionGranted.value!!))
+
+        if (missingCriticalPermissions) { // These can be achived through the Tour, but if Your already shown then
+            //navController.navigate(R.id.nav_permissions)
+            if (notIsDefaultDialer && !alreadyAskedForDefaultDialer) { // also pop up default dialer permission ask once
+                alreadyAskedForDefaultDialer = true
+                requestRole(binding.root.context) // Default Dialer
+
+                // custom dialog that explains default dialer should be granted.
+                /*                alreadyAskedForDefualtDialer = true
+                                val overlayFragment = PermissionsAlertFragment()
+                                val args = Bundle().apply {
+                                    putBoolean("IS_MAKE_CALL_PERMISSION", false)
+                                    putBoolean("IS_DEFAULT_DIALER_PERMISSION", true)
+                                }
+                                overlayFragment.arguments = args
+                                overlayFragment.show(supportFragmentManager, "PermissionMissingAlertDialogTag")*/
+
+            } else if (!alreadyAskedForDefaultDialer && (!isIgnoringBatteryOptimization || PermissionsStatus.callPhonePermissionGranted.value != true)) {
+                alreadyAskedForDefaultDialer = true
+                canStartCheckingForPhonePermission = true
+
+                // Quick Call permissions and enabling is the most important
+                handleQuickCallEnableAndPermissions()
+
+
+                // Check for overlay permission, which is also a must.
+                // else - check for battery optimization
+
+                //requestIgnoreBatteryOptimizationsIfNeeded(binding.root.context)
+            } else if (appCouldNotLoadActivityLastCall && !alreadyAskedForDefaultDialer) {
+                alreadyAskedForDefaultDialer = true
+                saveCallActivityLoadedTimeStamp(binding.root.context) // Don't show again (Show this once per error)
+                requestOverlayPermission(binding.root.context)
+
+                // Quick Call permissions and enabling is the most important
+                handleQuickCallEnableAndPermissions()
+            }
+        } else {
+
+            // Quick Call permissions and enabling is the most important
+            handleQuickCallEnableAndPermissions()
+            // Check for overlay permission, which is also a must.
+            // else - check for battery optimization
+            // requestIgnoreBatteryOptimizationsIfNeeded(binding.root.context)
+        }
     }
 
     private fun handleQuickCallEnableAndPermissions() {
