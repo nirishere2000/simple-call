@@ -406,17 +406,20 @@
     <string name="get_started">Empezar</string>
     <string name="per_month">al mes</string>
     <string name="per_year_price_format">%1$s al año</string>
-    <string name="subscription_plan_feature_name_click_to_answer">Responder con un toque</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Toca para responder (sin deslizar)</string>
     <string name="subscription_plan_feature_name_gold_number">Número Dorado</string>
     <string name="subscription_plan_feature_name_quick_call">Llamada rápida</string>
-    <string name="subscription_plan_feature_name_lock_screen">Pantalla de bloqueo</string>
+    <string name="subscription_plan_feature_name_lock_screen">Pantalla de bloqueo – desbloqueo con un toque</string>
     <string name="subscription_plan_feature_name_open_whatsapp">Abrir WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Llamada rápida mejorada</string>
     <string name="subscription_plan_feature_name_call_management">Gestión de llamadas</string>
     <string name="subscription_plan_feature_name_big_buttons_icons">Botones e íconos grandes</string>
-    <string name="subscription_plan_feature_name_start_with_speaker">Iniciar con altavoz</string>
-    <string name="subscription_plan_feature_name_auto_answer">Respuesta automática</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Iniciar llamada con altavoz</string>
+    <string name="subscription_plan_feature_name_auto_answer">Respuesta automática de llamadas</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Hablar en lugar del tono</string>
     <string name="everything_in_basic_plus">Incluye todo lo de Básico – y más:</string>
+    <string name="subscription_plan_limited_time_offer">¡Oferta por tiempo limitado!</string>
+    <string name="subscription_start_your_7_days_free_trial_today">¡Comienza hoy tu prueba gratuita de 7 días!</string>
+    <string name="subscription_7_days_free_then">7 días gratis, luego:</string>
 
 </resources>

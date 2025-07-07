@@ -404,17 +404,20 @@
     <string name="get_started">Los geht\'s</string>
     <string name="per_month">pro Monat</string>
     <string name="per_year_price_format">%1$s pro Jahr</string>
-    <string name="subscription_plan_feature_name_click_to_answer">Antippen zum Annehmen</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Antippen zum Annehmen (kein Wischen)</string>
     <string name="subscription_plan_feature_name_gold_number">Goldnummer</string>
     <string name="subscription_plan_feature_name_quick_call">Schnellanruf</string>
-    <string name="subscription_plan_feature_name_lock_screen">Sperrbildschirm</string>
+    <string name="subscription_plan_feature_name_lock_screen">Sperrbildschirm – mit einem Tipp entsperren</string>
     <string name="subscription_plan_feature_name_open_whatsapp">WhatsApp öffnen</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Erweiterter Schnellanruf</string>
     <string name="subscription_plan_feature_name_call_management">Anrufverwaltung</string>
     <string name="subscription_plan_feature_name_big_buttons_icons">Große Schaltflächen und Symbole</string>
-    <string name="subscription_plan_feature_name_start_with_speaker">Mit Lautsprecher starten</string>
-    <string name="subscription_plan_feature_name_auto_answer">Automatische Antwort</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Anruf mit Lautsprecher starten</string>
+    <string name="subscription_plan_feature_name_auto_answer">Anrufe automatisch annehmen</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Sprechen statt Klingelton</string>
     <string name="everything_in_basic_plus">Enthält alle Funktionen von Basis – und mehr:</string>
+    <string name="subscription_plan_limited_time_offer">Angebot für kurze Zeit!</string>
+    <string name="subscription_start_your_7_days_free_trial_today">Jetzt 7 Tage kostenlos testen!</string>
+    <string name="subscription_7_days_free_then">7 Tage kostenlos, danach:</string>
 
 </resources>

@@ -370,17 +370,20 @@
     <string name="get_started">开始使用</string>
     <string name="per_month">每月</string>
     <string name="per_year_price_format">每年 %1$s</string>
-    <string name="subscription_plan_feature_name_click_to_answer">一键接听</string>
+    <string name="subscription_plan_feature_name_click_to_answer">点击接听（无需滑动）</string>
     <string name="subscription_plan_feature_name_gold_number">黄金号码</string>
     <string name="subscription_plan_feature_name_quick_call">快速通话</string>
-    <string name="subscription_plan_feature_name_lock_screen">锁屏</string>
+    <string name="subscription_plan_feature_name_lock_screen">锁屏 – 一键解锁</string>
     <string name="subscription_plan_feature_name_open_whatsapp">打开 WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">升级版快速通话</string>
     <string name="subscription_plan_feature_name_call_management">通话管理</string>
     <string name="subscription_plan_feature_name_big_buttons_icons">大图标和按钮</string>
-    <string name="subscription_plan_feature_name_start_with_speaker">默认扬声器模式</string>
-    <string name="subscription_plan_feature_name_auto_answer">自动应答</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">使用扬声器开始通话</string>
+    <string name="subscription_plan_feature_name_auto_answer">自动接听电话</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">语音提示代替铃声</string>
     <string name="everything_in_basic_plus">包含基础版的所有功能 – 还有更多：</string>
+    <string name="subscription_plan_limited_time_offer">限时优惠！</string>
+    <string name="subscription_start_your_7_days_free_trial_today">立即开始 7 天免费试用！</string>
+    <string name="subscription_7_days_free_then">7天免费，然后：</string>
 
 </resources>

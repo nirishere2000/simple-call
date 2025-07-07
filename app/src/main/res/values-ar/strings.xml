@@ -416,17 +416,20 @@
     <string name="get_started">ابدأ الآن</string>
     <string name="per_month">شهريًا</string>
     <string name="per_year_price_format">%1$s سنويًا</string>
-    <string name="subscription_plan_feature_name_click_to_answer">الرد بلمسة</string>
+    <string name="subscription_plan_feature_name_click_to_answer">الرد بنقرة (بدون تمرير)</string>
     <string name="subscription_plan_feature_name_gold_number">الرقم الذهبي</string>
     <string name="subscription_plan_feature_name_quick_call">مكالمة سريعة</string>
-    <string name="subscription_plan_feature_name_lock_screen">قفل الشاشة</string>
+    <string name="subscription_plan_feature_name_lock_screen">قفل الشاشة – افتح بلمسة واحدة</string>
     <string name="subscription_plan_feature_name_open_whatsapp">فتح واتساب</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">مكالمة سريعة محسّنة</string>
     <string name="subscription_plan_feature_name_call_management">إدارة المكالمات</string>
     <string name="subscription_plan_feature_name_big_buttons_icons">أزرار ورموز كبيرة</string>
-    <string name="subscription_plan_feature_name_start_with_speaker">البدء بمكبر الصوت</string>
-    <string name="subscription_plan_feature_name_auto_answer">الرد الآلي</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">بدء المكالمة عبر مكبر الصوت</string>
+    <string name="subscription_plan_feature_name_auto_answer">الرد التلقائي على المكالمات</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">الكلام بدل الرنين</string>
     <string name="everything_in_basic_plus">يتضمن كل ميزات أساسي – وأكثر:</string>
+    <string name="subscription_plan_limited_time_offer">!عرض لفترة محدودة</string>
+    <string name="subscription_start_your_7_days_free_trial_today">ابدأ تجربة مجانية لمدة 7 أيام اليوم!</string>
+    <string name="subscription_7_days_free_then">٧ أيام مجانًا، ثم:</string>
 
 </resources>

@@ -402,17 +402,20 @@
     <string name="get_started">Aan de slag</string>
     <string name="per_month">per maand</string>
     <string name="per_year_price_format">%1$s per jaar</string>
-    <string name="subscription_plan_feature_name_click_to_answer">Tik om te beantwoorden</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Tik om op te nemen (geen vegen)</string>
     <string name="subscription_plan_feature_name_gold_number">Gouden nummer</string>
     <string name="subscription_plan_feature_name_quick_call">Snelle oproep</string>
-    <string name="subscription_plan_feature_name_lock_screen">Vergrendelscherm</string>
+    <string name="subscription_plan_feature_name_lock_screen">Vergrendelscherm – ontgrendelen met één tik</string>
     <string name="subscription_plan_feature_name_open_whatsapp">WhatsApp openen</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Verbeterde snelle oproep</string>
     <string name="subscription_plan_feature_name_call_management">Oproepbeheer</string>
     <string name="subscription_plan_feature_name_big_buttons_icons">Grote knoppen en pictogrammen</string>
-    <string name="subscription_plan_feature_name_start_with_speaker">Starten met luidspreker</string>
-    <string name="subscription_plan_feature_name_auto_answer">Automatisch beantwoorden</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Oproep starten met luidspreker</string>
+    <string name="subscription_plan_feature_name_auto_answer">Automatisch oproepen beantwoorden</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Spreken in plaats van ringtone</string>
     <string name="everything_in_basic_plus">Bevat alles van het Basis-abonnement – en meer:</string>
+    <string name="subscription_plan_limited_time_offer">Tijdelijk aanbod!</string>
+    <string name="subscription_start_your_7_days_free_trial_today">Begin vandaag met je gratis proefperiode van 7 dagen!</string>
+    <string name="subscription_7_days_free_then">7 dagen gratis, daarna:</string>
 
 </resources>

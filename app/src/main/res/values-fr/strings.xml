@@ -404,17 +404,20 @@
     <string name="get_started">Commencer</string>
     <string name="per_month">par mois</string>
     <string name="per_year_price_format">%1$s par an</string>
-    <string name="subscription_plan_feature_name_click_to_answer">Répondre d\’un simple toucher</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Appuyez pour répondre (sans glisser)</string>
     <string name="subscription_plan_feature_name_gold_number">Numéro d\'or</string>
     <string name="subscription_plan_feature_name_quick_call">Appel rapide</string>
-    <string name="subscription_plan_feature_name_lock_screen">Écran de verrouillage</string>
+    <string name="subscription_plan_feature_name_lock_screen">Écran de verrouillage – déverrouillage en un seul tap</string>
     <string name="subscription_plan_feature_name_open_whatsapp">Ouvrir WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Appel rapide amélioré</string>
     <string name="subscription_plan_feature_name_call_management">Gestion des appels</string>
     <string name="subscription_plan_feature_name_big_buttons_icons">Grosses icônes et boutons</string>
-    <string name="subscription_plan_feature_name_start_with_speaker">Démarrer avec le haut-parleur</string>
-    <string name="subscription_plan_feature_name_auto_answer">Réponse automatique</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Démarrer l\’appel avec le haut-parleur</string>
+    <string name="subscription_plan_feature_name_auto_answer">Réponse automatique aux appels</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Parler au lieu de la sonnerie</string>
     <string name="everything_in_basic_plus">Comprend toutes les fonctions du forfait De base – et plus encore :</string>
+    <string name="subscription_plan_limited_time_offer">Offre à durée limitée !</string>
+    <string name="subscription_start_your_7_days_free_trial_today">Commencez votre essai gratuit de 7 jours dès aujourd\’hui !</string>
+    <string name="subscription_7_days_free_then">7 jours gratuits, puis :</string>
 
 </resources>

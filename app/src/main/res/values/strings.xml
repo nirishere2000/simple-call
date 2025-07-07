@@ -366,24 +366,27 @@
         <item quantity="other">To answer phone calls properly, the app needs the following permissions: %1$s.</item>
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">Unlock full access to all Premium features</string>
-    <string name="choose_your_plan">CHOOSE YOUR PLAN</string>
+    <string name="choose_your_plan">Choose your plan</string>
     <string name="trial_days_left">You have %1$d trial days left — on us!</string>
     <string name="trial_finished">Your trial period has ended</string>
     <string name="premium_all_capitals">PREMIUM</string>
     <string name="basic_plan_all_capitals">BASIC</string>
     <string name="get_started">Get Started</string>
-    <string name="per_month">/ month</string>
+    <string name="per_month">/month</string>
     <string name="per_year_price_format">%1$s per year</string>
-    <string name="subscription_plan_feature_name_click_to_answer">Click to answer</string>
+    <string name="subscription_plan_feature_name_click_to_answer">Tap to answer (No swipe)</string>
     <string name="subscription_plan_feature_name_gold_number">Gold number</string>
     <string name="subscription_plan_feature_name_quick_call">Quick call</string>
-    <string name="subscription_plan_feature_name_lock_screen">Lock screen</string>
+    <string name="subscription_plan_feature_name_lock_screen">Lock screen – unlock with one tap</string>
     <string name="subscription_plan_feature_name_open_whatsapp">Open WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Upgraded quick call</string>
     <string name="subscription_plan_feature_name_call_management">Call management</string>
     <string name="subscription_plan_feature_name_big_buttons_icons">Large buttons and icons</string>
-    <string name="subscription_plan_feature_name_start_with_speaker">Start with speaker</string>
-    <string name="subscription_plan_feature_name_auto_answer">Auto-answer</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">Start call with speaker</string>
+    <string name="subscription_plan_feature_name_auto_answer">Auto answer calls</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Talk instead of ringtone</string>
     <string name="everything_in_basic_plus">Includes everything in Basic – and more:</string>
+    <string name="subscription_plan_limited_time_offer">Limited-Time Offer!</string>
+    <string name="subscription_start_your_7_days_free_trial_today">Start your 7 days free trial today!</string>
+    <string name="subscription_7_days_free_then">7 days free, then:</string>
 </resources>

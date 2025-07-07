@@ -1,318 +1,333 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    android:orientation="vertical"
-    android:paddingHorizontal="14dp"
-    android:paddingVertical="10dp">
+    android:fillViewport="true">
 
-    <!-- כותרות עליונות -->
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="Choose your plan image"
-                android:scaleType="centerCrop"
-                android:src="@drawable/choose_your_plan" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/choose_your_plan"
-                android:textColor="#FFFFFF"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/upgrade_dialog_close_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|end"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="✕"
-                android:textColor="#B0B8C9"
-                android:textSize="24sp" />
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/upgradeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/trial_finished"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="18dp"
-            android:text="@string/unlock_full_access_to_all_premium_features"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:layout_height="match_parent"
 
-            <!-- PREMIUM card -->
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp">
+
+            <!-- כותרות עליונות -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/card_purple_bg"
-                android:elevation="10dp"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/upgradeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="@string/subscription_start_your_7_days_free_trial_today"
+                    android:textColor="#505050"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="@string/choose_your_plan"
+                    android:textColor="#000000"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <!-- PREMIUM card -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginTop="30dp"
+                    android:background="#CCA201"
+                    android:elevation="10dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:background="@drawable/tag_premium"
-                        android:paddingLeft="18dp"
-                        android:paddingTop="6dp"
-                        android:paddingRight="18dp"
-                        android:paddingBottom="6dp"
-                        android:text="@string/premium_all_capitals"
-                        android:textColor="#FFFFFF"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp">
-
-                    <!-- התמונה כרקע -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/box_blue_background"
-                        android:adjustViewBounds="true" />
-
-                    <!-- התוכן שמעל -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center_horizontal"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
+                        android:layout_marginBottom="6dp"
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/premiumOriginalPrice"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="₪29.99"
-                            android:textColor="#BBFFFFFF"
-                            android:textSize="14sp"
-                            android:layout_gravity="center_horizontal" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/descriptionText"
+                                android:layout_marginTop="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/open_sans_bold"
+                                android:text="@string/subscription_plan_limited_time_offer"
+                                android:textColor="#352D1A"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/titleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/open_sans_bold"
+                                android:text="@string/premium_capital"
+                                android:textAllCaps="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="28sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="50dp"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/premiumPriceMonthly"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="₪19.99"
-                                android:textSize="20sp"
-                                android:textColor="#FFFFFF"
-                                android:textStyle="bold" />
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/open_sans_bold"
+                                android:text="@string/subscription_7_days_free_then"
+                                android:textColor="#3C2509"
+                                android:textSize="15sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="-4dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/open_sans_bold"
+                                    android:text="5$"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="29sp"
+                                    android:layout_marginStart="23dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="@string/per_month"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
 
                             <TextView
-                                android:id="@+id/premiumPriceMonthlyText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/per_month"
-                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="-2dp"
+                                android:layout_marginStart="31dp"
+                                android:fontFamily="@font/open_sans"
+                                android:text="$60 yearly"
                                 android:textColor="#FFFFFF"
                                 android:textSize="14sp" />
                         </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/premiumPriceYearly"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="₪149.99 / שנה"
-                            android:layout_marginTop="6dp"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp" />
-
-                        <View
-                            android:layout_width="140dp"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginHorizontal="10dp"
-                            android:background="#99FFFFFF" />
                     </LinearLayout>
-                </FrameLayout>
-
-                <LinearLayout
-                    android:id="@+id/premiumFeaturesContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="16dp"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnPremium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_premium"
-                    android:text="@string/get_started"
-                    android:textAllCaps="false"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF" />
-            </LinearLayout>
-
-            <!-- BASIC card -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/card_dark_bg"
-                android:elevation="8dp"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:background="@drawable/tag_basic"
-                        android:paddingLeft="18dp"
-                        android:paddingTop="6dp"
-                        android:paddingRight="18dp"
-                        android:paddingBottom="6dp"
-                        android:text="@string/basic_plan_all_capitals"
-                        android:textColor="#FFFFFF"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="110dp"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    android:background="#F5CE22"
                     android:gravity="center_horizontal"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/box_grey_background"
-                    android:paddingTop="14dp"
-                    android:paddingBottom="14dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <TextView
-                        android:id="@+id/basicOriginalPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="₪19.99"
-                        android:textColor="#BBFFFFFF"
-                        android:textSize="14sp"
-                        android:layout_gravity="center_horizontal" />
+                    android:orientation="vertical"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="10dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/premiumFeaturesContainer"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:layout_marginBottom="14dp"
+                        android:orientation="vertical" />
 
-                        <TextView
-                            android:id="@+id/basicPriceMonthly"
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnPremium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="#FDFDFD"
+                        android:paddingHorizontal="20dp"
+                        android:text="@string/get_started"
+                        android:textAllCaps="false"
+                        android:textColor="#474747"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+                <!-- BASIC card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#45B1DC"
+                    android:elevation="10dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/open_sans_bold"
+                                android:text="@string/basic_plan_all_capitals"
+                                android:textAllCaps="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="28sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₪9.99"
-                            android:textSize="20sp"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold" />
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="50dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/basicPriceMonthlyText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/per_month"
-                            android:layout_marginStart="4dp"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/open_sans_bold"
+                                android:text="@string/subscription_7_days_free_then"
+                                android:textColor="#3C2509"
+                                android:textSize="15sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="-4dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/open_sans_bold"
+                                    android:text="2$"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="29sp"
+                                    android:layout_marginStart="23dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="@string/per_month"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="31dp"
+                                android:fontFamily="@font/open_sans"
+                                android:text="$24 yearly"
+                                android:layout_marginTop="-2dp"
+                                android:textColor="#FFFFFF"
+                                android:textSize="14sp" />
+                        </LinearLayout>
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/basicPriceYearly"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="₪99.99 / שנה"
-                        android:layout_marginTop="6dp"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="140dp"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:background="#FFB9F5" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/basicFeaturesContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="vertical" />
+                    android:background="#71D7FD"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="10dp">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnBasic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_basic"
-                    android:text="@string/get_started"
-                    android:textAllCaps="false"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF" />
+                    <LinearLayout
+                        android:id="@+id/basicFeaturesContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:orientation="vertical" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnBasic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="#FDFDFD"
+                        android:paddingHorizontal="20dp"
+                        android:text="@string/get_started"
+                        android:textAllCaps="false"
+                        android:textColor="#474747"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+        <!-- הכתר – חיצוני כדי שלא ייחתך -->
+        <ImageView
+            android:id="@+id/upgrade_plan_crown_image"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="79dp"
+            android:layout_marginEnd="3dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/upgrade_premium_crown" />
+
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="380dp"
+            android:layout_marginEnd="3dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/upgrade_basic_crown" />
+    </FrameLayout>
+</ScrollView>

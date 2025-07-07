@@ -370,17 +370,21 @@
     <string name="get_started">시작하기</string>
     <string name="per_month">월간</string>
     <string name="per_year_price_format">연간 %1$s</string>
-    <string name="subscription_plan_feature_name_click_to_answer">탭하여 응답하기</string>
+    <string name="subscription_plan_feature_name_click_to_answer">탭하여 응답 (스와이프 없음)</string>
     <string name="subscription_plan_feature_name_gold_number">골드 번호</string>
     <string name="subscription_plan_feature_name_quick_call">빠른 전화</string>
-    <string name="subscription_plan_feature_name_lock_screen">잠금 화면</string>
+    <string name="subscription_plan_feature_name_lock_screen">잠금 화면 – 한 번의 탭으로 잠금 해제</string>
     <string name="subscription_plan_feature_name_open_whatsapp">WhatsApp 열기</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">향상된 빠른 전화</string>
     <string name="subscription_plan_feature_name_call_management">통화 관리</string>
     <string name="subscription_plan_feature_name_big_buttons_icons">큰 버튼과 아이콘</string>
-    <string name="subscription_plan_feature_name_start_with_speaker">스피커로 시작</string>
-    <string name="subscription_plan_feature_name_auto_answer">자동 응답</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">스피커로 통화 시작</string>
+    <string name="subscription_plan_feature_name_auto_answer">자동 통화 응답</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">벨소리 대신 말하기</string>
     <string name="everything_in_basic_plus">베이식의 모든 기능 포함 – 그리고 더 많은 기능 제공:</string>
+    <string name="subscription_plan_limited_time_offer">한정 기간 제공!</string>
+    <string name="subscription_start_your_7_days_free_trial_today">7일 무료 체험을 지금 시작하세요!</string>
+    <string name="subscription_7_days_free_then">7일 무료, 이후:</string>
+
 
 </resources>

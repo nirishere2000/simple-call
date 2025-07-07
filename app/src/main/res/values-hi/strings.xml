@@ -372,17 +372,20 @@
     <string name="get_started">शुरू करें</string>
     <string name="per_month">प्रति माह</string>
     <string name="per_year_price_format">%1$s प्रति वर्ष</string>
-    <string name="subscription_plan_feature_name_click_to_answer">एक टैप में उत्तर दें</string>
+    <string name="subscription_plan_feature_name_click_to_answer">टैप करके उत्तर दें (स्वाइप नहीं करना)</string>
     <string name="subscription_plan_feature_name_gold_number">गोल्ड नंबर</string>
     <string name="subscription_plan_feature_name_quick_call">त्वरित कॉल</string>
-    <string name="subscription_plan_feature_name_lock_screen">लॉक स्क्रीन</string>
+    <string name="subscription_plan_feature_name_lock_screen">लॉक स्क्रीन – एक टैप से अनलॉक करें</string>
     <string name="subscription_plan_feature_name_open_whatsapp">व्हाट्सएप खोलें</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">उन्नत त्वरित कॉल</string>
     <string name="subscription_plan_feature_name_call_management">कॉल प्रबंधन</string>
     <string name="subscription_plan_feature_name_big_buttons_icons">बड़े बटन और आइकन</string>
-    <string name="subscription_plan_feature_name_start_with_speaker">स्पीकर से शुरू करें</string>
-    <string name="subscription_plan_feature_name_auto_answer">ऑटो उत्तर</string>
+    <string name="subscription_plan_feature_name_start_with_speaker">स्पीकर के साथ कॉल शुरू करें</string>
+    <string name="subscription_plan_feature_name_auto_answer">कॉल का ऑटोमेटिक उत्तर</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">रिंगटोन के बजाय बात करें</string>
     <string name="everything_in_basic_plus">बेसिक की सभी सुविधाएँ शामिल हैं – और भी बहुत कुछ:</string>
+    <string name="subscription_plan_limited_time_offer">सीमित समय की पेशकश!</string>
+    <string name="subscription_start_your_7_days_free_trial_today">7 दिन की निःशुल्क ट्रायल आज ही शुरू करें!</string>
+    <string name="subscription_7_days_free_then">7 दिन मुफ़्त, फिर:</string>
 
 </resources>
