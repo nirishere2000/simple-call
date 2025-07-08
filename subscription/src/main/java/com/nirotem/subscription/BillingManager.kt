@@ -1,4 +1,4 @@
-package com.nirotem.simplecall.billing
+package com.nirotem.subscription
 
 import android.app.Activity
 import android.content.Context
@@ -13,7 +13,7 @@ sealed class PurchaseStatus {
 }
 
 class BillingManager(
-    private val context: Context,
+    private val specificAppContext: Context,
     private val onStatusReady: (PurchaseStatus) -> Unit
 ) {
 
@@ -28,7 +28,7 @@ class BillingManager(
     }
 
     // האובייקט שמדבר עם Google Play
-    private val billingClient: BillingClient = BillingClient.newBuilder(context)
+    private val billingClient: BillingClient = BillingClient.newBuilder(specificAppContext)
         .enablePendingPurchases()
         .setListener(purchasesUpdatedListener)
         .build()

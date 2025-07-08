@@ -340,6 +340,7 @@
     <string name="lock_screen_leads_to_home_screen">Mengetuk layar kunci akan membuka layar beranda perangkat seluler.</string>
     <string name="overlay_permission_display_name">Tampilkan di atas aplikasi lain</string>
     <string name="overlay_permission_display_name_samsung">Muncul di atas</string>
+    <string name="overlay_permission_display_name_huawei">Tampilkan di atas aplikasi lain</string>
     <string name="lock_screen_permission_display_name">Tampilkan di layar kunci</string>
     <string name="overlay_permission_display_name_xiaomi">Buka jendela baru sambil berjalan di latar belakang</string>
     <string name="allow_pop_permission_display_name_xiaomi">Tampilkan jendela pop-up</string>

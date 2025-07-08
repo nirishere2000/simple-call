@@ -108,10 +108,11 @@ import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
 import com.nirotem.simplecall.ui.tour.TourDialogFragment
 import java.io.File
 import java.util.Locale
-import com.nirotem.simplecall.billing.BillingManager
-import com.nirotem.simplecall.billing.PurchaseStatus
-import com.nirotem.simplecall.billing.UpgradeDialogFragment
 import com.nirotem.simplecall.helpers.ReferralTracker
+import com.nirotem.subscription.BillingManager
+import com.nirotem.subscription.PurchaseStatus
+import com.nirotem.subscription.UpgradeDialogFragment
+import com.nirotem.subscription.UpgradeDialogFragment.FeatureRow
 
 
 class MainActivity : AppCompatActivity() {
@@ -394,6 +395,7 @@ class MainActivity : AppCompatActivity() {
             billingManager = billingManager,
             isTrial = isTrial,
             daysLeft = daysLeft,
+            SettingsStatus.appFeatures,
             onDismissed = {
                 continueAfterTrialPurchaseDialog()
             }
@@ -1049,52 +1051,39 @@ class MainActivity : AppCompatActivity() {
 
                 requestIgnoreBatteryOptimizations()*/
 
-        if (!wasTourAlreadyShown(binding.root.context)) {
-            if (isPremium) { // save initial lock screen settings adjusted to easy call and answer
-                // In case we won't change anything - this should be saved for lockscreen lib
-                saveWhenScreenUnlockedBehaviourEnum(
-                    this,
-                    WhenScreenUnlockedBehaviourEasyAppEnum.EASY_CALL_AND_ANSWER_APP.toString()
-                )
-                saveEasyCallAndAnswerPackageName(this.packageName, this)
-            }
+        SettingsStatus.appFeatures = listOf(
+            FeatureRow(getString(R.string.subscription_plan_feature_name_call_management), true, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_click_to_answer), true, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_big_buttons_icons), true, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_auto_answer), false, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_gold_number), true, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_quick_call), true, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_lock_screen), false, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_upgraded_quick_call), false, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_start_with_speaker), false, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_talk_instead_of_ringtone), false, true),
+            FeatureRow(getString(R.string.subscription_plan_feature_name_open_whatsapp), false, true)
+        )
 
-            showTourDialog()
-        } else { // Check for Default Phone app and if it's already is then for Battery Saver ignore
-            /*            val usageStatsManager =
-                            getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-
-                        val APP_STANDBY_BUCKET_ACTIVE_FALLBACK = 10
-
-                        val standbyBucket = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                            usageStatsManager.appStandbyBucket
-                        } else {
-                            APP_STANDBY_BUCKET_ACTIVE_FALLBACK
-                        }*/
-
-            billingManager = BillingManager(this) { status ->
-                when (status) {
-                    is PurchaseStatus.NotPurchased -> { // show dialog and lock features
-                        SettingsStatus.lockedBecauseTrialIsOver = true
-                        showTrialBanner(daysLeft = 0, isTrial = false)
-                    }
-                    is PurchaseStatus.InTrial -> { // show dialog but don't lock features
-                        SettingsStatus.lockedBecauseTrialIsOver = false
-                        showTrialBanner(daysLeft = status.daysLeft, isTrial = true)
-                    }
-                    is PurchaseStatus.Purchased -> { // don't show dialog and don't lock features
-                        SettingsStatus.lockedBecauseTrialIsOver = false
-                        continueAfterTrialPurchaseDialog()
-                    }
+        billingManager = BillingManager(this) { status ->
+            when (status) {
+                is PurchaseStatus.NotPurchased -> { // show dialog and lock features
+                    SettingsStatus.lockedBecauseTrialIsOver = true
+                    showTrialBanner(daysLeft = 0, isTrial = false)
+                }
+                is PurchaseStatus.InTrial -> { // show dialog but don't lock features
+                    SettingsStatus.lockedBecauseTrialIsOver = false
+                    showTrialBanner(daysLeft = status.daysLeft, isTrial = true)
+                }
+                is PurchaseStatus.Purchased -> { // don't show dialog and don't lock features
+                    SettingsStatus.lockedBecauseTrialIsOver = false
+                    continueAfterTrialPurchaseDialog()
                 }
             }
-            billingManager.startConnection() // רק זה חוזר כשחוזרים למסך
-
-            /* val powerManager: PowerManager =
-                 binding.root.context.getSystemService(Context.POWER_SERVICE) as PowerManager*/
-
         }
+        billingManager.startConnection() // רק זה חוזר כשחוזרים למסך
 
+        SettingsStatus.continueAfterTourFunc = null
 
         //val REQUEST_RECORD_AUDIO_PERMISSION = 1
         //ActivityCompat.requestPermissions(this, arrayOf(RECORD_AUDIO), REQUEST_RECORD_AUDIO_PERMISSION)
@@ -1105,6 +1094,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun continueAfterTrialPurchaseDialog() {
+        if (!wasTourAlreadyShown(binding.root.context)) {
+            if (isPremium) { // save initial lock screen settings adjusted to easy call and answer
+                // In case we won't change anything - this should be saved for lockscreen lib
+                saveWhenScreenUnlockedBehaviourEnum(
+                    this,
+                    WhenScreenUnlockedBehaviourEasyAppEnum.EASY_CALL_AND_ANSWER_APP.toString()
+                )
+                saveEasyCallAndAnswerPackageName(this.packageName, this)
+            }
+            SettingsStatus.continueAfterTourFunc = { continueAfterTour() }
+            showTourDialog()
+        } else { // Check for Default Phone app and if it's already is then for more like quick call, overlay permission and Battery Saver ignore
+            continueAfterTour()
+        }
+    }
+
+    private fun continueAfterTour() {
         val isIgnoringBatteryOptimization = isAppBatteryOptimizationIgnored(this, packageName)
         //powerManager.isIgnoringBatteryOptimizations(packageName)
         //   || standbyBucket == 5 || standbyBucket == 10 // For Samsung - isIgnoringBatteryOptimizations takes more parameters into account so it might be false

@@ -1,11 +1,10 @@
-package com.nirotem.simplecall.billing
+package com.nirotem.subscription
 
 import android.animation.AnimatorInflater
 import android.app.Dialog
 import android.content.DialogInterface
 import android.content.res.Resources
 import android.graphics.Color
-import android.graphics.Paint
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
@@ -13,15 +12,14 @@ import android.os.Looper
 import android.view.*
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.DialogFragment
-import com.nirotem.simplecall.R
 
 class UpgradeDialogFragment(
     private val billingManager: BillingManager,
     private val isTrial: Boolean,
     private val daysLeft: Int,
-    private val onDismissed: () -> Unit = {}
+    private val appSpecificFeatures: List<UpgradeDialogFragment.FeatureRow>,
+    private val onDismissed: () -> Unit = {},
 ) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -52,6 +50,9 @@ class UpgradeDialogFragment(
         //dialog?.window?.setDimAmount(0.6f)
     }
 
+    fun createDialog() {
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
        // val btnClose = view.findViewById<View>(R.id.upgrade_dialog_close_button)
@@ -125,22 +126,8 @@ class UpgradeDialogFragment(
             billingManager.launchPurchaseFlow(requireActivity(), "premium_subscription_id")
         }
 
-        val features = listOf(
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_call_management), true, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_click_to_answer), true, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_big_buttons_icons), true, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_auto_answer), false, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_gold_number), true, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_quick_call), true, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_lock_screen), false, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_upgraded_quick_call), false, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_start_with_speaker), false, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_talk_instead_of_ringtone), false, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_open_whatsapp), false, true)
-        )
-
         // BASIC features (מה שיש גם ב-standard וגם ב-premium)
-        features.filter { it.isStandard && it.isPremium }.forEach { feature ->
+        appSpecificFeatures.filter { it.isStandard && it.isPremium }.forEach { feature ->
             basicFeaturesContainer?.addView(createFeatureTextView(feature.title))
         }
 
@@ -164,7 +151,7 @@ class UpgradeDialogFragment(
         premiumFeaturesContainer?.addView(createFeatureTextView(getString(R.string.everything_in_basic_plus), true))
 
         // PREMIUM-only features
-        features.filter { !it.isStandard && it.isPremium }.forEach { feature ->
+        appSpecificFeatures.filter { !it.isStandard && it.isPremium }.forEach { feature ->
             premiumFeaturesContainer?.addView(createFeatureTextView(feature.title))
         }
 

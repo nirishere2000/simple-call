@@ -341,6 +341,7 @@
     <string name="lock_screen_leads_to_home_screen">לחיצה על מסך הנעילה תוביל למסך הבית של המכשיר הנייד.</string>
     <string name="overlay_permission_display_name">הצגה מעל אפליקציות אחרות</string>
     <string name="overlay_permission_display_name_samsung">הופעה מעל אפליקציות אחרות</string>
+    <string name="overlay_permission_display_name_huawei">ציור מעל יישומים אחרים</string>
     <string name="lock_screen_permission_display_name">הצגה במסך הנעילה</string>
     <string name="allow_pop_permission_display_name_xiaomi">הצגת חלונות קופצים</string>
     <string name="overlay_permission_display_name_xiaomi">פתיחת חלונות חדשים בזמן שהיישום רץ ברקע</string>

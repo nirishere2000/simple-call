@@ -3,6 +3,8 @@ package com.nirotem.simplecall.statuses
 import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import com.nirotem.simplecall.R
+import com.nirotem.subscription.PurchaseStatus
+import com.nirotem.subscription.UpgradeDialogFragment
 import interfaces.DescriptiveEnum
 
 
@@ -86,6 +88,9 @@ object SettingsStatus {
     var appLogoResourceSmall = R.drawable.goldappiconphoneblack
     var lockedBecauseTrialIsOver = false
     var noMsgShown = false // show Contact tooltip only if not other msg is shown
+    lateinit var appFeatures: List<UpgradeDialogFragment.FeatureRow> // to send to the subscription library
+    var continueAfterTourFunc: (() -> Unit)? = null
+
 }
 
 

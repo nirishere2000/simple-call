@@ -45,9 +45,6 @@ import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.VoiceApiImpl
 import com.nirotem.simplecall.adapters.DescriptiveEnumAdapter
-import com.nirotem.simplecall.billing.BillingManager
-import com.nirotem.simplecall.billing.PurchaseStatus
-import com.nirotem.simplecall.billing.UpgradeDialogFragment
 import com.nirotem.simplecall.helpers.DBHelper.fetchContacts
 import com.nirotem.simplecall.helpers.DBHelper.fetchContactsOptimized
 import com.nirotem.simplecall.helpers.DBHelper.getContactNameFromPhoneNumber
@@ -104,6 +101,8 @@ import com.nirotem.simplecall.statuses.PermissionsStatus.loadOtherPermissionsIss
 import com.nirotem.simplecall.statuses.PermissionsStatus.suggestManualPermissionGrant
 import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.statuses.SettingsStatus.lockedBecauseTrialIsOver
+import com.nirotem.subscription.BillingManager
+import com.nirotem.subscription.UpgradeDialogFragment
 import interfaces.DescriptiveEnum
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -1759,7 +1758,8 @@ class SettingsFragment : Fragment() {
         val dialog = UpgradeDialogFragment(
             billingManager = billingManager,
             isTrial = false,
-            daysLeft = 0
+            daysLeft = 0,
+            SettingsStatus.appFeatures
         )
         dialog.show(parentFragmentManager, "UpgradeDialog")
     }
@@ -2073,11 +2073,13 @@ class SettingsFragment : Fragment() {
         builder.setTitle(getString(R.string.rate_the_app_dialog_title))
         builder.setMessage(getString(R.string.rate_the_app_dialog_text))
 
-        builder.setPositiveButton(getString(R.string.rate_the_app_dialog_answer_rate_now)) { _, _ ->
+        builder.setPositiveButton(getString(R.string.rate_the_app_dialog_answer_rate_now)) { dialog, _ ->
             saveLastUserAnswerToRateApp(context, 0) // 0 = agreed to rate don't show again
             saveNumOfAskingUserToRateApp(context, (numOfAskingUserToRateApp + 1))
             saveCurrentDateAskedToRateApp(context)
             launchInAppReview()
+            dialog.dismiss()
+            SettingsStatus.continueAfterTourFunc?.invoke() // if it's first time with tour and settings and rate app the load continue functions afterwards
         }
 
         builder.setNeutralButton(getString(R.string.rate_the_app_dialog_answer_maybe_later)) { dialog, _ ->
@@ -2085,6 +2087,7 @@ class SettingsFragment : Fragment() {
             saveNumOfAskingUserToRateApp(context, (numOfAskingUserToRateApp + 1))
             saveCurrentDateAskedToRateApp(context)
             dialog.dismiss()
+            SettingsStatus.continueAfterTourFunc?.invoke()
         }
 
         builder.setNegativeButton(getString(R.string.rate_the_app_dialog_answer_no_thanks)) { dialog, _ ->
@@ -2092,6 +2095,7 @@ class SettingsFragment : Fragment() {
             saveNumOfAskingUserToRateApp(context, (numOfAskingUserToRateApp + 1))
             saveCurrentDateAskedToRateApp(context)
             dialog.dismiss()
+            SettingsStatus.continueAfterTourFunc?.invoke()
         }
 
         builder.setOnCancelListener {

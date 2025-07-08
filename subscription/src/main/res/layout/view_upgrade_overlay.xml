@@ -72,13 +72,13 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="0dp"
+                        android:layout_marginBottom="4dp"
                         android:orientation="horizontal">
 
                         <!--Left pane:-->
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_weight="0.7"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
@@ -97,7 +97,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:layout_marginTop="5dp"
-                                android:layout_marginStart="10dp"
+                                android:layout_marginStart="5dp"
                                 android:fontFamily="@font/open_sans_bold"
                                 android:text="@string/premium_capital"
                                 android:textAllCaps="true"
@@ -133,13 +133,14 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/premiumPriceMonthly"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/open_sans_bold"
                                     android:text="5$"
                                     android:textColor="#FFFFFF"
                                     android:textSize="29sp"
-                                    android:layout_marginStart="23dp"
+                                    android:layout_marginStart="25dp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -153,10 +154,11 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/premiumPriceYearly"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="-2dp"
-                                android:layout_marginStart="31dp"
+                                android:layout_marginStart="35dp"
                                 android:fontFamily="@font/open_sans"
                                 android:text="$60 yearly"
                                 android:textColor="#FFFFFF"
@@ -208,36 +210,37 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="6dp"
+                        android:layout_marginBottom="4dp"
                         android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.7"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="0.6"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_marginTop="5dp"
-                                android:layout_marginStart="10dp"
+                                android:autoSizeMaxTextSize="28sp"
+                                android:autoSizeMinTextSize="10sp"
+                                android:autoSizeStepGranularity="1sp"
+                                android:autoSizeTextType="uniform"
                                 android:fontFamily="@font/open_sans_bold"
                                 android:text="@string/basic_plan_all_capitals"
                                 android:textAllCaps="true"
                                 android:textColor="@android:color/white"
-                                android:autoSizeTextType="uniform"
-                                android:autoSizeMinTextSize="10sp"
-                                android:autoSizeMaxTextSize="28sp"
-                                android:autoSizeStepGranularity="1sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
+                            android:layout_weight="1.2"
                             android:orientation="vertical">
 
                             <TextView
@@ -256,13 +259,14 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/basicPriceMonthly"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="25dp"
                                     android:fontFamily="@font/open_sans_bold"
                                     android:text="2$"
                                     android:textColor="#FFFFFF"
                                     android:textSize="29sp"
-                                    android:layout_marginStart="23dp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -276,12 +280,13 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/basicPriceYearly"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="31dp"
+                                android:layout_marginStart="35dp"
+                                android:layout_marginTop="-2dp"
                                 android:fontFamily="@font/open_sans"
                                 android:text="$24 yearly"
-                                android:layout_marginTop="-2dp"
                                 android:textColor="#FFFFFF"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -329,7 +334,7 @@
             android:layout_marginTop="73dp"
             android:layout_marginEnd="2dp"
             android:scaleType="centerInside"
-            android:src="@drawable/upgrade_premium_crown" />
+            android:src="@drawable/subscription_premium_crown" />
 
         <ImageView
             android:layout_width="55dp"
@@ -338,6 +343,6 @@
             android:layout_marginTop="368dp"
             android:layout_marginEnd="3dp"
             android:scaleType="centerInside"
-            android:src="@drawable/upgrade_basic_crown" />
+            android:src="@drawable/subscription_basic_phone" />
     </FrameLayout>
 </ScrollView>
