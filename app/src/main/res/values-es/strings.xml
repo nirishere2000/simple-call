@@ -117,7 +117,8 @@
     <string name="tour_overlay_draw_permission_xiaomi">Permiso de superposición</string>
     <string name="tour_overlay_draw_permission_text">Para garantizar que la aplicación pueda responder llamadas telefónicas incluso cuando no esté abierta, asegúrate de otorgar el permiso necesario.\n\nPara continuar:\n1. Abre la configuración del dispositivo.\n2. Navega a la sección "Otros permisos" (o similar).\n3. Busca y habilita el permiso correspondiente.\n\nNota: El nombre y la ubicación del permiso pueden variar según el dispositivo. Si no puedes encontrarlo, intenta buscar en otras secciones de configuración.</string>
     <string name="tour_overlay_draw_permission_text_pixel">Para garantizar que la aplicación pueda responder llamadas telefónicas incluso cuando no esté abierta, asegúrate de otorgar el permiso necesario.\n\nPara continuar:\n1. Toca "Mostrar sobre otras aplicaciones".\n2. Activa la opción "Permitir mostrar sobre otras aplicaciones".\n\nNota: El nombre y la ubicación exactos de esta configuración pueden variar según el dispositivo y la versión de Android.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">Para asegurarse de que la aplicación pueda responder llamadas telefónicas incluso cuando no esté abierta, concede el permiso necesario.\n\nPara continuar:\n1. Toca "Aparecer encima".\n2. Activa la opción "Permitir permiso".\n\nNota: La ubicación y el nombre exactos de esta configuración pueden variar según tu dispositivo y versión de Android.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">Para que la aplicación pueda responder llamadas incluso cuando no esté abierta, asegúrate de conceder el permiso correspondiente.\n\nPara continuar:\n1. Toca "Mostrar encima".\n2. Activa la opción "Conceder permiso".\n\nNota: La ubicación y el nombre de esta configuración pueden variar según el dispositivo y la versión de Android.</string>
+    <string name="tour_overlay_draw_permission_text_huawei">Para que la aplicación pueda responder llamadas incluso cuando no esté abierta, asegúrate de conceder el permiso correspondiente.\n\nPara continuar:\n1. Toca "Superposición de aplicaciones".\n2. Activa la opción "Superponer aplicaciones".\n\nNota: La ubicación y el nombre de esta configuración pueden variar según el dispositivo y la versión de Android.</string>
     <string name="tour_default_app">Aplicación predeterminada</string>
     <string name="tour_default_app_text">Para garantizar que la aplicación funcione correctamente y gestione las llamadas, debe configurarse como la aplicación predeterminada para la gestión de llamadas.\n\nSin este permiso, la aplicación no podrá contestar las llamadas cuando no esté abierta y en primer plano.</string>
     <string name="tour_almost_done">¡Casi listo!</string>
@@ -372,6 +373,7 @@
     <string name="lock_screen_leads_to_home_screen">Al tocar la pantalla de bloqueo se dirigirá a la pantalla de inicio del dispositivo móvil.</string>
     <string name="overlay_permission_display_name">Mostrar sobre otras aplicaciones</string>
     <string name="overlay_permission_display_name_samsung">Aparecer encima</string>
+    <string name="overlay_permission_display_name_huawei">Superponer aplicaciones</string>
     <string name="lock_screen_permission_display_name">Mostrar en la pantalla de bloqueo</string>
     <string name="overlay_permission_display_name_xiaomi">Abrir nuevas ventanas mientras se ejecuta en segundo plano</string>
     <string name="allow_pop_permission_display_name_xiaomi">Mostrar ventanas emergentes</string>
@@ -399,8 +401,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">Obtén acceso completo a todas las funciones Premium</string>
     <string name="choose_your_plan">Elige tu plan</string>
-    <string name="trial_days_left">¡Te quedan %1$d días de prueba por nuestra cuenta!</string>
-    <string name="trial_finished">Tu período de prueba ha finalizado</string>
     <string name="premium_all_capitals">Premium</string>
     <string name="basic_plan_all_capitals">Básico</string>
     <string name="get_started">Empezar</string>
@@ -408,7 +408,7 @@
     <string name="per_year_price_format">%1$s al año</string>
     <string name="subscription_plan_feature_name_click_to_answer">Toca para responder (sin deslizar)</string>
     <string name="subscription_plan_feature_name_gold_number">Número Dorado</string>
-    <string name="subscription_plan_feature_name_quick_call">Llamada rápida</string>
+    <string name="subscription_plan_feature_name_quick_call">Llamada rápida para situaciones especiales</string>
     <string name="subscription_plan_feature_name_lock_screen">Pantalla de bloqueo – desbloqueo con un toque</string>
     <string name="subscription_plan_feature_name_open_whatsapp">Abrir WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Llamada rápida mejorada</string>
@@ -417,7 +417,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">Iniciar llamada con altavoz</string>
     <string name="subscription_plan_feature_name_auto_answer">Respuesta automática de llamadas</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Hablar en lugar del tono</string>
-    <string name="everything_in_basic_plus">Incluye todo lo de Básico – y más:</string>
+    <string name="everything_in_basic_plus">Todo en Básico – y más:</string>
     <string name="subscription_plan_limited_time_offer">¡Oferta por tiempo limitado!</string>
     <string name="subscription_start_your_7_days_free_trial_today">¡Comienza hoy tu prueba gratuita de 7 días!</string>
     <string name="subscription_7_days_free_then">7 días gratis, luego:</string>

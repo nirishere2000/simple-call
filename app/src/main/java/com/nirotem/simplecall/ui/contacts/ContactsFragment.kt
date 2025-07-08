@@ -647,10 +647,12 @@ class ContactsFragment : Fragment(R.layout.fragment_contacts) {
                             Toast.LENGTH_LONG
                         ).show()*/
 
-            showCustomToastDialog(
-                this.requireContext(),
-                getString(R.string.tap_on_contact_row_for_more)
-            )
+            if (SettingsStatus.noMsgShown) { // Show Contact tooltip only if not other msg is shown
+                showCustomToastDialog(
+                    this.requireContext(),
+                    getString(R.string.tap_on_contact_row_for_more)
+                )
+            }
         }
     }
 

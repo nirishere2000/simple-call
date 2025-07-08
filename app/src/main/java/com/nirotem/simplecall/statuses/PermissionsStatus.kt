@@ -483,11 +483,18 @@ object PermissionsStatus {
 
         titleView.text = context.getString(R.string.permission_missing)
 
-        val oem = OemDetector.current()
-        val overlayPermissionName = when (oem) {
-            OemDetector.Oem.XIAOMI -> context.getString(R.string.allow_pop_permission_display_name_xiaomi)
-            OemDetector.Oem.SAMSUNG -> context.getString(R.string.overlay_permission_display_name_samsung)
-            else -> context.getString(R.string.overlay_permission_display_name) // Pixel and others (One Plus should also be like Pixel)
+        var overlayPermissionName: String
+
+        if (Build.MANUFACTURER.equals("HUAWEI", ignoreCase = true)) {
+            overlayPermissionName = context.getString(R.string.overlay_permission_display_name_huawei)
+        }
+        else {
+            val oem = OemDetector.current()
+            overlayPermissionName = when (oem) {
+                OemDetector.Oem.XIAOMI -> context.getString(R.string.allow_pop_permission_display_name_xiaomi)
+                OemDetector.Oem.SAMSUNG -> context.getString(R.string.overlay_permission_display_name_samsung)
+                else -> context.getString(R.string.overlay_permission_display_name) // Pixel and others (One Plus should also be like Pixel)
+            }
         }
 
         val lockScreenPermissionName =
@@ -526,22 +533,28 @@ object PermissionsStatus {
             permissionsText
         )
 
-
-        // בחירת תמונה מתאימה
-        val imageResId = when (oem) {
-            OemDetector.Oem.SAMSUNG, OemDetector.Oem.OTHER -> R.drawable.other_permissions_samsung
-            OemDetector.Oem.GOOGLE -> R.drawable.other_permissions_pixel
-            OemDetector.Oem.XIAOMI -> {
-                when {
-                    (isOverlayMissing || isBackgroundWindowsMissing) && isLockScreenMissing -> R.drawable.all_other_permissions_xioami
-                    (isOverlayMissing || isBackgroundWindowsMissing) -> R.drawable.other_permissions_xioami
-                    isLockScreenMissing -> R.drawable.showonlockscreenpermission
-                    else -> R.drawable.other_permissions_xioami
-                }
-            }
-
-            else -> R.drawable.other_permissions_samsung
+        var imageResId: Int
+        if (Build.MANUFACTURER.equals("HUAWEI", ignoreCase = true)) {
+            imageResId = R.drawable.other_permissions_huawei
         }
+        else {
+            val oem = OemDetector.current()
+            imageResId = when (oem) {
+                OemDetector.Oem.SAMSUNG, OemDetector.Oem.OTHER -> R.drawable.other_permissions_samsung
+                OemDetector.Oem.GOOGLE -> R.drawable.other_permissions_pixel
+                OemDetector.Oem.XIAOMI -> {
+                    when {
+                        (isOverlayMissing || isBackgroundWindowsMissing) && isLockScreenMissing -> R.drawable.all_other_permissions_xioami
+                        (isOverlayMissing || isBackgroundWindowsMissing) -> R.drawable.other_permissions_xioami
+                        isLockScreenMissing -> R.drawable.showonlockscreenpermission
+                        else -> R.drawable.other_permissions_xioami
+                    }
+                }
+                else -> R.drawable.other_permissions_samsung
+            }
+        }
+        // בחירת תמונה מתאימה
+
 
         imageView.setImageResource(imageResId)
 

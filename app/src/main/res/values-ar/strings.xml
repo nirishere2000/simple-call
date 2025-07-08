@@ -117,7 +117,8 @@
     <string name="tour_overlay_draw_permission_xiaomi">إذن العرض فوق التطبيقات</string>
     <string name="tour_overlay_draw_permission_text">لضمان قدرة التطبيق على الرد على المكالمات الهاتفية حتى عندما لا يكون مفتوحًا، تأكد من منح الإذن المطلوب.\n\nللمتابعة:\n1. افتح إعدادات الجهاز.\n2. انتقل إلى قسم "أذونات أخرى" (أو ما شابه).\n3. ابحث عن الإذن المناسب وقم بتمكينه.\n\nملاحظة: قد يختلف اسم الإذن وموقعه حسب الجهاز. إذا لم تتمكن من العثور عليه، حاول البحث في أقسام الإعدادات الأخرى.</string>
     <string name="tour_overlay_draw_permission_text_pixel">لضمان قدرة التطبيق على الرد على المكالمات الهاتفية حتى عندما لا يكون مفتوحًا، تأكد من منح الإذن المطلوب.\n\nللمتابعة:\n1. اضغط على "العرض فوق التطبيقات الأخرى".\n2. فعّل خيار "السماح بالعرض فوق التطبيقات الأخرى".\n\nملاحظة: قد يختلف اسم وموقع هذا الإعداد حسب الجهاز وإصدار أندرويد.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">لضمان أن التطبيق يمكنه الرد على المكالمات الهاتفية حتى عندما لا يكون مفتوحًا، تأكد من منح الإذن اللازم.\n\nللمتابعة:\n1. اضغط على "الظهور فوق".\n2. فعّل خيار "السماح بالإذن".\n\nملاحظة: قد يختلف مكان واسم هذا الإعداد حسب جهازك وإصدار أندرويد.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">لضمان أن التطبيق يمكنه الرد على المكالمات الهاتفية حتى عندما لا يكون مفتوحًا، تأكد من منح الإذن المناسب.\n\nللمتابعة:\n1. اضغط على "الظهور في الأعلى".\n2. فعّل خيار "السماح بالإذن".\n\nملاحظة: قد يختلف مكان واسم هذا الإعداد حسب جهازك وإصدار أندرويد.</string>
+    <string name="tour_overlay_draw_permission_text_huawei">لضمان أن التطبيق يمكنه الرد على المكالمات الهاتفية حتى عندما لا يكون مفتوحًا، تأكد من منح الإذن المناسب.\n\nللمتابعة:\n1. اضغط على "الظهور أمام التطبيقات الأخرى".\n2. فعّل خيار "الظهور أمام التطبيقات الأخرى".\n\nملاحظة: قد يختلف مكان واسم هذا الإعداد حسب جهازك وإصدار أندرويد.</string>
     <string name="tour_default_app">التطبيق الافتراضي</string>
     <string name="tour_default_app_text">لضمان عمل التطبيق بشكل صحيح وإدارة المكالمات، يجب تعيينه كتطبيق افتراضي لإدارة المكالمات.\n\nبدون هذا الإذن، لن يتمكن التطبيق من الرد على المكالمات عندما لا يكون مفتوحًا وفي وضع التركيز.</string>
     <string name="tour_almost_done">أوشكت على الانتهاء!</string>
@@ -379,6 +380,7 @@
     <string name="lock_screen_leads_to_home_screen">النقر على شاشة القفل سيؤدي إلى الشاشة الرئيسية للجهاز المحمول.</string>
     <string name="overlay_permission_display_name">العرض فوق التطبيقات الأخرى</string>
     <string name="overlay_permission_display_name_samsung">الظهور في الأعلى</string>
+    <string name="overlay_permission_display_name_huawei">الظهور أمام التطبيقات الأخرى</string>
     <string name="lock_screen_permission_display_name">العرض على شاشة القفل</string>
     <string name="allow_pop_permission_display_name_xiaomi">عرض النوافذ المنبثقة</string>
     <string name="overlay_permission_display_name_xiaomi">فتح نوافذ جديدة أثناء التشغيل في الخلفية</string>
@@ -409,8 +411,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">احصل على وصول كامل إلى جميع ميزات بريميوم</string>
     <string name="choose_your_plan">اختر خطتك</string>
-    <string name="trial_days_left">تبقّى لك %1$d يوم تجربة مجاناً</string>
-    <string name="trial_finished">انتهت فترة التجربة</string>
     <string name="premium_all_capitals">بريميوم</string>
     <string name="basic_plan_all_capitals">أساسي</string>
     <string name="get_started">ابدأ الآن</string>
@@ -418,7 +418,7 @@
     <string name="per_year_price_format">%1$s سنويًا</string>
     <string name="subscription_plan_feature_name_click_to_answer">الرد بنقرة (بدون تمرير)</string>
     <string name="subscription_plan_feature_name_gold_number">الرقم الذهبي</string>
-    <string name="subscription_plan_feature_name_quick_call">مكالمة سريعة</string>
+    <string name="subscription_plan_feature_name_quick_call">مكالمة سريعة للحالات الخاصة</string>
     <string name="subscription_plan_feature_name_lock_screen">قفل الشاشة – افتح بلمسة واحدة</string>
     <string name="subscription_plan_feature_name_open_whatsapp">فتح واتساب</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">مكالمة سريعة محسّنة</string>
@@ -427,7 +427,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">بدء المكالمة عبر مكبر الصوت</string>
     <string name="subscription_plan_feature_name_auto_answer">الرد التلقائي على المكالمات</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">الكلام بدل الرنين</string>
-    <string name="everything_in_basic_plus">يتضمن كل ميزات أساسي – وأكثر:</string>
+    <string name="everything_in_basic_plus">كل ما في الباقة الأساسية – وأكثر:</string>
     <string name="subscription_plan_limited_time_offer">!عرض لفترة محدودة</string>
     <string name="subscription_start_your_7_days_free_trial_today">ابدأ تجربة مجانية لمدة 7 أيام اليوم!</string>
     <string name="subscription_7_days_free_then">٧ أيام مجانًا، ثم:</string>

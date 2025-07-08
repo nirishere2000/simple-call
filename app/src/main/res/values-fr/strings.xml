@@ -117,7 +117,8 @@
     <string name="tour_overlay_draw_permission_xiaomi">Autorisation de superposition</string>
     <string name="tour_overlay_draw_permission_text">Pour permettre à l\'application de répondre aux appels téléphoniques même lorsqu\'elle n\'est pas ouverte, assurez-vous d\'accorder l\'autorisation nécessaire.\n\nProcédure:\n1. Ouvrir les paramètres de l\'appareil.\n2. Accéder à la section "Autres autorisations" (ou similaire).\n3. Trouver et activer l\'autorisation appropriée.\n\nRemarque : Le nom et l\'emplacement de l\'autorisation peuvent varier selon l\'appareil. Si elle n\'est pas trouvée, essayez de chercher dans d\'autres sections des paramètres.</string>
     <string name="tour_overlay_draw_permission_text_pixel">Pour permettre à l\'application de répondre aux appels téléphoniques même lorsqu\'elle n\'est pas ouverte, assurez-vous d\'accorder l\'autorisation nécessaire.\n\nProcédure:\n1. Appuyez sur "Afficher par-dessus les autres applications".\n2. Activez l\'option "Autoriser l\'affichage par-dessus les autres applications".\n\nRemarque : Le nom et l\'emplacement exacts de ce paramètre peuvent varier en fonction de l\'appareil et de la version d\'Android.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">Pour que l\’application puisse répondre aux appels même lorsqu\’elle n’est pas ouverte, veillez à accorder l\’autorisation nécessaire.\n\nPour continuer :\n1. Touchez « Afficher par‑dessus ».\n2. Activez l\’option « Autoriser l\’autorisation ».\n\nRemarque : l\’emplacement et le nom exact de ce paramètre peuvent varier selon votre appareil et la version d\’Android.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">Pour permettre à l\'application de répondre aux appels même lorsqu\'elle n\'est pas ouverte, assurez-vous d\'accorder l\'autorisation correspondante.\n\nPour continuer :\n1. Touchez « Vue en premier plan ».\n2. Activez l\'option « Octroi d\'autorisation ».\n\nRemarque : le nom et l\'emplacement de ce paramètre peuvent varier selon l\'appareil et la version d\'Android.</string>
+    <string name="tour_overlay_draw_permission_text_huawei">Pour permettre à l\'application de répondre aux appels même lorsqu\'elle n\'est pas ouverte, assurez-vous d\'accorder l\'autorisation correspondante.\n\nPour continuer :\n1. Touchez « Se superposer aux autres applications ».\n2. Activez l\'option « Affichage par-dessus d\'autres applications ».\n\nRemarque : le nom et l\'emplacement de ce paramètre peuvent varier selon l\'appareil et la version d\'Android.</string>
     <string name="tour_default_app">Application par défaut</string>
     <string name="tour_default_app_text">Pour que l\'application fonctionne correctement et gère les appels, elle doit être définie comme application par défaut pour la gestion des appels.\n\nSans cette autorisation, l\'application ne pourra pas répondre aux appels lorsqu\'elle n\'est pas ouverte et active.</string>
     <string name="tour_almost_done">Presque terminé !</string>
@@ -370,6 +371,7 @@
     <string name="lock_screen_leads_to_home_screen">Appuyer sur l\'écran de verrouillage mènera à l\'écran d\'accueil de l\'appareil mobile.</string>
     <string name="overlay_permission_display_name">Afficher au-dessus des autres applications</string>
     <string name="overlay_permission_display_name_samsung">Apparaître au-dessus des autres applications</string>
+    <string name="overlay_permission_display_name_huawei">Affichage par-dessus d\'autres applications</string>
     <string name="lock_screen_permission_display_name">Afficher sur l\'écran de verrouillage</string>
     <string name="overlay_permission_display_name_xiaomi">Ouvrir de nouvelles fenêtres contextuelles pendant l\'exécution en arrière-plan</string>
     <string name="allow_pop_permission_display_name_xiaomi">Afficher les fenêtres contextuelles</string>
@@ -397,8 +399,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">Accédez à toutes les fonctionnalités Premium</string>
     <string name="choose_your_plan">Choisissez votre offre</string>
-    <string name="trial_days_left">Il vous reste %1$d jours d\'essai — offerts par nous !</string>
-    <string name="trial_finished">Votre période d\'essai est terminée</string>
     <string name="premium_all_capitals">Premium</string>
     <string name="basic_plan_all_capitals">De base</string>
     <string name="get_started">Commencer</string>
@@ -406,7 +406,7 @@
     <string name="per_year_price_format">%1$s par an</string>
     <string name="subscription_plan_feature_name_click_to_answer">Appuyez pour répondre (sans glisser)</string>
     <string name="subscription_plan_feature_name_gold_number">Numéro d\'or</string>
-    <string name="subscription_plan_feature_name_quick_call">Appel rapide</string>
+    <string name="subscription_plan_feature_name_quick_call">Appel rapide pour des situations particulières</string>
     <string name="subscription_plan_feature_name_lock_screen">Écran de verrouillage – déverrouillage en un seul tap</string>
     <string name="subscription_plan_feature_name_open_whatsapp">Ouvrir WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Appel rapide amélioré</string>
@@ -415,7 +415,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">Démarrer l\’appel avec le haut-parleur</string>
     <string name="subscription_plan_feature_name_auto_answer">Réponse automatique aux appels</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Parler au lieu de la sonnerie</string>
-    <string name="everything_in_basic_plus">Comprend toutes les fonctions du forfait De base – et plus encore :</string>
+    <string name="everything_in_basic_plus">Tout dans Basique – et plus :</string>
     <string name="subscription_plan_limited_time_offer">Offre à durée limitée !</string>
     <string name="subscription_start_your_7_days_free_trial_today">Commencez votre essai gratuit de 7 jours dès aujourd\’hui !</string>
     <string name="subscription_7_days_free_then">7 jours gratuits, puis :</string>

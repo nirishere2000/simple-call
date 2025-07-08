@@ -117,7 +117,8 @@
     <string name="tour_overlay_draw_permission_xiaomi">Overlay-Berechtigung</string>
     <string name="tour_overlay_draw_permission_text">Um sicherzustellen, dass die App Anrufe auch beantworten kann, wenn sie nicht geöffnet ist, stellen Sie sicher, dass die erforderliche Berechtigung erteilt wurde.\n\nSo geht\'s:\n1. Geräteeinstellungen öffnen.\n2. Zum Abschnitt "Andere Berechtigungen" (oder ähnlich) navigieren.\n3. Die entsprechende Berechtigung finden und aktivieren.\n\nHinweis: Name und Standort der Berechtigung können je nach Gerät variieren. Falls sie nicht gefunden wird, in anderen Einstellungsbereichen suchen.</string>
     <string name="tour_overlay_draw_permission_text_pixel">Um sicherzustellen, dass die App Anrufe auch beantworten kann, wenn sie nicht geöffnet ist, stellen Sie sicher, dass die erforderliche Berechtigung erteilt wurde.\n\nVorgehensweise:\n1. Tippen Sie auf "Über anderen Apps anzeigen".\n2. Aktivieren Sie die Option "Anzeigen über anderen Apps erlauben".\n\nHinweis: Der genaue Name und Standort dieser Einstellung kann je nach Gerät und Android-Version variieren.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">Um sicherzustellen, dass die App Anrufe beantworten kann, auch wenn sie nicht geöffnet ist, gewähre die erforderliche Berechtigung.\n\nSo geht’s weiter:\n1. Tippe auf „Über anderen anzeigen“.\n2. Aktiviere die Option „Berechtigung zulassen“.\n\nHinweis: Ort und Name dieser Einstellung können je nach Gerät und Android‑Version variieren.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">Damit die App auch dann Anrufe annehmen kann, wenn sie nicht geöffnet ist, erteile bitte die entsprechende Berechtigung.\n\nSo gehst du vor:\n1. Tippe auf „Am Anfang anzeigen“.\n2. Aktiviere die Option „Berechtigung erteilen“.\n\nHinweis: Position und Bezeichnung dieser Einstellung können je nach Gerät und Android-Version variieren.</string>
+    <string name="tour_overlay_draw_permission_text_huawei">Damit die App auch dann Anrufe annehmen kann, wenn sie nicht geöffnet ist, erteile bitte die entsprechende Berechtigung.\n\nSo gehst du vor:\n1. Tippe auf „Über anderen Apps einblenden“.\n2. Aktiviere die Option „Über anderen Apps anzeigen“.\n\nHinweis: Position und Bezeichnung dieser Einstellung können je nach Gerät und Android-Version variieren.</string>
     <string name="tour_default_app">Standard-App</string>
     <string name="tour_default_app_text">Damit die App ordnungsgemäß funktioniert und Anrufe verwalten kann, muss sie als Standard-App für die Anrufverwaltung festgelegt werden.\n\nOhne diese Berechtigung kann die App Anrufe nicht beantworten, wenn sie nicht geöffnet und im Vordergrund ist.</string>
     <string name="tour_almost_done">Fast fertig!</string>
@@ -371,6 +372,7 @@
     <string name="lock_screen_leads_to_home_screen">Durch Tippen auf den Sperrbildschirm gelangen Sie zum Startbildschirm des mobilen Geräts.</string>
     <string name="overlay_permission_display_name">Über anderen Apps anzeigen</string>
     <string name="overlay_permission_display_name_samsung">Oben erscheinen</string>
+    <string name="overlay_permission_display_name_huawei">Über anderen Apps anzeigen</string>
     <string name="lock_screen_permission_display_name">Auf dem Sperrbildschirm anzeigen</string>
     <string name="overlay_permission_display_name_xiaomi">Neue Fenster öffnen, wenn im Hintergrund ausgeführt</string>
     <string name="allow_pop_permission_display_name_xiaomi">Popup-Fenster anzeigen</string>
@@ -397,8 +399,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">Voller Zugriff auf alle Premium-Funktionen</string>
     <string name="choose_your_plan">Wähle deinen Plan</string>
-    <string name="trial_days_left">Du hast noch %1$d Tage Probezeit – auf uns!</string>
-    <string name="trial_finished">Die Testphase ist abgelaufen</string>
     <string name="premium_all_capitals">Premium</string>
     <string name="basic_plan_all_capitals">Basis</string>
     <string name="get_started">Los geht\'s</string>
@@ -406,7 +406,7 @@
     <string name="per_year_price_format">%1$s pro Jahr</string>
     <string name="subscription_plan_feature_name_click_to_answer">Antippen zum Annehmen (kein Wischen)</string>
     <string name="subscription_plan_feature_name_gold_number">Goldnummer</string>
-    <string name="subscription_plan_feature_name_quick_call">Schnellanruf</string>
+    <string name="subscription_plan_feature_name_quick_call">Schnellanruf für besondere Situationen</string>
     <string name="subscription_plan_feature_name_lock_screen">Sperrbildschirm – mit einem Tipp entsperren</string>
     <string name="subscription_plan_feature_name_open_whatsapp">WhatsApp öffnen</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Erweiterter Schnellanruf</string>
@@ -415,7 +415,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">Anruf mit Lautsprecher starten</string>
     <string name="subscription_plan_feature_name_auto_answer">Anrufe automatisch annehmen</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Sprechen statt Klingelton</string>
-    <string name="everything_in_basic_plus">Enthält alle Funktionen von Basis – und mehr:</string>
+    <string name="everything_in_basic_plus">Alles im Basisplan – plus:</string>
     <string name="subscription_plan_limited_time_offer">Angebot für kurze Zeit!</string>
     <string name="subscription_start_your_7_days_free_trial_today">Jetzt 7 Tage kostenlos testen!</string>
     <string name="subscription_7_days_free_then">7 Tage kostenlos, danach:</string>

@@ -118,6 +118,7 @@
     <string name="tour_overlay_draw_permission_text">为了确保应用即使在未打开的情况下也能接听电话，请确保授予必要的权限。\n\n操作步骤：\n1. 打开设备设置。\n2. 导航到“其他权限”部分（或类似位置）。\n3. 查找并启用相关权限。\n\n注意：权限的名称和位置可能因设备而异。如果找不到，请尝试在其他设置区域中查找。</string>
     <string name="tour_overlay_draw_permission_text_pixel">为了确保应用即使在未打开的情况下也能接听电话，请确保授予必要的权限。\n\n操作步骤：\n1. 点击“在其他应用上层显示”。\n2. 启用“允许在其他应用上层显示”选项。\n\n注意：此设置的名称和位置可能因设备和Android版本而异。</string>
     <string name="tour_overlay_draw_permission_text_samsung">为确保应用可在未打开时接听来电，请授予所需权限。\n\n操作步骤：\n1. 点击“显示在最上层”。\n2. 启用“允许权限”选项。\n\n注意：此设置的确切位置和名称可能因设备和 Android 版本而异。</string>
+    <string name="tour_overlay_draw_permission_text_huawei">为确保应用可在未打开时接听来电，请授予所需权限。\n\n操作步骤：\n1. 点击“在其他应用上层显示”。\n2. 启用“在其他应用上层显示”选项。\n\n注意：此设置的确切位置和名称可能因设备和 Android 版本而异。</string>
     <string name="tour_default_app">默认应用</string>
     <string name="tour_default_app_text">应用必须设为默认电话应用才能正确处理来电。\n\n如果未授予此权限，在应用关闭状态下无法接听电话。</string>
     <string name="tour_almost_done">快完成了！</string>
@@ -338,6 +339,7 @@
     <string name="lock_screen_leads_to_home_screen">点击锁屏将进入移动设备的主屏幕.</string>
     <string name="overlay_permission_display_name">在其他应用上方显示</string>
     <string name="overlay_permission_display_name_samsung">显示在顶部</string>
+    <string name="overlay_permission_display_name_huawei">在其他应用上层显示</string>
     <string name="lock_screen_permission_display_name">在锁屏上显示</string>
     <string name="overlay_permission_display_name_xiaomi">后台弹出界面</string>
     <string name="allow_pop_permission_display_name_xiaomi">显示悬浮窗</string>
@@ -363,8 +365,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">解锁所有高级功能的完整访问权限</string>
     <string name="choose_your_plan">选择你的方案</string>
-    <string name="trial_days_left">您还有 %1$d 天的免费试用</string>
-    <string name="trial_finished">您的试用期已结束</string>
     <string name="premium_all_capitals">高级版</string>
     <string name="basic_plan_all_capitals">基础版</string>
     <string name="get_started">开始使用</string>
@@ -372,7 +372,7 @@
     <string name="per_year_price_format">每年 %1$s</string>
     <string name="subscription_plan_feature_name_click_to_answer">点击接听（无需滑动）</string>
     <string name="subscription_plan_feature_name_gold_number">黄金号码</string>
-    <string name="subscription_plan_feature_name_quick_call">快速通话</string>
+    <string name="subscription_plan_feature_name_quick_call">用于特殊情况的快速通话</string>
     <string name="subscription_plan_feature_name_lock_screen">锁屏 – 一键解锁</string>
     <string name="subscription_plan_feature_name_open_whatsapp">打开 WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">升级版快速通话</string>
@@ -381,7 +381,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">使用扬声器开始通话</string>
     <string name="subscription_plan_feature_name_auto_answer">自动接听电话</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">语音提示代替铃声</string>
-    <string name="everything_in_basic_plus">包含基础版的所有功能 – 还有更多：</string>
+    <string name="everything_in_basic_plus">基础版包含的一切 – 还有：</string>
     <string name="subscription_plan_limited_time_offer">限时优惠！</string>
     <string name="subscription_start_your_7_days_free_trial_today">立即开始 7 天免费试用！</string>
     <string name="subscription_7_days_free_then">7天免费，然后：</string>

@@ -666,6 +666,10 @@ class TourFragment : Fragment() {
                 tourImageWithBorder.setImageResource(R.drawable.other_permissions_samsung)
                 tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_samsung)
             }
+            else if (Build.MANUFACTURER.equals("HUAWEI", ignoreCase = true)) {
+                tourImageWithBorder.setImageResource(R.drawable.other_permissions_huawei)
+                tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_huawei)
+            }
             else if (OemDetector.current() == OemDetector.Oem.GOOGLE || OemDetector.current() == OemDetector.Oem.OTHER) { // Also default
                 tourImageWithBorder.setImageResource(R.drawable.other_permissions_pixel)
                 tourDescription.text = getString(R.string.tour_overlay_draw_permission_text_pixel)

@@ -117,7 +117,8 @@
     <string name="tour_overlay_draw_permission_xiaomi">Izin Tampilkan di Atas Aplikasi</string>
     <string name="tour_overlay_draw_permission_text">Untuk memastikan aplikasi dapat menjawab panggilan telepon meskipun tidak dibuka, pastikan izin yang diperlukan telah diberikan.\n\nLangkah-langkah:\n1. Buka pengaturan perangkat.\n2. Arahkan ke bagian "Izin Lainnya" (atau serupa).\n3. Temukan dan aktifkan izin yang relevan.\n\nCatatan: Nama dan lokasi izin dapat berbeda tergantung pada perangkat. Jika tidak ditemukan, coba cari di bagian pengaturan lain.</string>
     <string name="tour_overlay_draw_permission_text_pixel">Untuk memastikan aplikasi dapat menjawab panggilan telepon meskipun tidak dibuka, pastikan izin yang diperlukan telah diberikan.\n\nLangkah-langkah:\n1. Ketuk "Tampilkan di atas aplikasi lain".\n2. Aktifkan opsi "Izinkan tampil di atas aplikasi lain".\n\nCatatan: Nama dan lokasi pengaturan ini dapat bervariasi tergantung pada perangkat dan versi Android.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">Untuk memastikan aplikasi dapat menjawab panggilan telepon meskipun tidak terbuka, pastikan untuk memberikan izin yang diperlukan.\n\nUntuk melanjutkan:\n1. Ketuk "Tampil di atas".\n2. Aktifkan opsi "Izinkan izin".\n\nCatatan: Lokasi dan nama pengaturan ini mungkin berbeda tergantung perangkat dan versi Android Anda.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">Agar aplikasi dapat menjawab panggilan meskipun tidak dibuka, pastikan untuk memberikan izin yang diperlukan.\n\nUntuk melanjutkan:\n1. Ketuk "Muncul di atas".\n2. Aktifkan opsi "Perbolehkan izin".\n\nCatatan: Lokasi dan nama pengaturan ini bisa bervariasi tergantung perangkat dan versi Android Anda.</string>
+    <string name="tour_overlay_draw_permission_text_huawei">Agar aplikasi dapat menjawab panggilan meskipun sedang tidak terbuka, pastikan untuk memberikan izin yang diperlukan.\n\nUntuk melanjutkan:\n1. Ketuk "Tampilkan di atas aplikasi lain".\n2. Aktifkan opsi "Tampilkan di atas aplikasi lain".\n\nCatatan: Lokasi dan nama pengaturan ini dapat berbeda tergantung pada perangkat dan versi Android Anda.</string>
     <string name="tour_default_app">Aplikasi Default</string>
     <string name="tour_default_app_text">Agar aplikasi dapat mengelola panggilan dengan benar, aplikasi harus diatur sebagai aplikasi telepon default.\n\nTanpa izin ini, aplikasi tidak dapat menjawab panggilan saat ditutup.</string>
     <string name="tour_almost_done">Hampir Selesai!</string>
@@ -364,8 +365,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">Dapatkan akses penuh ke semua fitur Premium</string>
     <string name="choose_your_plan">Pilih paket Anda</string>
-    <string name="trial_days_left">Masa uji coba Anda tersisa %1$d hari — gratis dari kami!</string>
-    <string name="trial_finished">Masa uji coba Anda telah berakhir</string>
     <string name="premium_all_capitals">Premium</string>
     <string name="basic_plan_all_capitals">Dasar</string>
     <string name="get_started">Mulai</string>
@@ -373,7 +372,7 @@
     <string name="per_year_price_format">%1$s per tahun</string>
     <string name="subscription_plan_feature_name_click_to_answer">Ketuk untuk menjawab (tanpa geser)</string>
     <string name="subscription_plan_feature_name_gold_number">Nomor Emas</string>
-    <string name="subscription_plan_feature_name_quick_call">Panggilan Cepat</string>
+    <string name="subscription_plan_feature_name_quick_call">Panggilan Cepat untuk situasi khusus</string>
     <string name="subscription_plan_feature_name_lock_screen">Layar Kunci – buka dengan satu ketukan</string>
     <string name="subscription_plan_feature_name_open_whatsapp">Buka WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Panggilan Cepat Tingkat Lanjut</string>
@@ -382,7 +381,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">Mulai panggilan dengan speaker</string>
     <string name="subscription_plan_feature_name_auto_answer">Jawab panggilan otomatis</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Berbicara alih-alih nada dering</string>
-    <string name="everything_in_basic_plus">Termasuk semua fitur dari Dasar – dan lebih banyak lagi:</string>
+    <string name="everything_in_basic_plus">Semua di Basic – plus:</string>
     <string name="subscription_plan_limited_time_offer">Penawaran Terbatas!</string>
     <string name="subscription_start_your_7_days_free_trial_today">Mulai uji coba gratis 7 hari Anda hari ini!</string>
     <string name="subscription_7_days_free_then">7 hari gratis, lalu:</string>

@@ -33,11 +33,10 @@
                     android:id="@+id/upgradeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:fontFamily="@font/open_sans_bold"
                     android:text="@string/subscription_start_your_7_days_free_trial_today"
-                    android:textColor="#505050"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/subscription_start_your_7_days_trial_text_size"
+                    android:textColor="#505050" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,22 +62,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="28dp"
                     android:background="#CCA201"
                     android:elevation="10dp"
                     android:orientation="vertical"
                     android:paddingHorizontal="10dp">
 
+                    <!--Top pane:-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="6dp"
+                        android:layout_marginBottom="0dp"
                         android:orientation="horizontal">
 
+                        <!--Left pane:-->
                         <LinearLayout
                             android:layout_width="0dp"
+                            android:layout_weight="0.7"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
@@ -93,22 +94,27 @@
 
                             <TextView
                                 android:id="@+id/titleText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="5dp"
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/open_sans_bold"
                                 android:text="@string/premium_capital"
                                 android:textAllCaps="true"
                                 android:textColor="@android:color/white"
-                                android:textSize="28sp"
+                                android:autoSizeTextType="uniform"
+                                android:autoSizeMinTextSize="10sp"
+                                android:autoSizeMaxTextSize="28sp"
+                                android:autoSizeStepGranularity="1sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
+                        <!--Right pane:-->
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:layout_marginEnd="50dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -172,14 +178,14 @@
                         android:id="@+id/premiumFeaturesContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="12dp"
                         android:orientation="vertical" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnPremium"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="4dp"
+                        android:layout_height="28dp"
+                        android:layout_marginBottom="2dp"
                         android:background="#FDFDFD"
                         android:paddingHorizontal="20dp"
                         android:text="@string/get_started"
@@ -208,26 +214,30 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.7"
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="5dp"
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/open_sans_bold"
                                 android:text="@string/basic_plan_all_capitals"
                                 android:textAllCaps="true"
                                 android:textColor="@android:color/white"
-                                android:textSize="28sp"
+                                android:autoSizeTextType="uniform"
+                                android:autoSizeMinTextSize="10sp"
+                                android:autoSizeMaxTextSize="28sp"
+                                android:autoSizeStepGranularity="1sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:layout_marginEnd="50dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -284,21 +294,21 @@
                     android:background="#71D7FD"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:paddingTop="2dp"
+                    android:paddingTop="6dp"
                     android:paddingBottom="10dp">
 
                     <LinearLayout
                         android:id="@+id/basicFeaturesContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="12dp"
                         android:orientation="vertical" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnBasic"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginBottom="4dp"
+                        android:layout_height="28dp"
+                        android:layout_marginBottom="2dp"
                         android:background="#FDFDFD"
                         android:paddingHorizontal="20dp"
                         android:text="@string/get_started"
@@ -316,8 +326,8 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_gravity="top|end"
-            android:layout_marginTop="79dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginTop="73dp"
+            android:layout_marginEnd="2dp"
             android:scaleType="centerInside"
             android:src="@drawable/upgrade_premium_crown" />
 
@@ -325,7 +335,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_gravity="top|end"
-            android:layout_marginTop="380dp"
+            android:layout_marginTop="368dp"
             android:layout_marginEnd="3dp"
             android:scaleType="centerInside"
             android:src="@drawable/upgrade_basic_crown" />

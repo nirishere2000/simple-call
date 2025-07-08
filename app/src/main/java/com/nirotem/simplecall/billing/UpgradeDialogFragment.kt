@@ -44,8 +44,10 @@ class UpgradeDialogFragment(
         super.onStart()
         dialog?.window?.setLayout(
             (resources.displayMetrics.widthPixels * 0.96).toInt(),
-            (resources.displayMetrics.heightPixels * 0.88).toInt()
+            ViewGroup.LayoutParams.WRAP_CONTENT
         )
+        // Make the dialog non-cancelable (optional)
+        dialog?.setCancelable(false)
        // dialog?.window?.setBackgroundDrawableResource(R.drawable.dialog_dark_rounded_background)
         //dialog?.window?.setDimAmount(0.6f)
     }
@@ -100,10 +102,12 @@ class UpgradeDialogFragment(
             }
         }
 
+/*
         var text = view.context.getString(R.string.trial_days_left, daysLeft)
         if (!isTrial) {
             text = view.context.getString(R.string.trial_finished)
         }
+*/
 
 /*        title.text = if (isTrial) {
             "נותרו לך $daysLeft ימי ניסיון"
@@ -123,14 +127,14 @@ class UpgradeDialogFragment(
 
         val features = listOf(
             FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_call_management), true, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_big_buttons_icons), true, true),
             FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_click_to_answer), true, true),
+            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_big_buttons_icons), true, true),
+            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_auto_answer), false, true),
             FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_gold_number), true, true),
             FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_quick_call), true, true),
             FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_lock_screen), false, true),
             FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_upgraded_quick_call), false, true),
             FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_start_with_speaker), false, true),
-            FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_auto_answer), false, true),
             FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_talk_instead_of_ringtone), false, true),
             FeatureRow(view.context.getString(R.string.subscription_plan_feature_name_open_whatsapp), false, true)
         )
@@ -165,18 +169,19 @@ class UpgradeDialogFragment(
         }
 
         val crownImage = view.findViewById<ImageView>(R.id.upgrade_plan_crown_image)
-        if (crownImage.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
-            crownImage.scaleX = 1f
-        } else {
+        val isRTL = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+        if (isRTL) {
+            crownImage.scaleX = -1f
+        }/* else {
             crownImage.scaleX = -1f // לוודא שבמצב LTR היא בכיוון הנכון
-        }
+        }*/
         val shakeAnimator = AnimatorInflater.loadAnimator(requireContext(), R.animator.shake)
         shakeAnimator.setTarget(crownImage)
         shakeAnimator.start()
 
         Handler(Looper.getMainLooper()).postDelayed({
             shakeAnimator.cancel() // או shakeAnimator.end()
-        }, 3000)
+        }, 2500)
 
     }
 

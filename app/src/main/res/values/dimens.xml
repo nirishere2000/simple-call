@@ -6,4 +6,5 @@
     <dimen name="reflow_text_block_horizontal_gap">8dp</dimen>
     <dimen name="reflow_text_title_size">22sp</dimen>
     <dimen name="reflow_text_description_size">13sp</dimen>
+    <dimen name="subscription_start_your_7_days_trial_text_size">18sp</dimen>
 </resources>

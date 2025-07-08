@@ -117,7 +117,8 @@
     <string name="tour_overlay_draw_permission_xiaomi">Overlay-teken toestemming</string>
     <string name="tour_overlay_draw_permission_text">Om ervoor te zorgen dat de app oproepen kan beantwoorden, zelfs wanneer deze niet geopend is, zorg ervoor dat de benodigde toestemming is verleend.\n\nVolg deze stappen:\n1. Open de apparaatinstellingen.\n2. Ga naar de sectie "Andere machtigingen" (of vergelijkbaar).\n3. Zoek en schakel de relevante toestemming in.\n\nOpmerking: De naam en locatie van de toestemming kunnen per apparaat verschillen. Als deze niet wordt gevonden, probeer dan in andere instellingen te zoeken.</string>
     <string name="tour_overlay_draw_permission_text_pixel">Om ervoor te zorgen dat de app oproepen kan beantwoorden, zelfs wanneer deze niet geopend is, zorg ervoor dat de benodigde toestemming is verleend.\n\nVolg deze stappen:\n1. Tik op \"Weergeven boven andere apps\".\n2. Schakel de optie \"Toestaan weergeven boven andere apps\" in.\n\nOpmerking: De naam en locatie van deze instelling kunnen variëren afhankelijk van het apparaat en de Android-versie.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">Om ervoor te zorgen dat de app oproepen kan beantwoorden, zelfs wanneer deze niet is geopend, geef de benodigde toestemming.\n\nGa verder door:\n1. Tik op "Bovenop weergeven".\n2. Schakel de optie "Toestemming toestaan" in.\n\nOpmerking: De exacte locatie en naam van deze instelling kunnen variëren afhankelijk van jouw apparaat en Android‑versie.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">Om ervoor te zorgen dat de app oproepen kan beantwoorden, zelfs wanneer deze niet is geopend, geef de benodigde toestemming.\n\nGa verder door:\n1. Tik op "Bovenop weergeven".\n2. Schakel de optie "Machtiging toestaan" in.\n\nOpmerking: De exacte locatie en naam van deze instelling kunnen variëren afhankelijk van jouw apparaat en Android‑versie.</string>
+    <string name="tour_overlay_draw_permission_text_huawei">Om ervoor te zorgen dat de app oproepen kan beantwoorden, zelfs wanneer deze niet is geopend, geef de benodigde toestemming.\n\nGa verder door:\n1. Tik op "Teken over andere apps".\n2. Schakel de optie "Over andere apps tekenen" in.\n\nOpmerking: De exacte locatie en naam van deze instelling kunnen variëren afhankelijk van jouw apparaat en Android‑versie.</string>
     <string name="tour_default_app">Standaard app</string>
     <string name="tour_default_app_text">Om ervoor te zorgen dat de app correct functioneert en oproepen beheert, moet deze worden ingesteld als de standaard app voor oproepbeheer.\n\nZonder deze toestemming kan de app geen oproepen beantwoorden wanneer deze niet geopend is en actief in gebruik is.</string>
     <string name="tour_almost_done">Bijna klaar!</string>
@@ -369,6 +370,7 @@
     <string name="lock_screen_leads_to_home_screen">Tik op het vergrendelscherm om naar het startscherm van het mobiele apparaat te gaan.</string>
     <string name="overlay_permission_display_name">Weergeven boven andere apps</string>
     <string name="overlay_permission_display_name_samsung">Bovenaan verschijnen</string>
+    <string name="overlay_permission_display_name_huawei">Over andere apps tekenen</string>
     <string name="lock_screen_permission_display_name">Weergeven op het vergrendelscherm</string>
     <string name="overlay_permission_display_name_xiaomi">Nieuwe vensters openen terwijl het op de achtergrond uitgevoerd wordt</string>
     <string name="allow_pop_permission_display_name_xiaomi">Pop-upvensters weergeven</string>
@@ -395,8 +397,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">Volledige toegang tot alle premiumfuncties</string>
     <string name="choose_your_plan">Kies je abonnement</string>
-    <string name="trial_days_left">Je hebt nog %1$d dagen proefperiode – van ons!</string>
-    <string name="trial_finished">Je proefperiode is afgelopen</string>
     <string name="premium_all_capitals">Premium</string>
     <string name="basic_plan_all_capitals">Basis</string>
     <string name="get_started">Aan de slag</string>
@@ -404,7 +404,7 @@
     <string name="per_year_price_format">%1$s per jaar</string>
     <string name="subscription_plan_feature_name_click_to_answer">Tik om op te nemen (geen vegen)</string>
     <string name="subscription_plan_feature_name_gold_number">Gouden nummer</string>
-    <string name="subscription_plan_feature_name_quick_call">Snelle oproep</string>
+    <string name="subscription_plan_feature_name_quick_call">Snelle oproep voor speciale situaties</string>
     <string name="subscription_plan_feature_name_lock_screen">Vergrendelscherm – ontgrendelen met één tik</string>
     <string name="subscription_plan_feature_name_open_whatsapp">WhatsApp openen</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Verbeterde snelle oproep</string>
@@ -413,7 +413,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">Oproep starten met luidspreker</string>
     <string name="subscription_plan_feature_name_auto_answer">Automatisch oproepen beantwoorden</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Spreken in plaats van ringtone</string>
-    <string name="everything_in_basic_plus">Bevat alles van het Basis-abonnement – en meer:</string>
+    <string name="everything_in_basic_plus">Alles in Basic – plus:</string>
     <string name="subscription_plan_limited_time_offer">Tijdelijk aanbod!</string>
     <string name="subscription_start_your_7_days_free_trial_today">Begin vandaag met je gratis proefperiode van 7 dagen!</string>
     <string name="subscription_7_days_free_then">7 dagen gratis, daarna:</string>

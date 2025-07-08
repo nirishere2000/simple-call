@@ -117,7 +117,8 @@
     <string name="tour_overlay_draw_permission_xiaomi">Разрешение для наложения</string>
     <string name="tour_overlay_draw_permission_text">Чтобы приложение могло принимать звонки даже при закрытом состоянии, убедитесь, что предоставлены необходимые разрешения.\n\nДля продолжения:\n1. Откройте настройки устройства.\n2. Перейдите в раздел "Другие разрешения" (или аналогичный).\n3. Найдите и включите соответствующее разрешение.\n\nПримечание: Название и расположение разрешения могут различаться в зависимости от устройства. Если его не удается найти, попробуйте поискать в других разделах настроек.</string>
     <string name="tour_overlay_draw_permission_text_pixel">Чтобы приложение могло принимать звонки даже при закрытом состоянии, убедитесь, что предоставлены необходимые разрешения.\n\nДля продолжения:\n1. Нажмите на \"Отображать поверх других приложений\".\n2. Включите опцию \"Разрешить отображение поверх других приложений\".\n\nПримечание: Название и расположение этой настройки могут различаться в зависимости от устройства и версии Android.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">Чтобы приложение могло отвечать на звонки даже когда оно не открыто, предоставьте необходимые разрешения.\n\nДля продолжения:\n1. Нажмите «Появляться поверх».\n2. Включите опцию «Разрешить разрешение».\n\nПримечание: точное расположение и название этого параметра могут отличаться в зависимости от устройства и версии Android.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">Чтобы приложение могло отвечать на звонки, даже когда оно не открыто, предоставьте необходимые разрешения.\n\nДля продолжения:\n1. Нажмите «Всегда сверху».\n2. Включите опцию «Предоставление разрешения».\n\nПримечание: местоположение и название этой настройки могут различаться в зависимости от устройства и версии Android.</string>
+    <string name="tour_overlay_draw_permission_text_huawei">Чтобы приложение могло отвечать на звонки, даже когда оно не открыто, предоставьте необходимые разрешения.\n\nДля продолжения:\n1. Нажмите «Наложение поверх других окон».\n2. Включите опцию «Отображение поверх других приложений».\n\nПримечание: местоположение и название этой настройки могут различаться в зависимости от устройства и версии Android.</string>
     <string name="tour_default_app">Приложение по умолчанию</string>
     <string name="tour_default_app_text">Чтобы приложение работало корректно и управляло звонками, его необходимо установить в качестве приложения по умолчанию для управления звонками.\n\nБез этого разрешения приложение не сможет отвечать на звонки, когда оно не запущено и не находится в активном режиме.</string>
     <string name="tour_almost_done">Почти готово!</string>
@@ -363,6 +364,7 @@
     <string name="lock_screen_leads_to_home_screen">Нажатие на экран блокировки приведет на главный экран мобильного устройства.</string>
     <string name="overlay_permission_display_name">Отображение поверх других приложений</string>
     <string name="overlay_permission_display_name_samsung">Отображаться поверх других приложений</string>
+    <string name="overlay_permission_display_name_huawei">Отображение поверх других приложений</string>
     <string name="lock_screen_permission_display_name">Показ на экране блокировки</string>
     <string name="overlay_permission_display_name_xiaomi">Открывать новые окна, когда запущено в фоновом режиме</string>
     <string name="allow_pop_permission_display_name_xiaomi">Отображение всплывающих окон</string>
@@ -391,8 +393,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">Полный доступ ко всем функциям премиум</string>
     <string name="choose_your_plan">Выберите свой план</string>
-    <string name="trial_days_left">У вас осталось %1$d дней пробного периода — за наш счёт!</string>
-    <string name="trial_finished">Пробный период завершён</string>
     <string name="premium_all_capitals">Премиум</string>
     <string name="basic_plan_all_capitals">Базовый</string>
     <string name="get_started">Начать</string>
@@ -400,7 +400,7 @@
     <string name="per_year_price_format">%1$s в год</string>
     <string name="subscription_plan_feature_name_click_to_answer">Нажмите, чтобы ответить (без свайпа)</string>
     <string name="subscription_plan_feature_name_gold_number">Золотой номер</string>
-    <string name="subscription_plan_feature_name_quick_call">Быстрый звонок</string>
+    <string name="subscription_plan_feature_name_quick_call">Быстрый звонок для особых ситуаций</string>
     <string name="subscription_plan_feature_name_lock_screen">Экран блокировки – разблокировка одним касанием</string>
     <string name="subscription_plan_feature_name_open_whatsapp">Открыть WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Улучшенный быстрый звонок</string>
@@ -409,7 +409,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">Начать звонок через громкоговоритель</string>
     <string name="subscription_plan_feature_name_auto_answer">Автоответ на звонки</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Голос вместо звонка</string>
-    <string name="everything_in_basic_plus">Включает всё из Базового тарифа – и даже больше:</string>
+    <string name="everything_in_basic_plus">Всё из Базового – и больше:</string>
     <string name="subscription_plan_limited_time_offer">Предложение на ограниченное время!</string>
     <string name="subscription_start_your_7_days_free_trial_today">Начните 7-дневную бесплатную пробную версию уже сегодня!</string>
     <string name="subscription_7_days_free_then">7 дней бесплатно, затем:</string>

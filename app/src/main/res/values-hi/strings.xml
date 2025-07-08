@@ -172,7 +172,8 @@
     <string name="tour_overlay_draw_permission_xiaomi">स्क्रीन पर ओवरले अनुमतियाँ</string>
     <string name="tour_overlay_draw_permission_text">यह सुनिश्चित करने के लिए कि ऐप तब भी कॉल का उत्तर दे सके जब वह खुला न हो, आवश्यक अनुमति प्रदान करना सुनिश्चित करें।\n\nआगे बढ़ने के लिए:\n1. डिवाइस सेटिंग्स खोलें।\n2. "अन्य अनुमतियाँ" अनुभाग (या समान) पर जाएँ।\n3. संबंधित अनुमति ढूँढें और सक्षम करें।\n\nध्यान दें: अनुमति का नाम और स्थान डिवाइस के अनुसार भिन्न हो सकता है। यदि अनुमति नहीं मिल रही है, तो अन्य सेटिंग अनुभागों में देखें।</string>
     <string name="tour_overlay_draw_permission_text_pixel">यह सुनिश्चित करने के लिए कि ऐप तब भी कॉल का उत्तर दे सके जब वह खुला न हो, आवश्यक अनुमति प्रदान करना सुनिश्चित करें।\n\nआगे बढ़ने के लिए:\n1. "अन्य ऐप्स के ऊपर प्रदर्शित करें" पर टैप करें।\n2. "अन्य ऐप्स के ऊपर प्रदर्शन की अनुमति दें" विकल्प सक्षम करें।\n\nध्यान दें: इस सेटिंग का नाम और स्थान डिवाइस और Android संस्करण के अनुसार भिन्न हो सकते हैं।</string>
-    <string name="tour_overlay_draw_permission_text_samsung">ऐप को बंद होने पर भी फोन कॉल का जवाब देने में सक्षम बनाने के लिए, आवश्यक अनुमति प्रदान करें।\n\nआगे बढ़ने के लिए:\n1. "टॉप पर दिखाएं" टैप करें।\n2. "अनुमति की अनुमति दें" विकल्प सक्षम करें।\n\nध्यान दें: यह सेटिंग आपके डिवाइस और एंड्रॉयड संस्करण के अनुसार स्थान और नाम में भिन्न हो सकती है।</string>
+    <string name="tour_overlay_draw_permission_text_samsung">यह सुनिश्चित करने के लिए कि ऐप तब भी कॉल का उत्तर दे सके जब वह खुला न हो, आवश्यक अनुमति देना सुनिश्चित करें।\n\nआगे बढ़ने के लिए:\n1. "शीर्ष पर प्रकट करें" पर टैप करें।\n2. "अनुमति प्रदान करें" विकल्प को सक्षम करें।\n\nनोट: यह सेटिंग आपके डिवाइस और Android संस्करण के अनुसार अलग हो सकती है।</string>
+    <string name="tour_overlay_draw_permission_text_huawei">यह सुनिश्चित करने के लिए कि ऐप तब भी कॉल का उत्तर दे सके जब वह खुला न हो, आवश्यक अनुमति देना सुनिश्चित करें।\n\nआगे बढ़ने के लिए:\n1. "अन्य ऐप्स के ऊपर ले जाएँ" पर टैप करें।\n2. "अन्य ऐप्स के ऊपर आरक्षित करें" विकल्प को सक्षम करें।\n\nनोट: यह सेटिंग आपके डिवाइस और Android संस्करण के अनुसार अलग हो सकती है।</string>
     <string name="tour_default_app">डिफ़ॉल्ट ऐप</string>
     <string name="tour_default_app_text">ऐप को कॉल्स को सही तरीके से प्रबंधित करने के लिए डिफ़ॉल्ट फ़ोन ऐप के रूप में सेट करना आवश्यक है।\n\nइस अनुमति के बिना ऐप कॉल्स को प्राप्त नहीं कर सकेगा जब ऐप बंद हो।</string>
     <string name="tour_almost_done">लगभग पूरा!</string>
@@ -339,6 +340,7 @@
     <string name="lock_screen_leads_to_home_screen">लॉक स्क्रीन पर टैप करने से मोबाइल डिवाइस के होम स्क्रीन पर जाएंगे.</string>
     <string name="overlay_permission_display_name">अन्य ऐप्स के ऊपर प्रदर्शित करें</string>
     <string name="overlay_permission_display_name_samsung">शीर्ष पर दिखाई दें</string>
+    <string name="overlay_permission_display_name_huawei">अन्य ऐप्स के ऊपर प्रदर्शित करें</string>
     <string name="lock_screen_permission_display_name">लॉक स्क्रीन पर दिखाएं</string>
     <string name="overlay_permission_display_name_xiaomi">बैकग्राउंड में पॉप-अप विंडो दिखाएँ</string>
     <string name="allow_pop_permission_display_name_xiaomi">पॉप-अप विंडो दिखाएँ</string>
@@ -365,8 +367,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">सभी प्रीमियम सुविधाओं तक पूरी पहुंच पाएं</string>
     <string name="choose_your_plan">अपनी योजना चुनें</string>
-    <string name="trial_days_left">आपके पास %1$d ट्रायल दिन बाकी हैं — हमारी तरफ़ से!</string>
-    <string name="trial_finished">आपकी ट्रायल अवधि समाप्त हो गई है</string>
     <string name="premium_all_capitals">प्रीमियम</string>
     <string name="basic_plan_all_capitals">बेसिक</string>
     <string name="get_started">शुरू करें</string>
@@ -374,7 +374,7 @@
     <string name="per_year_price_format">%1$s प्रति वर्ष</string>
     <string name="subscription_plan_feature_name_click_to_answer">टैप करके उत्तर दें (स्वाइप नहीं करना)</string>
     <string name="subscription_plan_feature_name_gold_number">गोल्ड नंबर</string>
-    <string name="subscription_plan_feature_name_quick_call">त्वरित कॉल</string>
+    <string name="subscription_plan_feature_name_quick_call">त्वरित कॉल विशेष परिस्थितियों के लिए</string>
     <string name="subscription_plan_feature_name_lock_screen">लॉक स्क्रीन – एक टैप से अनलॉक करें</string>
     <string name="subscription_plan_feature_name_open_whatsapp">व्हाट्सएप खोलें</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">उन्नत त्वरित कॉल</string>
@@ -383,7 +383,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">स्पीकर के साथ कॉल शुरू करें</string>
     <string name="subscription_plan_feature_name_auto_answer">कॉल का ऑटोमेटिक उत्तर</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">रिंगटोन के बजाय बात करें</string>
-    <string name="everything_in_basic_plus">बेसिक की सभी सुविधाएँ शामिल हैं – और भी बहुत कुछ:</string>
+    <string name="everything_in_basic_plus">बेसिक में सब कुछ – और भी:</string>
     <string name="subscription_plan_limited_time_offer">सीमित समय की पेशकश!</string>
     <string name="subscription_start_your_7_days_free_trial_today">7 दिन की निःशुल्क ट्रायल आज ही शुरू करें!</string>
     <string name="subscription_7_days_free_then">7 दिन मुफ़्त, फिर:</string>

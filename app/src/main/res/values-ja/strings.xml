@@ -117,7 +117,8 @@
     <string name="tour_overlay_draw_permission_xiaomi">オーバーレイ表示権限</string>
     <string name="tour_overlay_draw_permission_text">アプリが開いていない場合でも電話に応答できるようにするには、必要な権限を付与してください。\n\n手順:\n1. デバイスの設定を開きます。\n2. 「その他の権限」セクション (または類似のもの) に移動します。\n3. 該当する権限を見つけて有効にします。\n\n注意: 権限の名称と場所はデバイスによって異なる場合があります。見つからない場合は、他の設定セクションを確認してください。</string>
     <string name="tour_overlay_draw_permission_text_pixel">アプリが開いていない場合でも電話に応答できるようにするには、必要な権限を付与してください。\n\n手順:\n1. 「他のアプリの上に表示」をタップします。\n2. 「他のアプリの上に表示を許可」オプションを有効にします。\n\n注意: この設定の名前と場所は、デバイスやAndroidバージョンによって異なる場合があります。</string>
-    <string name="tour_overlay_draw_permission_text_samsung">アプリが起動していなくても通話に応答できるようにするには、必要な権限を付与してください。\n\n続行方法：\n1. 「最前面に表示」をタップします。\n2. 「権限を許可する」オプションを有効にします。\n\n注：この設定の場所や名称は、機種やAndroidのバージョンによって異なる場合があります。</string>
+    <string name="tour_overlay_draw_permission_text_samsung">アプリが起動していなくても通話に応答できるようにするには、必要な権限を付与してください。\n\n続行方法：\n1.「フローティング表示」をタップします。\n2.「権限を許可」をオンにします。\n\n注：この設定の場所や名称は、機種やAndroidのバージョンによって異なる場合があります。</string>
+    <string name="tour_overlay_draw_permission_text_huawei">アプリが起動していなくても通話に応答できるようにするには、必要な権限を付与してください。\n\n続行方法：\n1.「他のアプリの上に重ねて描画」をタップします。\n2.「他のアプリの上に重ねて表示」をオンにします。\n\n注：この設定の場所や名称は、機種やAndroidのバージョンによって異なる場合があります。</string>
     <string name="tour_default_app">デフォルトアプリ</string>
     <string name="tour_default_app_text">通話を正しく処理するには、このアプリをデフォルトの電話アプリに設定する必要があります。\n\nこの権限がないと、アプリが閉じられているときに着信を受けることができません。</string>
     <string name="tour_almost_done">もうすぐ完了！</string>
@@ -338,6 +339,7 @@
     <string name="lock_screen_leads_to_home_screen">ロック画面をタップするとモバイルデバイスのホーム画面に移動します.</string>
     <string name="overlay_permission_display_name">他のアプリの上に表示</string>
     <string name="overlay_permission_display_name_samsung">上に表示</string>
+    <string name="overlay_permission_display_name_huawei">他のアプリの上に重ねて表示</string>
     <string name="lock_screen_permission_display_name">ロック画面に表示</string>
     <string name="overlay_permission_display_name_xiaomi">バックグラウンドで実行中に新しいウィンドウを開く</string>
     <string name="allow_pop_permission_display_name_xiaomi">ポップアップウィンドウの表示</string>
@@ -363,8 +365,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">すべてのプレミアム機能にフルアクセス</string>
     <string name="choose_your_plan">プランを選択</string>
-    <string name="trial_days_left">残りの無料トライアルは %1$d 日です</string>
-    <string name="trial_finished">トライアル期間が終了しました</string>
     <string name="premium_all_capitals">プレミアム</string>
     <string name="basic_plan_all_capitals">ベーシック</string>
     <string name="get_started">開始する</string>
@@ -372,7 +372,7 @@
     <string name="per_year_price_format">年間 %1$s</string>
     <string name="subscription_plan_feature_name_click_to_answer">タップで応答（スワイプ不要）</string>
     <string name="subscription_plan_feature_name_gold_number">ゴールド番号</string>
-    <string name="subscription_plan_feature_name_quick_call">クイックコール</string>
+    <string name="subscription_plan_feature_name_quick_call">特別な状況のためのクイックコール</string>
     <string name="subscription_plan_feature_name_lock_screen">ロック画面 – ワンタップで解除</string>
     <string name="subscription_plan_feature_name_open_whatsapp">WhatsAppを開く</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">強化されたクイックコール</string>
@@ -381,7 +381,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">スピーカーで通話を開始</string>
     <string name="subscription_plan_feature_name_auto_answer">自動応答</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">着信音の代わりに音声で案内</string>
-    <string name="everything_in_basic_plus">ベーシックのすべての機能を含み、さらに多くの機能を追加：</string>
+    <string name="everything_in_basic_plus">ベーシックに含まれるすべて – さらに:</string>
     <string name="subscription_plan_limited_time_offer">期間限定オファー！</string>
     <string name="subscription_start_your_7_days_free_trial_today">7日間の無料トライアルを今すぐ始めよう！</string>
     <string name="subscription_7_days_free_then">7日間無料、その後：</string>

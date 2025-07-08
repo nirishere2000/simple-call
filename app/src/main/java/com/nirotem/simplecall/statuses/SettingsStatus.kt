@@ -85,6 +85,7 @@ object SettingsStatus {
     var alreadyShownQuickCallButWithoutPermissionMsg = false
     var appLogoResourceSmall = R.drawable.goldappiconphoneblack
     var lockedBecauseTrialIsOver = false
+    var noMsgShown = false // show Contact tooltip only if not other msg is shown
 }
 
 

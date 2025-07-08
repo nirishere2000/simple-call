@@ -1431,6 +1431,9 @@ class MainActivity : AppCompatActivity() {
                 this
             )
         }
+        else {
+            SettingsStatus.noMsgShown = true
+        }
     }
 
     /*    private fun setLayoutDirection(locale: Locale) {

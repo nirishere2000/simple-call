@@ -118,6 +118,7 @@
     <string name="tour_overlay_draw_permission_text">To ensure the app can answer phone calls even when it is not open, make sure to grant the necessary permission.\n\nTo proceed:\n1. Open the device settings.\n2. Navigate to the "Other permissions" section (or similar).\n3. Find and enable the relevant permission.\n\nNote: The name and location of the permission may vary depending on the device. If it cannot be found, try looking in other settings sections.</string>
     <string name="tour_overlay_draw_permission_text_pixel">To ensure the app can answer phone calls even when it is not open, make sure to grant the necessary permission.\n\nTo proceed:\n1. Tap "Display over other apps."\n2. Enable the "Allow display over other apps" option.\n\nNote: The exact location and name of this setting may vary depending on your device and Android version.</string>
     <string name="tour_overlay_draw_permission_text_samsung">To ensure the app can answer phone calls even when it is not open, make sure to grant the necessary permission.\n\nTo proceed:\n1. Tap "Appear on top."\n2. Enable the "Allow permission" option.\n\nNote: The exact location and name of this setting may vary depending on your device and Android version.</string>
+    <string name="tour_overlay_draw_permission_text_huawei">To ensure the app can answer phone calls even when it is not open, make sure to grant the necessary permission.\n\nTo proceed:\n1. Tap "Draw over other apps."\n2. Enable the "Draw over other apps" option.\n\nNote: The exact location and name of this setting may vary depending on your device and Android version.</string>
     <string name="tour_default_app">Default App</string>
     <string name="tour_default_app_text">To ensure that the app functions properly and manages calls, it must be set as the default call management app.\n\nWithout this permission, the app will not be able to answer calls when it is not open and in focus.</string>
     <string name="tour_almost_done">Almost Done!</string>
@@ -341,6 +342,7 @@
     <string name="lock_screen_leads_to_home_screen">Tapping the lock screen will lead to the home screen of the mobile device.</string>
     <string name="overlay_permission_display_name">Display over other apps</string>
     <string name="overlay_permission_display_name_samsung">Appear on top</string>
+    <string name="overlay_permission_display_name_huawei">Draw over other apps</string>
     <string name="lock_screen_permission_display_name">Show on Lock screen</string>
     <string name="allow_pop_permission_display_name_xiaomi">Display pop-up windows</string>
     <string name="overlay_permission_display_name_xiaomi">Open new windows while running in the background</string>
@@ -367,8 +369,6 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">Unlock full access to all Premium features</string>
     <string name="choose_your_plan">Choose your plan</string>
-    <string name="trial_days_left">You have %1$d trial days left — on us!</string>
-    <string name="trial_finished">Your trial period has ended</string>
     <string name="premium_all_capitals">PREMIUM</string>
     <string name="basic_plan_all_capitals">BASIC</string>
     <string name="get_started">Get Started</string>
@@ -376,7 +376,7 @@
     <string name="per_year_price_format">%1$s per year</string>
     <string name="subscription_plan_feature_name_click_to_answer">Tap to answer (No swipe)</string>
     <string name="subscription_plan_feature_name_gold_number">Gold number</string>
-    <string name="subscription_plan_feature_name_quick_call">Quick call</string>
+    <string name="subscription_plan_feature_name_quick_call">Quick call for special situations</string>
     <string name="subscription_plan_feature_name_lock_screen">Lock screen – unlock with one tap</string>
     <string name="subscription_plan_feature_name_open_whatsapp">Open WhatsApp</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">Upgraded quick call</string>
@@ -385,7 +385,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">Start call with speaker</string>
     <string name="subscription_plan_feature_name_auto_answer">Auto answer calls</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">Talk instead of ringtone</string>
-    <string name="everything_in_basic_plus">Includes everything in Basic – and more:</string>
+    <string name="everything_in_basic_plus">Everything in Basic – plus:</string>
     <string name="subscription_plan_limited_time_offer">Limited-Time Offer!</string>
     <string name="subscription_start_your_7_days_free_trial_today">Start your 7 days free trial today!</string>
     <string name="subscription_7_days_free_then">7 days free, then:</string>

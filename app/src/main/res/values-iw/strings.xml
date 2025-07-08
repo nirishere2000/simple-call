@@ -116,8 +116,9 @@
     <string name="tour_permissions_screen_text">רוב ההרשאות של המכשיר, הדרושות לאפליקציה, ניתנות בצורה אוטומטית בעת התקנת התוכנה או כאשר מגדירים את האפליקציה כברירת המחדל לשיחות.\n\nניתן תמיד לבקש את ההרשאות דרך מסך ההרשאות של האפליקציה, בעזרת התפריט בחלקו העליון של המסך (תפריט \'שלוש הנקודות\').\n\nמומלץ להיעזר בבני משפחה ואנשים קרובים, במידת הצורך.</string>
     <string name="tour_overlay_draw_permission_xiaomi">ריצה ברקע</string>
     <string name="tour_overlay_draw_permission_text">כדי לאפשר לאפליקציה לענות לשיחות טלפון גם כשהיא לא פתוחה, יש לוודא שההרשאה הנדרשת מאופשרת.\n\nלהמשך:\n1. לפתוח את הגדרות המכשיר.\n2. לנווט אל קטגוריית "הרשאות אחרות" (או דומה).\n3. לאתר ולאפשר את ההרשאה המתאימה.\n\nלתשומת לב: שם ההרשאה ומיקומה עשויים להשתנות בין מכשירים שונים. אם לא ניתן למצוא אותה, מומלץ לבדוק בקטגוריות נוספות בהגדרות.</string>
-    <string name="tour_overlay_draw_permission_text_pixel">כדי לאפשר לאפליקציה לענות לשיחות טלפון גם כשהיא לא פתוחה, יש לוודא שההרשאה הנדרשת מאופשרת.\n\nלהמשך:\n1. ללחוץ על "הצג מעל אפליקציות אחרות".\n2. להפעיל את האפשרות "אפשר הצגה מעל אפליקציות אחרות".\n\nלתשומת לב: שם ההגדרה ומיקומה עשויים להשתנות בהתאם למכשיר ולגרסת האנדרואיד.</string>
-    <string name="tour_overlay_draw_permission_text_samsung">על מנת לאפשר לאפליקציה לענות לשיחות טלפון גם כאשר היא לא פתוחה, יש להעניק את ההרשאה המתאימה.\n\nלהמשך:\n1. גע ב"הופיע מעל הכל".\n2. הפעל את אפשרות "אפשר הרשאה".\n\nהערה: המיקום והשם המדויקים של ההגדרה עשויים להשתנות בהתאם למכשיר וגרסת אנדרואיד.</string>
+    <string name="tour_overlay_draw_permission_text_pixel">כדי לאפשר לאפליקציה לענות לשיחות טלפון גם כשהיא לא פתוחה, יש לוודא שההרשאה הנדרשת מאופשרת.\n\nלאישור:\n1. יש ללחוץ על "הצג מעל אפליקציות אחרות".\n2. להפעיל את האפשרות "אפשר הצגה מעל אפליקציות אחרות".\n\nלתשומת לב: שם ההגדרה ומיקומה עשויים להשתנות בהתאם למכשיר ולגרסת האנדרואיד.</string>
+    <string name="tour_overlay_draw_permission_text_samsung">על מנת לאפשר לאפליקציה לענות לשיחות טלפון גם כאשר היא לא פתוחה, יש להעניק את ההרשאה המתאימה.\n\nלאישור:\n1. הקישו על "הופיע מעל הכל".\n2. אשרו את האפשרות "אפשר הרשאה".\n\nהערה: המיקום והשם המדויקים של ההגדרה עשויים להשתנות בהתאם למכשיר וגרסת אנדרואיד.</string>
+    <string name="tour_overlay_draw_permission_text_huawei">על מנת לאפשר לאפליקציה לענות לשיחות טלפון גם כאשר היא לא פתוחה, יש להעניק את ההרשאה המתאימה.\n\nלאישור:\n1. הקישו על "ציור מעל יישומים אחרים".\n2. בפנים אשרו את האפשרות "ציור מעל יישומים אחרים".\n\nהערה: המיקום והשם המדויקים של ההגדרה עשויים להשתנות בהתאם למכשיר וגרסת אנדרואיד.</string>
     <string name="tour_default_app">ניהול שיחות</string>
     <string name="tour_default_app_text">על מנת לאפשר לאפליקציה לפעול בצורה תקינה ולנהל שיחות, יש להגדיר אותה כאפליקציית ברירת המחדל לניהול שיחות.\n\nללא הרשאה זו, האפליקציה לא תוכל לענות לשיחות כאשר היא לא פתוחה ובפוקוס.</string>
     <string name="tour_almost_done">כמעט סיימנו!</string>
@@ -340,6 +341,7 @@
     <string name="lock_screen_leads_to_home_screen">לחיצה על מסך הנעילה תוביל למסך הבית של המכשיר הנייד.</string>
     <string name="overlay_permission_display_name">הצגה מעל אפליקציות אחרות</string>
     <string name="overlay_permission_display_name_samsung">הופעה מעל אפליקציות אחרות</string>
+    <string name="overlay_permission_display_name_huawei">ציור מעל יישומים אחרים</string>
     <string name="lock_screen_permission_display_name">הצגה במסך הנעילה</string>
     <string name="allow_pop_permission_display_name_xiaomi">הצגת חלונות קופצים</string>
     <string name="overlay_permission_display_name_xiaomi">פתיחת חלונות חדשים בזמן שהיישום רץ ברקע</string>
@@ -367,16 +369,14 @@
     </plurals>
     <string name="unlock_full_access_to_all_premium_features">קבלו גישה מלאה לכל האפשרויות הפרימיום</string>
     <string name="choose_your_plan">בחרו את התוכנית שלכם</string>
-    <string name="trial_days_left">נותרו לכם עוד %1$d ימי ניסיון עלינו</string>
-    <string name="trial_finished">תקופת הניסיון הסתיימה</string>
     <string name="premium_all_capitals">פרימיום</string>
     <string name="basic_plan_all_capitals">בסיסי</string>
     <string name="get_started">בחירה</string>
     <string name="per_month">לחודש</string>
     <string name="per_year_price_format">%1$s לשנה</string>
-    <string name="subscription_plan_feature_name_click_to_answer">מענה בלחיצה (ללא החלקה)</string>
+    <string name="subscription_plan_feature_name_click_to_answer">מענה בלחיצה (ללא סווייפ)</string>
     <string name="subscription_plan_feature_name_gold_number">מספר זהב</string>
-    <string name="subscription_plan_feature_name_quick_call">שיחה מהירה</string>
+    <string name="subscription_plan_feature_name_quick_call">שיחה מהירה למצבים מיוחדים</string>
     <string name="subscription_plan_feature_name_lock_screen">מסך נעילה נפתח בלחיצה</string>
     <string name="subscription_plan_feature_name_open_whatsapp">פתיחת וואטסאפ</string>
     <string name="subscription_plan_feature_name_upgraded_quick_call">שיחה מהירה משודרגת</string>
@@ -385,7 +385,7 @@
     <string name="subscription_plan_feature_name_start_with_speaker">התחל שיחה עם רמקול</string>
     <string name="subscription_plan_feature_name_auto_answer">מענה אוטומטי לשיחות</string>
     <string name="subscription_plan_feature_name_talk_instead_of_ringtone">השמעת שם המתקשר במקום צלצול</string>
-    <string name="everything_in_basic_plus">כולל את כל מה שבבסיסי – וגם:</string>
+    <string name="everything_in_basic_plus">כל מה שבבסיסי – וגם:</string>
     <string name="subscription_plan_limited_time_offer">הצעה לזמן מוגבל!</string>
     <string name="subscription_start_your_7_days_free_trial_today">ניסיון חינם ל-7 ימים – מתחיל כבר היום!</string>
     <string name="subscription_7_days_free_then">7 ימים חינם, ואז:</string>
