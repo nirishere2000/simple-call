@@ -421,5 +421,22 @@
     <string name="subscription_plan_limited_time_offer">¡Oferta por tiempo limitado!</string>
     <string name="subscription_start_your_7_days_free_trial_today">¡Comienza hoy tu prueba gratuita de 7 días!</string>
     <string name="subscription_7_days_free_then">7 días gratis, luego:</string>
+    <string name="welcome_lets_start_btn">Empecemos</string>
+    <string name="welcome_sub_title_in_premium_stage">¡Además, en la versión premium hay funciones avanzadas!</string>
+    <string name="welcome_fragment_title">Bienvenido</string>
+    <string name="welcome_fragment_title_explain">La app ofrece funciones inteligentes diseñadas para facilitar la gestión de llamadas</string>
+    <string name="welcome_fragment_continue_button">Continuar</string>
+    <string name="welcome_fragment_feature_no_swipe_needed">Responder llamadas con un toque, sin necesidad de deslizar</string>
+    <string name="welcome_fragment_feature_big_icons">Botones e iconos grandes y claros</string>
+    <string name="welcome_fragment_feature_gold_number">Opción de elegir un Número Dorado — uno de tus contactos para acceso más rápido</string>
+    <string name="welcome_fragment_feature_quick_call">Opción de Llamada rápida para situaciones especiales — a un número predefinido</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">Opción de activar respuesta automática tras varios tonos — sin necesidad de tocar</string>
+    <string name="welcome_fragment_feature_premium_upgraded_quick_call">Llamada rápida mejorada.</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">Opción de activar la Pantalla de bloqueo — se abre con un toque y lleva directamente a la pantalla de gestión de llamadas, para facilitar también las llamadas salientes</string>
+    <string name="welcome_fragment_feature_premium_start_with_speaker">Opción de iniciar una llamada automáticamente con altavoz</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">Opción de anunciar el nombre del llamante en lugar de reproducir el tono de llamada durante las llamadas entrantes</string>
+    <string name="welcome_fragment_feature_premium_open_whatsup">Opción de abrir WhatsApp directamente desde la app</string>
+    <string name="privacy_policy">Política de privacidad</string>
+
 
 </resources>

@@ -419,5 +419,20 @@
     <string name="subscription_plan_limited_time_offer">Offre à durée limitée !</string>
     <string name="subscription_start_your_7_days_free_trial_today">Commencez votre essai gratuit de 7 jours dès aujourd\’hui !</string>
     <string name="subscription_7_days_free_then">7 jours gratuits, puis :</string>
-
+    <string name="welcome_lets_start_btn">Commençons</string>
+    <string name="welcome_sub_title_in_premium_stage">En plus, des fonctionnalités avancées sont disponibles dans la version premium !</string>
+    <string name="welcome_fragment_title">Bienvenue</string>
+    <string name="welcome_fragment_title_explain">L\'application propose des fonctionnalités intelligentes conçues pour faciliter la gestion des appels</string>
+    <string name="welcome_fragment_continue_button">Continuer</string>
+    <string name="welcome_fragment_feature_no_swipe_needed">Répondre aux appels d\'un simple appui, sans avoir à faire glisser</string>
+    <string name="welcome_fragment_feature_big_icons">Boutons et icônes grands et clairs</string>
+    <string name="welcome_fragment_feature_gold_number">Possibilité de choisir un Numéro d\'or — l\'un de vos contacts pour un accès plus rapide</string>
+    <string name="welcome_fragment_feature_quick_call">Possibilité d\'Appel rapide pour les situations spéciales — vers un numéro prédéfini</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">Possibilité d\'activer la réponse automatique après plusieurs sonneries — sans toucher</string>
+    <string name="welcome_fragment_feature_premium_upgraded_quick_call">Appel rapide amélioré.</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">Possibilité d\'activer l\'Écran de verrouillage — s\'ouvre par un appui et mène directement à l\'écran de gestion des appels, pour faciliter également les appels sortants</string>
+    <string name="welcome_fragment_feature_premium_start_with_speaker">Possibilité de démarrer un appel avec le haut-parleur automatiquement</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">Possibilité de faire annoncer le nom de l\'appelant au lieu d\'une sonnerie lors des appels entrants</string>
+    <string name="welcome_fragment_feature_premium_open_whatsup">Possibilité d\'ouvrir WhatsApp directement depuis l\'application</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
 </resources>

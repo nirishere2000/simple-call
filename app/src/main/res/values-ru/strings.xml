@@ -413,5 +413,22 @@
     <string name="subscription_plan_limited_time_offer">Предложение на ограниченное время!</string>
     <string name="subscription_start_your_7_days_free_trial_today">Начните 7-дневную бесплатную пробную версию уже сегодня!</string>
     <string name="subscription_7_days_free_then">7 дней бесплатно, затем:</string>
+    <string name="welcome_lets_start_btn">Начать</string>
+    <string name="welcome_sub_title_in_premium_stage">Кроме того, в премиум-версии доступны расширенные функции!</string>
+    <string name="welcome_fragment_title">Добро пожаловать</string>
+    <string name="welcome_fragment_title_explain">Приложение предлагает умные функции, которые упрощают управление звонками</string>
+    <string name="welcome_fragment_continue_button">Далее</string>
+    <string name="welcome_fragment_feature_no_swipe_needed">Ответ на звонок одним нажатием, без необходимости проводить по экрану</string>
+    <string name="welcome_fragment_feature_big_icons">Крупные и чёткие кнопки и значки</string>
+    <string name="welcome_fragment_feature_gold_number">Возможность выбрать Золотой номер — одного из ваших контактов для более быстрого доступа</string>
+    <string name="welcome_fragment_feature_quick_call">Опция Быстрый звонок для особых случаев — на заранее заданный номер</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">Возможность включить автоматический ответ после нескольких гудков — без ручного нажатия</string>
+    <string name="welcome_fragment_feature_premium_upgraded_quick_call">Улучшенный Быстрый звонок.</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">Возможность включить Экран блокировки — открывается одним нажатием и сразу переходит к экрану управления звонками, чтобы упростить также исходящие звонки</string>
+    <string name="welcome_fragment_feature_premium_start_with_speaker">Возможность автоматически начинать звонок с включённой громкой связью</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">Возможность озвучивать имя звонящего вместо мелодии во время входящих звонков</string>
+    <string name="welcome_fragment_feature_premium_open_whatsup">Возможность открыть WhatsApp прямо из приложения</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+
 
 </resources>

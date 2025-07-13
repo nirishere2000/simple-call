@@ -385,5 +385,22 @@
     <string name="subscription_plan_limited_time_offer">限时优惠！</string>
     <string name="subscription_start_your_7_days_free_trial_today">立即开始 7 天免费试用！</string>
     <string name="subscription_7_days_free_then">7天免费，然后：</string>
+    <string name="welcome_lets_start_btn">开始</string>
+    <string name="welcome_sub_title_in_premium_stage">此外，尊享版提供更多高级功能！</string>
+    <string name="welcome_fragment_title">欢迎</string>
+    <string name="welcome_fragment_title_explain">本应用提供智能功能，旨在简化通话管理</string>
+    <string name="welcome_fragment_continue_button">继续</string>
+    <string name="welcome_fragment_feature_no_swipe_needed">无需滑动，轻触即可接听来电</string>
+    <string name="welcome_fragment_feature_big_icons">按钮和图标大而清晰</string>
+    <string name="welcome_fragment_feature_gold_number">可选择黄金号码 — 从您的联系人中选择一个以便更快访问</string>
+    <string name="welcome_fragment_feature_quick_call">快速通话选项，适用于特殊情况 — 拨打预设号码</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">可设置多次响铃后自动接听 — 无需手动操作</string>
+    <string name="welcome_fragment_feature_premium_upgraded_quick_call">升级版快速通话。</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">可启用锁屏 — 轻触即可打开，直接进入通话管理界面，同时方便拨出电话</string>
+    <string name="welcome_fragment_feature_premium_start_with_speaker">可设置通话开始时自动打开扬声器</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">来电时可选择读出联系人姓名，替代铃声</string>
+    <string name="welcome_fragment_feature_premium_open_whatsup">可直接从应用内打开 WhatsApp</string>
+    <string name="privacy_policy">隐私政策</string>
+
 
 </resources>

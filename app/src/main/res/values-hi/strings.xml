@@ -387,5 +387,22 @@
     <string name="subscription_plan_limited_time_offer">सीमित समय की पेशकश!</string>
     <string name="subscription_start_your_7_days_free_trial_today">7 दिन की निःशुल्क ट्रायल आज ही शुरू करें!</string>
     <string name="subscription_7_days_free_then">7 दिन मुफ़्त, फिर:</string>
+    <string name="welcome_lets_start_btn">शुरू करें</string>
+    <string name="welcome_sub_title_in_premium_stage">इसके अलावा, प्रीमियम संस्करण में उन्नत सुविधाएँ उपलब्ध हैं!</string>
+    <string name="welcome_fragment_title">स्वागत है</string>
+    <string name="welcome_fragment_title_explain">ऐप स्मार्ट सुविधाएँ प्रदान करता है जो कॉल प्रबंधन को आसान बनाती हैं</string>
+    <string name="welcome_fragment_continue_button">आगे बढ़ें</string>
+    <string name="welcome_fragment_feature_no_swipe_needed">कॉल का उत्तर टैप करके दें, स्वाइप करने की आवश्यकता नहीं</string>
+    <string name="welcome_fragment_feature_big_icons">बड़े और स्पष्ट बटन और आइकन</string>
+    <string name="welcome_fragment_feature_gold_number">गोल्ड नंबर चुनने का विकल्प — आपकी संपर्क सूची में से त्वरित पहुंच के लिए एक संपर्क</string>
+    <string name="welcome_fragment_feature_quick_call">विशेष परिस्थितियों के लिए त्वरित कॉल का विकल्प — पहले से निर्धारित नंबर पर</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">कई घंटियों के बाद स्वचालित उत्तर देने का विकल्प — बिना हाथ लगाए</string>
+    <string name="welcome_fragment_feature_premium_upgraded_quick_call">उन्नत त्वरित कॉल।</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">लॉक स्क्रीन सक्रिय करने का विकल्प — टैप करते ही खुलती है और सीधे कॉल प्रबंधन स्क्रीन पर ले जाती है, जिससे कॉल करना भी आसान होता है</string>
+    <string name="welcome_fragment_feature_premium_start_with_speaker">कॉल शुरू करते ही स्वचालित रूप से स्पीकर चालू करने का विकल्प</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">आने वाली कॉल के दौरान रिंगटोन के स्थान पर कॉल करने वाले का नाम सुनाने का विकल्प</string>
+    <string name="welcome_fragment_feature_premium_open_whatsup">ऐप से सीधे WhatsApp खोलने का विकल्प</string>
+    <string name="privacy_policy">गोपनीयता नीति</string>
+
 
 </resources>

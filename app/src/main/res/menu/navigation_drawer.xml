@@ -17,6 +17,11 @@
             android:icon="@android:drawable/ic_menu_help"
             android:title="@string/tour_capital" />
         <item
+            android:id="@+id/nav_privacy"
+            android:icon="@android:drawable/ic_menu_help"
+            android:title="@string/privacy_policy" />
+
+        <item
             android:id="@+id/nav_premium_tour_item"
             android:icon="@android:drawable/ic_dialog_email"
             android:visible="false"

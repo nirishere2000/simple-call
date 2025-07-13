@@ -1757,8 +1757,6 @@ class SettingsFragment : Fragment() {
     private fun showTrialBanner() {
         val dialog = UpgradeDialogFragment(
             billingManager = billingManager,
-            isTrial = false,
-            daysLeft = 0,
             SettingsStatus.appFeatures
         )
         dialog.show(parentFragmentManager, "UpgradeDialog")

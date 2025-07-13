@@ -385,6 +385,22 @@
     <string name="subscription_plan_limited_time_offer">한정 기간 제공!</string>
     <string name="subscription_start_your_7_days_free_trial_today">7일 무료 체험을 지금 시작하세요!</string>
     <string name="subscription_7_days_free_then">7일 무료, 이후:</string>
+    <string name="welcome_lets_start_btn">시작하기</string>
+    <string name="welcome_sub_title_in_premium_stage">프리미엄 버전에서는 추가로 고급 기능을 사용할 수 있습니다!</string>
+    <string name="welcome_fragment_title">환영합니다</string>
+    <string name="welcome_fragment_title_explain">앱은 통화 관리를 쉽게 하기 위한 스마트 기능을 제공합니다</string>
+    <string name="welcome_fragment_continue_button">다음</string>
+    <string name="welcome_fragment_feature_no_swipe_needed">화면을 밀지 않고 탭 한 번으로 통화 응답</string>
+    <string name="welcome_fragment_feature_big_icons">크고 선명한 버튼과 아이콘</string>
+    <string name="welcome_fragment_feature_gold_number">골드 번호를 선택할 수 있는 기능 — 자주 사용하는 연락처에 빠르게 접근</string>
+    <string name="welcome_fragment_feature_quick_call">특별한 상황에서 사용할 빠른 전화 기능 — 미리 설정한 번호로 연결</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">몇 번의 벨소리 후 자동 응답 설정 — 손대지 않아도 됩니다</string>
+    <string name="welcome_fragment_feature_premium_upgraded_quick_call">업그레이드된 빠른 전화.</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">잠금 화면 기능 활성화 — 탭 한 번으로 열리고 통화 관리 화면으로 바로 이동, 발신도 쉽게</string>
+    <string name="welcome_fragment_feature_premium_start_with_speaker">통화 시작 시 자동으로 스피커폰 켜기 설정</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">수신 시 벨소리 대신 발신자 이름을 읽어주는 기능</string>
+    <string name="welcome_fragment_feature_premium_open_whatsup">앱에서 바로 WhatsApp 열기 기능</string>
+    <string name="privacy_policy">개인정보 처리방침</string>
 
 
 </resources>

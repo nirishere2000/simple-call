@@ -109,6 +109,7 @@ import com.nirotem.simplecall.ui.tour.TourDialogFragment
 import java.io.File
 import java.util.Locale
 import com.nirotem.simplecall.helpers.ReferralTracker
+import com.nirotem.simplecall.ui.welcome.WelcomeFragment
 import com.nirotem.subscription.BillingManager
 import com.nirotem.subscription.PurchaseStatus
 import com.nirotem.subscription.UpgradeDialogFragment
@@ -390,11 +391,9 @@ class MainActivity : AppCompatActivity() {
         return result
     }
 
-    private fun showTrialBanner(daysLeft: Int, isTrial: Boolean) {
+    private fun showTrialBanner() {
         val dialog = UpgradeDialogFragment(
             billingManager = billingManager,
-            isTrial = isTrial,
-            daysLeft = daysLeft,
             SettingsStatus.appFeatures,
             onDismissed = {
                 continueAfterTrialPurchaseDialog()
@@ -403,6 +402,15 @@ class MainActivity : AppCompatActivity() {
         dialog.show(supportFragmentManager, "UpgradeDialog")
     }
 
+
+    private fun showWelcomeDialog() {
+        val dialog = WelcomeFragment(
+            onDismissed = {
+                showTrialBanner()
+            }
+        )
+        dialog.show(supportFragmentManager, "WelcomeDialog")
+    }
 
     // React to menu items click
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -448,6 +456,12 @@ class MainActivity : AppCompatActivity() {
 
             R.id.nav_help -> {
                 showTourDialog()
+            }
+
+            R.id.nav_privacy -> {
+                val privacyPolicyUrl = "https://www.easycallandanswer.com/privacy.html"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(privacyPolicyUrl))
+                startActivity(intent)
             }
 
             R.id.nav_call_report -> {
@@ -875,14 +889,15 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_settings,
                     R.id.nav_permissions,
                     R.id.nav_help,
-                    R.id.nav_call_report
+                    R.id.nav_privacy
                 ),
                 binding.drawerLayout
             ) else AppBarConfiguration(
                 setOf(
                     R.id.nav_settings,
                     R.id.nav_permissions,
-                    R.id.nav_help
+                    R.id.nav_help,
+                    R.id.nav_privacy
                 ),
                 binding.drawerLayout
             )
@@ -891,7 +906,8 @@ class MainActivity : AppCompatActivity() {
                 setOf(
                     R.id.nav_settings,
                     R.id.nav_permissions,
-                    R.id.nav_help
+                    R.id.nav_help,
+                    R.id.nav_privacy
                 ),
                 binding.drawerLayout
             )
@@ -1069,11 +1085,12 @@ class MainActivity : AppCompatActivity() {
             when (status) {
                 is PurchaseStatus.NotPurchased -> { // show dialog and lock features
                     SettingsStatus.lockedBecauseTrialIsOver = true
-                    showTrialBanner(daysLeft = 0, isTrial = false)
+                    //showTrialBanner(daysLeft = 0, isTrial = false)
+                    showWelcomeDialog() // Which will open Trial Banner when closed
                 }
-                is PurchaseStatus.InTrial -> { // show dialog but don't lock features
+                is PurchaseStatus.InTrial -> { // don't show dialog and don't lock features
                     SettingsStatus.lockedBecauseTrialIsOver = false
-                    showTrialBanner(daysLeft = status.daysLeft, isTrial = true)
+                    continueAfterTrialPurchaseDialog()
                 }
                 is PurchaseStatus.Purchased -> { // don't show dialog and don't lock features
                     SettingsStatus.lockedBecauseTrialIsOver = false

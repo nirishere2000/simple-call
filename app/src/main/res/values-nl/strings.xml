@@ -417,5 +417,21 @@
     <string name="subscription_plan_limited_time_offer">Tijdelijk aanbod!</string>
     <string name="subscription_start_your_7_days_free_trial_today">Begin vandaag met je gratis proefperiode van 7 dagen!</string>
     <string name="subscription_7_days_free_then">7 dagen gratis, daarna:</string>
+    <string name="welcome_lets_start_btn">Laten we beginnen</string>
+    <string name="welcome_sub_title_in_premium_stage">Bovendien zijn er geavanceerde opties beschikbaar in de premiumversie!</string>
+    <string name="welcome_fragment_title">Welkom</string>
+    <string name="welcome_fragment_title_explain">De app biedt slimme functies die het beheer van oproepen eenvoudiger maken</string>
+    <string name="welcome_fragment_continue_button">Doorgaan</string>
+    <string name="welcome_fragment_feature_no_swipe_needed">Oproepen beantwoorden met één tik, zonder te hoeven vegen</string>
+    <string name="welcome_fragment_feature_big_icons">Grote en duidelijke knoppen en pictogrammen</string>
+    <string name="welcome_fragment_feature_gold_number">Mogelijkheid om een Gouden nummer te kiezen — een van uw contacten voor snellere toegang</string>
+    <string name="welcome_fragment_feature_quick_call">Optie voor een Snelle oproep in speciale situaties — naar een vooraf ingesteld nummer</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">Automatisch beantwoorden na enkele keren overgaan — zonder aanraking</string>
+    <string name="welcome_fragment_feature_premium_upgraded_quick_call">Verbeterde Snelle oproep.</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">Optie om het Vergrendelscherm in te schakelen — opent met één tik en gaat direct naar het scherm voor oproepbeheer, ook handig voor uitgaande oproepen</string>
+    <string name="welcome_fragment_feature_premium_start_with_speaker">Optie om oproepen automatisch te starten met de luidspreker aan</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">Optie om de naam van de beller uit te laten spreken in plaats van een beltoon bij inkomende oproepen</string>
+    <string name="welcome_fragment_feature_premium_open_whatsup">Optie om WhatsApp direct vanuit de app te openen</string>
+    <string name="privacy_policy">Privacybeleid</string>
 
 </resources>

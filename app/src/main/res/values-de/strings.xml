@@ -419,5 +419,20 @@
     <string name="subscription_plan_limited_time_offer">Angebot für kurze Zeit!</string>
     <string name="subscription_start_your_7_days_free_trial_today">Jetzt 7 Tage kostenlos testen!</string>
     <string name="subscription_7_days_free_then">7 Tage kostenlos, danach:</string>
-
+    <string name="welcome_lets_start_btn">Jetzt starten</string>
+    <string name="welcome_sub_title_in_premium_stage">Zusätzlich gibt es in der Premium-Version erweiterte Funktionen!</string>
+    <string name="welcome_fragment_title">Willkommen</string>
+    <string name="welcome_fragment_title_explain">Die App bietet intelligente Funktionen, die das Anrufmanagement einfacher machen</string>
+    <string name="welcome_fragment_continue_button">Weiter</string>
+    <string name="welcome_fragment_feature_no_swipe_needed">Anrufe mit einem Tippen annehmen, ohne Wischen</string>
+    <string name="welcome_fragment_feature_big_icons">Große und klare Schaltflächen und Symbole</string>
+    <string name="welcome_fragment_feature_gold_number">Möglichkeit, eine Goldnummer auszuwählen — einer Ihrer Kontakte für schnelleren Zugriff</string>
+    <string name="welcome_fragment_feature_quick_call">Möglichkeit für einen Schnellanruf in besonderen Situationen — zu einer vordefinierten Nummer</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">Automatische Anrufannahme nach mehreren Klingeltönen aktivieren — ohne manuelles Berühren</string>
+    <string name="welcome_fragment_feature_premium_upgraded_quick_call">Verbesserter Schnellanruf.</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">Möglichkeit, den Sperrbildschirm zu aktivieren — öffnet sich per Tippen und führt direkt zur Anrufverwaltung, auch um das Wählen zu erleichtern</string>
+    <string name="welcome_fragment_feature_premium_start_with_speaker">Möglichkeit, Anrufe automatisch mit Lautsprecher zu starten</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">Möglichkeit, den Namen des Anrufers ansagen zu lassen anstelle eines Klingeltons bei eingehenden Anrufen</string>
+    <string name="welcome_fragment_feature_premium_open_whatsup">Möglichkeit, WhatsApp direkt aus der App zu öffnen</string>
+    <string name="privacy_policy">Datenschutzrichtlinie</string>
 </resources>

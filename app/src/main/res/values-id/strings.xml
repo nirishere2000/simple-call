@@ -386,5 +386,22 @@
     <string name="subscription_plan_limited_time_offer">Penawaran Terbatas!</string>
     <string name="subscription_start_your_7_days_free_trial_today">Mulai uji coba gratis 7 hari Anda hari ini!</string>
     <string name="subscription_7_days_free_then">7 hari gratis, lalu:</string>
+    <string name="welcome_lets_start_btn">Mari Mulai</string>
+    <string name="welcome_sub_title_in_premium_stage">Selain itu, fitur lanjutan tersedia di versi premium!</string>
+    <string name="welcome_fragment_title">Selamat Datang</string>
+    <string name="welcome_fragment_title_explain">Aplikasi ini menawarkan fitur pintar yang dirancang untuk memudahkan pengelolaan panggilan</string>
+    <string name="welcome_fragment_continue_button">Lanjut</string>
+    <string name="welcome_fragment_feature_no_swipe_needed">Jawab panggilan dengan sekali ketuk, tanpa perlu menggeser</string>
+    <string name="welcome_fragment_feature_big_icons">Tombol dan ikon yang besar dan jelas</string>
+    <string name="welcome_fragment_feature_gold_number">Opsi untuk memilih Nomor Emas — salah satu kontak Anda untuk akses lebih cepat</string>
+    <string name="welcome_fragment_feature_quick_call">Opsi Panggilan Cepat untuk situasi khusus — ke nomor yang telah ditentukan sebelumnya</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">Opsi untuk mengaktifkan penjawaban otomatis setelah beberapa dering — tanpa sentuhan manual</string>
+    <string name="welcome_fragment_feature_premium_upgraded_quick_call">Panggilan Cepat yang ditingkatkan.</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">Opsi untuk mengaktifkan Layar Kunci — terbuka dengan ketukan dan langsung menuju layar pengelolaan panggilan untuk mempermudah juga dalam melakukan panggilan</string>
+    <string name="welcome_fragment_feature_premium_start_with_speaker">Opsi untuk memulai panggilan secara otomatis dengan speaker aktif</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">Opsi untuk mengumumkan nama penelepon sebagai pengganti nada dering saat panggilan masuk</string>
+    <string name="welcome_fragment_feature_premium_open_whatsup">Opsi untuk membuka WhatsApp langsung dari aplikasi</string>
+    <string name="privacy_policy">Kebijakan Privasi</string>
+
 
 </resources>

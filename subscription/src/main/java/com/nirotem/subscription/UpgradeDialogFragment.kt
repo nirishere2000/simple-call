@@ -16,8 +16,8 @@ import androidx.fragment.app.DialogFragment
 
 class UpgradeDialogFragment(
     private val billingManager: BillingManager,
-    private val isTrial: Boolean,
-    private val daysLeft: Int,
+/*    private val isTrial: Boolean,
+    private val daysLeft: Int,*/
     private val appSpecificFeatures: List<UpgradeDialogFragment.FeatureRow>,
     private val onDismissed: () -> Unit = {},
 ) : DialogFragment() {
