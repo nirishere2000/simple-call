@@ -109,10 +109,10 @@ import com.nirotem.simplecall.ui.tour.TourDialogFragment
 import java.io.File
 import java.util.Locale
 import com.nirotem.simplecall.helpers.ReferralTracker
+import com.nirotem.simplecall.managers.SubscriptionManager.showTrialBanner
 import com.nirotem.simplecall.ui.welcome.WelcomeFragment
 import com.nirotem.subscription.BillingManager
 import com.nirotem.subscription.PurchaseStatus
-import com.nirotem.subscription.UpgradeDialogFragment
 import com.nirotem.subscription.UpgradeDialogFragment.FeatureRow
 
 
@@ -128,6 +128,7 @@ class MainActivity : AppCompatActivity() {
     private var canStartCheckingForPhonePermission = false
     private val voiceApi: VoiceApi = VoiceApiImpl()
     private lateinit var billingManager: BillingManager
+    private var alreadyShowedSubscriptionDialog = false
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -391,22 +392,24 @@ class MainActivity : AppCompatActivity() {
         return result
     }
 
-    private fun showTrialBanner() {
-        val dialog = UpgradeDialogFragment(
-            billingManager = billingManager,
-            SettingsStatus.appFeatures,
-            onDismissed = {
-                continueAfterTrialPurchaseDialog()
-            }
-        )
-        dialog.show(supportFragmentManager, "UpgradeDialog")
-    }
-
-
     private fun showWelcomeDialog() {
         val dialog = WelcomeFragment(
             onDismissed = {
-                showTrialBanner()
+/*                if (SettingsStatus.testingVersion && SettingsStatus.debugPasswordConfirmed) { // Debug
+                    // זה Release - להציג טופס סיסמה
+                    continueAfterTrialPurchaseDialog() // for debug only
+                } else {
+                    showTrialBanner(this, supportFragmentManager) {
+                        continueAfterTrialPurchaseDialog()
+                    }
+                }*/
+
+                if (!alreadyShowedSubscriptionDialog) {
+                    alreadyShowedSubscriptionDialog = true
+                    showTrialBanner(this, supportFragmentManager) {
+                        continueAfterTrialPurchaseDialog()
+                    }
+                }
             }
         )
         dialog.show(supportFragmentManager, "WelcomeDialog")
@@ -455,6 +458,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.nav_help -> {
+                SettingsStatus.continueAfterTourFunc = null
                 showTourDialog()
             }
 
@@ -1068,30 +1072,62 @@ class MainActivity : AppCompatActivity() {
                 requestIgnoreBatteryOptimizations()*/
 
         SettingsStatus.appFeatures = listOf(
-            FeatureRow(getString(R.string.subscription_plan_feature_name_call_management), true, true),
-            FeatureRow(getString(R.string.subscription_plan_feature_name_click_to_answer), true, true),
-            FeatureRow(getString(R.string.subscription_plan_feature_name_big_buttons_icons), true, true),
+            FeatureRow(
+                getString(R.string.subscription_plan_feature_name_call_management),
+                true,
+                true
+            ),
+            FeatureRow(
+                getString(R.string.subscription_plan_feature_name_click_to_answer),
+                true,
+                true
+            ),
+            FeatureRow(
+                getString(R.string.subscription_plan_feature_name_big_buttons_icons),
+                true,
+                true
+            ),
             FeatureRow(getString(R.string.subscription_plan_feature_name_auto_answer), false, true),
             FeatureRow(getString(R.string.subscription_plan_feature_name_gold_number), true, true),
             FeatureRow(getString(R.string.subscription_plan_feature_name_quick_call), true, true),
             FeatureRow(getString(R.string.subscription_plan_feature_name_lock_screen), false, true),
-            FeatureRow(getString(R.string.subscription_plan_feature_name_upgraded_quick_call), false, true),
-            FeatureRow(getString(R.string.subscription_plan_feature_name_start_with_speaker), false, true),
-            FeatureRow(getString(R.string.subscription_plan_feature_name_talk_instead_of_ringtone), false, true),
-            FeatureRow(getString(R.string.subscription_plan_feature_name_open_whatsapp), false, true)
+            FeatureRow(
+                getString(R.string.subscription_plan_feature_name_upgraded_quick_call),
+                false,
+                true
+            ),
+            FeatureRow(
+                getString(R.string.subscription_plan_feature_name_start_with_speaker),
+                false,
+                true
+            ),
+            FeatureRow(
+                getString(R.string.subscription_plan_feature_name_talk_instead_of_ringtone),
+                false,
+                true
+            ),
+            FeatureRow(
+                getString(R.string.subscription_plan_feature_name_open_whatsapp),
+                false,
+                true
+            )
         )
 
         billingManager = BillingManager(this) { status ->
             when (status) {
                 is PurchaseStatus.NotPurchased -> { // show dialog and lock features
-                    SettingsStatus.lockedBecauseTrialIsOver = true
-                    //showTrialBanner(daysLeft = 0, isTrial = false)
+                    SettingsStatus.lockedBecauseTrialIsOver = true // (debug only) must be true
                     showWelcomeDialog() // Which will open Trial Banner when closed
+                    //showTrialBanner(daysLeft = 0, isTrial = false)
+                    //showWelcomeDialog() // Which will open Trial Banner when closed
+                    // continueAfterTrialPurchaseDialog() // for debug only
                 }
+
                 is PurchaseStatus.InTrial -> { // don't show dialog and don't lock features
                     SettingsStatus.lockedBecauseTrialIsOver = false
                     continueAfterTrialPurchaseDialog()
                 }
+
                 is PurchaseStatus.Purchased -> { // don't show dialog and don't lock features
                     SettingsStatus.lockedBecauseTrialIsOver = false
                     continueAfterTrialPurchaseDialog()
@@ -1453,8 +1489,7 @@ class MainActivity : AppCompatActivity() {
                 R.plurals.app_missing_permissions_text_dynamic_plural,
                 this
             )
-        }
-        else {
+        } else {
             SettingsStatus.noMsgShown = true
         }
     }

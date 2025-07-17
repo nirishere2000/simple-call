@@ -1,6 +1,5 @@
 package com.nirotem.simplecall.helpers
 
-import android.Manifest.permission.READ_PHONE_STATE
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,17 +11,15 @@ import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.nirotem.lockscreen.managers.SharedPreferencesCache.CustomAppInfo
 
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.helpers.DBHelper.fetchContacts
 import com.nirotem.simplecall.helpers.DBHelper.fetchContactsOptimized
 
 import com.nirotem.simplecall.managers.MessageBoxManager.showLongSnackBar
+import com.nirotem.simplecall.statuses.CustomAppInfo
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 object SpinnersHelper {

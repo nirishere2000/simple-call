@@ -1,5 +1,6 @@
 package com.nirotem.simplecall.statuses
 
+import android.graphics.drawable.Drawable
 import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import com.nirotem.simplecall.R
@@ -10,7 +11,11 @@ import interfaces.DescriptiveEnum
 
 //import io.reactivex.subjects.BehaviorSubject
 //import timber.log.Timber
-
+data class CustomAppInfo(
+    val appName: String,
+    val packageName: String,
+    val icon: Drawable
+)
 
 enum class AllowAnswerCallsEnum(@StringRes override val descriptionRes: Int): DescriptiveEnum {
     NO_ONE(R.string.from_no_one_capital_f),
@@ -90,7 +95,8 @@ object SettingsStatus {
     var noMsgShown = false // show Contact tooltip only if not other msg is shown
     lateinit var appFeatures: List<UpgradeDialogFragment.FeatureRow> // to send to the subscription library
     var continueAfterTourFunc: (() -> Unit)? = null
-
+    var debugPasswordConfirmed = false
+    //var testingVersion = true // MUST BE FALSE FOR PRODUCTION !!!!!!!
 }
 
 

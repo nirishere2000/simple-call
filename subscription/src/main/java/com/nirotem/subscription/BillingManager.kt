@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import com.android.billingclient.api.*
 import java.util.concurrent.TimeUnit
-import kotlin.collections.get
 
 sealed class PurchaseStatus {
     object NotPurchased : PurchaseStatus()
@@ -14,16 +13,19 @@ sealed class PurchaseStatus {
 
 class BillingManager(
     private val specificAppContext: Context,
-    private val onStatusReady: (PurchaseStatus) -> Unit
+    private val onPurchaseUpdated: (PurchaseStatus) -> Unit
 ) {
 
     private val trialDays = 7L // כמה ימים יש לניסיון חינם
 
     // מאזין לרכישות חדשות
+    // בפועל זה מאזין קבוע:
     private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
-        // לא חובה לממש כאן אם אתה רק בודק סטטוס, אבל אפשר להוסיף לוגיקה
         if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
             handlePurchaseList(purchases)
+            onPurchaseUpdated(PurchaseStatus.Purchased)
+        } else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
+            onPurchaseUpdated(PurchaseStatus.NotPurchased)
         }
     }
 
@@ -39,7 +41,7 @@ class BillingManager(
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     queryPurchases()
                 } else {
-                    onStatusReady(PurchaseStatus.NotPurchased)
+                    onPurchaseUpdated(PurchaseStatus.NotPurchased)
                 }
             }
 
@@ -56,7 +58,7 @@ class BillingManager(
 
         billingClient.queryPurchasesAsync(params) { result, purchases ->
             if (result.responseCode != BillingClient.BillingResponseCode.OK || purchases == null) {
-                onStatusReady(PurchaseStatus.NotPurchased)
+                onPurchaseUpdated(PurchaseStatus.NotPurchased)
                 return@queryPurchasesAsync
             }
 
@@ -70,12 +72,12 @@ class BillingManager(
         if (purchase != null) {
             val daysLeft = calculateTrialDaysLeft(purchase)
             if (daysLeft > 0) {
-                onStatusReady(PurchaseStatus.InTrial(daysLeft))
+                onPurchaseUpdated(PurchaseStatus.InTrial(daysLeft))
             } else {
-                onStatusReady(PurchaseStatus.Purchased)
+                onPurchaseUpdated(PurchaseStatus.Purchased)
             }
         } else {
-            onStatusReady(PurchaseStatus.NotPurchased)
+            onPurchaseUpdated(PurchaseStatus.NotPurchased)
         }
     }
 

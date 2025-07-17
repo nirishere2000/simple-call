@@ -321,6 +321,18 @@
                         android:textColor="#474747"
                         android:textSize="18sp" />
 
+                    <TextView
+                        android:id="@+id/txtPromoCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subscription_promo_or_access_code"
+                        android:textStyle="bold"
+                        android:textColor="#007AFF"
+                        android:textSize="14sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginTop="6dp" />
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

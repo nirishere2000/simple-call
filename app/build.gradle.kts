@@ -15,8 +15,8 @@ android {
         applicationId = "com.nirotem.easycallandanswer"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -59,8 +59,11 @@ android {
 
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false      // שומר את ה־debug נקי
+        }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = false // SHOULD BE TRUE FOR PRODUCTION BUILD       // מפעיל R8 ב־release
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -77,6 +80,29 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+    }
+
+    signingConfigs {
+        getByName("debug") {
+            // משתמשים ב־debug keystore האוטומטי ב־$HOME/.android/debug.keystore
+            storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+
+        create("premium") {
+            storeFile = file(project.property("MY_PREMIUM_STORE_FILE") as String)
+            storePassword = project.property("MY_PREMIUM_STORE_PASSWORD") as String
+            keyAlias = project.property("MY_PREMIUM_KEY_ALIAS") as String
+            keyPassword = project.property("MY_PREMIUM_KEY_PASSWORD") as String
+        }
+    }
+
+    buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("debug")
+        }
     }
 }
 
@@ -106,8 +132,13 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
-    implementation(libs.googlePlayCore)
+//    implementation(libs.googlePlayCore)
     implementation(libs.firebase.firestore)
+    implementation(libs.play.update)
+    implementation(libs.play.update.ktx)
+    implementation(libs.play.review)
+    implementation(libs.play.review.ktx)
+
 /*   if   (gradle.startParameter.taskNames.any { it.contains("Premium") || it.contains("premium") }) {
         implementation("com.github.bumptech.glide:glide:4.15.1")
         implementation("jp.wasabeef:glide-transformations:4.3.0")

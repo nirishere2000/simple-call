@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/dialog_background"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/promo_dialog_title"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"/>
+
+    <EditText
+        android:id="@+id/promoCodeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:textColor="#000000"
+        android:backgroundTint="#E2E2E6"
+        android:maxLength="25"
+        android:inputType="text"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:background="#E3E5EF"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/promoCodeResultsMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+       />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="36dp">
+
+        <Button
+            android:id="@+id/promoCancelButton"
+            android:backgroundTint="#2975C1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:text="@string/promo_dialog_cancel" />
+
+        <Space
+            android:layout_width="36dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/promoConfirmButton"
+            android:layout_width="0dp"
+            android:backgroundTint="#2975C1"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:text="@string/promo_dialog_confirm" />
+
+    </LinearLayout>
+
+</LinearLayout>

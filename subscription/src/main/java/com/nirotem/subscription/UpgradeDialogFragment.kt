@@ -2,6 +2,7 @@ package com.nirotem.subscription
 
 import android.animation.AnimatorInflater
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.res.Resources
 import android.graphics.Color
@@ -9,17 +10,19 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import java.util.Date
 
 class UpgradeDialogFragment(
-    private val billingManager: BillingManager,
-/*    private val isTrial: Boolean,
-    private val daysLeft: Int,*/
-    private val appSpecificFeatures: List<UpgradeDialogFragment.FeatureRow>,
-    private val onDismissed: () -> Unit = {},
+    private val appSpecificFeatures: List<FeatureRow>,
+    private val onResult: (SubscriptionResult) -> Unit
 ) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -46,12 +49,6 @@ class UpgradeDialogFragment(
         )
         // Make the dialog non-cancelable (optional)
         dialog?.setCancelable(false)
-       // dialog?.window?.setBackgroundDrawableResource(R.drawable.dialog_dark_rounded_background)
-        //dialog?.window?.setDimAmount(0.6f)
-    }
-
-    fun createDialog() {
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,6 +59,7 @@ class UpgradeDialogFragment(
         val basicPriceYearly = view.findViewById<TextView>(R.id.basicPriceYearly)
         val premiumPriceMonthly = view.findViewById<TextView>(R.id.premiumPriceMonthly)
         val premiumPriceYearly = view.findViewById<TextView>(R.id.premiumPriceYearly)
+        val promoButton = view.findViewById<TextView>(R.id.txtPromoCode)
 /*        val premiumOriginalPrice = view.findViewById<TextView>(R.id.premiumOriginalPrice)
         premiumOriginalPrice.apply {
             paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
@@ -70,6 +68,23 @@ class UpgradeDialogFragment(
         basicOriginalPrice.apply {
             paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         }*/
+
+        val billingManager = BillingManager(requireContext()) { purchaseStatus ->
+            when (purchaseStatus) {
+                is PurchaseStatus.Purchased -> {
+                    onResult(SubscriptionResult.SubscribedPremium) // או Basic לפי המוצר שברכישה
+                    dismissAllowingStateLoss()
+                }
+                is PurchaseStatus.NotPurchased -> {
+                    onResult(SubscriptionResult.Canceled)
+                    dismissAllowingStateLoss()
+                }
+                is PurchaseStatus.InTrial -> {
+                    onResult(SubscriptionResult.SubscribedBasic)
+                    dismissAllowingStateLoss()
+                }
+            }
+        }
 
 
         val basicFeaturesContainer = view.findViewById<LinearLayout>(R.id.basicFeaturesContainer)
@@ -126,6 +141,10 @@ class UpgradeDialogFragment(
             billingManager.launchPurchaseFlow(requireActivity(), "premium_subscription_id")
         }
 
+        promoButton.setOnClickListener {
+            showPromoCodeDialog(requireContext())
+        }
+
         // BASIC features (מה שיש גם ב-standard וגם ב-premium)
         appSpecificFeatures.filter { it.isStandard && it.isPremium }.forEach { feature ->
             basicFeaturesContainer?.addView(createFeatureTextView(feature.title))
@@ -174,7 +193,7 @@ class UpgradeDialogFragment(
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        onDismissed()
+        //onResult(SubscriptionResult.Canceled)
     }
 
     data class FeatureRow(val title: String, val isStandard: Boolean, val isPremium: Boolean)
@@ -218,4 +237,130 @@ class UpgradeDialogFragment(
         }*/
 
     private fun Int.dpToPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+    fun fetchAndValidateToken(code: String, onResult: (AccessToken?, String?) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("access_tokens")
+            .whereEqualTo("token", code)
+            .get()
+            .addOnSuccessListener { result ->
+                if (result.isEmpty) {
+                    onResult(null, getString(R.string.promo_dialog_token_does_not_exist))
+                    return@addOnSuccessListener
+                }
+
+                val doc = result.documents.first()
+
+                val active = doc.getBoolean("is_active") ?: false
+                val maxUses = doc.getLong("max_uses_per_token") ?: 0
+                val tokensAlreadyUsed = doc.getLong("num_of_tokens_already_used") ?: 0
+                val expiresAt = doc.getDate("expires_at")
+                val now = Date()
+
+                if (!active) {
+                    onResult(null, getString(R.string.promo_dialog_token_not_active))
+                    return@addOnSuccessListener
+                }
+
+                if (tokensAlreadyUsed >= maxUses) {
+                    onResult(null, getString(R.string.promo_dialog_code_already_used_too_many_times))
+                    return@addOnSuccessListener
+                }
+
+                if (expiresAt != null && now.after(expiresAt)) {
+                    onResult(null, getString(R.string.promo_dialog_expired))
+                    return@addOnSuccessListener
+                }
+
+                val usedByRaw: List<*> = doc.get("used_by") as? List<*> ?: emptyList<Any?>()
+                val usedBy = usedByRaw.filterIsInstance<String>()
+
+                val accessToken = AccessToken(
+                    token = doc.getString("token") ?: "",
+                    maxUses = maxUses,
+                    tokensAlreadyUsed = tokensAlreadyUsed,
+                    createdAt = doc.getDate("created_at") ?: now,
+                    expiresAt = expiresAt ?: now,
+                    active = active,
+                    usedBy = usedBy,
+                    accessType = doc.getString("access_type") ?: "basic"
+                )
+
+                // עדכון המספר בפיירסטור
+                db.collection("access_tokens").document(doc.id)
+                    .update("num_of_tokens_already_used", FieldValue.increment(1))
+                    .addOnSuccessListener {
+                        Log.d("SimplyCall - fetchAndValidateToken", "tokens_already_used updated")
+                    }
+                    .addOnFailureListener {
+                        Log.d("SimplyCall - fetchAndValidateToken", "tokens_already_used update FAILED!")
+                    }
+
+                onResult(accessToken, null)
+            }
+            .addOnFailureListener { e ->
+                onResult(null, e.localizedMessage)
+            }
+    }
+
+   /* fun checkTokenAndProceed(context: Context, code: String) {
+        fetchAndValidateToken(code) { token, error ->
+            if (token != null) {
+                when (token.accessType) {
+                    "premium" -> {
+                        SettingsStaus.isPremium = true
+                    }
+                    "basic" -> {
+                        openBasicFeatures(context)
+                    }
+                    else -> {
+                        Toast.makeText(context, "סוג גישה לא מוכר", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(context, error ?: "קוד לא תקף או פג תוקף", Toast.LENGTH_LONG).show()
+            }
+        }
+    }*/
+
+    fun showPromoCodeDialog(context: Context) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_promo_code, null)
+
+        val editText = dialogView.findViewById<EditText>(R.id.promoCodeEditText)
+        val promoConfirmButton = dialogView.findViewById<Button>(R.id.promoConfirmButton)
+        val promoCancelButton = dialogView.findViewById<Button>(R.id.promoCancelButton)
+        val promoCodeResultsMsg = dialogView.findViewById<TextView>(R.id.promoCodeResultsMsg)
+
+        val dialog = MaterialAlertDialogBuilder(context)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        promoConfirmButton.setOnClickListener {
+            promoCodeResultsMsg.text = getString(R.string.dialog_promo_processing)
+            fetchAndValidateToken(editText.text.toString()) { token, error ->
+                if (token != null) {
+                    promoCodeResultsMsg.text = ""
+                    if (token.accessType == "basic") {
+                        onResult(SubscriptionResult.PromoBasic)
+                    }
+                    else if (token.accessType == "premium") {
+                        onResult(SubscriptionResult.PromoPremium)
+                    }
+
+                    // המשך טיפול בטוקן
+                    dialog.dismiss() // סוגר אחרי הצלחה אם רוצים
+                } else {
+                    promoCodeResultsMsg.text = error ?: getString(R.string.promo_dialog_code_not_valid)
+                    //Toast.makeText(context, error ?: "קוד לא תקף", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        promoCancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
 }

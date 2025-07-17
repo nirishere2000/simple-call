@@ -11,6 +11,32 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAlreadyPurchase
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAlreadyRegisteredInStore
 import java.util.UUID
 
+/*מנגנון מעקב הפניות (Referral Tracker), כלומר:
+
+מזהה אם מישהו התקין את האפליקציה דרך לינק עם פרמטרים.
+
+שומר את זה ב־Firestore.
+
+מסמן אם אותו יוזר ביצע רכישה, גם כן מעדכן ב־Firestore.
+
+איך זה עובד בפועל:
+פונקציה עיקרית:
+handleDeepLinkAndTrack(context, intent)
+
+בודקת אם המשתמש כבר רשום (alreadyRegisteredInStore).
+
+אם לא:
+
+קוראת את הפרמטרים מה-URL (referrer, app_id).
+
+בודקת ב־Firestore אם referrer_id קיים.
+
+בודקת אם app_id קיים.
+
+אם שניהם קיימים, מוסיפה רשומה חדשה ל־install_referrals עם מזהה ייחודי (install_id).
+
+אם לא, שומרת את ההפניה כלא תקינה ב־invalid_referrals.*/
+
 object ReferralTracker {
     private const val PREFS_NAME = "referral"
     private const val KEY_INSTALL_ID = "install_id"

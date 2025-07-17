@@ -21,8 +21,10 @@ composeBom = "2024.04.01"
 firebase-bom = "32.7.3"
 firebase-crashlytics-gradle = "3.0.2"
 google-services = "4.4.2"
-playcore = "1.10.3"
+#playcore = "1.10.3"
 billing = "6.0.1"
+play-update = "2.1.0"
+play-review = "2.0.1"
 
 
 [libraries]
@@ -57,9 +59,13 @@ glide-transformations = { module = "jp.wasabeef:glide-transformations", version 
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
-googlePlayCore = { module = "com.google.android.play:core", version.ref = "playcore" }
+#googlePlayCore = { module = "com.google.android.play:core", version.ref = "playcore" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
 google-billing = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billing" }
+play-update         = { module = "com.google.android.play:app-update",       version.ref = "play-update" }
+play-update-ktx     = { module = "com.google.android.play:app-update-ktx",   version.ref = "play-update" }
+play-review         = { module = "com.google.android.play:review",           version.ref = "play-review" }
+play-review-ktx     = { module = "com.google.android.play:review-ktx",       version.ref = "play-review" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
