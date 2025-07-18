@@ -24,5 +24,6 @@ data class AccessToken(
     val expiresAt: Date,
     val active: Boolean,
     val usedBy: List<String>,
-    val accessType: String
+    val accessType: String,
+    val appId: String
 )

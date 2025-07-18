@@ -18,9 +18,12 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.nirotem.subscription.SharedPreferencesCache.saveAccessTokenId
 import java.util.Date
 
 class UpgradeDialogFragment(
+    private val appIdBasic: String,
+    private val appIdPremium: String,
     private val appSpecificFeatures: List<FeatureRow>,
     private val onResult: (SubscriptionResult) -> Unit
 ) : DialogFragment() {
@@ -238,7 +241,7 @@ class UpgradeDialogFragment(
 
     private fun Int.dpToPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
 
-    fun fetchAndValidateToken(code: String, onResult: (AccessToken?, String?) -> Unit) {
+   /* fun fetchAndValidateToken(code: String, onResult: (AccessToken?, String?) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         db.collection("access_tokens")
             .whereEqualTo("token", code)
@@ -301,7 +304,7 @@ class UpgradeDialogFragment(
             .addOnFailureListener { e ->
                 onResult(null, e.localizedMessage)
             }
-    }
+    }*/
 
    /* fun checkTokenAndProceed(context: Context, code: String) {
         fetchAndValidateToken(code) { token, error ->
@@ -338,9 +341,10 @@ class UpgradeDialogFragment(
 
         promoConfirmButton.setOnClickListener {
             promoCodeResultsMsg.text = getString(R.string.dialog_promo_processing)
-            fetchAndValidateToken(editText.text.toString()) { token, error ->
-                if (token != null) {
+            FetchToken.fetchAndValidateToken(appIdBasic, appIdPremium, requireContext(), editText.text.toString(), false) { token, error ->
+                if (token != null) { // Success
                     promoCodeResultsMsg.text = ""
+                    saveAccessTokenId(token.token, context) // When user loads app - it will not ask for subscription again
                     if (token.accessType == "basic") {
                         onResult(SubscriptionResult.PromoBasic)
                     }

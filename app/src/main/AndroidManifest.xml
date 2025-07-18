@@ -23,9 +23,10 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL" />
 
+    <!-- allowBackup="false" -> So user cant copy subscription or token access -->
     <application
         android:name="com.nirotem.simplecall.ui.ApplicationManager"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -97,9 +98,20 @@
             android:screenOrientation="portrait"
             android:taskAffinity=""
             android:exported="true">
-            <intent-filter>
+<!--            <intent-filter>
                 <action android:name="android.intent.action.DIAL" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="tel" />
+            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
+                <action android:name="android.intent.action.CALL" />
+                <action android:name="android.intent.action.CALL_PRIVILEGED" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tel" />
             </intent-filter>
         </activity>
@@ -142,7 +154,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <intent-filter android:autoVerify="true">
+<!--            <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -150,7 +162,7 @@
                     android:scheme="https"
                     android:host="easycallandanswer.web.app"
                     android:pathPrefix="/" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 <!--        <activity android:name="com.nirotem.simplecall.activities.EventScreenActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog">

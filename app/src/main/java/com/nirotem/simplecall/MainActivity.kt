@@ -30,6 +30,7 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -48,6 +49,8 @@ import com.google.gson.Gson
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEasyAppEnum
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveEasyCallAndAnswerPackageName
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveWhenScreenUnlockedBehaviourEnum
+import com.nirotem.sharedmodules.statuses.AppData.APP_ID_EASY_CALL_AND_ANSWER_BASIC
+import com.nirotem.sharedmodules.statuses.AppData.APP_ID_EASY_CALL_AND_ANSWER_PREMIUM
 import com.nirotem.simplecall.databinding.ActivityMainBinding
 import com.nirotem.simplecall.helpers.DBHelper.saveContactsForCallWithoutPermissions
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.getAppVersionFromCache
@@ -112,7 +115,9 @@ import com.nirotem.simplecall.helpers.ReferralTracker
 import com.nirotem.simplecall.managers.SubscriptionManager.showTrialBanner
 import com.nirotem.simplecall.ui.welcome.WelcomeFragment
 import com.nirotem.subscription.BillingManager
+import com.nirotem.subscription.FetchToken
 import com.nirotem.subscription.PurchaseStatus
+import com.nirotem.subscription.SharedPreferencesCache.loadAccessTokenId
 import com.nirotem.subscription.UpgradeDialogFragment.FeatureRow
 
 
@@ -1007,21 +1012,6 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val appLogo = findViewById<ImageView>(R.id.toolbar_logo)
 
-        if (isPremium) {
-            // Must be first
-            SettingsStatus.appLogoResourceSmall = R.drawable.gold_phone_icon_transparent_192x192
-
-            // Must be after
-            val navAppLogo = findViewById<ImageView>(R.id.navAppLogo)
-            val messageBoxAppLogo = findViewById<ImageView>(R.id.msgBoxAppLogo)
-            val toolBarLogo600 = findViewById<ImageView>(R.id.toolbar_logo_600dp)
-
-            toolBarLogo600?.setImageResource(SettingsStatus.appLogoResourceSmall)
-            messageBoxAppLogo?.setImageResource(SettingsStatus.appLogoResourceSmall) // otherwise it has the default already from design-time
-            appLogo?.setImageResource(SettingsStatus.appLogoResourceSmall) // otherwise it has the default already from design-time
-            navAppLogo?.setImageResource(SettingsStatus.appLogoResourceSmall)
-        }
-
         appLogo?.setOnClickListener {
             openOptionsMenu()
         }
@@ -1113,6 +1103,50 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+        SettingsStatus.continueAfterTourFunc = null
+
+        var userHasValidToken = false
+        val existingToken = loadAccessTokenId(this)
+        if (existingToken != null) { // user already entered token
+            // Check if token is active and not expired
+            val appIdBasic = APP_ID_EASY_CALL_AND_ANSWER_BASIC
+            val appIdPremium = APP_ID_EASY_CALL_AND_ANSWER_PREMIUM
+            FetchToken.fetchAndValidateToken(appIdBasic, appIdPremium, this, existingToken, true) { token, error ->
+                if (token != null) { // Success
+                    if (token.accessType == "basic") {
+                        isPremium = false
+                    }
+                    else if (token.accessType == "premium") {
+                        isPremium = true
+                    }
+                    userHasValidToken = true
+                } else {
+                    Toast.makeText(this, error ?: getString(com.nirotem.subscription.R.string.promo_dialog_code_not_valid), Toast.LENGTH_LONG).show()
+                }
+
+                if (userHasValidToken) {
+                    // don't show dialog and don't lock features
+                    SettingsStatus.lockedBecauseTrialIsOver = false
+                    continueAfterTrialPurchaseDialog()
+                }
+                else {
+                    loadSubscriptionOrAskToBuy()
+                }
+            }
+        }
+        else {
+            loadSubscriptionOrAskToBuy()
+        }
+
+        //val REQUEST_RECORD_AUDIO_PERMISSION = 1
+        //ActivityCompat.requestPermissions(this, arrayOf(RECORD_AUDIO), REQUEST_RECORD_AUDIO_PERMISSION)
+        //if (!isTourShown()) {
+        // showTourDialog()
+        // setTourShown()
+        //  }
+    }
+
+    private fun loadSubscriptionOrAskToBuy() {
         billingManager = BillingManager(this) { status ->
             when (status) {
                 is PurchaseStatus.NotPurchased -> { // show dialog and lock features
@@ -1128,25 +1162,35 @@ class MainActivity : AppCompatActivity() {
                     continueAfterTrialPurchaseDialog()
                 }
 
-                is PurchaseStatus.Purchased -> { // don't show dialog and don't lock features
+                is PurchaseStatus.Purchased -> {
                     SettingsStatus.lockedBecauseTrialIsOver = false
                     continueAfterTrialPurchaseDialog()
                 }
             }
         }
         billingManager.startConnection() // רק זה חוזר כשחוזרים למסך
-
-        SettingsStatus.continueAfterTourFunc = null
-
-        //val REQUEST_RECORD_AUDIO_PERMISSION = 1
-        //ActivityCompat.requestPermissions(this, arrayOf(RECORD_AUDIO), REQUEST_RECORD_AUDIO_PERMISSION)
-        //if (!isTourShown()) {
-        // showTourDialog()
-        // setTourShown()
-        //  }
     }
 
-    private fun continueAfterTrialPurchaseDialog() {
+    private fun setIsPremium() {
+        if (isPremium) {
+            // Must be first
+            SettingsStatus.appLogoResourceSmall = R.drawable.gold_phone_icon_transparent_192x192
+
+            // Must be after
+            val navAppLogo = findViewById<ImageView>(R.id.navAppLogo)
+            val messageBoxAppLogo = findViewById<ImageView>(R.id.msgBoxAppLogo)
+            val toolBarLogo600 = findViewById<ImageView>(R.id.toolbar_logo_600dp)
+
+            toolBarLogo600?.setImageResource(SettingsStatus.appLogoResourceSmall)
+            messageBoxAppLogo?.setImageResource(SettingsStatus.appLogoResourceSmall) // otherwise it has the default already from design-time
+            val appLogo = findViewById<ImageView>(R.id.toolbar_logo)
+            appLogo?.setImageResource(SettingsStatus.appLogoResourceSmall) // otherwise it has the default already from design-time
+            navAppLogo?.setImageResource(SettingsStatus.appLogoResourceSmall)
+        }
+    }
+
+    private fun continueAfterTrialPurchaseDialog() { // approved after subscription or access code
+        setIsPremium()
         if (!wasTourAlreadyShown(binding.root.context)) {
             if (isPremium) { // save initial lock screen settings adjusted to easy call and answer
                 // In case we won't change anything - this should be saved for lockscreen lib
