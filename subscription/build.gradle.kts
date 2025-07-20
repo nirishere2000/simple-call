@@ -33,7 +33,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -43,6 +42,4 @@ dependencies {
     implementation(libs.google.billing)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
-    implementation(libs.play.review)
-    implementation(libs.play.review.ktx)
 }

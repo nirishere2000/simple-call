@@ -8,7 +8,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -16,14 +15,12 @@ import android.os.Looper
 import android.telephony.TelephonyManager
 import android.telephony.emergency.EmergencyNumber
 import android.util.Log
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
@@ -32,7 +29,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.switchmaterial.SwitchMaterial
-import com.google.android.play.core.review.ReviewManagerFactory
 import com.nirotem.lockscreen.IdleMonitorService
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEasyAppEnum
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.loadSelectedAppInfo
@@ -40,7 +36,6 @@ import com.nirotem.lockscreen.managers.SharedPreferencesCache.loadWhenScreenUnlo
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveSelectedAppPackage
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveShouldServiceRun
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveWhenScreenUnlockedBehaviourEnum
-import com.nirotem.sharedmodules.statuses.OemDetector
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.R
 import com.nirotem.simplecall.VoiceApiImpl
@@ -60,15 +55,11 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberO
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadDistressNumberShouldAlsoTalk
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadQuickCallNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadGoldNumber
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadLastDateAskedToRateApp
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadLastUserAnswerToRateApp
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadNumOfAskingUserToRateApp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.loadShouldSpeakWhenRing
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowAnswerCallsEnum
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowCallWaiting
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowMakingCallsEnum
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveAllowOpeningWhatsApp
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveCurrentDateAskedToRateApp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveQuickCallShouldAlsoSendSmsToGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveDistressNumberOfSecsToCancel
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveDistressNumberShouldAlsoTalk
@@ -77,8 +68,6 @@ import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveQuickCallNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumber
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveGoldNumberContact
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveIsGlobalAutoAnswer
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveLastUserAnswerToRateApp
-import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveNumOfAskingUserToRateApp
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveShouldCallsStartWithSpeakerOn
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveShouldShowKeypadInActiveCall
 import com.nirotem.simplecall.helpers.SharedPreferencesCache.saveShouldSpeakWhenRing
@@ -98,13 +87,13 @@ import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.OpenScreensStatus.shouldUpdateSettingsScreens
 import com.nirotem.simplecall.statuses.PermissionsStatus.askForRecordPermission
 import com.nirotem.simplecall.statuses.PermissionsStatus.checkForPermissionsChangesAndShowToastIfChanged
-import com.nirotem.simplecall.statuses.PermissionsStatus.featureOnlyAvailableOnPremiumAlert
 import com.nirotem.simplecall.statuses.PermissionsStatus.loadOtherPermissionsIssueDialog
 import com.nirotem.simplecall.statuses.PermissionsStatus.suggestManualPermissionGrant
 import com.nirotem.simplecall.statuses.SettingsStatus
 import com.nirotem.simplecall.statuses.SettingsStatus.lockedBecauseTrialIsOver
 import com.nirotem.subscription.BillingManager
-import com.nirotem.subscription.UpgradeDialogFragment
+import com.nirotem.subscription.PurchaseStatus
+import com.nirotem.userengagement.AppReviewManager
 import interfaces.DescriptiveEnum
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -228,7 +217,7 @@ class SettingsFragment : Fragment() {
                     }
                     else {
                         lockScreenToggle.isChecked = false
-                        featureOnlyAvailableOnPremiumAlert(view.context)
+                        upgradeToPremium()
                     }
                 } else {
                     stopUnlockServiceClick()
@@ -314,7 +303,7 @@ class SettingsFragment : Fragment() {
                                 saveDistressNumberOfSecsToCancel(selectedValue, viewContext)
                             } else {
                                 distressButtonNumOfSecsToCancelSpinner.setSelection(distressNumberOfSecsToCancelSavedIndex)
-                                featureOnlyAvailableOnPremiumAlert(viewContext)
+                                upgradeToPremium()
                             }
                         }
                     }
@@ -341,7 +330,7 @@ class SettingsFragment : Fragment() {
                 }
                 else if (isChecked) {
                     distressNumberShouldAlsoTalkToggle.isChecked = false
-                    featureOnlyAvailableOnPremiumAlert(viewContext)
+                    upgradeToPremium()
                 }
             }
 
@@ -428,7 +417,7 @@ class SettingsFragment : Fragment() {
                         }
                         else {
                             quickCallAlsoSendSmsToGoldToggle.isChecked = false
-                            featureOnlyAvailableOnPremiumAlert(viewContext)
+                            upgradeToPremium()
                         }
                     } else {
                         saveQuickCallShouldAlsoSendSmsToGoldNumber(view.context, false)
@@ -464,7 +453,7 @@ class SettingsFragment : Fragment() {
                     }
                     else {
                         shouldSpeakWhenRing.isChecked = false
-                        featureOnlyAvailableOnPremiumAlert(view.context)
+                        upgradeToPremium()
                     }
                 } else {
                     saveShouldSpeakWhenRing(view.context, false)
@@ -580,32 +569,9 @@ class SettingsFragment : Fragment() {
 
                 showLongSnackBar(context, toastMsg, anchorView = requireView())
             }*/
-
-            // Rate the app:
-            var numOfAskingUserToRateApp = loadNumOfAskingUserToRateApp(context)
-            if (numOfAskingUserToRateApp < 3) {
-                val daysBetweenPrompts: Int = 7 // only if at least 7 days from last asking to rate
-                val lastDateDialogShown = loadLastDateAskedToRateApp(context)
-                val now = System.currentTimeMillis()
-                val daysInMillis = daysBetweenPrompts * 24 * 60 * 60 * 1000L
-                if ((now - lastDateDialogShown) > daysInMillis) { // if at least x days from last ask for rate
-                    if (numOfAskingUserToRateApp == 0) { // never showed it - show dialog to rate
-                        showRateAppDialog(numOfAskingUserToRateApp) // showing it for the first time
-                    }
-                    else {
-                        val lastUserAnswerToRateApp = loadLastUserAnswerToRateApp(context)
-                        // 0 = agreed to rate don't show again (only if num of tries = 0)
-                        // 1 = maybe later - show if num of tries = 0, 1, 2
-                        // 2 = No, thanks - show if num of tries = 0, 1
-                        if (lastUserAnswerToRateApp == 1) { // since num-of-tries = 1 or 2 - show dialog
-                            showRateAppDialog(numOfAskingUserToRateApp)
-                        }
-                        else if (lastUserAnswerToRateApp == 2 && numOfAskingUserToRateApp == 1) {
-                            showRateAppDialog(numOfAskingUserToRateApp) // show only if it's the 2nd time
-                        }
-                    }
-                }
-            }
+            // Ask user rate the app
+            AppReviewManager.letUserRateApp(requireActivity(), getString(R.string.rate_the_app_dialog_title),
+                getString(R.string.rate_the_app_dialog_text), SettingsStatus.continueAfterTourFunc)
             // End rate the app
         } catch (e: Exception) {
             Log.e("SimplyCall - Settings", "Settings Error (${e.message})")
@@ -1064,7 +1030,7 @@ class SettingsFragment : Fragment() {
 
         val startWithSpeakerOnToggle =
             view.findViewById<SwitchMaterial>(R.id.starts_with_speaker_on_toggle)
-        startWithSpeakerOnToggle.isChecked = if (SettingsStatus.lockedBecauseTrialIsOver) false else shouldCallsStartWithSpeakerOn(currContext)
+        startWithSpeakerOnToggle.isChecked = if (lockedBecauseTrialIsOver) false else shouldCallsStartWithSpeakerOn(currContext)
         startWithSpeakerOnToggle.setOnCheckedChangeListener { buttonView, isChecked ->
             if (lockedBecauseTrialIsOver) {
                 startWithSpeakerOnToggle.isChecked = false
@@ -1075,7 +1041,7 @@ class SettingsFragment : Fragment() {
             }
             else if (isChecked) {
                 startWithSpeakerOnToggle.isChecked = false
-                featureOnlyAvailableOnPremiumAlert(view.context)
+                upgradeToPremium()
             }
         }
 
@@ -1092,7 +1058,7 @@ class SettingsFragment : Fragment() {
             }
             else if (isChecked) {
                 answerCallsAutomaticallyToggle.isChecked = false
-                featureOnlyAvailableOnPremiumAlert(view.context)
+                upgradeToPremium()
             }
         }
 
@@ -1780,6 +1746,28 @@ class SettingsFragment : Fragment() {
         changeSpinnerBackgroundColor(newColor, toggleSpinner)
     }
 
+    private fun upgradeToPremium() {
+        billingManager.featureOnlyAvailableOnPremiumAlert(requireContext(), requireActivity()) { result ->
+            when (result) {
+                is PurchaseStatus.PurchasedPremium -> {
+                    SettingsStatus.isPremium = true
+                    Toast.makeText(requireContext(), getString(com.nirotem.subscription.R.string.subscription_premium_subscription_approved), Toast.LENGTH_LONG).show()
+                    // פתח פיצ’רים וכו’
+                }
+                is PurchaseStatus.InTrial -> {
+                    //Toast.makeText(requireContext(), "אתה עדיין בתקופת ניסיון", Toast.LENGTH_SHORT).show()
+                }
+                is PurchaseStatus.PurchasedBasic -> {
+                    SettingsStatus.isPremium = false
+                    Toast.makeText(requireContext(), "יש לך מנוי בסיסי", Toast.LENGTH_SHORT).show()
+                }
+                is PurchaseStatus.NotPurchased -> {
+                    Toast.makeText(requireContext(), "הרכישה לא הושלמה", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     override fun onResume() {
         super.onResume()
 
@@ -2064,70 +2052,6 @@ class SettingsFragment : Fragment() {
         handleWhenScreenUnlocked(selectedWhenScreenUnlockedBehaviourEnum, requireView())
         val intent = Intent(context, IdleMonitorService::class.java)
         context.stopService(intent)
-    }
-
-    // 0 = agreed to rate don't show again (only if num of tries = 0)
-    // 1 = maybe later - show if num of tries = 0, 1, 2
-    // 2 = No, thanks - show if num of tries = 0, 1
-    fun showRateAppDialog(numOfAskingUserToRateApp: Int) {
-        val context = requireContext()
-
-        // Show dialog
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle(getString(R.string.rate_the_app_dialog_title))
-        builder.setMessage(getString(R.string.rate_the_app_dialog_text))
-
-        builder.setPositiveButton(getString(R.string.rate_the_app_dialog_answer_rate_now)) { dialog, _ ->
-            saveLastUserAnswerToRateApp(context, 0) // 0 = agreed to rate don't show again
-            saveNumOfAskingUserToRateApp(context, (numOfAskingUserToRateApp + 1))
-            saveCurrentDateAskedToRateApp(context)
-            launchInAppReview()
-            dialog.dismiss()
-            SettingsStatus.continueAfterTourFunc?.invoke() // if it's first time with tour and settings and rate app the load continue functions afterwards
-        }
-
-        builder.setNeutralButton(getString(R.string.rate_the_app_dialog_answer_maybe_later)) { dialog, _ ->
-            saveLastUserAnswerToRateApp(context, 1) // 1 = maybe later
-            saveNumOfAskingUserToRateApp(context, (numOfAskingUserToRateApp + 1))
-            saveCurrentDateAskedToRateApp(context)
-            dialog.dismiss()
-            SettingsStatus.continueAfterTourFunc?.invoke()
-        }
-
-        builder.setNegativeButton(getString(R.string.rate_the_app_dialog_answer_no_thanks)) { dialog, _ ->
-            saveLastUserAnswerToRateApp(context, 2) // 2 = No, thanks
-            saveNumOfAskingUserToRateApp(context, (numOfAskingUserToRateApp + 1))
-            saveCurrentDateAskedToRateApp(context)
-            dialog.dismiss()
-            SettingsStatus.continueAfterTourFunc?.invoke()
-        }
-
-        builder.setOnCancelListener {
-            // לא נלחץ שום כפתור - לא סופרים כניסיון
-        }
-
-        builder.create().show()
-    }
-
-    fun launchInAppReview() {
-        var activity = requireActivity()
-        val manager = ReviewManagerFactory.create(activity)
-        val request = manager.requestReviewFlow()
-
-        request.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val reviewInfo = task.result
-                val flow = manager.launchReviewFlow(activity, reviewInfo)
-                flow.addOnCompleteListener {
-                    // הדיאלוג הוצג – אין צורך לעשות כלום
-                }
-            } else {
-                // שגיאה – אפשר להפנות ידנית ל־Google Play:
-                val packageName = activity.packageName
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName"))
-                activity.startActivity(intent)
-            }
-        }
     }
 
     override fun onDestroy() {

@@ -15,8 +15,8 @@ android {
         applicationId = "com.nirotem.easycallandanswer"
         minSdk = 24
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.0.1"
+        versionCode = 5
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -124,6 +124,8 @@ dependencies {
     "voiceImplementation"(project(":voicerecognition"))
     implementation(project(":sharedModules"))
     implementation(project(":subscription"))
+    implementation(project(":referrals"))
+    implementation(project(":userengagement"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -136,8 +138,8 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.play.update)
     implementation(libs.play.update.ktx)
-    implementation(libs.play.review)
-    implementation(libs.play.review.ktx)
+/*    implementation(libs.play.review)
+    implementation(libs.play.review.ktx)*/
 
 /*   if   (gradle.startParameter.taskNames.any { it.contains("Premium") || it.contains("premium") }) {
         implementation("com.github.bumptech.glide:glide:4.15.1")

@@ -1,0 +1,64 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/dialog_background"
+   >
+
+    <TextView
+        android:id="@+id/title"
+        android:text="@string/unlock_more_with_premium_title"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/message"
+        android:text="@string/this_feature_only_available_on_premium"
+        android:layout_marginBottom="16dp"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/results_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:text=""
+        android:visibility="visible"
+        android:paddingTop="14dp"
+        android:paddingBottom="20dp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btn_premium_monthly"
+        android:text="@string/upgrade"
+        android:backgroundTint="#D5D6D6"
+        android:textColor="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+<!--    <Button
+        android:id="@+id/btn_premium_annual"
+        android:text="@string/premium_annual_option"
+        android:textColor="#000000"
+        android:backgroundTint="#D5D6D6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />-->
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:text="@string/cancel"
+        android:textColor="#000000"
+        android:backgroundTint="#D5D6D6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

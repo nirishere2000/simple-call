@@ -348,8 +348,6 @@
     <string name="overlay_permission_display_name_xiaomi">Open new windows while running in the background</string>
     <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s cannot work properly unless the app is set as the default for handling calls.\nAre you sure you want to skip this?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">%1$s contact could not be found. It must be set to send SMS during a %2$s.</string>
-    <string name="this_feature_only_available_on_premium">This feature is only available in the Premium version. Upgrade now to enjoy this and many other great features!</string>
-    <string name="unlock_more_with_premium_title">Unlock More with Premium</string>
     <string name="try_the_premium_button">Start Free Trial</string>
     <string name="no_contacts_available_for_selection">No contacts available for selection</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">For %1$s to work properly, the app must be granted the Contacts permission.</string>
@@ -360,9 +358,6 @@
     <string name="quick_call_was_answered_and_completed_successfully">%1$s was answered and completed successfully</string>
     <string name="rate_the_app_dialog_title">Enjoying the app?</string>
     <string name="rate_the_app_dialog_text">We\'ve put a lot of heart and effort into creating this app to help seniors and people with disabilities manage their phone calls more easily and independently.\nIf you find it helpful, we\'d really appreciate it if you could rate us on Google Play. Your feedback means a lot and helps us keep improving!</string>
-    <string name="rate_the_app_dialog_answer_rate_now">Rate now</string>
-    <string name="rate_the_app_dialog_answer_maybe_later">Maybe later</string>
-    <string name="rate_the_app_dialog_answer_no_thanks">No, thanks</string>
     <plurals name="app_missing_permissions_text_dynamic_plural">
         <item quantity="one">To answer phone calls properly, the app needs the following permission: %1$s.</item>
         <item quantity="other">To answer phone calls properly, the app needs the following permissions: %1$s.</item>

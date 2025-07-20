@@ -153,7 +153,7 @@
                                     android:textSize="14sp" />
                             </LinearLayout>
 
-                            <TextView
+<!--                            <TextView
                                 android:id="@+id/premiumPriceYearly"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                                 android:fontFamily="@font/open_sans"
                                 android:text="$60 yearly"
                                 android:textColor="#FFFFFF"
-                                android:textSize="14sp" />
+                                android:textSize="14sp" />-->
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -279,7 +279,7 @@
                                     android:textSize="14sp" />
                             </LinearLayout>
 
-                            <TextView
+                        <!--    <TextView
                                 android:id="@+id/basicPriceYearly"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -288,7 +288,7 @@
                                 android:fontFamily="@font/open_sans"
                                 android:text="$24 yearly"
                                 android:textColor="#FFFFFF"
-                                android:textSize="14sp" />
+                                android:textSize="14sp" />-->
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

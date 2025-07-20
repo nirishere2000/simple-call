@@ -12,8 +12,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/lockscreen" />
+            <option value="$PROJECT_DIR$/referrals" />
             <option value="$PROJECT_DIR$/sharedModules" />
             <option value="$PROJECT_DIR$/subscription" />
+            <option value="$PROJECT_DIR$/userengagement" />
             <option value="$PROJECT_DIR$/voicerecognition" />
           </set>
         </option>

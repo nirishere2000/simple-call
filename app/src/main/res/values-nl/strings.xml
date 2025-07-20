@@ -376,8 +376,6 @@
     <string name="allow_pop_permission_display_name_xiaomi">Pop-upvensters weergeven</string>
     <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Om %1$s correct te laten werken, moet de app worden ingesteld als de standaardapp voor het afhandelen van oproepen. Weet u zeker dat u deze stap wilt overslaan?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Om een SMS te verzenden tijdens een %2$s, moet een %1$s worden ingesteld.</string>
-    <string name="this_feature_only_available_on_premium">Deze functie is alleen beschikbaar in de Premium-versie. Upgrade nu om hiervan en van vele andere geweldige functies te genieten!</string>
-    <string name="unlock_more_with_premium_title">Ontvang meer met Premium</string>
     <string name="try_the_premium_button">Gratis proefperiode starten</string>
     <string name="no_contacts_available_for_selection">Geen contacten beschikbaar voor selectie</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Om %1$s correct te laten werken, moet de app toestemming krijgen voor toegang tot contacten.</string>
@@ -388,9 +386,6 @@
     <string name="quick_call_was_answered_and_completed_successfully">%1$s werd beantwoord en succesvol afgerond</string>
     <string name="rate_the_app_dialog_title">Tevreden over de app?</string>
     <string name="rate_the_app_dialog_text">We hebben veel tijd en toewijding gestoken in het maken van deze app om senioren en mensen met een beperking te helpen hun telefoongesprekken makkelijker en zelfstandiger te beheren.\nAls je de app nuttig vindt, zouden we het enorm waarderen als je ons een beoordeling geeft in de Google Play Store. Jouw feedback helpt ons om te blijven verbeteren!</string>
-    <string name="rate_the_app_dialog_answer_rate_now">Nu beoordelen</string>
-    <string name="rate_the_app_dialog_answer_maybe_later">Misschien later</string>
-    <string name="rate_the_app_dialog_answer_no_thanks">Nee, bedankt</string>
     <plurals name="app_missing_permissions_text_dynamic_plural">
         <item quantity="one">Om oproepen correct te beantwoorden, heeft de app de volgende machtiging nodig: %1$s.</item>
         <item quantity="other">Om oproepen correct te beantwoorden, heeft de app de volgende machtigingen nodig: %1$s.</item>

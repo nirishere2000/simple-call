@@ -347,8 +347,6 @@
     <string name="overlay_permission_display_name_xiaomi">פתיחת חלונות חדשים בזמן שהיישום רץ ברקע</string>
     <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">כדי ש%1$s תעבוד כראוי, יש להגדיר את האפליקציה כברירת מחדל לניהול שיחות. האם ברצונך לדלג על שלב זה?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">על מנת לשלוח הודעת טקסט במהלך %2$s, יש להגדיר %1$s.</string>
-    <string name="this_feature_only_available_on_premium">תכונה זו זמינה רק בגרסת הפרימיום. שדרגו עכשיו כדי ליהנות ממנה וממגוון תכונות נוספות!</string>
-    <string name="unlock_more_with_premium_title">קבלו עוד עם פרימיום</string>
     <string name="try_the_premium_button">התחילו ניסיון חינם</string>
     <string name="no_contacts_available_for_selection">לא נמצאו אנשי קשר זמינים לבחירה</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">כדי ש%1$s תעבוד כראוי, יש להעניק לאפליקציה הרשאת אנשי קשר.</string>
@@ -359,9 +357,6 @@
     <string name="quick_call_was_answered_and_completed_successfully">%1$s נענתה והסתיימה בהצלחה</string>
     <string name="rate_the_app_dialog_title">מרוצה מהאפליקציה?</string>
     <string name="rate_the_app_dialog_text">השקענו הרבה מאוד מחשבה ומאמץ כדי ליצור אפליקציה שתעזור למבוגרים ולאנשים עם מוגבלויות לנהל את שיחות הטלפון שלהם בצורה קלה ועצמאית יותר.\nאם האפליקציה עוזרת לך, נשמח מאוד אם תדרג/י אותנו בחנות. המשוב שלך חשוב לנו ועוזר לנו להשתפר!</string>
-    <string name="rate_the_app_dialog_answer_rate_now">כן, אשמח לדרג</string>
-    <string name="rate_the_app_dialog_answer_maybe_later">אולי אחר כך</string>
-    <string name="rate_the_app_dialog_answer_no_thanks">לא, תודה</string>
     <plurals name="app_missing_permissions_text_dynamic_plural">
         <item quantity="one">כדי שהאפליקציה תוכל לענות לשיחות כראוי, יש לאפשר את ההרשאה הבאה: %1$s.</item>
         <item quantity="two">כדי שהאפליקציה תוכל לענות לשיחות כראוי, יש לאפשר את ההרשאות הבאות: %1$s.</item>

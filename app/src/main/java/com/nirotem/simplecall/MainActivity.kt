@@ -49,6 +49,7 @@ import com.google.gson.Gson
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.WhenScreenUnlockedBehaviourEasyAppEnum
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveEasyCallAndAnswerPackageName
 import com.nirotem.lockscreen.managers.SharedPreferencesCache.saveWhenScreenUnlockedBehaviourEnum
+import com.nirotem.referrals.ReferralTracker
 import com.nirotem.sharedmodules.statuses.AppData.APP_ID_EASY_CALL_AND_ANSWER_BASIC
 import com.nirotem.sharedmodules.statuses.AppData.APP_ID_EASY_CALL_AND_ANSWER_PREMIUM
 import com.nirotem.simplecall.databinding.ActivityMainBinding
@@ -111,7 +112,6 @@ import com.nirotem.simplecall.statuses.SettingsStatus.isPremium
 import com.nirotem.simplecall.ui.tour.TourDialogFragment
 import java.io.File
 import java.util.Locale
-import com.nirotem.simplecall.helpers.ReferralTracker
 import com.nirotem.simplecall.managers.SubscriptionManager.showTrialBanner
 import com.nirotem.simplecall.ui.welcome.WelcomeFragment
 import com.nirotem.subscription.BillingManager
@@ -119,6 +119,7 @@ import com.nirotem.subscription.FetchToken
 import com.nirotem.subscription.PurchaseStatus
 import com.nirotem.subscription.SharedPreferencesCache.loadAccessTokenId
 import com.nirotem.subscription.UpgradeDialogFragment.FeatureRow
+import com.nirotem.userengagement.AppReviewManager
 
 
 class MainActivity : AppCompatActivity() {
@@ -139,7 +140,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ReferralTracker.handleDeepLinkAndTrack(this, intent)
+        ReferralTracker.initialize(this, intent)
 
         Log.d("SimplyCall - MainActivity", "Main activity loading")
 
@@ -1162,7 +1163,14 @@ class MainActivity : AppCompatActivity() {
                     continueAfterTrialPurchaseDialog()
                 }
 
-                is PurchaseStatus.Purchased -> {
+                is PurchaseStatus.PurchasedBasic  -> {
+                    isPremium = false
+                    SettingsStatus.lockedBecauseTrialIsOver = false
+                    continueAfterTrialPurchaseDialog()
+                }
+
+                is PurchaseStatus.PurchasedPremium  -> {
+                    isPremium = true
                     SettingsStatus.lockedBecauseTrialIsOver = false
                     continueAfterTrialPurchaseDialog()
                 }
@@ -1534,7 +1542,13 @@ class MainActivity : AppCompatActivity() {
                 this
             )
         } else {
-            SettingsStatus.noMsgShown = true
+            if (AppReviewManager.shouldShowRateAppDialog(this)) {
+                AppReviewManager.letUserRateApp(this, getString(R.string.rate_the_app_dialog_title),
+                    getString(R.string.rate_the_app_dialog_text), SettingsStatus.continueAfterTourFunc)
+            }
+            else {
+                SettingsStatus.noMsgShown = true
+            }
         }
     }
 
@@ -1578,7 +1592,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        ReferralTracker.handleDeepLinkAndTrack(this, intent)
+        ReferralTracker.initialize(this, intent)
     }
 
 

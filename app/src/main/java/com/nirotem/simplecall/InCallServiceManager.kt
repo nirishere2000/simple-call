@@ -60,6 +60,7 @@ import com.nirotem.simplecall.statuses.LanguagesEnum
 import com.nirotem.simplecall.statuses.OpenScreensStatus
 import com.nirotem.simplecall.statuses.PermissionsStatus
 import com.nirotem.simplecall.statuses.SettingsStatus
+import com.nirotem.userengagement.AppReviewManager
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -123,19 +124,18 @@ class InCallServiceManager : InCallService() {
         SoundPoolManager.initialize(this)
 
 
-      //  createNotificationChannelForLockScreen(this)
+        //  createNotificationChannelForLockScreen(this)
 
         //registerSpeakerToggleReceiver(this)
-/*        OngoingCall.shouldToggleSpeaker.observe(fragmentViewLifecycleOwner) { allowOpening ->
+        /*        OngoingCall.shouldToggleSpeaker.observe(fragmentViewLifecycleOwner) { allowOpening ->
 
-        }*/
+                }*/
         OngoingCall.shouldToggleSpeaker.observeForever(speakerObserver)
 
 
         // Initialize the late init variable
         activeCallDisplayManager = ActiveCallDisplayManager(this)
     }
-
 
 
     override fun onCallAdded(call: Call) {
@@ -154,8 +154,7 @@ class InCallServiceManager : InCallService() {
 
             try {
                 saveLastCallError(onCallAddedContext, callException.message)
-            }
-            catch (saveToLogException: Exception) {
+            } catch (saveToLogException: Exception) {
 
             }
 
@@ -179,23 +178,28 @@ class InCallServiceManager : InCallService() {
 
             }
 
-/*            Toast.makeText(
+            /*            Toast.makeText(
+                            this,
+                            getString(R.string.a_serious_error_has_occurred_call_cannot_continue),
+                            Toast.LENGTH_LONG
+                        ).show()*/
+            showCustomToastDialog(
                 this,
-                getString(R.string.a_serious_error_has_occurred_call_cannot_continue),
-                Toast.LENGTH_LONG
-            ).show()*/
-            showCustomToastDialog(this, getString(R.string.a_serious_error_has_occurred_call_cannot_continue))
+                getString(R.string.a_serious_error_has_occurred_call_cannot_continue)
+            )
 
-/*            Toast.makeText(
-                this,
-                getString(R.string.error_is_capital, callException.message),
-                Toast.LENGTH_LONG
-            ).show()*/
+            /*            Toast.makeText(
+                            this,
+                            getString(R.string.error_is_capital, callException.message),
+                            Toast.LENGTH_LONG
+                        ).show()*/
 
             Handler(Looper.getMainLooper()).postDelayed({
-                showCustomToastDialog(this, getString(R.string.error_is_capital, callException.message))
+                showCustomToastDialog(
+                    this,
+                    getString(R.string.error_is_capital, callException.message)
+                )
             }, 4000)
-
 
 
             /*            val themedContext = ContextThemeWrapper(this, R.style.Theme_SimpleCall)
@@ -221,7 +225,7 @@ CALL_DIRECTION_OUTGOING = 2
     private fun isCallOutgoing(call: Call): Boolean {
         val CALL_DIRECTION_INCOMING = 0 // Call.Details.CALL_DIRECTION_INCOMING
         val CALL_DIRECTION_OUTGOING = 1 // Call.Details.CALL_DIRECTION_OUTGOING
-      //  val CALL_DIRECTION_UNKNOWN = 0
+        //  val CALL_DIRECTION_UNKNOWN = 0
 
         // We must check like this - since an outgoing call can happen from other app, although this app is the default app,
         // Like Get app. And then the app thinks it's incoming call.
@@ -244,7 +248,7 @@ CALL_DIRECTION_OUTGOING = 2
                     OutgoingCall.isCalling && !OutgoingCall.wasAnswered // because it could be call waiting while OutgoingCall.isCalling=true
                 }
             }
-           // }
+            // }
         } else {
             // גרסאות לפני API 28: ננסה לקבוע את כיוון השיחה על פי מצב השיחה
             return when (call.state) {
@@ -271,11 +275,13 @@ CALL_DIRECTION_OUTGOING = 2
         OngoingCall.callWasEndedMustClose.value = false
         CallActivity.criticalErrorEvent.value = false // no reason not to reset this event here
         CallActivity.criticalErrorEventMessage = ""
-        CallActivity.callEndedShouldCloseActivityEvent.value = false // no reason not to reset this event here
+        CallActivity.callEndedShouldCloseActivityEvent.value =
+            false // no reason not to reset this event here
 
         val phoneNumber = call.details.handle?.schemeSpecificPart
 
-        val isOutgoing = isCallOutgoing(call)  // OutgoingCall.isCalling && !OutgoingCall.wasAnswered // because it could be call waiting while OutgoingCall.isCalling=true
+        val isOutgoing =
+            isCallOutgoing(call)  // OutgoingCall.isCalling && !OutgoingCall.wasAnswered // because it could be call waiting while OutgoingCall.isCalling=true
 
         val isCallWaiting = (OngoingCall.call != null || OutgoingCall.call != null) && !isOutgoing
         onCallAddedContext = this
@@ -362,20 +368,22 @@ CALL_DIRECTION_OUTGOING = 2
                                     quickCallWasAnswered = true
                                 }
                             } else if (isCallWaiting) {
-                                WaitingCall.replacedWithWaitingCall = false // important before WaitingCall.startedRinging.value = false
+                                WaitingCall.replacedWithWaitingCall =
+                                    false // important before WaitingCall.startedRinging.value = false
                                 WaitingCall.wasAnswered =
                                     true // important before ending the started ringing
 
                                 // This triggers ActiveCallFragment to replace the Ongoing or Outgoing call with the Waiting Call:
-                                WaitingCall.startedRinging.value = false // important after wasAnswered = true
+                                WaitingCall.startedRinging.value =
+                                    false // important after wasAnswered = true
 
                                 // This should be enough to trigger ActiveCallFragment that is listening
 
-/*                                activeCallDisplayManager.handleAcceptCall(
-                                    onCallAddedContext,
-                                    isCallWaiting = false,
-                                    isOutgoing = false
-                                )*/
+                                /*                                activeCallDisplayManager.handleAcceptCall(
+                                                                    onCallAddedContext,
+                                                                    isCallWaiting = false,
+                                                                    isOutgoing = false
+                                                                )*/
                             } else {
                                 handleAnsweringCall(onCallAddedContext)
                             }
@@ -406,22 +414,22 @@ CALL_DIRECTION_OUTGOING = 2
                                     //if  { // we don't want to close anything if the active call was just replaced to waiting call
                                     OutgoingCall.call = null
                                     finishCallAndRemoveActivity()
-                                        activeCallDisplayManager.handleDisconnect(
-                                            onCallAddedContext,
-                                            isCallWaiting,
-                                            true
-                                        )
+                                    activeCallDisplayManager.handleDisconnect(
+                                        onCallAddedContext,
+                                        isCallWaiting,
+                                        true
+                                    )
                                     //}
                                 } else if (!isCallWaiting && (!WaitingCall.replacedWithWaitingCall)) {
-                                  //  if (!OngoingCall.replacedWithWaitingCall) { // we don't want to close anything if the active call was just replaced to waiting call
+                                    //  if (!OngoingCall.replacedWithWaitingCall) { // we don't want to close anything if the active call was just replaced to waiting call
                                     OngoingCall.call = null
                                     finishCallAndRemoveActivity()
                                     activeCallDisplayManager.handleDisconnect(
-                                            onCallAddedContext,
-                                            false,
-                                            false
-                                        )
-                                   // }
+                                        onCallAddedContext,
+                                        false,
+                                        false
+                                    )
+                                    // }
 
                                 } else { // Also for WaitingCall.replacedWithWaitingCall - meaning Ongoing or Outgoing call was replaced by the WaitingCall call and now we disconnecting WatingCall
                                     WaitingCall.replacedWithWaitingCall = false
@@ -446,6 +454,16 @@ CALL_DIRECTION_OUTGOING = 2
                                     "Call.STATE_DISCONNECTED -> { - Error ($error"
                                 )
                             }
+
+/*                            try { // Ask user to rate app - it waits a week before first try
+                                AppReviewManager.letUserRateApp(this, getString(R.string.rate_the_app_dialog_title),
+                                    getString(R.string.rate_the_app_dialog_text), SettingsStatus.continueAfterTourFunc)
+                            } catch (error: Error) {
+                                Log.d(
+                                    "SimplyCall - InCallServiceManager",
+                                    "Call.STATE_DISCONNECTED - tried to ask use to rate app -> { - Error ($error"
+                                )
+                            }*/
                         }
 
                         Call.STATE_HOLDING -> {
@@ -490,7 +508,12 @@ CALL_DIRECTION_OUTGOING = 2
 
             if (shouldAutoAnswer && !isCallWaiting && !isOutgoing && !OngoingCall.wasAnswered) {
                 if (shouldSpeakCallNameInsteadOfRing) { // Speak only once
-                    speak(getString(R.string.incoming_call_speech,  OutgoingCall.phoneNumberOrContact))
+                    speak(
+                        getString(
+                            R.string.incoming_call_speech,
+                            OutgoingCall.phoneNumberOrContact
+                        )
+                    )
                 }
                 startRingTimer()
                 // AutoAnswer:
@@ -501,8 +524,7 @@ CALL_DIRECTION_OUTGOING = 2
                 //}
                 //stopRingtone(false)
 
-            }
-            else if (shouldSpeakCallNameInsteadOfRing && !isCallWaiting && !isOutgoing && !OngoingCall.wasAnswered) {
+            } else if (shouldSpeakCallNameInsteadOfRing && !isCallWaiting && !isOutgoing && !OngoingCall.wasAnswered) {
                 if (PermissionsStatus.defaultDialerPermissionGranted.value == true) {
                     // this works without permission since application must be default app for manging calls
                     // in order to answer the call and get to here
@@ -517,8 +539,7 @@ CALL_DIRECTION_OUTGOING = 2
         } else { // We don't take this kind of call
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 call.reject(Call.REJECT_REASON_UNWANTED)
-            }
-            else {
+            } else {
                 call.disconnect()
             }
             // call.disconnect()
@@ -676,7 +697,7 @@ CALL_DIRECTION_OUTGOING = 2
     override fun onDestroy() {
         super.onDestroy()
         OngoingCall.shouldToggleSpeaker.removeObserver(speakerObserver)
-       // unregisterReceiver(speakerToggleReceiver)
+        // unregisterReceiver(speakerToggleReceiver)
     }
 
     fun playDefaultRingtone(context: Context) {
@@ -721,7 +742,7 @@ CALL_DIRECTION_OUTGOING = 2
         val languageEnum = LanguagesEnum.fromCode(currentLocale.language)
 
         if (isOutgoing) {
-           // setCallForegroundNotification(context, false) // false because dialing is made when the app is loaded and in focus
+            // setCallForegroundNotification(context, false) // false because dialing is made when the app is loaded and in focus
             OutgoingCall.call = call
             OutgoingCall.wasAnswered = false
             OutgoingCall.otherCallerAnswered.value = false
@@ -735,36 +756,40 @@ CALL_DIRECTION_OUTGOING = 2
                     OutgoingCall.phoneNumberOrContact = context.getString(R.string.unknown_caller)
                     OutgoingCall.contactExistsForPhoneNum = false
                     CallActivity.originalPhoneNumber = null
-                }
-                else {
+                } else {
                     CallActivity.originalPhoneNumber = numberOrContact
                     val contactName = getContactName(context, numberOrContact)
-                    OutgoingCall.phoneNumberOrContact = if (contactName != null) contactName else numberOrContact
+                    OutgoingCall.phoneNumberOrContact =
+                        if (contactName != null) contactName else numberOrContact
                     if (contactName == null) {
-                       // OutgoingCall.phoneNumberOrContact = numberOrContact // context.getString(R.string.unknown_caller)
+                        // OutgoingCall.phoneNumberOrContact = numberOrContact // context.getString(R.string.unknown_caller)
                         OutgoingCall.contactExistsForPhoneNum = false
-                        OutgoingCall.phoneNumberOrContact = formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
-                    }
-                    else {
-                        OutgoingCall.contactExistsForPhoneNum = OutgoingCall.phoneNumberOrContact != numberOrContact
+                        OutgoingCall.phoneNumberOrContact =
+                            formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
+                    } else {
+                        OutgoingCall.contactExistsForPhoneNum =
+                            OutgoingCall.phoneNumberOrContact != numberOrContact
                     }
                 }
-            }
-            else if (!numberOrContact.isNullOrEmpty()) {
+            } else if (!numberOrContact.isNullOrEmpty()) {
                 CallActivity.originalPhoneNumber = numberOrContact
-                val contactName = SharedPreferencesCache.getContactNameFromPhoneNumberInJson(context, numberOrContact)
+                val contactName = SharedPreferencesCache.getContactNameFromPhoneNumberInJson(
+                    context,
+                    numberOrContact
+                )
                 if (contactName != null) {
                     OutgoingCall.contactExistsForPhoneNum = true
                     OutgoingCall.phoneNumberOrContact = contactName
-                }
-                else {
+                } else {
                     OutgoingCall.contactExistsForPhoneNum = false
-                    OutgoingCall.phoneNumberOrContact = formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
+                    OutgoingCall.phoneNumberOrContact =
+                        formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
                 }
             } else {
                 CallActivity.originalPhoneNumber = null
                 OutgoingCall.contactExistsForPhoneNum = false
-                OutgoingCall.phoneNumberOrContact = context.getString(R.string.unknown_caller) // formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
+                OutgoingCall.phoneNumberOrContact =
+                    context.getString(R.string.unknown_caller) // formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
             }
             OutgoingCall.conference = false
             WaitingCall.startedRinging.value = false // resting just in case
@@ -797,23 +822,30 @@ CALL_DIRECTION_OUTGOING = 2
             if (numberOrContact.isNullOrEmpty()) {
                 OngoingCall.phoneNumberOrContact = context.getString(R.string.unknown_caller)
                 CallActivity.originalPhoneNumber = null
-            }
-            else { // see if we have read contacts permission:
-                CallActivity.originalPhoneNumber = numberOrContact // save to try and fetch Contact's image
+            } else { // see if we have read contacts permission:
+                CallActivity.originalPhoneNumber =
+                    numberOrContact // save to try and fetch Contact's image
                 if (ContextCompat.checkSelfPermission(
                         context,
                         READ_CONTACTS
                     ) == PackageManager.PERMISSION_GRANTED
                 ) { // get contact through db
                     val contactName = getContactName(context, numberOrContact)
-                    OngoingCall.phoneNumberOrContact = if (contactName != null) contactName else formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
+                    OngoingCall.phoneNumberOrContact =
+                        if (contactName != null) contactName else formatPhoneNumberWithLib(
+                            numberOrContact,
+                            languageEnum.region
+                        )
                 } else { // no permission to get contact - we'll use our own inner contacts db
-                    val contactName = SharedPreferencesCache.getContactNameFromPhoneNumberInJson(context, numberOrContact)
+                    val contactName = SharedPreferencesCache.getContactNameFromPhoneNumberInJson(
+                        context,
+                        numberOrContact
+                    )
                     if (contactName != null) {
                         OngoingCall.phoneNumberOrContact = contactName // show contact
-                    }
-                    else {
-                        OngoingCall.phoneNumberOrContact = formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
+                    } else {
+                        OngoingCall.phoneNumberOrContact =
+                            formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
 
                     }
                 }
@@ -828,11 +860,13 @@ CALL_DIRECTION_OUTGOING = 2
             try {
                 Handler(Looper.getMainLooper()).postDelayed({
                     if (OpenScreensStatus.eventScreenActivityIsOpen.value != true) {
-                        setCallForegroundNotification(context, true) // if it failed to show activity we need to pop the notification and not just show it in the tray
+                        setCallForegroundNotification(
+                            context,
+                            true
+                        ) // if it failed to show activity we need to pop the notification and not just show it in the tray
                     }
                 }, 300)
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
 
             }
         } else { // call waiting
@@ -848,23 +882,29 @@ CALL_DIRECTION_OUTGOING = 2
             WaitingCall.replacedWithWaitingCall = false
             if (numberOrContact.isNullOrEmpty()) {
                 WaitingCall.phoneNumberOrContact = context.getString(R.string.unknown_caller)
-            }
-            else { // see if we have read contacts permission:
+            } else { // see if we have read contacts permission:
                 if (ContextCompat.checkSelfPermission( // this could be not reset yet -> if (PermissionsStatus.readContactsPermissionGranted.value == true) {
                         context,
                         READ_CONTACTS
                     ) == PackageManager.PERMISSION_GRANTED
                 ) {
                     val contactName = getContactName(context, numberOrContact)
-                    WaitingCall.phoneNumberOrContact = if (contactName != null) contactName else formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
+                    WaitingCall.phoneNumberOrContact =
+                        if (contactName != null) contactName else formatPhoneNumberWithLib(
+                            numberOrContact,
+                            languageEnum.region
+                        )
                 } else { // no permission to get contact - we'll use our own inner contacts db
-                    val contactName = SharedPreferencesCache.getContactNameFromPhoneNumberInJson(context, numberOrContact)
+                    val contactName = SharedPreferencesCache.getContactNameFromPhoneNumberInJson(
+                        context,
+                        numberOrContact
+                    )
                     if (contactName != null) {
                         WaitingCall.phoneNumberOrContact = contactName // show contact
-                    }
-                    else {
-                        WaitingCall.phoneNumberOrContact = formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
-                      //  WaitingCall.phoneNumberOrContact = numberOrContact // show number
+                    } else {
+                        WaitingCall.phoneNumberOrContact =
+                            formatPhoneNumberWithLib(numberOrContact, languageEnum.region)
+                        //  WaitingCall.phoneNumberOrContact = numberOrContact // show number
                     }
                 }
             }
@@ -884,7 +924,11 @@ CALL_DIRECTION_OUTGOING = 2
     }
 
     // פונקציה המקבלת שני תאריכים כטקסט ומחזירה את ההבדל ביניהם בשניות
-    fun getSecondsDifference(date1Str: String, date2Str: String, pattern: String = "yyyy-MM-dd HH:mm:ss"): Long {
+    fun getSecondsDifference(
+        date1Str: String,
+        date2Str: String,
+        pattern: String = "yyyy-MM-dd HH:mm:ss"
+    ): Long {
         val formatter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             DateTimeFormatter.ofPattern(pattern)
         } else {
@@ -900,49 +944,49 @@ CALL_DIRECTION_OUTGOING = 2
     }
 
     // Shows the incoming call notification
-  /*  fun showIncomingCallNotification(context: Context, call: Call) {
-        val intent = Intent(context, EventScreenActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent: PendingIntent =
-            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+    /*  fun showIncomingCallNotification(context: Context, call: Call) {
+          val intent = Intent(context, EventScreenActivity::class.java).apply {
+              flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+          }
+          val pendingIntent: PendingIntent =
+              PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
-        val notification = NotificationCompat.Builder(context, "CALL_CHANNEL")
-            .setContentTitle("Incoming Call")
-            .setContentText("Tap to answer")
-            .setSmallIcon(R.drawable.avatar_12)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_CALL)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .build()
+          val notification = NotificationCompat.Builder(context, "CALL_CHANNEL")
+              .setContentTitle("Incoming Call")
+              .setContentText("Tap to answer")
+              .setSmallIcon(R.drawable.avatar_12)
+              .setPriority(NotificationCompat.PRIORITY_HIGH)
+              .setCategory(NotificationCompat.CATEGORY_CALL)
+              .setContentIntent(pendingIntent)
+              .setAutoCancel(true)
+              .build()
 
-        val notificationManager = NotificationManagerCompat.from(context)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        notificationManager.notify(1, notification)
-    }
+          val notificationManager = NotificationManagerCompat.from(context)
+          if (ActivityCompat.checkSelfPermission(
+                  this,
+                  Manifest.permission.POST_NOTIFICATIONS
+              ) != PackageManager.PERMISSION_GRANTED
+          ) {
+              return
+          }
+          notificationManager.notify(1, notification)
+      }
 
-    // Create the notification channel for incoming call notifications (for API 26 and above)
-    fun createNotificationChannel(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId = "CALL_CHANNEL"
-            val channelName = "Call Notifications"
-            val importance = NotificationManager.IMPORTANCE_HIGH
+      // Create the notification channel for incoming call notifications (for API 26 and above)
+      fun createNotificationChannel(context: Context) {
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+              val channelId = "CALL_CHANNEL"
+              val channelName = "Call Notifications"
+              val importance = NotificationManager.IMPORTANCE_HIGH
 
-            val channel = NotificationChannel(channelId, channelName, importance).apply {
-                description = "Notifications for incoming calls"
-            }
+              val channel = NotificationChannel(channelId, channelName, importance).apply {
+                  description = "Notifications for incoming calls"
+              }
 
-            val notificationManager = context.getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
-        }
-    }*/
+              val notificationManager = context.getSystemService(NotificationManager::class.java)
+              notificationManager.createNotificationChannel(channel)
+          }
+      }*/
 
     //  private fun toggleSpeakerphone(enable: Boolean) {
     //   toggleSpeaker(enable)
@@ -991,9 +1035,11 @@ CALL_DIRECTION_OUTGOING = 2
             }
 
             Log.d(TAG, "Speakerphone toggled: $shouldTurnSpeakerOn (legacy API)")
-        }
-        catch (e: Exception) {
-            Log.d(TAG, "ERROR: Speakerphone toggled: $shouldTurnSpeakerOn (legacy API). (Error=${e.message})")
+        } catch (e: Exception) {
+            Log.d(
+                TAG,
+                "ERROR: Speakerphone toggled: $shouldTurnSpeakerOn (legacy API). (Error=${e.message})"
+            )
         }
 
     }
@@ -1008,7 +1054,8 @@ CALL_DIRECTION_OUTGOING = 2
 
             if (enable) {
                 val devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
-                val speakerDevice = devices.firstOrNull { it.type == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER }
+                val speakerDevice =
+                    devices.firstOrNull { it.type == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER }
                 if (speakerDevice != null) {
                     //  audioManager.clearCommunicationDevice()
                     // Thread.sleep(50) // Wait for state to reset
@@ -1041,8 +1088,7 @@ CALL_DIRECTION_OUTGOING = 2
                     Log.d(tag, "Trying to turn Off Speaker through IncallService")
                     sendUpdateSpeakerphoneEvent(false) // try through IncallService
                     return false // we did not succeed yet
-                }
-                else {
+                } else {
                     Log.d(tag, "Speaker was turned off")
                 }
             }
@@ -1061,11 +1107,10 @@ CALL_DIRECTION_OUTGOING = 2
             Log.d(TAG, "Number of rings: $ringCount")
             if (ringCount > 1) { // starts from 0
                 OngoingCall.autoAnwered.value = true
-               // OngoingCall.answer(VideoProfile.STATE_AUDIO_ONLY)
+                // OngoingCall.answer(VideoProfile.STATE_AUDIO_ONLY)
 
-               // handleAnsweringCall(onCallAddedContext)
-            }
-            else {
+                // handleAnsweringCall(onCallAddedContext)
+            } else {
                 handler.postDelayed(this, ringDuration)
             }
         }
@@ -1078,7 +1123,7 @@ CALL_DIRECTION_OUTGOING = 2
             ringCount = (elapsed / ringDuration).toInt()
             Log.d(TAG, "Number of rings: $ringCount")
             if (OngoingCall.call != null && !OngoingCall.wasAnswered) { // not answered and not disconnected
-                speak(getString(R.string.incoming_call_speech,  OngoingCall.phoneNumberOrContact))
+                speak(getString(R.string.incoming_call_speech, OngoingCall.phoneNumberOrContact))
                 handler.postDelayed(this, ringDuration)
             }
         }
@@ -1103,7 +1148,10 @@ CALL_DIRECTION_OUTGOING = 2
         Log.d(TAG, "Final ring count: $ringCount")
     }
 
-    private fun setCallForegroundNotification(context: Context, shouldShowNotificationWhenLoaded: Boolean) { // or show it in the tray without jumping to the user
+    private fun setCallForegroundNotification(
+        context: Context,
+        shouldShowNotificationWhenLoaded: Boolean
+    ) { // or show it in the tray without jumping to the user
         val channelId = "call_channel"
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -1126,17 +1174,21 @@ CALL_DIRECTION_OUTGOING = 2
         }
 
         val pendingIntent = PendingIntent.getActivity(
-            context, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            context,
+            0,
+            notificationIntent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val largeIconBitmap = BitmapFactory.decodeResource(context.resources, SettingsStatus.appLogoResourceSmall)
+        val largeIconBitmap =
+            BitmapFactory.decodeResource(context.resources, SettingsStatus.appLogoResourceSmall)
 
 
         val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Notification.Builder(context, "call_channel")
                 .setSmallIcon(SettingsStatus.appLogoResourceSmall)
                 .setLargeIcon(largeIconBitmap)
-                .setContentTitle( getString(R.string.incoming_call))
+                .setContentTitle(getString(R.string.incoming_call))
                 .setContentText(getString(R.string.tap_to_open_app))
                 .setStyle(
                     Notification.BigTextStyle()
@@ -1161,7 +1213,6 @@ CALL_DIRECTION_OUTGOING = 2
         OngoingCall.shouldToggleSpeakerOnOff = enable
         OngoingCall.shouldToggleSpeaker.value = true
     }
-
 
 
     /*    @SuppressLint("NewApi")

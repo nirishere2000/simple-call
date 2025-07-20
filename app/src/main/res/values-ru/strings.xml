@@ -370,8 +370,6 @@
     <string name="allow_pop_permission_display_name_xiaomi">Отображение всплывающих окон</string>
     <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Чтобы %1$s работал корректно, необходимо назначить приложение приложением по умолчанию для обработки вызовов. Вы уверены, что хотите пропустить этот шаг?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Чтобы отправить SMS во время %2$s, необходимо настроить %1$s.</string>
-    <string name="this_feature_only_available_on_premium">Эта функция доступна только в версии Premium. Обновитесь сейчас, чтобы пользоваться этой и другими замечательными функциями!</string>
-    <string name="unlock_more_with_premium_title">Получите больше с Premium</string>
     <string name="try_the_premium_button">Начать бесплатную пробную версию</string>
     <string name="no_contacts_available_for_selection">Нет доступных контактов для выбора</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Чтобы %1$s работал корректно, приложению необходимо предоставить разрешение на доступ к контактам.</string>
@@ -382,9 +380,6 @@
     <string name="quick_call_was_answered_and_completed_successfully">%1$s была принята и успешно завершена</string>
     <string name="rate_the_app_dialog_title">Вам нравится приложение?</string>
     <string name="rate_the_app_dialog_text">Мы вложили много сил и души в создание этого приложения, чтобы помочь пожилым людям и людям с ограниченными возможностями легче и самостоятельнее управлять телефонными звонками.\nЕсли приложение оказалось для вас полезным, мы будем признательны за вашу оценку в Google Play. Ваш отзыв очень важен для нас и помогает нам становиться лучше!</string>
-    <string name="rate_the_app_dialog_answer_rate_now">Оценить сейчас</string>
-    <string name="rate_the_app_dialog_answer_maybe_later">Может быть позже</string>
-    <string name="rate_the_app_dialog_answer_no_thanks">Нет, спасибо</string>
     <plurals name="app_missing_permissions_text_dynamic_plural">
         <item quantity="one">Чтобы приложение могло правильно отвечать на звонки, необходимо следующее разрешение: %1$s.</item>
         <item quantity="few">Чтобы приложение могло правильно отвечать на звонки, необходимы следующие разрешения: %1$s.</item>

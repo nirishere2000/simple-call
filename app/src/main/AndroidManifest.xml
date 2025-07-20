@@ -35,19 +35,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleCall"
         tools:targetApi="31">
-<!--        <service
-            android:name="com.nirotem.simplecall.old_code.CallService"
-            android:foregroundServiceType="phoneCall"
-            android:permission="android.permission.BIND_JOB_SERVICE" />-->
-
-<!--         <service
-            android:name="com.nirotem.simplecall.old_code.InCallServiceManager"
-             android:exported="true"
-             android:permission="android.permission.BIND_INCALL_SERVICE">
-            <intent-filter>
-                <action android:name="android.telecom.InCallService" />
-            </intent-filter>
-        </service>-->
 
         <service
             android:name="com.nirotem.simplecall.InCallServiceManager"
@@ -62,34 +49,6 @@
                 <action android:name="android.telecom.InCallService" />
             </intent-filter>
         </service>
-<!--        <activity android:name="com.nirotem.simplecall.CallActivity" />-->
-
-      <!--  <service android:name="com.nirotem.simplecall.old_code.InCallServiceManager"
-            android:permission="android.permission.BIND_INCALL_SERVICE"
-            android:foregroundServiceType="phoneCall"
-            android:exported="true">
-            <meta-data android:name="android.telecom.IN_CALL_SERVICE_UI" android:value="true" />
-            <meta-data android:name="android.telecom.IN_CALL_SERVICE_RINGING"
-                android:value="true" />
-
-            <intent-filter>
-                <action android:name="android.telecom.InCallService"/>
-            </intent-filter>
-        </service>-->
-
-<!--        <activity android:name="com.nirotem.simplecall.activities.EventScreenActivity"
-            android:exported="false"
-            android:label="EventScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.DIAL" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.DIAL" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="tel" />
-            </intent-filter>
-        </activity>-->
 
         <activity android:name="com.nirotem.simplecall.activities.EventScreenActivity"
             android:showWhenLocked="true"

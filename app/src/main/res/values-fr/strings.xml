@@ -377,8 +377,6 @@
     <string name="allow_pop_permission_display_name_xiaomi">Afficher les fenêtres contextuelles</string>
     <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">Pour que %1$s fonctionne correctement, l\'application doit être définie comme application d\'appel par défaut. Souhaitez-vous ignorer cette étape ?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">Pour envoyer un SMS pendant un %2$s, un %1$s doit être configuré.</string>
-    <string name="this_feature_only_available_on_premium">Cette fonctionnalité est disponible uniquement dans la version Premium. Mettez à niveau maintenant pour profiter de celle-ci et de nombreuses autres fonctionnalités utiles !</string>
-    <string name="unlock_more_with_premium_title">Profitez de plus avec Premium</string>
     <string name="try_the_premium_button">Démarrer l\'essai gratuit</string>
     <string name="no_contacts_available_for_selection">Aucun contact disponible à sélectionner</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">Pour que %1$s fonctionne correctement, l\'application doit disposer de l\'autorisation Contacts.</string>
@@ -389,9 +387,6 @@
     <string name="quick_call_was_answered_and_completed_successfully">%1$s a été prise et terminée avec succès</string>
     <string name="rate_the_app_dialog_title">Vous appréciez l\'application ?</string>
     <string name="rate_the_app_dialog_text">Nous avons mis beaucoup d\'efforts et de cœur pour créer cette application afin d\'aider les seniors et les personnes en situation de handicap à gérer leurs appels téléphoniques plus facilement et de façon autonome.\nSi vous la trouvez utile, nous vous serions très reconnaissants de nous évaluer sur Google Play. Vos retours sont précieux et nous aident à nous améliorer !</string>
-    <string name="rate_the_app_dialog_answer_rate_now">Évaluer maintenant</string>
-    <string name="rate_the_app_dialog_answer_maybe_later">Peut-être plus tard</string>
-    <string name="rate_the_app_dialog_answer_no_thanks">Non, merci</string>
     <plurals name="app_missing_permissions_text_dynamic_plural">
         <item quantity="one">Pour répondre correctement aux appels, l\'application a besoin de l\'autorisation suivante : %1$s.</item>
         <item quantity="many">Pour répondre correctement aux appels, l\'application a besoin des autorisations suivantes : %1$s.</item>

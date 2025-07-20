@@ -460,20 +460,6 @@ object PermissionsStatus {
         }
     }
 
-    fun featureOnlyAvailableOnPremiumAlert(context: Context) {
-        AlertDialog.Builder(context)
-            .setTitle(context.getString(R.string.unlock_more_with_premium_title))
-            .setMessage(context.getString(R.string.this_feature_only_available_on_premium))
-            .setPositiveButton(context.getString(R.string.try_the_premium_button)) { dialog, _ ->
-                openAppSettings(context)
-            }
-            .setNegativeButton(context.getString(R.string.close_capital)) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .setCancelable(false)
-            .show()
-    }
-
     fun loadOtherPermissionsIssueDialog(resourceText: Int, context: Context) {
         val dialogView =
             LayoutInflater.from(context).inflate(R.layout.lock_screen_dialog_permission, null)

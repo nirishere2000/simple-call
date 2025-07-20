@@ -10,16 +10,14 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestore
+import com.nirotem.subscription.BillingManager.Companion.BASIC_MONTHLY_PLAN_ID
+import com.nirotem.subscription.BillingManager.Companion.PREMIUM_MONTHLY_PLAN_ID
 import com.nirotem.subscription.SharedPreferencesCache.saveAccessTokenId
-import java.util.Date
 
 class UpgradeDialogFragment(
     private val appIdBasic: String,
@@ -59,9 +57,9 @@ class UpgradeDialogFragment(
         val btnStandard = view.findViewById<Button>(R.id.btnBasic)
         val btnPremium = view.findViewById<Button>(R.id.btnPremium)
         val basicPriceMonthly = view.findViewById<TextView>(R.id.basicPriceMonthly)
-        val basicPriceYearly = view.findViewById<TextView>(R.id.basicPriceYearly)
+        //val basicPriceYearly = view.findViewById<TextView>(R.id.basicPriceYearly)
         val premiumPriceMonthly = view.findViewById<TextView>(R.id.premiumPriceMonthly)
-        val premiumPriceYearly = view.findViewById<TextView>(R.id.premiumPriceYearly)
+        //val premiumPriceYearly = view.findViewById<TextView>(R.id.premiumPriceYearly)
         val promoButton = view.findViewById<TextView>(R.id.txtPromoCode)
 /*        val premiumOriginalPrice = view.findViewById<TextView>(R.id.premiumOriginalPrice)
         premiumOriginalPrice.apply {
@@ -73,20 +71,14 @@ class UpgradeDialogFragment(
         }*/
 
         val billingManager = BillingManager(requireContext()) { purchaseStatus ->
-            when (purchaseStatus) {
-                is PurchaseStatus.Purchased -> {
-                    onResult(SubscriptionResult.SubscribedPremium) // או Basic לפי המוצר שברכישה
-                    dismissAllowingStateLoss()
-                }
-                is PurchaseStatus.NotPurchased -> {
-                    onResult(SubscriptionResult.Canceled)
-                    dismissAllowingStateLoss()
-                }
-                is PurchaseStatus.InTrial -> {
-                    onResult(SubscriptionResult.SubscribedBasic)
-                    dismissAllowingStateLoss()
-                }
+            val result = when (purchaseStatus) {
+                is PurchaseStatus.PurchasedPremium -> SubscriptionResult.SubscribedPremium
+                is PurchaseStatus.PurchasedBasic -> SubscriptionResult.SubscribedBasic
+                is PurchaseStatus.InTrial -> SubscriptionResult.SubscribedBasic
+                is PurchaseStatus.NotPurchased -> SubscriptionResult.Canceled
             }
+            onResult(result)
+            dismissAllowingStateLoss()
         }
 
 
@@ -94,30 +86,30 @@ class UpgradeDialogFragment(
         val premiumFeaturesContainer = view.findViewById<LinearLayout>(R.id.premiumFeaturesContainer)
 
         billingManager.queryPrices(
-            listOf("premium_subscription_id", "basic_subscription_id")
+            listOf("premium_subscription_id", BASIC_MONTHLY_PLAN_ID)
         ) { productDetailsMap ->
             // ----- PREMIUM -----
-            val premium = productDetailsMap["premium_subscription_id"]
+            val premium = productDetailsMap[PREMIUM_MONTHLY_PLAN_ID]
             premium?.subscriptionOfferDetails?.let { offers ->
                 val monthly = offers.firstOrNull { it.pricingPhases.pricingPhaseList.firstOrNull()?.billingPeriod?.contains("P1M") == true }
                 val monthlyPrice = monthly?.pricingPhases?.pricingPhaseList?.firstOrNull()?.formattedPrice
                 premiumPriceMonthly.text = monthlyPrice ?: ""
 
-                val yearly = offers.firstOrNull { it.pricingPhases.pricingPhaseList.firstOrNull()?.billingPeriod?.contains("P1Y") == true }
-                val yearlyPrice = yearly?.pricingPhases?.pricingPhaseList?.firstOrNull()?.formattedPrice
-                premiumPriceYearly.text = getString(R.string.per_year_price_format, yearlyPrice ?: "")
+            //    val yearly = offers.firstOrNull { it.pricingPhases.pricingPhaseList.firstOrNull()?.billingPeriod?.contains("P1Y") == true }
+            //    val yearlyPrice = yearly?.pricingPhases?.pricingPhaseList?.firstOrNull()?.formattedPrice
+              //  premiumPriceYearly.text = getString(R.string.per_year_price_format, yearlyPrice ?: "")
             }
 
             // ----- BASIC -----
-            val basic = productDetailsMap["basic_subscription_id"]
+            val basic = productDetailsMap[BASIC_MONTHLY_PLAN_ID]
             basic?.subscriptionOfferDetails?.let { offers ->
                 val monthly = offers.firstOrNull { it.pricingPhases.pricingPhaseList.firstOrNull()?.billingPeriod?.contains("P1M") == true }
                 val monthlyPrice = monthly?.pricingPhases?.pricingPhaseList?.firstOrNull()?.formattedPrice
                 basicPriceMonthly.text = monthlyPrice ?: ""
 
-                val yearly = offers.firstOrNull { it.pricingPhases.pricingPhaseList.firstOrNull()?.billingPeriod?.contains("P1Y") == true }
-                val yearlyPrice = yearly?.pricingPhases?.pricingPhaseList?.firstOrNull()?.formattedPrice
-                basicPriceYearly.text = getString(R.string.per_year_price_format, yearlyPrice ?: "")
+              //  val yearly = offers.firstOrNull { it.pricingPhases.pricingPhaseList.firstOrNull()?.billingPeriod?.contains("P1Y") == true }
+              //  val yearlyPrice = yearly?.pricingPhases?.pricingPhaseList?.firstOrNull()?.formattedPrice
+               // basicPriceYearly.text = getString(R.string.per_year_price_format, yearlyPrice ?: "")
             }
         }
 
@@ -137,11 +129,29 @@ class UpgradeDialogFragment(
        // btnClose.setOnClickListener { dismiss() }
 
         btnStandard.setOnClickListener {
-            billingManager.launchPurchaseFlow(requireActivity(), "standard_subscription_id")
+            billingManager.launchPurchaseFlow(requireActivity(), BASIC_MONTHLY_PLAN_ID) { result ->
+                when (result) {
+                    is PurchaseStatus.PurchasedPremium -> Toast.makeText(context, getString(R.string.subscription_premium_subscription_approved), Toast.LENGTH_LONG).show()
+                    is PurchaseStatus.PurchasedBasic -> Toast.makeText(context, getString(R.string.subscription_basic_subscription_approved), Toast.LENGTH_LONG).show()
+                    is PurchaseStatus.InTrial -> Toast.makeText(context,
+                        getString(R.string.subscription_trial_started), Toast.LENGTH_LONG).show()
+                    is PurchaseStatus.NotPurchased -> Toast.makeText(context,
+                        getString(R.string.subscription_purchase_failed), Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         btnPremium.setOnClickListener {
-            billingManager.launchPurchaseFlow(requireActivity(), "premium_subscription_id")
+            billingManager.launchPurchaseFlow(requireActivity(), PREMIUM_MONTHLY_PLAN_ID) { result ->
+                when (result) {
+                    is PurchaseStatus.PurchasedPremium -> Toast.makeText(context, getString(R.string.subscription_premium_subscription_approved), Toast.LENGTH_LONG).show()
+                    is PurchaseStatus.PurchasedBasic -> Toast.makeText(context, getString(R.string.subscription_basic_subscription_approved), Toast.LENGTH_LONG).show()
+                    is PurchaseStatus.InTrial -> Toast.makeText(context,
+                        getString(R.string.subscription_trial_started), Toast.LENGTH_LONG).show()
+                    is PurchaseStatus.NotPurchased -> Toast.makeText(context,
+                        getString(R.string.subscription_purchase_failed), Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         promoButton.setOnClickListener {

@@ -346,8 +346,6 @@
     <string name="allow_pop_permission_display_name_xiaomi">पॉप-अप विंडो दिखाएँ</string>
     <string name="in_order_for_quick_call_to_work_properly_app_must_be_default">%1$s को सही ढंग से काम करने के लिए, ऐप को कॉल संभालने के लिए डिफ़ॉल्ट ऐप के रूप में सेट करना होगा। क्या आप इस चरण को छोड़ना चाहते हैं?</string>
     <string name="gold_number_contact_could_not_be_found_to_send_sms_during_a_quick_call">%2$s के दौरान टेक्स्ट संदेश भेजने के लिए, %1$s सेट करना आवश्यक है।</string>
-    <string name="this_feature_only_available_on_premium">यह सुविधा केवल प्रीमियम संस्करण में उपलब्ध है। अभी अपग्रेड करें और इस सुविधा सहित कई बेहतरीन फ़ीचर्स का लाभ उठाएँ।</string>
-    <string name="unlock_more_with_premium_title">प्रीमियम के साथ और पाएं</string>
     <string name="try_the_premium_button">नि:शुल्क परीक्षण शुरू करें</string>
     <string name="no_contacts_available_for_selection">चयन के लिए कोई संपर्क उपलब्ध नहीं है</string>
     <string name="in_order_for_quick_call_to_work_properly_it_needs_contacts_permission">%1$s को सही ढंग से काम करने के लिए, ऐप को कॉन्टैक्ट्स अनुमति देना आवश्यक है।</string>
@@ -358,9 +356,6 @@
     <string name="quick_call_was_answered_and_completed_successfully">%1$s का उत्तर दिया गया और यह सफलतापूर्वक समाप्त हुई</string>
     <string name="rate_the_app_dialog_title">क्या आप ऐप से संतुष्ट हैं?</string>
     <string name="rate_the_app_dialog_text">इस ऐप को बनाने में हमने दिल और मेहनत लगाई है ताकि वरिष्ठ नागरिकों और दिव्यांगों को कॉल प्रबंधन में आसानी और आत्मनिर्भरता मिल सके।\nअगर यह ऐप आपके लिए उपयोगी है, तो कृपया Google Play पर हमें रेट करें। आपकी राय हमारे लिए बहुत महत्वपूर्ण है और सुधार में मदद करती है!</string>
-    <string name="rate_the_app_dialog_answer_rate_now">अभी रेट करें</string>
-    <string name="rate_the_app_dialog_answer_maybe_later">शायद बाद में</string>
-    <string name="rate_the_app_dialog_answer_no_thanks">नहीं, धन्यवाद</string>
     <plurals name="app_missing_permissions_text_dynamic_plural">
         <item quantity="one">कॉल का सही तरीके से उत्तर देने के लिए ऐप को निम्न अनुमति की आवश्यकता है: %1$s.</item>
         <item quantity="other">कॉल का सही तरीके से उत्तर देने के लिए ऐप को निम्न अनुमतियों की आवश्यकता है: %1$s.</item>
