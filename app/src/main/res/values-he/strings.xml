@@ -391,13 +391,13 @@
     <string name="welcome_fragment_continue_button">הבא</string>
     <string name="welcome_fragment_feature_no_swipe_needed">מענה לשיחה בלחיצה ללא צורך בהחלקה על המסך</string>
     <string name="welcome_fragment_feature_big_icons">כפתורים ואייקונים גדולים וברורים</string>
-    <string name="welcome_fragment_feature_gold_number">אפשרות לבחור מספר זהב - לבחירתכם אחד מאנשי הקשר שלכם אליו תהיה לכם גישה מהירה יותר</string>
+    <string name="welcome_fragment_feature_gold_number">מספר זהב - איש קשר לגישה נוחה</string>
     <string name="welcome_fragment_feature_quick_call">אפשרות לשיחה מהירה למצבים מיוחדים - למספר מוגדר מראש</string>
-    <string name="welcome_fragment_feature_premium_auto_answer">אפשרות לבחור מענה אוטומטי לשיחה לאחר מספר צלצולים ללא צורך במגע ידני.</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">מענה אוטומטי לשיחות.</string>
     <string name="welcome_fragment_feature_premium_upgraded_quick_call">שיחה מהירה משודרגת.</string>
-    <string name="welcome_fragment_feature_premium_lock_screen">אפשרות להפעיל מסך נעילה למכשיר - נפתח בלחיצה ומוביל ישירות למסך ניהול השיחות על מנת להקל על המשתמש גם בהוצאת שיחות.</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">מסך נעילה שנפתח בלחיצה אחת.</string>
     <string name="welcome_fragment_feature_premium_start_with_speaker">אפשרות להתחיל שיחה עם רמקול.</string>
-    <string name="welcome_fragment_feature_premium_speak_caller_name">אפשרות לבחור בהקראת שם המתקשר במקום השמעת צלצול בזמן שיחה נכנסת.</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">הקראת שם המתקשר במקום השמעת צלצול בזמן שיחה נכנסת.</string>
     <string name="welcome_fragment_feature_premium_open_whatsup">אפשרות לפתיחת וואטסאפ מתוך האפליקציה.</string>
     <string name="privacy_policy">מדיניות פרטיות</string>
 </resources>

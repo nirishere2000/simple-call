@@ -390,13 +390,11 @@
     <string name="welcome_fragment_feature_big_icons">Tombol dan ikon yang besar dan jelas</string>
     <string name="welcome_fragment_feature_gold_number">Opsi untuk memilih Nomor Emas — salah satu kontak Anda untuk akses lebih cepat</string>
     <string name="welcome_fragment_feature_quick_call">Opsi Panggilan Cepat untuk situasi khusus — ke nomor yang telah ditentukan sebelumnya</string>
-    <string name="welcome_fragment_feature_premium_auto_answer">Opsi untuk mengaktifkan penjawaban otomatis setelah beberapa dering — tanpa sentuhan manual</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">Jawab otomatis tanpa menyentuh layar.</string>
     <string name="welcome_fragment_feature_premium_upgraded_quick_call">Panggilan Cepat yang ditingkatkan.</string>
-    <string name="welcome_fragment_feature_premium_lock_screen">Opsi untuk mengaktifkan Layar Kunci — terbuka dengan ketukan dan langsung menuju layar pengelolaan panggilan untuk mempermudah juga dalam melakukan panggilan</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">Layar kunci yang terbuka dengan satu ketukan</string>
     <string name="welcome_fragment_feature_premium_start_with_speaker">Opsi untuk memulai panggilan secara otomatis dengan speaker aktif</string>
     <string name="welcome_fragment_feature_premium_speak_caller_name">Opsi untuk mengumumkan nama penelepon sebagai pengganti nada dering saat panggilan masuk</string>
     <string name="welcome_fragment_feature_premium_open_whatsup">Opsi untuk membuka WhatsApp langsung dari aplikasi</string>
     <string name="privacy_policy">Kebijakan Privasi</string>
-
-
 </resources>

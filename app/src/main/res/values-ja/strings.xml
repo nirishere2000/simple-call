@@ -381,7 +381,7 @@
     <string name="subscription_start_your_7_days_free_trial_today">7日間の無料トライアルを今すぐ始めよう！</string>
     <string name="subscription_7_days_free_then">7日間無料、その後：</string>
     <string name="welcome_lets_start_btn">はじめる</string>
-    <string name="welcome_sub_title_in_premium_stage">さらに、プレミアム版では高度な機能が利用できます！</string>
+    <string name="welcome_sub_title_in_premium_stage">プレミアム版で高度な機能が使えます！</string>
     <string name="welcome_fragment_title">ようこそ</string>
     <string name="welcome_fragment_title_explain">アプリは通話管理をより簡単にするためのスマート機能を提供します</string>
     <string name="welcome_fragment_continue_button">次へ</string>
@@ -389,9 +389,9 @@
     <string name="welcome_fragment_feature_big_icons">大きくて見やすいボタンとアイコン</string>
     <string name="welcome_fragment_feature_gold_number">ゴールド番号を選択できます — よく使う連絡先への素早いアクセスが可能です</string>
     <string name="welcome_fragment_feature_quick_call">特別な状況に備えたクイックコール機能 — あらかじめ設定した番号に発信</string>
-    <string name="welcome_fragment_feature_premium_auto_answer">数回の着信後に自動応答を設定 — 手動操作は不要です</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">着信に自動で応答</string>
     <string name="welcome_fragment_feature_premium_upgraded_quick_call">アップグレードされたクイックコール。</string>
-    <string name="welcome_fragment_feature_premium_lock_screen">ロック画面を有効にできます — タップで開き、通話管理画面へ直接移動します。発信時も便利です</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">タップで開くロック画面</string>
     <string name="welcome_fragment_feature_premium_start_with_speaker">通話開始時に自動でスピーカーをオンにする設定</string>
     <string name="welcome_fragment_feature_premium_speak_caller_name">着信時に着信音の代わりに相手の名前を読み上げる設定</string>
     <string name="welcome_fragment_feature_premium_open_whatsup">アプリから直接WhatsAppを開く機能</string>

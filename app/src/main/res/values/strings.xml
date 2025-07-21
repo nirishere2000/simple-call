@@ -385,7 +385,7 @@
     <string name="subscription_start_your_7_days_free_trial_today">Start your 7 days free trial today!</string>
     <string name="subscription_7_days_free_then">7 days free, then:</string>
     <string name="welcome_lets_start_btn">Let\'s Start</string>
-    <string name="welcome_sub_title_in_premium_stage">Advanced features are available in the premium version!</string>
+    <string name="welcome_sub_title_in_premium_stage">More features in the Premium version!</string>
     <string name="welcome_fragment_title">Welcome</string>
     <string name="welcome_fragment_title_explain">The app offers smart features designed to make call management easier</string>
     <string name="welcome_fragment_continue_button">Continue</string>
@@ -393,11 +393,11 @@
     <string name="welcome_fragment_feature_big_icons">Large and clear buttons and icons</string>
     <string name="welcome_fragment_feature_gold_number">Choose a Gold Number — one of your contacts for quicker access.</string>
     <string name="welcome_fragment_feature_quick_call">Quick call option for special situations — to a predefined number</string>
-    <string name="welcome_fragment_feature_premium_auto_answer">Set automatic call answer after several rings — no manual touch required.</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">Auto-answer calls.</string>
     <string name="welcome_fragment_feature_premium_upgraded_quick_call">Upgraded Quick Call.</string>
-    <string name="welcome_fragment_feature_premium_lock_screen">Enable a Lock Screen — opens with a tap and goes directly to the Call Management screen.</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">Lock screen with one-tap open.</string>
     <string name="welcome_fragment_feature_premium_start_with_speaker">Start a call with speakerphone automatically.</string>
-    <string name="welcome_fragment_feature_premium_speak_caller_name">Choose to have the caller\'s name spoken instead of a ringtone during incoming calls.</string>
+    <string name="welcome_fragment_feature_premium_speak_caller_name">Have the caller\'s name spoken instead of a ringtone during incoming calls.</string>
     <string name="welcome_fragment_feature_premium_open_whatsup">Open WhatsApp directly from the app.</string>
     <string name="privacy_policy">Privacy Policy</string>
 </resources>

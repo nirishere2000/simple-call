@@ -391,9 +391,9 @@
     <string name="welcome_fragment_feature_big_icons">बड़े और स्पष्ट बटन और आइकन</string>
     <string name="welcome_fragment_feature_gold_number">गोल्ड नंबर चुनने का विकल्प — आपकी संपर्क सूची में से त्वरित पहुंच के लिए एक संपर्क</string>
     <string name="welcome_fragment_feature_quick_call">विशेष परिस्थितियों के लिए त्वरित कॉल का विकल्प — पहले से निर्धारित नंबर पर</string>
-    <string name="welcome_fragment_feature_premium_auto_answer">कई घंटियों के बाद स्वचालित उत्तर देने का विकल्प — बिना हाथ लगाए</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">कॉल का स्वचालित उत्तर</string>
     <string name="welcome_fragment_feature_premium_upgraded_quick_call">उन्नत त्वरित कॉल।</string>
-    <string name="welcome_fragment_feature_premium_lock_screen">लॉक स्क्रीन सक्रिय करने का विकल्प — टैप करते ही खुलती है और सीधे कॉल प्रबंधन स्क्रीन पर ले जाती है, जिससे कॉल करना भी आसान होता है</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">एक टैप में खुलने वाली लॉक स्क्रीन</string>
     <string name="welcome_fragment_feature_premium_start_with_speaker">कॉल शुरू करते ही स्वचालित रूप से स्पीकर चालू करने का विकल्प</string>
     <string name="welcome_fragment_feature_premium_speak_caller_name">आने वाली कॉल के दौरान रिंगटोन के स्थान पर कॉल करने वाले का नाम सुनाने का विकल्प</string>
     <string name="welcome_fragment_feature_premium_open_whatsup">ऐप से सीधे WhatsApp खोलने का विकल्प</string>

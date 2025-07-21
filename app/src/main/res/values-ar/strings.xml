@@ -427,7 +427,7 @@
     <string name="subscription_start_your_7_days_free_trial_today">ابدأ تجربة مجانية لمدة 7 أيام اليوم!</string>
     <string name="subscription_7_days_free_then">٧ أيام مجانًا، ثم:</string>
     <string name="welcome_lets_start_btn">لنبدأ</string>
-    <string name="welcome_sub_title_in_premium_stage">بالإضافة إلى ذلك، هناك ميزات متقدمة في النسخة المميزة!</string>
+    <string name="welcome_sub_title_in_premium_stage">ارتقِ بتجربتك مع النسخة المميزة!</string>
     <string name="welcome_fragment_title">مرحبًا بكم</string>
     <string name="welcome_fragment_title_explain">يوفر التطبيق ميزات ذكية تهدف إلى تسهيل إدارة المكالمات</string>
     <string name="welcome_fragment_continue_button">التالي</string>
@@ -435,9 +435,9 @@
     <string name="welcome_fragment_feature_big_icons">أزرار وأيقونات كبيرة وواضحة</string>
     <string name="welcome_fragment_feature_gold_number">إمكانية اختيار الرقم الذهبي — من قائمة جهات الاتصال للوصول الأسرع</string>
     <string name="welcome_fragment_feature_quick_call">إمكانية مكالمة سريعة للحالات الخاصة — لرقم مُحدد مسبقًا</string>
-    <string name="welcome_fragment_feature_premium_auto_answer">إمكانية تفعيل الرد التلقائي بعد عدة رنات دون الحاجة إلى اللمس اليدوي</string>
+    <string name="welcome_fragment_feature_premium_auto_answer">الرد على المكالمات تلقائيًا</string>
     <string name="welcome_fragment_feature_premium_upgraded_quick_call">مكالمة سريعة مُحسّنة</string>
-    <string name="welcome_fragment_feature_premium_lock_screen">إمكانية تفعيل شاشة القفل — تفتح بنقرة واحدة وتنتقل مباشرة إلى شاشة إدارة المكالمات لتسهيل إخراج المكالمات أيضًا</string>
+    <string name="welcome_fragment_feature_premium_lock_screen">شاشة قفل تُفتح بنقرة واحدة</string>
     <string name="welcome_fragment_feature_premium_start_with_speaker">إمكانية بدء المكالمة مع تشغيل مكبر الصوت تلقائيًا</string>
     <string name="welcome_fragment_feature_premium_speak_caller_name">إمكانية اختيار نطق اسم المتصل بدلًا من نغمة الرنين أثناء المكالمات الواردة</string>
     <string name="welcome_fragment_feature_premium_open_whatsup">إمكانية فتح واتساب مباشرةً من التطبيق</string>
